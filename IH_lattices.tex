@@ -1,0 +1,256 @@
+\documentclass[reqno]{amsart}
+
+\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, a4wide, pdflscape, multido, xargs, colortbl, multicol, multirow, calc, shuffle, hvfloat}
+\hypersetup{colorlinks=true, citecolor=PineGreen, linkcolor=PineGreen}
+%\usepackage[all]{xy}
+\usepackage{tikz}\usetikzlibrary{trees,snakes,shapes,arrows,matrix,calc}
+\usepackage{comment}
+\usepackage{etex}
+\usepackage{ulem}\normalem % to strike through a word
+\usepackage[noabbrev,capitalise]{cleveref}
+\setlength{\abovecaptionskip}{10pt}
+\setlength{\belowcaptionskip}{5pt}
+
+%\reserveinserts{50}
+\graphicspath{{figures/}}
+\makeatletter
+\def\input@path{{figures/}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Lattices of Segment Hypergraphic Polytopes}
+
+\author[N.~Bergeron]{Nantel Bergeron} 
+\address[N.~Bergeron]{Department of Mathematics and Statistics, York University, Toronto}
+\email{bergeron@yorku.ca}
+\urladdr{http://bergeron.mathstats.yorku.ca}
+
+\author[V.~Pilaud]{Vincent Pilaud}
+\address[V.~Pilaud]{??? CNRS \& LIX, \'Ecole Polytechnique, Palaiseau}
+\email{vincent.pilaud@lix.polytechnique.fr}
+\urladdr{http://www.lix.polytechnique.fr/~pilaud/}
+
+\thanks{
+NB was supported by NSERC and York Research Chair in Applied Algebra.
+VP ???).
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% theorems
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theoremA}{Theorem}
+\renewcommand{\thetheoremA}{\Alph{theoremA}}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\crefname{conjecture}{Conjecture}{Conjectures}
+\newtheorem{conjectureA}{Conjecture}
+\renewcommand{\theconjectureA}{\Alph{conjectureA}}
+\crefname{conjectureA}{Conjecture}{Conjectures}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{openproblem}[theorem]{Open problem}
+
+
+% newcommands
+% math special letters
+\newcommand{\R}{\mathbb{R}} % reals
+\newcommand{\N}{\mathbb{N}} % naturals
+\newcommand{\Z}{\mathbb{Z}} % integers
+\newcommand{\I}{\mathbb{I}} % set of integers
+\newcommand{\C}{\mathbb{C}} % set of summands
+\renewcommand{\b}[1]{\boldsymbol{#1}} % bold
+\newcommand{\cal}[1]{\mathcal{#1}} % cal
+
+% math commands
+\newcommand{\set}[2]{\left\{ #1 \;\middle|\; #2 \right\}} % set notation
+\newcommand{\bigset}[2]{\big\{ #1 \;|\; #2 \big\}} % big set notation
+\newcommand{\biggset}[2]{\bigg\{ #1 \;\bigg|\; #2 \bigg\}} % big set notation
+\newcommand{\multiset}[2]{\left\{\!\!\left\{ #1 \;\middle|\; #2 \right\}\!\!\right\}} % multiset notation
+\newcommand{\bigmultiset}[2]{\big\{\!\!\big\{ #1 \;|\; #2 \big\}\!\!\big\}} % big multiset notation
+\newcommand{\ssm}{\smallsetminus} % small set minus
+\newcommand{\dotprod}[2]{\langle #1 | #2 \rangle} % dot product
+\newcommand{\symdif}{\triangle} % symmetric difference
+\newcommand{\one}{{1\!\!1}} % the all one vector
+\newcommand{\eqdef}{\mbox{\,\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}}\ensuremath{=}\,}} % :=
+\newcommand{\defeq}{\mbox{~\ensuremath{=}\raisebox{0.2ex}{\scriptsize\ensuremath{\mathrm:}} }} % =:
+\newcommand{\polar}{^\diamond} % polar
+\newcommand{\simplex}{\triangle} % simplex
+
+% operators
+\DeclareMathOperator{\conv}{conv} % convex hull
+\DeclareMathOperator{\cone}{cone} % cone hull
+\DeclareMathOperator{\arr}{Arr} % arrangements
+\DeclareMathOperator{\Inv}{Inv} % inversion set
+\DeclareMathOperator{\Ninv}{Ninv} % non-inversion set
+\DeclareMathOperator{\DemazureProduct}{Dem} % non-inversion set
+
+% others
+\newcommand{\fix}[1]{{\bf FIXME: }#1} % emphasis of a problem to FIX
+\newcommand{\ie}{\textit{i.e.}~} % id est
+\newcommand{\eg}{\textit{e.g.}~} % exempli gratia
+\newcommand{\Eg}{\textit{E.g.}~} % exempli gratia
+\newcommand{\aka}{\textit{aka.}~} % also known as
+\newcommand{\viceversa}{\textit{vice versa}} % vice versa
+\newcommand{\ordinal}{\textsuperscript{th}} % th for ordinals
+\newcommand{\ex}[1]{^{\textrm{ex#1}}} % example
+\newcommand{\para}[1]{\medskip\noindent\textbf{#1}} % paragraph
+\newcommand{\subpara}[1]{\smallskip\noindent\textit{#1.}} % paragraph
+\definecolor{PineGreen}{RGB}{2,120,120} % pinegreen color
+\definecolor{darkgreen}{RGB}{57,181,74} % darkgreen color
+\newcommand{\blue}[1]{{\color{blue} #1}} % blue
+\newcommand{\red}[1]{{\color{red} #1}} % red
+\newcommand{\green}[1]{{\color{darkgreen} #1}} % green
+\newcommand{\defn}[1]{\textbf{\textsf{\color{PineGreen} #1}}} % emphasis of a definition
+\usepackage{todonotes}
+\newcommand{\nantel}[1]{\todo[color=red!30]{#1 \\ \hfill --- N.}}
+\newcommand{\Nantel}[1]{\todo[inline,color=red!30]{#1 \\ \hfill --- N.}}
+\newcommand{\vincent}[1]{\todo[color=blue!30]{#1 \\ \hfill --- V.}}
+\newcommand{\Vincent}[1]{\todo[inline,color=blue!30]{#1 \\ \hfill --- V.}}
+
+% permutations
+\newcommand{\fS}{\mathfrak{S}} % symmetric group
+\newcommand{\fR}{\mathfrak{R}} % subset symmetric group
+
+
+% lattices
+\newcommand{\meet}{\wedge} % meet
+\newcommand{\join}{\vee} % join
+\newcommand{\less}{\vartriangleleft} % smaller WOIP
+\newcommand{\more}{\vartriangleright} % larger WOIP
+\newcommand{\contactLess}[1]{\less_{#1}} % smaller contact graph
+\newcommand{\contactMore}[1]{\more_{#1}} % larger contact graph
+\newcommand{\projDown}{\pi_\downarrow} % Down projection
+\newcommand{\projUp}{\pi^\uparrow} % Down projection
+
+% Orientation, Hypergraph and Segments
+\newcommand{\Or}{\mathcal O}  % acyclic orientation for hypergraph (vertices for us)
+\newcommand{\HH}{\mathbb H}  % general hypergraph
+\newcommand{\II}{\mathbb I} % segment hypergraph
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+\begin{abstract}
+	Lets be real, not just abstract
+\end{abstract}
+
+\vspace*{-.8cm}
+
+\maketitle
+\nantel{Todo ``Nantel" avec majuscule sont en ligne avec le texte, "nantel" est comme avant}
+\Nantel{Vincent, verifie ton affiliation, grant et addresse}
+
+
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Introduction}
+\label{sec:introduction}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hypergraphical Polytope and its partial order}
+\label{sec:IHP}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Hypergraphic Polytope} 
+\label{subsec:D_H}
+
+Let $[n]=\{1,2,\ldots,n\}$. A \defn{hypergraph} $\HH$ on $[n]$, is a collection of  subsets of $[n]$.
+By convention, we will assume that for all $i\in [n]$, we have $\{i\}\in \HH$.
+Following~\cite[Def 2.11]{BenBerMac}, given an hypergraph $\HH$, we define the \defn{hypergraphic polytope}
+$\Delta_{\HH}$ as the the Minkowski sum
+ $$\Delta_{\HH} = \sum_{H\in \HH} \Delta_H\,,$$
+where $\Delta_H$ is the simplex given by the convex hull of the points $\{e_i | i\in H\}\subset \R^n$.
+
+\begin{example}\label{ex:DH}
+For the hypergraph
+$\HH=\big\{\{1\},\{2\},\{3\},\{4\},\{3,4\},\{1,2,3\}\big\}$,
+we  have
+$$\begin{array}{ccc}
+ \begin{tikzpicture}[scale=1,baseline=.5cm]
+	\node (1) at (0.6,1.0) {$\scriptstyle e_1$};
+	\node (2) at (-.2,-.2) {$\scriptstyle e_2$};
+	\node (3) at (1.5,-.2) {$\scriptstyle e_3$};
+	\draw [fill=blue!40] (0,0) -- (.6,.75) -- (1.2,0) --(0,0) ; 
+\end{tikzpicture} \quad &
+ \begin{tikzpicture}[scale=1,baseline=.5cm]
+	\node at (-.2,0) {$\scriptstyle e_3$};
+	\node at (1.2,.5) {$\scriptstyle e_4$};
+	\draw [thick,color=red] (0,0) -- (1,.5 ); 
+\end{tikzpicture} \quad &
+\begin{tikzpicture}[scale=1,baseline=.5cm]
+	\draw [fill=gray!10] (0,0) -- (.6,.75)-- (1.6,1.25) -- (2.2,.5) -- (1.2,0) --(0,0) ; 
+	\draw [color=gray!10,fill=blue!20] (0,0) -- (.6,.75) -- (1.2,0) --(0,0) ; 
+	\draw [dotted,color=red] (0,0)--(1,.5);
+	\draw [dotted,color=blue] (1.6,1.25)--(1,.5)--(2.2,.5);
+	\draw (0,0) -- (.6,.75)-- (1.6,1.25) -- (2.2,.5) -- (1.2,0) -- (0,0) ; 
+	\draw [thick,color=red!80] (1.2,0) -- (2.2,0.5); 
+\end{tikzpicture}\\
+\blue{{ \Delta}_{123}}& \red{{ \Delta}_{34}} & \Delta_{\HH}=\Delta_1+\Delta_2+\Delta_3+\Delta_4+\blue{{ \Delta}_{123}}+ \red{{ \Delta}_{34}}\\
+\end{array}
+$$
+which is a 3-dimensional polytope sitting in $\R^4$. 
+\end{example}
+
+\begin{remark}\label{rem:single} In~\cite{BenBerMac}, the authors always assume that for all $i\in[n]$ we have $\{i\}\not\in\HH$ whereas here we took the opposite convention. 
+When quoting result from~\cite{BenBerMac}, the reader will have to be mindful of this difference.
+We point out, as in  Example~\ref{ex:DH}, that the $\Delta_i$ are single points and in the definition of $\Delta_{\HH}$ it simply translate the polytope in the direction of $e_i$ but does not affect the  face structure of the polytope.
+\end{remark}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Poset of a Hypergraphic Polytope} 
+\label{subsec:P_H}
+One of the main result of~\cite[Thm 3.18]{BenBerMac} is to identify the faces of $\Delta_\HH$ with the acyclic orientations of certain quotient of $\HH$.  A useful tool,~\cite[Lem 2.9]{BenBerMac}, gives us a surjective map $\Omega$ from the set composition (ordered set partitions) of $[n]$ to the set of faces of $\Delta_\HH$. 
+ In the present work, we will be interested in the skeleton (faces of dimension 1 and 2)
+of the polytope as an oriented graph $P_{\HH}$. It will turn out that $P_{\HH}$ is a poset (partial order).  The map $\Omega$ identify the vertices $V_{\HH}$ of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with parts all of size 1.  In turn, this can be identified as ordered list of $[n]$ corresponding to $\fS_n$ the permutations of the set $[n]$. This gives us a map
+\begin{equation}\Omega_1 \colon \fS_n \to V_{\HH}\,.
+\end{equation} 
+More explicitly, given $\pi\in\fS_n$ we construct an acyclic orientation $\Or_\pi$ of $\HH$ as follow. For any $H\in \HH$ such that $|H|>1$ we orient $H$  with the source $\{a\}$, where $a$ is the leftmost element of $H$ in $\pi$. That is
+	$$\Or_\pi = \Big\{\big(\{a\},H\ssm\{a\}\big)\big| H\in \HH, a=\pi\big(\min\{j: \pi(j)\in H\}\big)\Big\}\,.
+	$$
+We immediately obtain the following lemma.
+\begin{lemma}\label{lem:vertices}
+For any hypergraph $\HH$, the set of vertices of $\Delta_{\HH}$ is given by $V_{\HH}=\{\Or_\pi: \pi\in \fS_n\}$.
+\end{lemma}
+
+\Nantel{I will then introduce a map $\Omega_2$ that defines the (oriented) edges of $P_{\HH}$. That will give us a well define partial order. It is in fact a surjective map from the weak order to $P_{\HH}$}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{Acknowledgments}
+
+Thanks!
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bibliographystyle{alpha}
+\bibliography{IH_lattices}
+\label{sec:biblio}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
