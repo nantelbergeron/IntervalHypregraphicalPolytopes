@@ -170,7 +170,7 @@ VP ???).
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Hypergraphical Polytope and its partial order}
+\section{Hypergraphical Polytopes and their partial orders}
 \label{sec:IHP}
 
 
@@ -220,22 +220,65 @@ When quoting result from~\cite{BenBerMac}, the reader will have to be mindful of
 We point out, as in  Example~\ref{ex:DH}, that the $\Delta_i$ are single points and in the definition of $\Delta_{\HH}$ it simply translate the polytope in the direction of $e_i$ but does not affect the  face structure of the polytope.
 \end{remark}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{The Poset of a Hypergraphic Polytope} 
+\subsection{Hypergraphic Posets} 
 \label{subsec:P_H}
 One of the main result of~\cite[Thm 3.18]{BenBerMac} is to identify the faces of $\Delta_\HH$ with the acyclic orientations of certain quotient of $\HH$.  A useful tool,~\cite[Lem 2.9]{BenBerMac}, gives us a surjective map $\Omega$ from the set composition (ordered set partitions) of $[n]$ to the set of faces of $\Delta_\HH$. 
- In the present work, we will be interested in the skeleton (faces of dimension 1 and 2)
-of the polytope as an oriented graph $P_{\HH}$. It will turn out that $P_{\HH}$ is a poset (partial order).  The map $\Omega$ identify the vertices $V_{\HH}$ of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with parts all of size 1.  In turn, this can be identified as ordered list of $[n]$ corresponding to $\fS_n$ the permutations of the set $[n]$. This gives us a map
-\begin{equation}\Omega_1 \colon \fS_n \to V_{\HH}\,.
-\end{equation} 
+ In the present work, we will be interested in the skeleton (faces of dimension 0 and 1)
+of the polytope as an oriented graph $P_{\HH}$. It will turn out that $P_{\HH}$ is a poset (partial order).  The map $\Omega$ identifies the vertices (0-dim faces) $V_{\HH}$  of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with $n$ parts. In turn, the set composition with $n$ parts correspond to ordered list of $[n]$ and can be encoded with $\fS_n$ the permutations of the set $[n]$. This gives us a map $\Omega_1 \colon \fS_n \to V_{\HH}$.
 More explicitly, given $\pi\in\fS_n$ we construct an acyclic orientation $\Or_\pi$ of $\HH$ as follow. For any $H\in \HH$ such that $|H|>1$ we orient $H$  with the source $\{a\}$, where $a$ is the leftmost element of $H$ in $\pi$. That is
 	$$\Or_\pi = \Big\{\big(\{a\},H\ssm\{a\}\big)\big| H\in \HH, a=\pi\big(\min\{j: \pi(j)\in H\}\big)\Big\}\,.
 	$$
 We immediately obtain the following lemma.
-\begin{lemma}\label{lem:vertices}
+
+\begin{lemma}\label{lem:Hvertices}
 For any hypergraph $\HH$, the set of vertices of $\Delta_{\HH}$ is given by $V_{\HH}=\{\Or_\pi: \pi\in \fS_n\}$.
 \end{lemma}
 
-\Nantel{I will then introduce a map $\Omega_2$ that defines the (oriented) edges of $P_{\HH}$. That will give us a well define partial order. It is in fact a surjective map from the weak order to $P_{\HH}$}
+We now turn our attention to the edges (1-dim faces) $E_{\HH}$ of $\Delta_{\HH}$. The map $\Omega$ identifies the set $E_{\HH}$ as certain non-trivial image of the set compositions of $[n]$ with $n-1$ parts.
+More precisely, let $A=(A_1,A_2,\ldots,A_{n-1})$ be a set composition of $[n]$ with $n-1$ parts. There is a unique part $A_i=\{a_i,b_i\}$ of size two and all other parts $A_j=\{a_j\}$ for $j\neq i$ of size one. It is known~\cite{???} that $A$ 
+corresponds  exactly to the cover relation $\sigma=a_1\cdots a_{i-1}a_ib_ia_{i+1}\cdots a_{n-1} < a_1\cdots a_{i-1}b_ia_ia_{i+1}\cdots a_{n-1}=\pi$ of the (right) weak order on $\fS_n$, where $a_i<b_i$. 
+Hence given a cover $\sigma < \pi$ in the $\fS_n$-weak  order, two cases may happen. On one hand it is possible that $\Or_\sigma=\Or_\pi$, hence $\Omega(A)=\Or_pi$ is a vertex and not an edge. On the other hand, if we get the (non-trivial)
+relation $\Or_\sigma\ne \Or_\pi$, then $\Omega(A)$ is an (oriented) edge $\Or_\sigma\to\Or_\pi$ of $\Delta_{\HH}$. We thus have the following lemma.
+
+\begin{lemma}\label{lem:Hedges}
+For any hypergraph $\HH$, the set of (oriented) edges of $\Delta_{\HH}$ is given by 
+ $$E_{\HH}=\{(\Or_\sigma,\Or_\pi): \sigma<\pi \text{ is a cover}, \Or_\sigma\ne\Or_\pi\}\,.$$
+\end{lemma}
+
+\begin{proposition}\label{prop:PHisOrder}
+The oriented graph $P_{\HH}=(V_{\HH},E_{\HH})$ is acyclic, in particular it defines a poset on $V_{\HH}$.
+\end{proposition}
+
+\begin{proof} It suffice to remark that any cycle on $P_{\HH}$ would induce a cycle on the $\fS_n$-weak order, a contradiction.
+\end{proof}
+
+The previous proposition allows us to define the \defn{hypergraphic poset} $P_{\HH}$ of any hypergraph $\HH$. 
+
+\begin{remark}\label{rem:EdgeNotCover}
+It is important to notice that the edges in $E_{\HH}$ are not necessarily covers of the relation in $P_{\HH}$. The simplest example is given by $\HH=\big\{\{1\},\{2\},\{3\},\{1,2,3\}\big\}$.
+The vertices of the polytope $\Delta_{\HH}$ are given by
+	$$ V_{\HH}=\big\{ \Or_{123}=\Or_{132}, \Or_{213}=\Or_{231}, \Or_{312}=\Or_{321}\big\}= \big\{ (\{1\},\{2,3\}),(\{2\},\{1,3\}),(\{3\},\{1,2\})\big\}$$
+and the edges
+	$$ E_{\HH}=\big\{ (\Or_{123},\Or_{213}),(\Or_{132},\Or_{312}),(\Or_{231}, \Or_{312})\big\}\,.$$
+in picture, that gives
+$$\Delta_\HH=\Delta_1+\Delta_2+\Delta_3+\Delta_{123}=
+\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node (a) at (0,-1.2) {$\scriptstyle \Or_{132}=\Or_{123}$};
+	\node (b) at (2.5,0) {$\scriptstyle \Or_{213}=\Or_{231}$};
+	\node (c) at (0,1.2) {$\scriptstyle \Or_{312}=\Or_{321}$};
+	\draw [color=blue!40,thick,fill=blue!20] (0,-1)--(0,1)--(1.632,0)--(0,-1) ; 
+	\draw [color=red,thick,->] (-.1,-1)--(-.1,1); 
+	\draw [color=red,thick,->] (1.732,0)--(.1,1); 
+	\draw [color=red,thick,->] (.1,-1)--(1.732,0); 
+\end{tikzpicture}
+$$
+and clearly the edge $(\Or_{132},\Or_{312})$ is not a cover. 
+\end{remark}
+
+In General, given a hypergraph $\HH$ we would be interested to understand what are the cover of $P_\{HH}$? 
+When is $P_{\HH}$ a lattice? distributive lattice? a semi-lattice? (semi-)lattice quotient of the $fS_n$-weak lattice?
+Can we describe nicely the permutations that gives the same vertex of $\Delta_{\HH}$.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
