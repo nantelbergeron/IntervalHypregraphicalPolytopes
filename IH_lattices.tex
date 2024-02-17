@@ -165,6 +165,9 @@ VP ???).
 \section{Introduction}
 \label{sec:introduction}
 
+\begin{theoremA}\label{thm:latticeI}
+For a segment hypergraph $\II$ the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersections.
+\end{theoremA}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -225,9 +228,9 @@ We point out, as in  Example~\ref{ex:DH}, that the $\Delta_i$ are single points 
 One of the main result of~\cite[Thm 3.18]{BenBerMac} is to identify the faces of $\Delta_\HH$ with the acyclic orientations of certain quotient of $\HH$.  A useful tool,~\cite[Lem 2.9]{BenBerMac}, gives us a surjective map $\Omega$ from the set composition (ordered set partitions) of $[n]$ to the set of faces of $\Delta_\HH$. 
  In the present work, we will be interested in the skeleton (faces of dimension 0 and 1)
 of the polytope as an oriented graph $P_{\HH}$. It will turn out that $P_{\HH}$ is a poset (partial order).  The map $\Omega$ identifies the vertices (0-dim faces) $V_{\HH}$  of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with $n$ parts. In turn, the set composition with $n$ parts correspond to ordered list of $[n]$ and can be encoded with $\fS_n$ the permutations of the set $[n]$. This gives us a map $\Omega_0 \colon \fS_n \to V_{\HH}$.
-More explicitly, given $\pi\in\fS_n$ we construct an acyclic orientation $\Or_\pi$ of $\HH$ as follow. For any $H\in \HH$ such that $|H|>1$ we orient $H$  with the source $\{a\}$, where $a$ is the leftmost element of $H$ in $\pi$. That is
+More explicitly, given $\pi\in\fS_n$ we construct an acyclic orientation $\Or_\pi$ of $\HH$ as follow. For any $H\in \HH$ such that $|H|>1$ we orient $H$  with the source $i$  the leftmost element of $H$ in $\pi$. That is
 \begin{equation}\label{eq:orientation}
-	\Or_\pi = \Big\{\big(a,H\big)\big| H\in \HH, |H|>1,  a=\pi\big(\min\{j: \pi(j)\in H\}\big)\Big\}\,.
+	\Or_\pi = \Big\{\big(i,H\big)\ \big| \ H\in \HH, |H|>1,  i=\pi\big(\min\{\pi(j): \pi(j)\in H\}\big)\Big\}\,.
 \end{equation}
 We immediately obtain the following lemma.
 
@@ -238,7 +241,7 @@ For any hypergraph $\HH$, the set of vertices of $\Delta_{\HH}$ is given by $V_{
 We now turn our attention to the edges (1-dim faces) $E_{\HH}$ of $\Delta_{\HH}$. The map $\Omega$ identifies the set $E_{\HH}$ as certain non-trivial image of the set compositions of $[n]$ with $n-1$ parts.
 More precisely, let $A=(A_1,A_2,\ldots,A_{n-1})$ be a set composition of $[n]$ with $n-1$ parts. There is a unique part $A_i=\{a_i,b_i\}$ of size two and all other parts $A_j=\{a_j\}$ for $j\neq i$ of size one. It is known~\cite{???} that $A$ 
 corresponds  exactly to the cover relation $\sigma=a_1\cdots a_{i-1}a_ib_ia_{i+1}\cdots a_{n-1} < a_1\cdots a_{i-1}b_ia_ia_{i+1}\cdots a_{n-1}=\pi$ of the (right) weak order on $\fS_n$, where $a_i<b_i$. 
-Hence given a cover $\sigma < \pi$ in the $\fS_n$-weak  order, two cases may happen. On one hand it is possible that $\Or_\sigma=\Or_\pi$, hence $\Omega(A)=\Or_pi$ is a vertex and not an edge. On the other hand, if we get the (non-trivial)
+Hence given a cover $\sigma < \pi$ in the $\fS_n$-weak  order, two cases may happen. On one hand it is possible that $\Or_\sigma=\Or_\pi$, hence $\Omega(A)=\Or_\pi$ is a vertex and not an edge. On the other hand, if we get the (non-trivial)
 relation $\Or_\sigma\ne \Or_\pi$, then $\Omega(A)$ is an (oriented) edge $\Or_\sigma\to\Or_\pi$ of $\Delta_{\HH}$. We thus have the following lemma.
 
 \begin{lemma}\label{lem:Hedges}
@@ -253,7 +256,14 @@ The oriented graph $P_{\HH}=(V_{\HH},E_{\HH})$ is acyclic, in particular it defi
 \begin{proof} It suffice to remark that any cycle on $P_{\HH}$ would induce a cycle on the $\fS_n$-weak order, a contradiction.
 \end{proof}
 
-The previous proposition allows us to define the \defn{hypergraphic poset} $P_{\HH}$ of any hypergraph $\HH$. 
+The previous proposition allows us to define the \defn{hypergraphic poset} $P_{\HH}$ of any hypergraph $\HH$.  
+We can summarize the previous result with the following proposition
+
+\begin{proposition}\label{prop:WeakToP}
+With the weak order on $\fS_n$, the map $\Omega_0 \colon \fS_n \to P_{\HH}$ is order preserving.
+\end{proposition}
+
+
 
 \begin{remark}\label{rem:EdgeNotCover}
 It is important to notice that the edges in $E_{\HH}$ are not necessarily covers of the relation in $P_{\HH}$. The simplest example is given by $\HH=\big\{\{1\},\{2\},\{3\},\{1,2,3\}\big\}$.
@@ -291,11 +301,11 @@ is the \defn{source} of $H$ for the orientation $\Or_\pi$.
 Given an acyclic orientation $\Or$ of $\HH$,  we can characterize the preimage 
 	$$ \Omega_0^{-1}(\Or)=\{ \pi : \Or_\pi=\Or\}$$
 as follow. Let $\less_\Or$ be the order on $[n]$ defined by the transitive closure of the union of 
-the order $\less_{(a,H)}=\big\{ a< b : b\in H\ssm\{a\}\big\}$ for each $(a,H)\in \Or$ . That is
+the order $\less_{(i,H)}=\big\{ i< j : j\in H\ssm\{i\}\big\}$ for each $(i,H)\in \Or$ . That is
  	$$\less_\Or =  \bigcup_{(a,H)\in \Or} 
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (0,-.4) {$\scriptstyle a$};
-	\node at (0,.6) {$\scriptstyle b\in H\ssm \{a\}$};
+	\node at (0,-.45) {$\scriptstyle i$};
+	\node at (0,.6) {$\scriptstyle j\in H\ssm \{i\}$};
 	\node at (.2,.35) {$\ldots$};
 	\draw [thick] (0,-.3)--(-.5,.4); 
 	\draw [thick] (0,-.3)--(-.3,.4); 
@@ -313,6 +323,7 @@ When is $P_{\HH}$ a lattice? distributive lattice? a semi-lattice? (semi-)lattic
 Can we have a better description of $\Omega_0^{-1}$? and more.
 
 In the present work we focus our attention to a subfamily of Hypergraph, namely we assume that all $H\in \HH$ are segment.
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -351,7 +362,7 @@ and we omit to draw the singleton $\{i\}$ for $1\le i\le n$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preimage $\Omega_0^{-1}$ for segment hypergraph} 
-\label{subsec:notation}
+\label{subsec:preimageI}
 One striking property for segment hypergraph is that  the sets  $\Omega_0^{-1}(\Or)$ have very nice properties.
 To describe this we first need to recall a classic result about linear extension of orders on $[n]$.
 
@@ -374,12 +385,109 @@ Moreover, the inversions of~$\min(I)$ are the pairs~$i,j \in [n]$ with $i < j$ a
 
 \begin{proof}
 From Lemma~\ref{lem:prepi} we have that any $\pi\in \Omega_0^{-1}(\Or)$  is a linear extension of $\less_\Or$, we can therefor use Proposition~\ref{prop:WOIP} to prove our claim. 
-Let $i<j<k$ be any integers in the natural order of $[n]$. If we have $i\less_{\Or} k$, then, by definition of $\less_\Or$, there must be a sequence $(a_1,I_{1}), (a_2,I_{2}),\ldots (a_m,I_{m})$ of oriented edges in $\Or$ such that
-$a_1=i$, for $1\le s<m$ we have $a_{s+1}\in I_s$, and $k\in I_m$. We must therefor have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{\Or} j$. The case $i\more_{\Or} k$ is similar and  implies
+Let $i<j<k$ be any integers in the natural order of $[n]$. If we have $i\less_{\Or} k$, then, by definition of $\less_\Or$, there must be a sequence $(i_1,I_{1}), (i_2,I_{2}),\ldots (i_m,I_{m})$ of oriented edges in $\Or$ such that
+$i_1=i$, for $1\le s<m$ we have $i_{s+1}\in I_s$, and $k\in I_m$. We must therefor have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{\Or} j$. The case $i\more_{\Or} k$ is similar and  implies
 that $j\more_\Or k$. This shows $\Omega_0^{-1}(\Or)$ is an interval in the weak order.
 
 For the remaining of our claim, assume $\pi$ is the maximum of the interval of $\Omega_0^{-1}(\Or)$ and has a $213$ pattern. That is,  we can find $i<j<k$ such that $\{i,k\}$ is a non-inversion of $\pi$ and $\{i,j\}$ is an inversion. Using Proposition~\ref{prop:WOIP} we must have $i\less_\Or k$ and $i\not\less_\Or j$, a contradiction to our proof above. The case for the minimum is similar.
 \end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{A source characterization of $P_\II$}  
+\label{subsec:sourceinc}
+
+A necessary and sufficient  condition of the order $P_\II$ is that sources must increase for each $I\in \II$.
+
+\begin{proposition}
+\label{prop:sourceorder}
+Let $\II$ be a segment hypergraph. For any $A,B\in P_\II$ we have
+$$ A\le B\quad  \text{ if and only if }\quad  S(I,A)\le S(I,B) \text{ for all } I\in \II .$$
+\end{proposition}
+\begin{proof}
+
+\end{proof}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Which $P_\II$ are lattices?}
+\label{sec:LatticePI}
+
+In this section, we will prove our Theorem~\ref{thm:latticeI} that characterizes the segment hypergraphs $\II$ for which $P_\II$ are lattices.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{If $P_\II$ is a lattice, then $\II$ is closed under intersections}  
+\label{subsec:latticeI}
+
+We are now ready to show the forward implication of Theorem~\ref{thm:latticeI}.
+
+\begin{proposition}
+	For a segment hypergraph $\II$, if the poset $P_\II$ is a lattice, then $\II$ is closed under intersections.
+\end{proposition}
+
+\begin{proof} By contradiction, assume we have $I,J\in \II$ such that $\emptyset \not = I\cap J\not\in \II$. Let $a<b<c<d$ be such that $a=b-1$, $b=\min(I\cap J)$, $c=\max(I\cap J)$, and $d=c+1$.
+Remark that $b\ne c$ since $\II$ contains all singletons. By symmetry, we assume that $a\in I\ssm J$ and $d\in J\ssm I$. Let $X$ be the element of $[n]\ssm\{a,b,c,d\}$ written in increasing order.
+We now construct four permutations 
+$$ \pi_A=bacdX,\qquad \pi_B=acdbX,\qquad \pi_C=dbacX \qquad\text{and}\qquad \pi_D=cdbaX,$$
+and consider the four distinct orientations $A=\Or_{pi_A}$, $B=\Or_{pi_B}$, $C=\Or_{pi_C}$ and $D=\Or_{pi_D}$. We display bellow the four orientations highlighting only the segment $I$ and $J$.
+$$
+\begin{array}{lcr}
+	C =  
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
+	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.5,0) {$\bullet$};
+	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (.3,-.3) {$\scriptstyle b$};
+	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.5,-.3) {$\scriptstyle d$};
+	\end{tikzpicture} 
+	&\qquad\quad&
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (1.2,.3) {$\bullet$};
+	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
+	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (.3,-.3) {$\scriptstyle b$};
+	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.5,-.3) {$\scriptstyle d$};
+	\end{tikzpicture} 
+	=D 
+	\\ \\ \\
+	A =  
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
+	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (.3,0) {$\bullet$};
+	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (.3,-.3) {$\scriptstyle b$};
+	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.5,-.3) {$\scriptstyle d$};
+	\end{tikzpicture} 
+	&\qquad\quad&
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (0,.3) {$\bullet$};
+	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
+	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (.3,-.3) {$\scriptstyle b$};
+	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.5,-.3) {$\scriptstyle d$};
+	\end{tikzpicture} 
+	=B
+\end{array}
+$$
+We have that $\pi_A<\pi_C$, $\pi_A<\pi_D$ and $\pi_B<\pi_D$ in the weak order. Proposition~\ref{prop:WeakToP} implies that $A<C$, $A<D$ and $B<D$ in the $P_\II$ order.
+We claim that $B<C$  but this does not follow directly from the weak order since $\pi_B\not<\pi_C$. To show our claim, consider $\pi_E=adcbX$ and $\pi_F=adbcX$.
+For any $K\in \II$ such that $a,d\not\in K$, we cannot have both $c,d\in K$, since this would imply that $K=[c,d]=I\cap J\not\in \II$, a contradiction.
+This shows that $E=\Or_{\pi_E}=\Or_{\pi_F}=F$. Now we have $\pi_B<\pi_E$ and $\pi_F<\pi_C$ which gives $B<E=F<C$.
+ 
+If the poset $P_\II$ is a lattice, then we can find a unique join $M= A \join B$. By definition $A\le M$ and $B\le M$. By property of join we also have $M\le C$ and $M\le D$ since both $C$ and $D$ are  greater than $A$ and $B$.
+Let $\pi_M$ be any permutation such that $M=\Or_{\pi_M}$ and let  
+   $$m=\pi\big(\min\{i:\pi_M(i)\in I\cup J\}\big).$$
+If $m<b$, then $(m,I)\in M$ and $(b,I)\in A$ and Proposition~\ref{prop:sourceorder} implies that $A\not\le M$.
+By a similar argument: $\big(b\le m<c \implies B\not\le M\big)$,  $\big(b< m\le c \implies M\not\le C\big)$, and $\big(c<m \implies M\not\le D\big)$. This is a contradiction to the existence of $m$.
+\end{proof}
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
