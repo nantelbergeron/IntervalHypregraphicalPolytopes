@@ -3,7 +3,7 @@
 \usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, a4wide, pdflscape, multido, xargs, colortbl, multicol, multirow, calc, shuffle, hvfloat}
 \hypersetup{colorlinks=true, citecolor=PineGreen, linkcolor=PineGreen}
 %\usepackage[all]{xy}
-\usepackage{tikz}\usetikzlibrary{trees,snakes,shapes,arrows,matrix,calc}
+\usepackage{tikz}\usetikzlibrary{trees,snakes,shapes,arrows,matrix,calc,arrows.meta}
 \usepackage{comment}
 \usepackage{etex}
 \usepackage{ulem}\normalem % to strike through a word
@@ -227,7 +227,7 @@ One of the main result of~\cite[Thm 3.18]{BenBerMac} is to identify the faces of
 of the polytope as an oriented graph $P_{\HH}$. It will turn out that $P_{\HH}$ is a poset (partial order).  The map $\Omega$ identifies the vertices (0-dim faces) $V_{\HH}$  of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with $n$ parts. In turn, the set composition with $n$ parts correspond to ordered list of $[n]$ and can be encoded with $\fS_n$ the permutations of the set $[n]$. This gives us a map $\Omega_0 \colon \fS_n \to V_{\HH}$.
 More explicitly, given $\pi\in\fS_n$ we construct an acyclic orientation $\Or_\pi$ of $\HH$ as follow. For any $H\in \HH$ such that $|H|>1$ we orient $H$  with the source $\{a\}$, where $a$ is the leftmost element of $H$ in $\pi$. That is
 \begin{equation}\label{eq:orientation}
-	\Or_\pi = \Big\{\big(a,H\ssm\{a\}\big)\big| H\in \HH, a=\pi\big(\min\{j: \pi(j)\in H\}\big)\Big\}\,.
+	\Or_\pi = \Big\{\big(a,H\big)\big| H\in \HH, |H|>1,  a=\pi\big(\min\{j: \pi(j)\in H\}\big)\Big\}\,.
 \end{equation}
 We immediately obtain the following lemma.
 
@@ -257,20 +257,20 @@ The previous proposition allows us to define the \defn{hypergraphic poset} $P_{\
 
 \begin{remark}\label{rem:EdgeNotCover}
 It is important to notice that the edges in $E_{\HH}$ are not necessarily covers of the relation in $P_{\HH}$. The simplest example is given by $\HH=\big\{\{1\},\{2\},\{3\},\{1,2,3\}\big\}$.
-The vertices of the polytope $\Delta_{\HH}$ are given by
-	$$ V_{\HH}=\big\{ \Or_{123}=\Or_{132}, \Or_{213}=\Or_{231}, \Or_{312}=\Or_{321}\big\}= \big\{ (\{1\},\{2,3\}),(\{2\},\{1,3\}),(\{3\},\{1,2\})\big\}$$
+The vertices $V_{\HH}$ of the polytope $\Delta_{\HH}$ are given by
+	$$\Big\{ \Or_{123}=\Or_{132}, \Or_{213}=\Or_{231}, \Or_{312}=\Or_{321}\Big\}= \Big\{ \big\{(1,\{1,2,3\})\big\},\big\{(2,\{1,2,3\})\big\},\big\{(3,\{1,2,3\})\big\}\Big\}$$
 and the edges
 	$$ E_{\HH}=\big\{ (\Or_{123},\Or_{213}),(\Or_{132},\Or_{312}),(\Or_{231}, \Or_{312})\big\}\,.$$
 in picture, that gives
 $$\Delta_\HH=\Delta_1+\Delta_2+\Delta_3+\Delta_{123}=
-\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node (a) at (0,-1.2) {$\scriptstyle \Or_{132}=\Or_{123}$};
-	\node (b) at (2.5,0) {$\scriptstyle \Or_{213}=\Or_{231}$};
-	\node (c) at (0,1.2) {$\scriptstyle \Or_{312}=\Or_{321}$};
+\begin{tikzpicture}[scale=.7,baseline=.0cm]
+	\node (a) at (0,-1.2) {$\scriptscriptstyle \{(1,\{1,2,3\})\}$};
+	\node (b) at (3,0) {$\scriptscriptstyle \{(2,\{1,2,3\})\}$};
+	\node (c) at (0,1.2) {$\scriptscriptstyle \{(3,\{1,2,3\})\}$};
 	\draw [color=blue!40,thick,fill=blue!20] (0,-1)--(0,1)--(1.632,0)--(0,-1) ; 
 	\draw [color=red,thick,->] (-.1,-1)--(-.1,1); 
-	\draw [color=red,thick,->] (1.732,0)--(.1,1); 
-	\draw [color=red,thick,->] (.1,-1)--(1.732,0); 
+	\draw [color=red,thick,->] (1.832,0)--(.2,1); 
+	\draw [color=red,thick,->] (.2,-1)--(1.832,0); 
 \end{tikzpicture}
 $$
 and clearly the edge $(\Or_{132},\Or_{312})$ is not a cover. 
@@ -290,13 +290,12 @@ is the \defn{source} of $H$ for the orientation $\Or_\pi$.
 
 Given an acyclic orientation $\Or$ of $\HH$,  we can characterize the preimage 
 	$$ \Omega_0^{-1}(\Or)=\{ \pi : \Or_\pi=\Or\}$$
-as follow. For $a\in H$, let $H_a=H\ssm\{a\}$. This is a convenient notation for element $(a,H_a)\in \Or$.
-Let $Q(\Or)$ be the order on $[n]$ defined by the transitive closure of the union of 
-the order $Q_{(a,H_a)}=\big\{ a< b : b\in H_a\big\}$ for each $(a,H_a)\in \Or$ . That is
- 	$$Q(\Or) =  \bigcup_{(a,H_a)\in \Or} 
+as follow. Let $\less_\Or$ be the order on $[n]$ defined by the transitive closure of the union of 
+the order $\less_{(a,H)}=\big\{ a< b : b\in H\ssm\{a\}\big\}$ for each $(a,H)\in \Or$ . That is
+ 	$$\less_\Or =  \bigcup_{(a,H)\in \Or} 
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\node at (0,-.4) {$\scriptstyle a$};
-	\node at (0,.6) {$\scriptstyle b\in H_a$};
+	\node at (0,.6) {$\scriptstyle b\in H\ssm \{a\}$};
 	\node at (.2,.35) {$\ldots$};
 	\draw [thick] (0,-.3)--(-.5,.4); 
 	\draw [thick] (0,-.3)--(-.3,.4); 
@@ -304,8 +303,8 @@ the order $Q_{(a,H_a)}=\big\{ a< b : b\in H_a\big\}$ for each $(a,H_a)\in \Or$ .
 	\draw [thick] (0,-.3)--(.5,.4); 
 	\end{tikzpicture}
 	$$
-The following straightforward lemma is left to the reader.
-\begin{lemma}\label{lem:prepi}   $ \Omega_0^{-1}(\Or) =\big\{ \pi : \pi \text{ is a linear extension of }  Q(\Or)\big\}$.
+This is a well defined order since $\Or$ is acyclic. The following is a straightforward lemma left to the reader to prove.
+\begin{lemma}\label{lem:prepi}   $ \Omega_0^{-1}(\Or) =\big\{ \pi : \pi \text{ is a linear extension of }  \less_\Or)\big\}$.
 \end{lemma}
 
 
@@ -322,6 +321,65 @@ In the present work we focus our attention to a subfamily of Hypergraph, namely 
 \label{sec:IHP}
 
 In this paper, we  assume that $\HH=\II$ is an hypergraph where all $I\in \II$ are segment of the form $I=[a,b]=\{a,a+1,a+2,\ldots,b\}$.
+We call such hypergraph a \defn{segment hypergprah}. 
+
+\begin{example}\label{ex:seghyp}
+ $\II=\{\{1\},\{2\},\{3\},\{4\},[1,3],[2,3],[2,4],[1,4]\}$ is a segment hypergraph.
+We will represent $\II$ and an orientation $\Or_{4132} =\big\{ (4,\{1,2,3,4\}), (1,\{1,2,3\}),(3,\{2,3\}),(4,\{2,3,4\})\big\}$ of $\II$ graphicaly as follow:
+ 	$$\II =  
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\foreach \x in {1,...,4}
+		\node (\x) at (\x*.5,-.4) [inner sep = -1pt] {$\scriptstyle \x$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.2)--(2,-.2); 
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,0)--(1.5,0); 
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2); 
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.4)--(2,.4); 
+	\end{tikzpicture}
+	\qquad\qquad
+	\Or_{4132}  =  
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\foreach \x in {1,...,4}
+		\node (\x) at (\x*.5,-.4) [inner sep = -1pt] {$\scriptstyle \x$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.2)--(2,-.2);  \node at (2,-.2) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,0)--(1.5,0);   \node at (.5,0) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2);   \node at (1.5,.2) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.4)--(2,.4);   \node at (2,.4) {$\bullet$};
+	\end{tikzpicture}
+	$$
+and we omit to draw the singleton $\{i\}$ for $1\le i\le n$.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Preimage $\Omega_0^{-1}$ for segment hypergraph} 
+\label{subsec:notation}
+One striking property for segment hypergraph is that  the sets  $\Omega_0^{-1}(\Or)$ have very nice properties.
+To describe this we first need to recall a classic result about linear extension of orders on $[n]$.
+
+\begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
+\label{prop:WOIP}
+The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$I$ of the weak order if and only if for every~$i < j < k$,
+\[
+i \less k \implies i \less j \text{ or } j \less k
+\qquad\text{and}\qquad
+i \more k \implies i \more j \text{ or } j \more k.
+\]
+Moreover, the inversions of~$\min(I)$ are the pairs~$i,j \in [n]$ with $i < j$ and $i \more j$, and the non-inversions of~$\max(I)$ are the pairs~$i,j \in [n]$ with $i < j$ and $i \less j$.
+\end{proposition}
+
+
+\begin{proposition}\label{prop:preimage}
+ Given a segment hypergraph $\II$, we have that for any vertex in $V_{\II}$ describe by an orientation $\Or$, the set $\Omega_0^{-1}(\Or)$ is an interval 
+ in the weak order with minimum avoiding the pattern $231$ and maximum avoiding the pattern $213$.
+\end{proposition}
+
+\begin{proof}
+From Lemma~\ref{lem:prepi} we have that any $\pi\in \Omega_0^{-1}(\Or)$  is a linear extension of $\less_\Or$, we can therefor use Proposition~\ref{prop:WOIP} to prove our claim. 
+Let $i<j<k$ be any integers in the natural order of $[n]$. If we have $i\less_{\Or} k$, then, by definition of $\less_\Or$, there must be a sequence $(a_1,I_{1}), (a_2,I_{2}),\ldots (a_m,I_{m})$ of oriented edges in $\Or$ such that
+$a_1=i$, for $1\le s<m$ we have $a_{s+1}\in I_s$, and $k\in I_m$. We must therefor have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{\Or} j$. The case $i\more_{\Or} k$ is similar and  implies
+that $j\more_\Or k$. This shows $\Omega_0^{-1}(\Or)$ is an interval in the weak order.
+
+For the remaining of our claim, assume $\pi$ is the maximum of the interval of $\Omega_0^{-1}(\Or)$ and has a $213$ pattern. That is,  we can find $i<j<k$ such that $\{i,k\}$ is a non-inversion of $\pi$ and $\{i,j\}$ is an inversion. Using Proposition~\ref{prop:WOIP} we must have $i\less_\Or k$ and $i\not\less_\Or j$, a contradiction to our proof above. The case for the minimum is similar.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
