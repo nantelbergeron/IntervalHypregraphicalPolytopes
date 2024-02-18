@@ -127,6 +127,7 @@ VP ???).
 \newcommand{\meet}{\wedge} % meet
 \newcommand{\join}{\vee} % join
 \newcommand{\less}{\vartriangleleft} % smaller WOIP
+\newcommand{\lesseq}{\trianglelefteq} % smaller WOIP
 \newcommand{\more}{\vartriangleright} % larger WOIP
 \newcommand{\contactLess}[1]{\less_{#1}} % smaller contact graph
 \newcommand{\contactMore}[1]{\more_{#1}} % larger contact graph
@@ -360,6 +361,26 @@ We will represent $\II$ and an orientation $\Or_{4132} =\big\{ (4,\{1,2,3,4\}), 
 and we omit to draw the singleton $\{i\}$ for $1\le i\le n$.
 \end{example}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Acyclic orientation of segment hypergraph}  
+\label{subsec:sourceinc}
+
+\ 
+
+\Nantel{put here the condition that it is enough to test cyclicity between any two segment}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{$\less_\Or$ is separated}  
+\label{subsec:sourceinc}
+
+\
+
+\Nantel{remark that $\less_\Or$ is separated}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preimage $\Omega_0^{-1}$ for segment hypergraph} 
 \label{subsec:preimageI}
@@ -386,11 +407,12 @@ Moreover, the inversions of~$\min(I)$ are the pairs~$i,j \in [n]$ with $i < j$ a
 \begin{proof}
 From Lemma~\ref{lem:prepi} we have that any $\pi\in \Omega_0^{-1}(\Or)$  is a linear extension of $\less_\Or$, we can therefor use Proposition~\ref{prop:WOIP} to prove our claim. 
 Let $i<j<k$ be any integers in the natural order of $[n]$. If we have $i\less_{\Or} k$, then, by definition of $\less_\Or$, there must be a sequence $(i_1,I_{1}), (i_2,I_{2}),\ldots (i_m,I_{m})$ of oriented edges in $\Or$ such that
-$i_1=i$, for $1\le s<m$ we have $i_{s+1}\in I_s$, and $k\in I_m$. We must therefor have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{\Or} j$. The case $i\more_{\Or} k$ is similar and  implies
+$i=i_1<i_2<\cdots <i_{m}$, for $1\le s<m$ we have $i_{s+1}\in I_s$, and $k\in I_m$. We must therefor have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{\Or} j$. The case $i\more_{\Or} k$ is similar and  implies
 that $j\more_\Or k$. This shows $\Omega_0^{-1}(\Or)$ is an interval in the weak order.
 
 For the remaining of our claim, assume $\pi$ is the maximum of the interval of $\Omega_0^{-1}(\Or)$ and has a $213$ pattern. That is,  we can find $i<j<k$ such that $\{i,k\}$ is a non-inversion of $\pi$ and $\{i,j\}$ is an inversion. Using Proposition~\ref{prop:WOIP} we must have $i\less_\Or k$ and $i\not\less_\Or j$, a contradiction to our proof above. The case for the minimum is similar.
 \end{proof}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -410,7 +432,8 @@ In all other cases $S(I,A)=S(I,\Or_{\pi'})$. The forward implication $\big(A\le 
 
 For the converse, assume $S(I,A)\le S(I,B)$  for all $ I\in \II$. Let 
 	$$\delta_{A,B}=\big\{(a,b)\  |\  a\not= b, a=S(K,A), b=S(K,B)\text{ for some } K\in \II\big\}.$$
-If $\delta_{A,B}=\emptyset$, then we have $A=B$ and the result holds. Otherwise, choose $(a,b)\in \delta_{A,B}$ such that $b$ is maximal and let $\pi$ be such that $A=\Or_\pi$. 
+If $\delta_{A,B}=\emptyset$, then we have $A=B$ and the result holds. Otherwise, choose $(a,b)\in \delta_{A,B}$ such that $b$ is maximal, and for this $b$, let $a$ is maximal
+Let $\pi$ be such that $A=\Or_\pi$. 
 %Fix $K\in \II$ be a segment such that $a=S(K,A)$ and $b=S(K,B)$.
 %and in particular $[a,b]\subseteq K$.
 We claim that for $\pi'=(a,b)\pi$ the orientation $A'=\Or_{\pi'}$ satisfies $A<A'$ and for all $I\in \II$ we have $S(I,A')\le S(I,B)$.
@@ -420,9 +443,9 @@ To show the claim, consider any $I\in \II$. If $s(I,A)=a$ and $b\in I$ then we m
 %In particular $[a,b]\subseteq I$.
 We also have $b=S(I,A')\le S(I,B)$ since $S(I,B)>b$ would contradict the maximality of the choice of $b$.
 In all other case $S(I,A')=S(I,A)\le S(I,B)$. Finally we need to show that $A<A'$. 
-For the  permutation $\pi$, let $i<k$ be such that $\pi(i)=a$ and $\pi(k)=b$. Assume there is $i<j<k$ such that 
-\Nantel{here I don't see the argument on Vincent... trying something else and I don't remember what I did. I'll rest on it for now}
-
+\Nantel{I don't understand the argument of Vincent in the note. What guaranties that flipping $a$ and $b$ gives comparable elements?
+I priori, even if we show it is a valid orientation, it may give us something incomparable? We have to show it is obtained by a (sequence) of weak order relations.
+I think I will have to describe cover first... I'll come back to this later.}
 \end{proof}
 
 
@@ -433,7 +456,7 @@ For the  permutation $\pi$, let $i<k$ be such that $\pi(i)=a$ and $\pi(k)=b$. As
 \section{Which $P_\II$ are lattices?}
 \label{sec:LatticePI}
 
-In this section, we will prove our Theorem~\ref{thm:latticeI} that characterizes the segment hypergraphs $\II$ for which $P_\II$ are lattices.
+In this section, we  prove  Theorem~\ref{thm:latticeI} characterizing the segment hypergraphs $\II$ for which $P_\II$ are lattices.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{If $P_\II$ is a lattice, then $\II$ is closed under intersections}  
@@ -501,10 +524,42 @@ This shows that $E=\Or_{\pi_E}=\Or_{\pi_F}=F$. Now we have $\pi_B<\pi_E$ and $\p
 If the poset $P_\II$ is a lattice, then we can find a unique join $M= A \join B$. By definition $A\le M$ and $B\le M$. By property of join we also have $M\le C$ and $M\le D$ since both $C$ and $D$ are  greater than $A$ and $B$.
 Let $\pi_M$ be any permutation such that $M=\Or_{\pi_M}$ and let  
    $$m=\pi\big(\min\{i:\pi_M(i)\in I\cup J\}\big).$$
-If $m<b$, then $(m,I)\in M$ and $(b,I)\in A$ and Proposition~\ref{prop:sourceorder} implies that $A\not\le M$.
+If $m<b$, then $(m,I)\in M$ and $(b,I)\in A$ and the easy forward implication of Proposition~\ref{prop:sourceorder} implies that $A\not\le M$.
 By a similar argument: $\big(b\le m<c \implies B\not\le M\big)$,  $\big(b< m\le c \implies M\not\le C\big)$, and $\big(c<m \implies M\not\le D\big)$. This is a contradiction to the existence of $m$.
 \end{proof}
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Properties of $\II$ is closed under intersections}  
+\label{subsec:IntClosedI}
+
+For the converse of Theorem~\ref{thm:latticeI}, we need to investigate the properties of segment hypergraph that are closed under intersections.
+Recall from Proposition~\ref{prop:preimage} that given any orientation $\Or$ of $\II$ the preimage of $\Omega_0$ is an interval $[\pi^0_\Or,\pi^1_\Or]$ in the weak order.
+In the following we will keep this convention that $\pi^0_\Or$ denote the minimum of this interval and $\pi^1_\Or$ the maximum.
+
+\begin{theorem}\label{thm:propertieofintI}
+Assume that $\II$ is a segment hypergraph that is closed under intersections. Let $A$ and $B$ be two acyclic orientations of $\II$.
+The following are equivalent.
+\begin{enumerate}
+	\item[{\rm (a)}] $A\le B$ in $P_\II$,
+	\item[{\rm (b)}]  For all $I\in\II$, $S(I,A)\le S(I,B)$,
+	\item[{\rm (c)}]  $\pi^0_A \le \pi^1_B$ in the weak order,
+	\item[{\rm (d)}]  For all $i<j$, \ $j\,\less_Ai \ \ \implies\ \  i \,\not\less_B j$
+\end{enumerate}
+\end{theorem}
+
+\begin{proof} The equivalence (a)$\iff$(b) follows from Proposition~\ref{prop:sourceorder}. The implication (c)$\implies$(a) follows from  Proposition~\ref{prop:WeakToP}.
+For the equivalence (c)$\iff$(d), remark that Proposition~\ref{prop:preimage} combined with Proposition~\ref{prop:WOIP} gives us that the set of inversions of $\pi^0_A$
+is $\big\{(i,j)\ |\  i<j, j\,\less_Ai \big\}$ and the set of non-inversions of $\pi^1_B$ is  $\big\{(i,j)\ |\  i<j, i\,\less_B j \big\}$. Hence the inversion of $\pi^1_B$ is  given $\big\{(i,j)\ |\  i<j, i\,\not\less_B j \big\}$.
+The equivalence of (c)$\iff$(d) is the characterization of the weak oder in term of inclusion of inversion sets.
+
+Thus we only need to prove (b)$\implies$(d). For contradiction, assume we have some $i<j$ such that $j\,\less_Ai$ and  $i \,\less_B j$. Choose one such pair such that $|j-i|$ is minimal.
+Since $j\,\less_Ai$, 
+$(j_1,I_{1}), (j_2,I_{2}),\ldots (i_m,I_{m})$ such that $j=j_1>j_2>\cdots>j_m$, each $j_{s+1}\in I_s$ and $i\in I_m$.
+\Nantel{to be continued}
+
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
