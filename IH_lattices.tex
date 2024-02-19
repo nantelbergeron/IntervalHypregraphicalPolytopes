@@ -187,7 +187,7 @@ By convention, we will assume that for all $i\in [n]$, we have $\{i\}\in \HH$.
 Following~\cite[Def 2.11]{BenBerMac}, given an hypergraph $\HH$, we define the \defn{hypergraphic polytope}
 $\Delta_{\HH}$ as the the Minkowski sum
  $$\Delta_{\HH} = \sum_{H\in \HH} \Delta_H\,,$$
-where $\Delta_H$ is the simplex given by the convex hull of the points $\{e_i | i\in H\}\subset \R^n$.
+where $\Delta_H$ is the simplex given by the convex hull of the points $\{e_i |\, i\in H\}\subset \R^n$.
 
 \begin{example}\label{ex:DH}
 For the hypergraph
@@ -228,7 +228,7 @@ We point out, as in  Example~\ref{ex:DH}, that the $\Delta_i$ are single points 
 \label{subsec:P_H}
 One of the main result of~\cite[Thm 3.18]{BenBerMac} is to identify the faces of $\Delta_\HH$ with the acyclic orientations of certain quotient of $\HH$.  A useful tool,~\cite[Lem 2.9]{BenBerMac}, gives us a surjective map $\Omega$ from the set composition (ordered set partitions) of $[n]$ to the set of faces of $\Delta_\HH$. 
  In the present work, we will be interested in the skeleton (faces of dimension 0 and 1)
-of the polytope as an oriented graph $P_{\HH}$. It will turn out that $P_{\HH}$ is a poset (partial order).  The map $\Omega$ identifies the vertices (0-dim faces) $V_{\HH}$  of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with $n$ parts. In turn, the set composition with $n$ parts correspond to ordered list of $[n]$ and can be encoded with $\fS_n$ the permutations of the set $[n]$. This gives us a map $\Omega_0 \colon \fS_n \to V_{\HH}$.
+of the polytope as an oriented graph $P_{\HH}$. It will turn out that $P_{\HH}$ is a poset (partial order).  The map $\Omega$ identifies the vertices (0-dim faces) $V_{\HH}$  of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with $n$ parts. In turn, the set composition with $n$ parts correspond to $\fS_n$ the permutations of the set $[n]$. This gives us a map $\Omega_0 \colon \fS_n \to V_{\HH}$.
 More explicitly, given $\pi\in\fS_n$ we construct an acyclic orientation $\Or_\pi$ of $\HH$ as follow. For any $H\in \HH$ such that $|H|>1$ we orient $H$  with the source $i$  the leftmost element of $H$ in $\pi$. That is
 \begin{equation}\label{eq:orientation}
 	\Or_\pi = \Big\{\big(i,H\big)\ \big| \ H\in \HH, |H|>1,  i=\pi\big(\min\{\pi(j): \pi(j)\in H\}\big)\Big\}\,.
@@ -240,10 +240,9 @@ For any hypergraph $\HH$, the set of vertices of $\Delta_{\HH}$ is given by $V_{
 \end{lemma}
 
 We now turn our attention to the edges (1-dim faces) $E_{\HH}$ of $\Delta_{\HH}$. The map $\Omega$ identifies the set $E_{\HH}$ as certain non-trivial image of the set compositions of $[n]$ with $n-1$ parts.
-More precisely, let $A=(A_1,A_2,\ldots,A_{n-1})$ be a set composition of $[n]$ with $n-1$ parts. There is a unique part $A_i=\{a_i,b_i\}$ of size two and all other parts $A_j=\{a_j\}$ for $j\neq i$ of size one. It is known~\cite{???} that $A$ 
-corresponds  exactly to the cover relation $\sigma=a_1\cdots a_{i-1}a_ib_ia_{i+1}\cdots a_{n-1} < a_1\cdots a_{i-1}b_ia_ia_{i+1}\cdots a_{n-1}=\pi$ of the (right) weak order on $\fS_n$, where $a_i<b_i$. 
-Hence given a cover $\sigma < \pi$ in the $\fS_n$-weak  order, two cases may happen. On one hand it is possible that $\Or_\sigma=\Or_\pi$, hence $\Omega(A)=\Or_\pi$ is a vertex and not an edge. On the other hand, if we get the (non-trivial)
-relation $\Or_\sigma\ne \Or_\pi$, then $\Omega(A)$ is an (oriented) edge $\Or_\sigma\to\Or_\pi$ of $\Delta_{\HH}$. We thus have the following lemma.
+These corresponds  exactly to the cover relation $\sigma=\cdots ab \cdots < \cdots ba\cdots =\pi$ of the (right) weak order on $\fS_n$, where $a<b$. 
+Hence given a cover $\sigma < \pi$ in the weak  order, two cases may happen. On one hand it is possible that $\Or_\sigma=\Or_\pi$, In this case, it is a vertex and not an edge. On the other hand, if we get 
+ $\Or_\sigma\ne \Or_\pi$, then it is an (oriented) edge $\Or_\sigma\to\Or_\pi$ of $\Delta_{\HH}$. We thus have the following lemma.
 
 \begin{lemma}\label{lem:Hedges}
 For any hypergraph $\HH$, the set of (oriented) edges of $\Delta_{\HH}$ is given by 
@@ -251,7 +250,7 @@ For any hypergraph $\HH$, the set of (oriented) edges of $\Delta_{\HH}$ is given
 \end{lemma}
 
 \begin{proposition}\label{prop:PHisOrder}
-The oriented graph $P_{\HH}=(V_{\HH},E_{\HH})$ is acyclic, in particular it defines a poset on $V_{\HH}$.
+The oriented graph $P_{\HH}$ given by the transitive closure of $(V_{\HH},E_{\HH})$ is acyclic, hence it defines a poset on $V_{\HH}$.
 \end{proposition}
 
 \begin{proof} It suffice to remark that any cycle on $P_{\HH}$ would induce a cycle on the $\fS_n$-weak order, a contradiction.
@@ -299,11 +298,11 @@ we say that
 \end{equation}
 is the \defn{source} of $H$ for the orientation $\Or_\pi$. 
 
-Given an acyclic orientation $\Or$ of $\HH$,  we can characterize the preimage 
-	$$ \Omega_0^{-1}(\Or)=\{ \pi : \Or_\pi=\Or\}$$
-as follow. Let $\less_\Or$ be the order on $[n]$ defined by the transitive closure of the union of 
-the order $\less_{(i,H)}=\big\{ i< j : j\in H\ssm\{i\}\big\}$ for each $(i,H)\in \Or$ . That is
- 	$$\less_\Or =  \bigcup_{(a,H)\in \Or} 
+Given an acyclic orientation $A\in P_\HH$,  we can characterize the preimage 
+	$$ \Omega_0^{-1}(A)=\{ \pi : \Or_\pi=A\}$$
+as follow. Let $\less_A$ be the order on $[n]$ defined by the transitive closure of the union of 
+the order $\less_{(i,H)}=\big\{ i< j : j\in H\ssm\{i\}\big\}$ for each $(i,H)\in A$ . That is
+ 	$$\less_A =  \bigcup_{(i,H)\in A} 
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\node at (0,-.45) {$\scriptstyle i$};
 	\node at (0,.6) {$\scriptstyle j\in H\ssm \{i\}$};
@@ -314,8 +313,8 @@ the order $\less_{(i,H)}=\big\{ i< j : j\in H\ssm\{i\}\big\}$ for each $(i,H)\in
 	\draw [thick] (0,-.3)--(.5,.4); 
 	\end{tikzpicture}
 	$$
-This is a well defined order since $\Or$ is acyclic. The following is a straightforward lemma left to the reader to prove.
-\begin{lemma}\label{lem:prepi}   $ \Omega_0^{-1}(\Or) =\big\{ \pi : \pi \text{ is a linear extension of }  \less_\Or)\big\}$.
+This is a well defined order since $A$ is acyclic. The following is a straightforward lemma left to the reader to prove.
+\begin{lemma}\label{lem:prepi}   $ \Omega_0^{-1}(A) =\big\{ \pi : \pi \text{ is a linear extension of }  \less_A)\big\}$.
 \end{lemma}
 
 
@@ -336,8 +335,9 @@ In this paper, we  assume that $\HH=\II$ is an hypergraph where all $I\in \II$ a
 We call such hypergraph a \defn{segment hypergprah}. 
 
 \begin{example}\label{ex:seghyp}
- $\II=\{\{1\},\{2\},\{3\},\{4\},[1,3],[2,3],[2,4],[1,4]\}$ is a segment hypergraph.
-We will represent $\II$ and an orientation $\Or_{4132} =\big\{ (4,\{1,2,3,4\}), (1,\{1,2,3\}),(3,\{2,3\}),(4,\{2,3,4\})\big\}$ of $\II$ graphicaly as follow:
+ $\II=\{\{1\},\{2\},\{3\},\{4\},[1,3],[2,3],[2,4],[1,4]\}$ is a segment hypergraph and $\Or_{4132} =\big\{ (4,\{1,2,3,4\}), (1,\{1,2,3\}),(3,\{2,3\}),(4,\{2,3,4\})\big\}$  is an example of 
+ acyclic orientation in $P_\II$.
+We will represent segment hypergraphs and their orientations graphically as follow:
  	$$\II =  
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\foreach \x in {1,...,4}
@@ -367,24 +367,51 @@ and we omit to draw the singleton $\{i\}$ for $1\le i\le n$.
 \subsection{Acyclic orientation of segment hypergraph}  
 \label{subsec:sourceinc}
 
-\ 
+Let $\II$ be a segment hypergraph.
+In this section we give a simple characterization of the orientation of $\II$ that are acyclic.
+Given any orientation (not necessarily acyclic) $O=\{(a_I,I)|\, a_I\in I\in \II,  |I|>1\}$ of $\II$.
+If the orientation $O$ has a cycle, then we can find $(a_1,I_{1}), (a_2,I_{2}),\ldots (a_m,I_{m})$ in $O$, such that
+$a_{s+1}\in I_s$ for $1\le s<m$, and $a_1\in I_m$. 
+$$
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node at (-.5,1) {$\scriptscriptstyle I_m$}; \draw [thick,{Bar[width=3pt]}-] (.3,1)--(1.2,1);   \node at (1.3,1) {$\scriptstyle \cdot$};\node at (1.4,1) {$\scriptstyle \cdot$};\node at (1.5,1) {$\scriptstyle \cdot$};
+	\node at (1,0.9) {$\scriptstyle \cdot$}; \node at (1.1,0.8) {$\scriptstyle \cdot$}; \node at (1.2,0.7) {$\scriptstyle \cdot$}; 
+	\node at (-.5,0.6) {$\scriptscriptstyle I_4$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2,.6)--(3,.6);  \node at (2.5,.6) {$\bullet$};
+	\node at (-.5,0.4) {$\scriptscriptstyle I_3$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2.5,.4)--(4.5,.4);   \node at (3.5,.4) {$\bullet$};
+	\node at (-.5,0.2) {$\scriptscriptstyle I_2$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(4,.2);   \node at (1.5,.2) {$\bullet$};
+	\node at (-.5,0) {$\scriptscriptstyle I_1$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,0)--(1.5,0);   \node at (.5,0) {$\bullet$};
+	\end{tikzpicture}
+	$$
+We may assume that $m$ is the first time $a_1\in I_m$ and  $a_s\not\in I_m$ for $1<s<m$.
+By symmetry, let us assume $a_1<a_2$. Since $a_2\in I_1\ssm I_m$, then $\max(I_m)<\max(I_1)$. If we suppose that $a_m\not\in I_1$, then $a_m<a_1<a_2$.
+We thus have  $a_1\in\bigcup_{2\le s<m} I_s$ since $a_2\in I_2$ and $a_m\in I_{m-1}$. We thus have $a_1\in I_s$ for some $s<m$, a contradiction to our choice of $m$.
+Therefore, we have $m=2$.
 
-\Nantel{put here the condition that it is enough to test cyclicity between any two segment}
+\begin{proposition}\label{prop:acyclic}
+ For a segment hypergraph $\II$, an orientation $O$ of $\II$ is acyclic if and only if there is no $(i,I),(j,J)\in O$ such that $i\in J$ and $j\in I$.
+ Graphically, there is no patterns
+ $$
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node at (-.6,0.2) {$\scriptscriptstyle J$}; \draw [thick,{Bar[width=3pt]}-] (0,.2)--(2,.2);   \node at (1.5,.2) {$\bullet$};   \node at (2.2,.2) {$\scriptstyle \cdot$};\node at (2.3,.2) {$\scriptstyle \cdot$};\node at (2.4,.2) {$\scriptstyle \cdot$};
+	\node at (-.6,0) {$\scriptscriptstyle I$};  \node at (-.3,0) {$\scriptstyle \cdot$};\node at (-.2,0) {$\scriptstyle \cdot$};\node at (-.1,0) {$\scriptstyle \cdot$}; \draw [thick,-{Bar[width=3pt]}] (0,0)--(2,0);   \node at (.5,0) {$\bullet$};
+	\node at (.5,-.2) {$\scriptscriptstyle i$}; \node at (1.5,-.2) {$\scriptscriptstyle j$}; 
+	\end{tikzpicture}
+	$$
+\end{proposition}
 
+\begin{proof}
+If the given orientation contain such pattern, clearly it is not acyclic. The converse was argued just before the proposition.
+\end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{$\less_\Or$ is separated}  
-\label{subsec:sourceinc}
-
-\
-
-\Nantel{remark that $\less_\Or$ is separated}
-
+\begin{remark} \label{rem:separation}
+Given an acyclic orientation $A\in P_\II$,  the condition in Proposition~\ref{prop:acyclic} implies that the order $\less_A$ is \defn{separating}. That is, for any $I\in \II$ such that $|I|>1$,
+and for any $i<S(I,A)<j$, we have that $i$ and $j$ are incomparable in $\less_A$. This implies that the Hasse diagram of $\less_A$ is always a forest 
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preimage $\Omega_0^{-1}$ for segment hypergraph} 
 \label{subsec:preimageI}
-One striking property for segment hypergraph is that  the sets  $\Omega_0^{-1}(\Or)$ have very nice properties.
+One striking property for segment hypergraph is that  the sets  $\Omega_0^{-1}(A)$ is an interval in the weak order.
 To describe this we first need to recall a classic result about linear extension of orders on $[n]$.
 
 \begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
@@ -400,17 +427,17 @@ Moreover, the inversions of~$\min(I)$ are the pairs~$i,j \in [n]$ with $i < j$ a
 
 
 \begin{proposition}\label{prop:preimage}
- Given a segment hypergraph $\II$, we have that for any vertex in $V_{\II}$ describe by an orientation $\Or$, the set $\Omega_0^{-1}(\Or)$ is an interval 
+ Given a segment hypergraph $\II$, we have that for any vertex $A\in V_{\II}$, the set $\Omega_0^{-1}(A)$ is an interval 
  in the weak order with minimum avoiding the pattern $231$ and maximum avoiding the pattern $213$.
 \end{proposition}
 
 \begin{proof}
-From Lemma~\ref{lem:prepi} we have that any $\pi\in \Omega_0^{-1}(\Or)$  is a linear extension of $\less_\Or$, we can therefor use Proposition~\ref{prop:WOIP} to prove our claim. 
-Let $i<j<k$ be any integers in the natural order of $[n]$. If we have $i\less_{\Or} k$, then, by definition of $\less_\Or$, there must be a sequence $(i_1,I_{1}), (i_2,I_{2}),\ldots (i_m,I_{m})$ of oriented edges in $\Or$ such that
-$i=i_1<i_2<\cdots <i_{m}$, for $1\le s<m$ we have $i_{s+1}\in I_s$, and $k\in I_m$. We must therefor have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{\Or} j$. The case $i\more_{\Or} k$ is similar and  implies
-that $j\more_\Or k$. This shows $\Omega_0^{-1}(\Or)$ is an interval in the weak order.
+From Lemma~\ref{lem:prepi} we have that any $\pi\in \Omega_0^{-1}(A)$  is a linear extension of $\less_A$, we can therefor use Proposition~\ref{prop:WOIP} to prove our claim. 
+Let $i<j<k$ be any integers in the natural order of $[n]$. If we have $i\less_{A} k$, then, by definition of $\less_A$, there must be a sequence $(i_1,I_{1}), (i_2,I_{2}),\ldots (i_m,I_{m})$ of oriented edges in $A$ such that
+$i=i_1<i_2<\cdots <i_{m}$, for $1\le s<m$ we have $i_{s+1}\in I_s$, and $k\in I_m$. We must therefor have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{A} j$. The case $i\more_{A} k$ is similar and  implies
+that $j\more_A k$. This shows $\Omega_0^{-1}(A)$ is an interval in the weak order.
 
-For the remaining of our claim, assume $\pi$ is the maximum of the interval of $\Omega_0^{-1}(\Or)$ and has a $213$ pattern. That is,  we can find $i<j<k$ such that $\{i,k\}$ is a non-inversion of $\pi$ and $\{i,j\}$ is an inversion. Using Proposition~\ref{prop:WOIP} we must have $i\less_\Or k$ and $i\not\less_\Or j$, a contradiction to our proof above. The case for the minimum is similar.
+For the remaining of our claim, assume $\pi$ is the maximum of the interval of $\Omega_0^{-1}(A)$ and has a $213$ pattern. That is,  we can find $i<j<k$ such that $\{i,k\}$ is a non-inversion of $\pi$ and $\{i,j\}$ is an inversion. Using Proposition~\ref{prop:WOIP} we must have $i\less_A k$ and $i\not\less_A j$, a contradiction to our proof above. The case for the minimum is similar.
 \end{proof}
 
 
@@ -432,18 +459,16 @@ In all other cases $S(I,A)=S(I,\Or_{\pi'})$. The forward implication $\big(A\le 
 
 For the converse, assume $S(I,A)\le S(I,B)$  for all $ I\in \II$. Let 
 	$$\delta_{A,B}=\big\{(a,b)\  |\  a\not= b, a=S(K,A), b=S(K,B)\text{ for some } K\in \II\big\}.$$
-If $\delta_{A,B}=\emptyset$, then we have $A=B$ and the result holds. Otherwise, choose $(a,b)\in \delta_{A,B}$ such that $b$ is maximal, and for this $b$, let $a$ is maximal
-Let $\pi$ be such that $A=\Or_\pi$. 
-%Fix $K\in \II$ be a segment such that $a=S(K,A)$ and $b=S(K,B)$.
-%and in particular $[a,b]\subseteq K$.
-We claim that for $\pi'=(a,b)\pi$ the orientation $A'=\Or_{\pi'}$ satisfies $A<A'$ and for all $I\in \II$ we have $S(I,A')\le S(I,B)$.
-our result would then follow by induction.
-
-To show the claim, consider any $I\in \II$. If $s(I,A)=a$ and $b\in I$ then we must have $S(I,A')=b$. 
-%In particular $[a,b]\subseteq I$.
+If $\delta_{A,B}=\emptyset$, then we have $A=B$ and the result holds. Otherwise, choose $(a,b)\in \delta_{A,B}$ such that $b$ is maximal, and for this $b$, let $a$ is maximal.
+For any $\pi$ be such that $A=\Or_\pi$ and $\pi'=(a,b)\pi$ the orientation $A'=\Or_{\pi'}$ satisfies that for all $I\in \II$ we have $S(I,A')\le S(I,B)$.
+For this, consider any $I\in \II$. If $s(I,A)=a$ and $b\in I$ then we must have $S(I,A')=b$. 
 We also have $b=S(I,A')\le S(I,B)$ since $S(I,B)>b$ would contradict the maximality of the choice of $b$.
-In all other case $S(I,A')=S(I,A)\le S(I,B)$. Finally we need to show that $A<A'$. 
-\Nantel{I don't understand the argument of Vincent in the note. What guaranties that flipping $a$ and $b$ gives comparable elements?
+In all other case $S(I,A')=S(I,A)\le S(I,B)$. 
+Our result would follow f we can find $\pi_1,\ldots,\pi_m$ such that $\pi=\pi_1<\cdots<p_m=\pi'$ in the weak order. This imply $A<A'$ and $\delta_{A',B}$  strictly smaller than $\delta_{A,B}$ and induction would conclude our proof.
+
+To find $\pi$, let  ${\mathcal I}(a,b) = \{ I\in \II: [a,b]\subseteq I\}$ and ${\mathcal J}_A(a)=\{J\in A : S(J,A)\ne a\in J\}$.
+
+\Nantel{Still struggling!I don't understand the argument of Vincent in the note. What guaranties that flipping $a$ and $b$ gives comparable elements?
 I priori, even if we show it is a valid orientation, it may give us something incomparable? We have to show it is obtained by a (sequence) of weak order relations.
 I think I will have to describe cover first... I'll come back to this later.}
 \end{proof}
@@ -472,7 +497,7 @@ We are now ready to show the forward implication of Theorem~\ref{thm:latticeI}.
 Remark that $b\ne c$ since $\II$ contains all singletons. By symmetry, we assume that $a\in I\ssm J$ and $d\in J\ssm I$. Let $X$ be the element of $[n]\ssm\{a,b,c,d\}$ written in increasing order.
 We now construct four permutations 
 $$ \pi_A=bacdX,\qquad \pi_B=acdbX,\qquad \pi_C=dbacX \qquad\text{and}\qquad \pi_D=cdbaX,$$
-and consider the four distinct orientations $A=\Or_{pi_A}$, $B=\Or_{pi_B}$, $C=\Or_{pi_C}$ and $D=\Or_{pi_D}$. We display bellow the four orientations highlighting only the segment $I$ and $J$.
+and consider the four distinct orientations $A=\Or_{\pi_A}$, $B=\Or_{\pi_B}$, $C=\Or_{\pi_C}$ and $D=\Or_{\pi_D}$. We display bellow the four orientations highlighting only the segment $I$ and $J$.
 $$
 \begin{array}{lcr}
 	C =  
