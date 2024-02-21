@@ -405,8 +405,24 @@ If the given orientation contain such pattern, clearly it is not acyclic. The co
 
 \begin{remark} \label{rem:separation}
 Given an acyclic orientation $A\in P_\II$,  the condition in Proposition~\ref{prop:acyclic} implies that the order $\less_A$ is \defn{separating}. That is, for any $I\in \II$ such that $|I|>1$,
-and for any $i<S(I,A)<j$, we have that $i$ and $j$ are incomparable in $\less_A$. This implies that the Hasse diagram of $\less_A$ is always a forest 
+and for any $i<S(I,A)<j$, we have that $i$ and $j$ are incomparable in $\less_A$. This implies that the Hasse diagram of $\less_A$ is always a forest.
 \end{remark}
+
+we add a  technical lemmas about  the linear extension of separating order on $[n]$ that will be useful to us. In general, we say an order $\less$ on $[n]$ is \defn{separating} if 
+for any $a\less b$ and any $i<a<j$, we have that $i$ and $j$ are incomparable in $\less$.
+
+\begin{lemma} \label{lem:XaWbY}
+Given a separating order $\less$ on $[n]$ and  $a,b\in [n]$ such that $a<b$ and $a\less b$. We can find $\pi= XaWbY$ a linear extension of $\less$ such that
+$a<w$ and $a\less w\less b$ for all $w\in W$. Moreover, if there is no $b<c$ such that $a\less c\less b$, then we could choose $W$ such that $a<w<b$ and $a\less w\less b$ for all $w\in W$.
+\end{lemma}
+
+\begin{proof} We first find a linear extension $X_0aX_1$ of the restriction of the order $\less$ on $[1,a]\subseteq [n]$.
+Similarly, we find a linear extension $Y_0aY_1$ of the restriction of $\less$ on $[a,n]$. Since all elements of $X_0,X_1$ are separated by $a$ to all elements of $Y_0,Y_1$,
+then every element of $X_0,X_1$ is incomparable in $\less$ to every element of $Y_0,Y_1$. Therefor $X_0Y_0aY_1X_1$ is a linear extension of $\less$.
+In choosing linear extensions we can always assume that all incomparable elements  are placed before $a$, thus in $Y_0$ and $X_0$. 
+Thus for all $y\in Y_1$, we have $a<y$ and $a\less y$ and in particular $b\in Y_1$. We have $Y_1=WbY_2$ and $W$ is as desired by choosing to put all  $c\in Y_1$ incomparable to $b$ in $Y_2$.
+Moreovere, if there is no $b<c\in Y_1$ such that $c\less b$, then  $a<w<b$ and $a\less w\less b$ for all $w\in W$. 
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Preimage $\Omega_0^{-1}$ for segment hypergraph} 
@@ -460,17 +476,43 @@ In all other cases $S(I,A)=S(I,\Or_{\pi'})$. The forward implication $\big(A\le 
 For the converse, assume $S(I,A)\le S(I,B)$  for all $ I\in \II$. Let 
 	$$\delta_{A,B}=\big\{(a,b)\  |\  a\not= b, a=S(K,A), b=S(K,B)\text{ for some } K\in \II\big\}.$$
 If $\delta_{A,B}=\emptyset$, then we have $A=B$ and the result holds. Otherwise, choose $(a,b)\in \delta_{A,B}$ such that $b$ is maximal, and for this $b$, let $a$ is maximal.
-For any $\pi$ be such that $A=\Or_\pi$ and $\pi'=(a,b)\pi$ the orientation $A'=\Or_{\pi'}$ satisfies that for all $I\in \II$ we have $S(I,A')\le S(I,B)$.
-For this, consider any $I\in \II$. If $s(I,A)=a$ and $b\in I$ then we must have $S(I,A')=b$. 
-We also have $b=S(I,A')\le S(I,B)$ since $S(I,B)>b$ would contradict the maximality of the choice of $b$.
-In all other case $S(I,A')=S(I,A)\le S(I,B)$. 
-Our result would follow f we can find $\pi_1,\ldots,\pi_m$ such that $\pi=\pi_1<\cdots<p_m=\pi'$ in the weak order. This imply $A<A'$ and $\delta_{A',B}$  strictly smaller than $\delta_{A,B}$ and induction would conclude our proof.
+We choose $\pi=XaWbY$ as in Lemma~\ref{lem:XaWbY} for $\less_A$ so that $A=\Or_\pi$. For $\pi'=(a,b)\pi$, we claim the orientation $A'=\Or_{\pi'}$ satisfies $A<A'$ and  that for all $I\in \II$ we have $S(I,A')\le S(I,B)$.
 
-To find $\pi$, let  ${\mathcal I}(a,b) = \{ I\in \II: [a,b]\subseteq I\}$ and ${\mathcal J}_A(a)=\{J\in A : S(J,A)\ne a\in J\}$.
+To show the claim, first assume there is $c\in W$ such that $c>b$ and $c\less_A b$. Hence there is $\{(c_s,I_s)\}\subseteq A$ such that (using separation property) $c=c_1>c_2>\cdots>c_{m}>b$ 
+with $c_{s+1}\in I_s$ for $1\le s<m$ and $b\in I_m$. By choice of $b$,  we must have $\{(c_s,I_s)\}\subseteq B$ since all $c_s>b$. This gives $c\less_B b$. 
+Now we use $a\less_A c$ (true for any $c\in W$) which implies a set
+$\{(a_r,I_r)\}\subseteq A$ such that $a=a_1<a_2<\cdots<a_{p}<c$ 
+with $a_{r+1}\in I_r$ for $1\le r<p$ and $c\in I_{p}$. Since $a<b<c$ we have that $b\in \bigcup_{1\le r\le p} I_r$, so $b\in I_{r_0}$ for some $1\le r_0\le p$. 
+Choose $r_0$ to be maximal with this property. Hence for all $r_0<r\le p$ we have  $b< \min(I_r)$ and $a'_r=a_r$ by maximality of $b$. By choice of $b$, 
+there is a $K\in\II$ such that $(b,K)\in B$. We also have $(a'_{r_0},I_{r_0})\in B$ where 
+ $$\min(I_{r_0+1})\le a_{r_0}\le a'_{r_0} \le \max(I_{r_0}) < a_{r_0+1} \le \max(I_{r_0+1}),$$
+ hence $a'_{r_0} \in I_{r_0+1}$.
+The set $\{(b,K),(a'_{r_0},I_{r_0})\} \cup \{(a_r,I_r)\}_{r_0<r\le p} \subseteq B$ shows that $b\less_B c$ a contradiction to the acyclicity of $B$. 
+Therefore, there is no $c>b$ in $W$. All the inversion of $\pi=XaWbY$ are inversion of $\pi'=XbWaY$ since $a<w<b$ for all $w\in W$, which gives $A<A'$.
 
-\Nantel{Still struggling!I don't understand the argument of Vincent in the note. What guaranties that flipping $a$ and $b$ gives comparable elements?
-I priori, even if we show it is a valid orientation, it may give us something incomparable? We have to show it is obtained by a (sequence) of weak order relations.
-I think I will have to describe cover first... I'll come back to this later.}
+For the second part of the claim consider any $I\in \II$. if $\max(I)<a$ or $b<\min(I)$ or $a<\min(I)<\max(I)<b$, then $S(I,A')=S(I,A)\le S(I,B)$. 
+
+If $a<\min(I)\le b\le \max(I)$, then either $S(I,A')=S(I,A)\le S(I,B)$
+or $a<c=S(I,A)<S(I,A')=b$. In the second case, we must have that $S(I,B)=b$, otherwise if $S(I,B)=c'<b$ then $(c',I)$ and $(b,K)$ would be a cycle 
+(recal that there is a $(b,K)\in B$ such that $a\in K$, $a<c\le c'<b$, therefore $c\in K$). The choice of $b$ eliminate the possibility that $S(I,B)=c'>b$, hence $S(I,A')=b=S(I,B)$ in this case.
+
+If $\min(I)\le a<b\le \max(I)$, then if $a\le S(I,A)\le b$ we must have  $S(I,B)=b$ as it cannot be greater by choice of $b$ and it cannot be smaller, creating a cycle with $(a,K)$. 
+if $S(I,A)<a$, then our choice of $\pi$ implies that $c$ is before $a$, therefor $S(I,A')=A(I,A)\le S(I,B)$. If $S(I,A)=c>b$, then we have shown above that  there is no $c>b$ in $W$ for $\pi$.
+Hence, $c$ is before $a$ in $\pi$ and we have again $S(I,A')=A(I,A)\le S(I,B)$.
+
+Finally, if $\min(I)\le a\le \max(I)<b$, then we cannot have $S(I,A)=c>a$ for this would create a cycle with $(a,K)\in A$. If $S(I,A)=c<a$, then as above $c$ is before $a$ in $\pi$ and we have 
+$S(I,A')=S(I,A)\le S(I,B)$. If $S(I,A)=a$, then $a \le S(I,A')=c<b$. Assume that $a<c<b$. Having $S(I,A')=c$ means that $c\in W$ in $\pi$, which in turn implies that $a\less_A c \less_A b$.
+We use $c\less_A b$ as before to exhibit $\{(c_s,I_s)\}\subseteq A$ with $c=c_1<c_2<\cdots <c_m<b$ where $c_{s+1}\in I_s$ and $b\in I_m$.
+The segment $I_m$ cannot contain $a<c\le c_m$ for otherwise we would get a cycle $a\less_A c_m \less_A a$. In $B$, we must have $S(I_m,B)=d=b$ since $c_m<b$ and the choice of $b$ prevent $d>b$,
+and $d<b$ is not allowed by $(b,K)$ and $a<\min(I_m)\le b$ (it would create a cycle). Now $a<c_m=S(I_m,A)<S(I_m,B)=b$ contradict the choice of $a$. Hence we can only have $S(I,A)=c<a$ which 
+conclude the end of our claim. 
+
+The proposition then follow by induction on the size of $\delta_{A,B}$ since $\delta_{A',B}\subsetneq \delta_{A,B}$.
+
+
+
+\Nantel{The argument of Vincent in the note is incomplete. What guaranties that flipping $a$ and $b$ gives comparable elements?
+I priori, even if we show it is a valid orientation, it may give us something incomparable? We have to show it is obtained by a  weak order relations as done above.}
 \end{proof}
 
 
