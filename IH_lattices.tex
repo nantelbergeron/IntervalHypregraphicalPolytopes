@@ -621,13 +621,18 @@ For the equivalence (c)$\iff$(d), remark that Proposition~\ref{prop:preimage} co
 is $\big\{(i,j)\ |\  i<j, j\,\less_Ai \big\}$ and the set of non-inversions of $\pi^1_B$ is  $\big\{(i,j)\ |\  i<j, i\,\less_B j \big\}$. Hence the inversion of $\pi^1_B$ is  given $\big\{(i,j)\ |\  i<j, i\,\not\less_B j \big\}$.
 The equivalence of (c)$\iff$(d) is the characterization of the weak oder in term of inclusion of inversion sets.
 
-Thus we only need to prove (b)$\implies$(d). For contradiction, assume we have some $i<j$ such that $j\,\less_Ai$ and  $i \,\less_B j$. Choose one such pair such that $|j-i|$ is minimal.
-Since $j\,\less_Ai$, 
-$(j_1,I_{1}), (j_2,I_{2}),\ldots (i_m,I_{m})$ such that $j=j_1>j_2>\cdots>j_m$, each $j_{s+1}\in I_s$ and $i\in I_m$.
-\Nantel{to be continued}
+Thus we only need to prove (b)$\implies$(d). For a contradiction, assume we have some $i<j$ such that $j\less_Ai$ and  $i \less_B j$. Choose one such pair such that $|j-i|$ is minimal.
+Since $j\,\less_A i$ and $i \less_B j$, we can find
+$\{(j_s,I_{s})\}\subseteq A$ such that $j=j_1>j_2>\cdots>j_m>i$, each $j_{s+1}\in I_s$ and $i\in I_m$, and 
+$\{(i_r,I_{r})\}\subseteq B$ such that $i=i_1<i_2<\cdots<i_p<j$, each $i_{r+1}\in I_r$ and $j\in I_p$. Remark that $i<j_m$ with $j_m\less_A i$ and $i\less_B j_m$, since $j_m\in \bigcup_{1\le r\le p}I_r\supseteq [i,j]$.
+Our choice of minimality of $|i-j|$ prevent $m>1$. A similar argument in the other direction shows that we must have $p=1$. 
 
+If we have $i<j$ such that $j\less_Ai$ and  $i \less_B j$, then if we choose $|j-i|$, there must be $(j,J)\in A$ such that $i\in J$ and $(i,I)\in B$ such that $j\in B$.
 \end{proof}
 
+
+\begin{remark} give example where (b)$\,\,\,\not\!\!\!\!\implies$(d) in segment hypergraph but not closed under intersection.
+\end{remark} 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
