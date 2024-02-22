@@ -135,10 +135,11 @@ VP ???).
 \newcommand{\projUp}{\pi^\uparrow} % Down projection
 
 % Orientation, Hypergraph and Segments
-\newcommand{\Or}{\mathcal O}  % acyclic orientation for hypergraph (vertices for us)
+\newcommand{\Or}{\mathcal O}  % The map S_n --> acyclic orientation corresponding to vertices
 \newcommand{\HH}{\mathbb H}  % general hypergraph
 \newcommand{\II}{\mathbb I} % segment hypergraph
-\newcommand{\cJ}{\mathcal J} % basic irreducibles index
+\newcommand{\cJ}{\mathcal J} % basic irreducibles index set
+\newcommand{\cA}{\mathcal A} % special set for covers, A(a) involve only segments with source a
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -516,11 +517,11 @@ I priori, even if we show it is a valid orientation, it may give us something in
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Cover relation in $P_\II$}  
+\subsection{Flips and covers in $P_\II$}  
 \label{subsec:cover}
 
-In Remark~\ref{rem:EdgeNotCover} we saw that a cover in the weak order does not always give us a cover in the order $P_\II$. Yet, it is a necessary condition, hence if
-$A<B$ is a cover $P_\II$ we must be able to find a cover in the weak order $\pi_A<\pi_B$  such that $A=\Or_{\pi_A}$, $B=\Or_{\pi_B}$. The permutations $\pi_A<\pi_B$ 
+In Remark~\ref{rem:EdgeNotCover} we saw that a cover in the weak order does not always give us a cover  in the order $P_\II$. Yet, it is a necessary condition, hence if
+$A<B$ is a cover  $P_\II$ we must be able to find a cover in the weak order $\pi_A<\pi_B$  such that $A=\Or_{\pi_A}$, $B=\Or_{\pi_B}$. The permutations $\pi_A<\pi_B$ 
 must satisfy $\pi_B=\pi_A(i,i+1)$ for some $1\le i<n$, where $a=\pi_A(i)<\pi_A(i+1)=b$.
 This will affect only the segment $I\in \II$ such that $[a,b]\subseteq I$ and such that $S(I,A)=a$. Indeed
 \begin{equation}\label{eq:PossibleCover}
@@ -530,30 +531,46 @@ This will affect only the segment $I\in \II$ such that $[a,b]\subseteq I$ and su
 	\end{cases}
 \end{equation}
 
-Using Proposition~\ref{prop:sourceorder}, this suggests the following definition. A \defn{flip} in $A$ is two integer $a<b$ such that the orientation $B=(a,b)A$ defined by Equation~\eqref{eq:PossibleCover}
-is acyclic and $B\ne A$. We have that if $B=(a,b)A$ is a flip, then $A<B$. This gives us a first (not strong) characterization of a cover $A<B$.
+This suggests the following definition. A \defn{flip} in $A$ is two integer $a<b$ such that the orientation $B=(a,b)A$ defined by Equation~\eqref{eq:PossibleCover}
+is acyclic and $B\ne A$. Using Proposition~\ref{prop:sourceorder}, we have that if $B=(a,b)A$ is a flip, then $A<B$. 
 
-\begin{lemma}\label{lem:coverI}
-  $A<B$ in $P_\II$ is a cover if and only if $B=(a b)A$ is a  flip and there is no $a<c<b$ such that $B'=(a,c)A$ is a  flip and $B'<B$.
-\end{lemma}
 
-\begin{proof} Suppose $A<B$ is a cover. As described above, a necessary condition is that we have $\pi_A<\pi_B$ which gives us $B=(a,b)A$ a  flip.
-If we can find $a<c<b$ such that $B'=(a,c)A$ is a flip, then $A<B'$. if we also have $B'<B$, then $A<B$ is clearly not a cover, a contradiction. So no such $c$ exists.
-
-Conversely, suppose we have a flip $B=(a b)A$ and $A<B$ is not a cover. Then we can find $A<B'<B$ where $A<B'$ is a cover. Using Proposition~\ref{prop:sourceorder},
-we have that $A$ and $B$ have the same source on all $[a,b]\not\subseteq I\in \II$ or $S(I,A)\ne a$. The cover $A<B'$ can only be achieved with $B'=(a,c)A$ where $a<c<b$, concluding the proof.
-\end{proof}
-
-In view of Lemma~\ref{lem:coverI}, to get a better characterization of covers, we need to characterize when $B'=(a b)A$ is not a flip (it is not acyclic), and if it is, when is $B'\not< B$.
-Proposition~\ref{prop:acyclic} and Proposition~\ref{prop:sourceorder} answers those questions. For the first question, given $A$ and $a$, let
- $${\mathcal A}(a)= \bigcup_{(a,I)\in A} I $$
- $${\mathcal A'}(a)= {\mathcal A}(a)\ssm  \bigcup_{(c,J)\in A\atop c\in {\mathcal A}(a,b)} (J \ssm \{c\})$$
+Our first task is to characterize flips. Let
+ $$\cA(a)=\bigcup_{(a,I)\in A} \cA_{(a,I)}\,,\qquad\text{where}\qquad
+ \cA_{(a,I)}= I \ssm  \bigcup_{(c,J)\in A \atop a\ne c\in I} (J\ssm \{c\})\,.$$
+By construction, it is clear that if $b\in (I\ssm \cA_{(a,I)})$, then changing the source of $I$ from $a$ to $b$ would create a cycle with some $(c,J)$ and not be acyclic.
 
 \begin{lemma}\label{lem:isaflip}
- $B=(a,b)A$ is a flip if and only if $b\in {\mathcal A'}(a)$.
+$B=(a,b)A$ is a flip if and only if $b\in \cA(a).$
 \end{lemma}
 
-\Nantel{working this section... not sure yet which direction to take}
+\begin{proof}
+If $b\not\in \cA (a)$, then either $b\not\in I$ for all $(a,I)\in A$, or there are $(a,I),(c,J)\in A$ such that $c\in I$ and  $b\in I\cap J$. In the first case $B=(a,b)A=A$ is not a flip, and in the second cases $(b,I),(c,J)$ is a cycle so 
+$B=(a,b)A$ is not acyclic, hence not a flip.  For the converse, if $a<b\in \cA (a)$, then there is at least one $(a,I)\in A$ such that $b\in I$. The orientation $B=(a,b)A\ne A$ since Equation~\eqref{eq:PossibleCover} change at least one source.
+For all of these change,  the definition of  $\cA_{(a,I)}$ guaranties there is no $(b,I)(c,J)\in B$ such that $b\ne c$ and $b,c\in I\cap J$. Hence, Proposition~\ref{prop:acyclic} gives us that $B$ is acyclic and thus $B=(a,b)A$ is a flip.
+\end{proof}
+
+As described above, if $A<B$ is a cover, then we have $\pi_A<\pi_B$ is a cover which gives us $B=(a,b)A$ is a  flip.
+To understand the flips that are not covers we need to look at the set
+ $$\cA(a,b)= \Big\{ i\in \cA (a) \,\big|\  a<i<b\  \text { and }\  i\not\in \!\!\!\bigcup_{(a,J)\in A \atop \max(J)<b} J \Big\}.$$
+ 
+\begin{proposition} \label{prop:segcover}
+$A<B$  is a cover if and only if it is a flip for some $a<b$ and $ \cA(a,b)=\emptyset.$
+\end{proposition}
+
+\begin{proof}
+If $A<B$  is a cover, then it is a flip $B=(a,b)A$ for some $a<b$.
+Suppose $i\in  \cA(a,b)$, then $i\in \cA(a)$ and $B'=(a,i)A$ is a flip. This gives $A<B'$. By definition of $\cA(a,b)$, for any $(a,I)\in A$ such that $i\in I$, we must have $b\in I$ as well.
+Hence $S(I,B')=i<b=S(I,B)$ for all such $(a,I)$. In all other cases we have $S(I,B')=S(I,A)\le S(I,B)$. Hence $B'<B$ contradicting that $A<B$ is a cover.
+
+Conversely, suppose $ \cA(a,b)=\emptyset$, that $B=(a,b)A$ is a flip but  is not a cover $A<B$.
+We can thus find a cover $A<B'$ such that $B'<B$.
+Using Proposition~\ref{prop:sourceorder}, we have that $A<B$ have the same source on all $[a,b]\not\subseteq I\in \II$ or $S(I,A)\ne a$. 
+Hence the cover $A<B'$ can only be achieved with $B'=(a,i)A$ for some $a<i<b$. Lemma~\ref{lem:isaflip} implies that $i\in \cA(a)$.
+Since $i\not\in \cA(a,b)$, then there is $(a,J)\in A$ such that $\max(J)<b$ and $i\in J$. For this particular $J$, we have $S(J,B) = a < i = S(J,B')$
+wich implies $B'\not < B$, a contradiction.
+\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -764,18 +781,27 @@ and we conclude that $P$ is a lattice where $A\meet B =\Psi(\pi_A^0\meet \pi_B^0
 In this section, we characterize the lattice $P_\II$ that are distributive. To start, we must have a segment hypergraph $\II$ that is closed under intersections.
 Our first task will be to identify the join irreducible of $P_\II$.
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Covers in lattice $P_\II$}  
+%\label{subsec:LatticeCover}
+%
+%In Section~\ref{subsec:cover} we describe cover for general segment hypergraph. If $\II$ is closed under intersection the situation is simpler
+%\Nantel{do we need this?}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Join irreducibles of lattice $P_\II$}  
 \label{subsec:irreducibles}
 
-Fix $\II$ a segment hypergraph closed under intersections. Let
+Fix $\II$ a segment hypergraph closed under intersections. 
+Let $O_0$ denote the unique \defn{minimum} of $P_\II$.
+Let
   $$\cJ_\II=\bigcup_{I\in \II} I\ssm \{\min(I)\} \,.$$
 For $j\in \cJ_\II$ let
 \begin{equation}\label{eq:mu}
  \mu(j)=\max\big\{ \min(I) \big| \ I\in\II, j\in I\ssm\{\min(I)\}\big\}\,,
 \end{equation}
 \begin{equation}\label{eq:nu}
- \nu(j)=\min\big\{ \max(I) \big| \ I\in\II, \min(I)=\mu(i)\big\}\,,
+ \nu(j)=\min\big\{ \max(I) \big| \ j\in I\in\II, \min(I)=\mu(j)\big\}\,,
 \end{equation}
 and
 \begin{equation}\label{eq:nu}
@@ -788,18 +814,65 @@ with $j$ place just before $\mu(j)$ and all others in order. We remark that for 
 \begin{equation}\label{eq:sourceOj}
  	S(I,O_j)=\begin{cases}
 		j& \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
-		0& \text{otherwise.}
+		\min(I)& \text{otherwise.}
 	\end{cases}
 \end{equation}
+
+\begin{remark}\label{rem:munuseg}
+For any $j\in \cJ_\II$ and $j\in J\in \II$ such that $j\ne\min(J)$, we have $[\mu(j),\nu(j)]\in \II$ and $[\mu(j),\nu(j)]\subseteq J$.
+Indeed, the definition of $\mu(j)$ and $\nu(j)$ ensure that $[\mu(j),\nu(j)]\in \II$, and if we suppose that $[\mu(j),\nu(j)]\not\subseteq J$, then $[\mu(j),\nu(j)]\cap J\in \II$ is strictly smaller than $[\mu(j),\nu(j)]$ a contradiction to the definition of $\mu$ and $\nu$.
+\end{remark}
+
 For $i,j\in \cJ_\II$ we say $i\equiv j$ are \defn{irreducible congruent} if $\mu(i)=\mu(j)$ and $\nu(i)=\nu(j)$.
 
-\begin{lemma}\label{lem:irrOj}
-	$O_j$ is join irreducible.
+\begin{lemma} \label{lem:irrorder}
+ For $i,j\in \cJ_\II$, we have $O_i<O_j$ if and only if $i<j$ and $i\equiv j$.
 \end{lemma}
 
+\begin{proof} Proposition~\ref{prop:sourceorder} gives us that $O_i<O_j$ if and only if
+ 	$$ S(I,O_i)=\begin{cases}
+		i<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
+		\min(I)& \text{otherwise.}
+	\end{cases}$$
+which is true if $i\equiv j$. Now if $i\not\equiv j$, then either $\mu(i)\ne \mu(j)$  or  $\nu(i)\ne \nu(j)$.
+If $\mu(i)\ne\mu(j)$, then there is $i\in I\in \II$ such that $\min(I)=\mu(i)\ne\mu(j)$ and
+  $S(I,O_i)=i>\min(I)=S(I,O_j)$. This implies $O_i\not<O_j$ a contradiction. If $\mu(i)= \mu(j)$  and  $\nu(i)\ne \nu(j)$,
+  then there is $i\in I\in \II$ such that $j\not\in I$, and again $S(I,O_i)=i>\min(I)=S(I,O_j)$, a contradiction.
+\end{proof} 
 
-\begin{proof} $j$ is the only source that is non-minimal in some $I\in \II$ and they all have the same $\min(I)=\mu(j)$.
-hence we can only do a single flip down of $j$. \nantel{we need description of cover}
+\begin{lemma}\label{lem:irrOj}
+	For any $j\in \cJ_\II$, $O_j$ is join irreducible.
+\end{lemma}
+
+\begin{proof} Proposition~\ref{prop:sourceorder} gives that any $A<O_j$ must satisfy
+ 	$$ S(I,A)=\begin{cases}
+		a<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
+		\min(I)& \text{otherwise.}
+	\end{cases}$$
+Remark~\ref{rem:munuseg} ensure that $a$ must be the same for all $I\ni j$ and $\min(I)=\mu(j)$, otherwise $A$ would not be acyclic.
+$A=O_0$ is one possibility, otherwise $A=O_a$ for some $0<a<j$. In Lemma~\ref{lem:irrorder} we determined exactly the order $P_\II$ restricted
+to the set $\{ O_j |\, j=0 \text{ or } j\in \cJ_\II\}$. We have shown  that $A<O_j$ belong to that set hence the only cover is $O_a<O_j$
+such that $a=\max\{ i<j|\, i=0 \text{ or } i\equiv j\}$.
+\end{proof}
+
+\begin{lemma}\label{lem:subirr}
+	For any $A\in P_\II$,
+	 $$ O_j<A \iff j\le S([\mu(j),\nu(j)] A). $$
+\end{lemma}
+
+\begin{proof}
+This is a direct consequence of Proposition~\ref{prop:sourceorder} and Remark~\ref{rem:munuseg}.
+\end{proof}
+
+\begin{proposition} Assume that
+ ``given any $I,J\in \II$ such that $I\cap J\ne \emptyset$, $I\not\subseteq J$ and $J\not\subseteq I$,
+ then for all $K\in J$ such that  $I\cap J\subseteq K$ we have $\{\min(K),\max(K)\}\cap K\ne \emptyset$'',
+ then $\{O_j|\,j\in \cJ_\II\}$ are the only join irreducible of $P_\II$. 
+\end{proposition}
+
+\begin{proof}
+   Let $O$ be a joint irreducible of $P_\II$ and let $A<O$ be its unique cover. It must be from a flip $O=(i,j)A$.
+   \nantel{that is all folks}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -809,7 +882,7 @@ hence we can only do a single flip down of $j$. \nantel{we need description of c
 \section*{Acknowledgments}
 
 Thanks!
-\Nantel{Still to do: Cover, description of $\join$ and $\meet$ in term of sources, quotient(?)}
+\Nantel{Still to do: Finish Section 5,   description of $\join$ and $\meet$ in term of sources(?), characterize which Segment hypergraph gives lattice quotient(?), semi-distributive, what else?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
