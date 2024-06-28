@@ -153,9 +153,6 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 \vspace*{-.8cm}
 
 \maketitle
-\nantel{Todo ``Nantel" avec majuscule sont en ligne avec le texte, "nantel" est comme avant}
-\Nantel{Vincent, verifie ton affiliation, grant et addresse}
-
 
 \tableofcontents
 
@@ -166,21 +163,46 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 \section{Introduction}
 \label{sec:introduction}
 
-\begin{theoremA}\label{thm:latticeI}
-For an interval hypergraph $\II$ the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersections (\ie $I, J \in \II \Rightarrow I \cap J \in \II \cup \{\varnothing\}$).
+The \defn{hypergraphic polytope} of a hypergraph~$\HH$ on~$[n]$ is the Minkowski sum
+\(
+\simplex_\HH \eqdef \sum_{H\in \HH} \simplex_H\,,
+\)
+where $\simplex_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$ of~$\R^n$.
+The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the skeleton of~$\triangle_\HH$ oriented in the direction~$\b{\omega} \eqdef (n, n-1, \dots, 2, 1) - (1, 2, \dots, n-1, n) = (n-1, n-3, \dots, 3-n, 1-n)$.
+For instance, 
+\begin{itemize}
+\item if~$\HH = 2^{[n]}$ is the complete hypergraph (in fact, any hypergraph containing all edges on~$[n]$), then~$\triangle_\HH$ is the permutahedron and $P_\HH$ is the weak order on permutations,
+\item if~$\HH = \set{[a,b]}{1 \le a \le b \le n}$ is the complete interval hypergraph, then~$\triangle_\HH$ is the J.-L.~Loday's associahedron~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the Tamari lattice~\cite{Tamari}.
+\end{itemize}
+In view of these two examples, we consider the following general questions:
+\begin{itemize}
+\item characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a (semi-)lattice quotient of the weak order on permutations,
+\item when~$P_\HH$ is a semidistributive lattice, describe the lattice quotients of~$P_\HH$ and realize them geometrically.
+\end{itemize}
+These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
+
+In this paper, we study the case of \defn{interval hypergraphs}~$\II$, \ie when all hyperedges of~$\II$ are intervals of~$[n]$.
+Note that this family does not contain the permutahedron, but it contains
+\begin{itemize}
+\item the classical associahedron of~\cite{ShniderSternberg,Loday} when~$\II$ contains all intervals of~$[n]$,
+\item the Pitman-Stanley polytope of~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
+\item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$~for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
+\item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
+\end{itemize}
+We first characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a lattice.
+
+\begin{theoremA}
+\label{thm:latticeI}
+For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersections (\ie $I, J \in \II \Rightarrow I \cap J \in \II \cup \{\varnothing\}$).
 \end{theoremA}
 
-\begin{remark}
-\cref{thm:latticeI} fails in both directions when~$\HH$ is not an interval hypergraph.
-\vincent{todo}
-\end{remark}
-
+\vincent{In progress}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Hypergraphic polytopes and their partial orders}
+\section{Hypergraphic polytopes and posets}
 \label{sec:HP}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -190,18 +212,21 @@ For an interval hypergraph $\II$ the poset $P_\II$ is a lattice if and only if $
 
 A \defn{hypergraph} $\HH$ on $[n] \eqdef \{1, \dots, n\}$ is a collection of  subsets of~$[n]$.
 By convention, we always assume that~$\HH$ contains all singletons~$\{i\}$ for~$i\in [n]$.
-%Following~\cite[Def 2.11]{BenBerMac}, given an hypergraph $\HH$, we define 
-The \defn{hypergraphic polytope}~$\Delta_{\HH}$ is the Minkowski sum
+%Following~\cite[Def 2.11]{BenedettiBergeronMachacek}, given an hypergraph $\HH$, we define 
+The \defn{hypergraphic polytope}~$\simplex_\HH$ is the Minkowski sum
 \[
-\Delta_{\HH} \eqdef \sum_{H\in \HH} \Delta_H\,,
+\simplex_\HH \eqdef \sum_{H\in \HH} \simplex_H\,,
 \]
-where $\Delta_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$ of~$\R^n$.
+where $\simplex_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$ of~$\R^n$.
 
-\begin{example}\label{ex:DH}
+\begin{example}
+\label{ex:DH}
+\vincent{This example is taken from~\cite{BenedettiBergeronMachacek}, and does not really illustrates Minkowski sums... we should change it.}
 For the hypergraph
 $\HH=\big\{\{1\},\{2\},\{3\},\{4\},\{3,4\},\{1,2,3\}\big\}$,
 we  have
-$$\begin{array}{ccc}
+\[
+\begin{array}{ccc}
  \begin{tikzpicture}[scale=1,baseline=.5cm]
 	\node (1) at (0.6,1.0) {$\scriptstyle e_1$};
 	\node (2) at (-.2,-.2) {$\scriptstyle e_2$};
@@ -221,150 +246,157 @@ $$\begin{array}{ccc}
 	\draw (0,0) -- (.6,.75)-- (1.6,1.25) -- (2.2,.5) -- (1.2,0) -- (0,0) ; 
 	\draw [thick,color=red!80] (1.2,0) -- (2.2,0.5); 
 \end{tikzpicture}\\
-\blue{{ \Delta}_{123}}& \red{{ \Delta}_{34}} & \Delta_{\HH}=\Delta_1+\Delta_2+\Delta_3+\Delta_4+\blue{{ \Delta}_{123}}+ \red{{ \Delta}_{34}}\\
+\blue{{ \Delta}_{123}}& \red{{ \Delta}_{34}} & \simplex_\HH=\simplex_1+\simplex_2+\simplex_3+\simplex_4+\blue{{ \Delta}_{123}}+ \red{{ \Delta}_{34}}\\
 \end{array}
-$$
-which is a 3-dimensional polytope sitting in $\R^4$. 
+\]
+which is a 3-dimensional polytope sitting in $\R^4$.
 \end{example}
 
-\begin{remark}\label{rem:single} In~\cite{BenBerMac}, the authors always assume that for all $i\in[n]$ we have $\{i\}\not\in\HH$ whereas here we took the opposite convention. 
-When quoting result from~\cite{BenBerMac}, the reader will have to be mindful of this difference.
-We point out, as in  Example~\ref{ex:DH}, that the $\Delta_{\{i\}}$ are single points and in the definition of $\Delta_{\HH}$ it simply translate the polytope in the direction~$\b{e}_i$ but does not affect the  face structure of the polytope.
+\begin{remark}
+\label{rem:single} In~\cite{BenedettiBergeronMachacek}, the authors always assume that for all $i\in[n]$ we have $\{i\}\not\in\HH$ whereas here we took the opposite convention.
+When quoting results from~\cite{BenedettiBergeronMachacek}, the reader will have to be mindful of this difference.
+As illustrated in \cref{ex:DH}, we point out that $\simplex_{\{i\}}$ is a single point and in the definition of $\simplex_\HH$ it simply translate the polytope in the direction~$\b{e}_i$ but does not affect the  face structure of the polytope.
 \end{remark}
-
-\vincent{I want to define hypergraphic poset immediately here, just geometrically.}
-\vincent{If we only care about the graph, we can bypass the general map of \cite[Thm.~3.18]{BenBerMac}, and define our own combinatorial model for acyclic orientations. Of course, we can say that this is just a specialization of \cite[Thm.~3.18]{BenBerMac}.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Hypergraphic posets} 
+\subsection{Acyclic orientations, increasing flips, and hypergraphic posets} 
 \label{subsec:P_H}
 
-One of the main result of~\cite[Thm.~3.18]{BenBerMac} is to identify the faces of $\Delta_\HH$ with the acyclic orientations of certain quotients of~$\HH$.
-A useful tool, \cite[Lem.~2.9]{BenBerMac}, gives us a surjective map $\Omega$ from the set compositions (ordered set partitions) of $[n]$ to the set of faces of $\Delta_\HH$.
-In the present work, we will be interested in the skeleton (faces of dimension~$0$ and~$1$) of the polytope as an oriented graph $P_{\HH}$.
-It will turn out that $P_{\HH}$ is a poset (partial order).
-The map $\Omega$ identifies the vertices ($0$ dimensional faces) $V_{\HH}$  of $\Delta_{\HH}$ as the image of the set compositions of $[n]$ with $n$ parts.
-As the set compositions with $n$ parts correspond to the permutations~$\fS_n$ of $[n]$, this gives us a map $\Or \colon \fS_n \to V_{\HH}$.
-More explicitly, given $\pi\in\fS_n$ we construct an acyclic orientation $\Or_\pi$ of $\HH$ as follow. For any $H\in \HH$ such that $|H|>1$ we orient $H$  with the source $i$  the leftmost element of $H$ in $\pi$.
-That is
-\begin{equation}\label{eq:orientation}
-	\Or_\pi = \set{\big(i,H\big)}{H\in \HH, |H|>1, i = \pi\big(\min\set{\pi(j)}{\pi(j)\in H}\big)}.
-\end{equation}
-\vincent{hum... I would write $\pi\big(\min\set{j}{\pi(j)\in H}\big)$???}
-We immediately obtain the following lemma.
+We now recall from \cite[Thm.~2.18]{BenedettiBergeronMachacek} a combinatorial model for the graph~$(V_\HH, E_\HH)$ of~$\triangle_\HH$.
 
-\begin{lemma}\label{lem:Hvertices}
-For any hypergraph $\HH$, the set of vertices of $\Delta_{\HH}$ is given by $V_{\HH}=\set{\Or_\pi}{\pi \in \fS_n}$.
-\end{lemma}
+\begin{definition}
+\label{def:acyclicOrientation}
+An \defn{orientation} of~$\HH$ is a map~$O$ from~$\HH$ to~$[n]$ such that~$O(H) \in H$ for all~${H \in \HH}$.
+Equivalently, we often represent the orientation~$O$ as the set of pairs~$\set{(O(H),H)}{H \in \HH, \, |H| > 1}$.
+The orientation~$O$ is \defn{acyclic} if there is no~$H_1, \dots, H_k$ with~$k \ge 2$ such that~$O(H_{i+1}) \in H_i \ssm \{O(H_i)\}$ for~$i \in [k-1]$ and~$O(H_1) \in H_k \ssm \{O(H_k)\}$.
+\end{definition}
 
-We now turn our attention to the edges ($1$ dimensional faces) $E_{\HH}$ of $\Delta_{\HH}$. The map $\Omega$ identifies the set $E_{\HH}$ as certain non-trivial image of the set compositions of $[n]$ with $n-1$ parts.
-These corresponds  exactly to the cover relation $\sigma=\cdots ab \cdots < \cdots ba\cdots =\pi$ of the (right) weak order on $\fS_n$, where $a<b$. 
-Hence given a cover $\sigma < \pi$ in the weak  order, two cases may happen. On one hand it is possible that $\Or_\sigma=\Or_\pi$, In this case, it is a vertex and not an edge. On the other hand, if we get 
- $\Or_\sigma\ne \Or_\pi$, then it is an (oriented) edge $\Or_\sigma\to\Or_\pi$ of $\Delta_{\HH}$. We thus have the following lemma.
+\begin{definition}
+\label{def:flip}
+Two orientations~$O, O'$ of~$\HH$ are related by an \defn{increasing flip} if there exist~${1 \le i < j \le n}$ such that for all~$H \in \HH$, 
+\begin{itemize}
+\item if~$O(H) \ne O'(H)$, then~$O(H) = i$ and~$O'(H) = j$, and
+\item if~$\{i,j\} \subseteq \HH$, then~$O(H) = i \iff O'(H) = j$.
+\end{itemize}
+\end{definition}
 
-\begin{lemma}\label{lem:Hedges}
-For any hypergraph $\HH$, the set of (oriented) edges of $\Delta_{\HH}$ is given by 
- \[
- E_{\HH} = \set{(\Or_\sigma,\Or_\pi)}{\sigma<\pi \text{ is a cover and } \Or_\sigma\ne\Or_\pi}.
- \]
-\end{lemma}
+The following correspondance was already observed in~\cite[Thm.~2.18]{BenedettiBergeronMachacek} (it even extends to all faces of~$\triangle_\HH$, but we do not need this level of generality in this paper).
+We provide an alternative short proof for convenience.
 
-\begin{proposition}\label{prop:PHisOrder}
-The oriented graph $P_{\HH}$ given by the transitive closure of $(V_{\HH},E_{\HH})$ is acyclic, hence it defines a poset on $V_{\HH}$.
+\begin{proposition}[{\cite[Thm.~2.18]{BenedettiBergeronMachacek}}]\label{prop:Hgraph}
+The graph of~$\triangle_\HH$ oriented in the direction~$\b{\omega}$ is isomorphic to the increasing flip graph on acyclic orientations of~$\HH$.
 \end{proposition}
 
 \begin{proof}
-It suffices to remark that any cycle on $P_{\HH}$ would induce a cycle on the $\fS_n$-weak order, a contradiction.
+Recall that the face of a Minkowski sum~$\sum_i P_i$ minimizing a direction~$\b{v}$ is the Minkowski sum of the faces of the summands~$P_i$ minimizing~$\b{v}$.
+
+The vertex of~$\triangle_H$ minimizing a generic direction~$\b{v}$ is~$\b{e}_i$ for~$i \in H$ such that~$\b{v}_i = \min\set{\b{v}_h}{h \in H}$.
+An acyclic orientation of~$\HH$ corresponds to the choice of one vertex in each~$\triangle_H$, and the orientation is acyclic if and only if this choice corresponds to a generic orientation~$\b{v}$, hence to a vertex of~$\triangle_\HH$.
+
+The edges of~$\triangle_H$ are oriented in the directions~$\b{e}_i-\b{e}_j$ for~$i,j \in H$.
+The edges of~$\triangle_\HH$ are thus also oriented by $\b{e}_i-\b{e}_j$, and thus correspond to pairs of acyclic orientations which differ by a flip.
 \end{proof}
 
-The previous proposition allows us to define the \defn{hypergraphic poset} $P_{\HH}$ of any hypergraph $\HH$.  
-We can summarize the previous result with the following statement.
+Finally, the main objects of this paper are the following posets.
 
-\begin{proposition}\label{prop:WeakToP}
-With the weak order on $\fS_n$, the map $\Or \colon \fS_n \to P_{\HH}$ is order preserving.
-\end{proposition}
+\begin{definition}
+The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the increasing flip graph on acyclic orientations of~$\HH$.
+\end{definition}
 
-\begin{remark}\label{rem:EdgeNotCover}
-It is important to notice that the edges in $E_{\HH}$ are not necessarily covers of the relation in $P_{\HH}$. The simplest example is given by $\HH=\big\{\{1\},\{2\},\{3\},\{1,2,3\}\big\}$.
-The vertices $V_{\HH}$ of the polytope $\Delta_{\HH}$ are given by
-	$$\Big\{ \Or_{123}=\Or_{132}, \Or_{213}=\Or_{231}, \Or_{312}=\Or_{321}\Big\}= \Big\{ \big\{(1,\{1,2,3\})\big\},\big\{(2,\{1,2,3\})\big\},\big\{(3,\{1,2,3\})\big\}\Big\}$$
-and the edges
-	$$ E_{\HH}=\big\{ (\Or_{123},\Or_{213}),(\Or_{132},\Or_{312}),(\Or_{231}, \Or_{312})\big\}\,.$$
-in picture, that gives
-$$\Delta_\HH=\Delta_1+\Delta_2+\Delta_3+\Delta_{123}=
-\begin{tikzpicture}[scale=.7,baseline=.0cm]
-	\node (a) at (0,-1.2) {$\scriptscriptstyle \{(1,\{1,2,3\})\}$};
-	\node (b) at (3,0) {$\scriptscriptstyle \{(2,\{1,2,3\})\}$};
-	\node (c) at (0,1.2) {$\scriptscriptstyle \{(3,\{1,2,3\})\}$};
-	\draw [color=blue!40,thick,fill=blue!20] (0,-1)--(0,1)--(1.632,0)--(0,-1) ; 
-	\draw [color=red,thick,->] (-.1,-1)--(-.1,1); 
-	\draw [color=red,thick,->] (1.832,0)--(.2,1); 
-	\draw [color=red,thick,->] (.2,-1)--(1.832,0); 
-\end{tikzpicture}
-$$
-and clearly the edge $(\Or_{132},\Or_{312})$ is not a cover. 
+\begin{remark}
+\label{rem:EdgeNotCover}
+It is important to note that the edges in $E_\HH$ are not necessarily cover relations in $P_\HH$.
+The simplest example is given by $\HH=\big\{\{1\},\{2\},\{3\},\{1,2,3\}\big\}$, whose hypergraphic polytope~is
+\[
+	\simplex_\HH=\simplex_1+\simplex_2+\simplex_3+\simplex_{123}=
+	\begin{tikzpicture}[scale=.7,baseline=.0cm]
+		\node (a) at (0,-1.2) {$\scriptscriptstyle \{(1,\{1,2,3\})\}$};
+		\node (b) at (3,0) {$\scriptscriptstyle \{(2,\{1,2,3\})\}$};
+		\node (c) at (0,1.2) {$\scriptscriptstyle \{(3,\{1,2,3\})\}$};
+		\draw [color=blue!40,thick,fill=blue!20] (0,-1)--(0,1)--(1.632,0)--(0,-1) ; 
+		\draw [color=red,thick,->] (-.1,-1)--(-.1,1); 
+		\draw [color=red,thick,->] (1.832,0)--(.2,1); 
+		\draw [color=red,thick,->] (.2,-1)--(1.832,0); 
+	\end{tikzpicture}
+\]
+and clearly the left edge of $\triangle_\HH$ is not a cover relation of~$P_\HH$.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Sources and preimage of $\Or$} 
-\label{subsec:notation}
+\subsection{Surjection map} 
+\label{subsec:surjection}
 
-We have seen that the map $\Or \colon \fS_n \to V_{\HH}$ is surjective.
-We now set some notation in this context. Let $\HH$ be  an hypergraph on $[n]$. Given a permutation~$\pi\in\fS_n$ and $H\in \HH$,
-we say that 
-\begin{equation}\label{eq:source}
-	S(H,\Or_\pi)=\pi\big( \min\set{j}{\pi(j)\in H} \big)
-\end{equation}
-is the \defn{source} of $H$ for the orientation $\Or_\pi$. 
+As~$\triangle_\HH$ is a deformed permutahedra (\aka generalized permutahedra~~\cite{Postnikov, PostnikovReinerWilliams}), there is a natural surjection from the faces of the permutahedron to the faces of~$\triangle_\HH$, which was described in details in~\cite[Lem.~2.9]{BenedettiBergeronMachacek}.
+Here, we focus on the surjection~$\Or$ from the permutations of $[n]$ to the acyclic orientations of~$\HH$.
 
-Given an acyclic orientation $A\in P_\HH$,  we can characterize the preimage 
+\begin{definition}
+For a permutation~$\pi$ of~$[n]$, the orientation~$\Or_\pi$ of~$\HH$ is defined for all~$H \in \HH$ by
 \[
-\Or^{-1}(A) \eqdef \set{\pi}{\Or_\pi=A}
+\Or_\pi(H) \eqdef  \pi\big(\min\set{j}{\pi(j)\in H}\big).
 \]
-as follow. Let $\less_A$ be the order on $[n]$ defined by the transitive closure of the union of 
-the order $\less_{(i,H)}=\set{ i< j}{j\in H\ssm\{i\}}$ for each $(i,H)\in A$ . That is
- \[
- \less_A =  \bigcup_{(i,H)\in A} 
-	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (0,-.45) {$\scriptstyle i$};
-	\node at (0,.6) {$\scriptstyle j\in H\ssm \{i\}$};
-	\node at (.2,.35) {$\ldots$};
-	\draw [thick] (0,-.3)--(-.5,.4); 
-	\draw [thick] (0,-.3)--(-.3,.4); 
-	\draw [thick] (0,-.3)--(-.1,.4); 
-	\draw [thick] (0,-.3)--(.5,.4); 
-	\end{tikzpicture}
-\]
-This is a well defined order since $A$ is acyclic. The following lemma is straightforward.
+\end{definition}
 
-\begin{lemma}\label{lem:prepi}
-%$\Or^{-1}(A) = \set{\pi}{\pi \text{ is a linear extension of }  \less_A)}$.
-The preimage $\Or^{-1}(A)$ is the set of linear extensions of~$\less_A$.
+\begin{proposition}[{\cite[Lem.~2.9]{BenedettiBergeronMachacek}}]
+The map~$\Or$ is a surjection from the permutations of~$[n]$ to the acyclic orientations of~$\HH$.
+Two acyclic orientations~$A,B$ of~$\HH$ are related by a flip if and only if there are permutations~$\pi_A, \pi_B$ of~$[n]$ which differ by a simple transposition such that~$\Or_{\pi_A} = A$ and~$\Or_{\pi_B} = B$.
+In other words, the graph~$(V_\HH, E_\HH)$ of~$\triangle_\HH$ is isomorphic to the graph obtained by contracting the fibers of~$\Or$ in the graph of the permutahedron.
+\end{proposition}
+
+\begin{corollary}
+The map~$\Or$ defines a poset morphism from the weak order on permutations to the hypergraphic poset~$P_\HH$.
+\end{corollary}
+
+Finaally, we describe the fibers of the surjection~$\Or : \fS_n \to V_\HH$.
+Given an acyclic orientation~$A$ of~$\HH$, define $\less_A$ as the order on $[n]$ obtained by the transitive closure of the union of the \linebreak orders $\set{A(H) < h}{h \in H \ssm \{A(H)\}}$ for each $H \in \HH$.
+That is
+\[
+	\less_A =  \bigcup_{H \in \HH} 
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+		\node at (0,-.45) {$\scriptstyle A(H)$};
+		\node at (0,.6) {$\scriptstyle h \in H \ssm \{A(H)\}$};
+		\node at (.2,.35) {$\ldots$};
+		\draw [thick] (0,-.3)--(-.5,.4); 
+		\draw [thick] (0,-.3)--(-.3,.4); 
+		\draw [thick] (0,-.3)--(-.1,.4); 
+		\draw [thick] (0,-.3)--(.5,.4); 
+	\end{tikzpicture} \,.
+\]
+This is a well defined order since $A$ is acyclic.
+The following lemma is straightforward.
+
+\begin{lemma}
+\label{lem:prepi}
+For any acyclic orientation $A$ of~$\HH$, the preimage $\Or^{-1}(A) \eqdef \set{\pi}{\Or_\pi=A}$ is the set of linear extensions of~$\less_A$.
 \end{lemma}
 
-In general, given a hypergraph~$\HH$ we would be interested to understand what are the cover of~$P_{\HH}$? 
-When is $P_{\HH}$ a lattice? distributive lattice? a semi-lattice? (semi-)lattice quotient of the $fS_n$-weak lattice?
-Can we have a better description of $\Or^{-1}$? and more.
+%In general, given a hypergraph~$\HH$ we would be interested to understand what are the cover of~$P_\HH$? 
+%When is $P_\HH$ a lattice? distributive lattice? a semi-lattice? (semi-)lattice quotient of the $fS_n$-weak lattice?
+%Can we have a better description of $\Or^{-1}$? and more.
 
-In the present work we focus our attention to a subfamily of hypergraphs, namely we assume that all $H\in \HH$ are intervals of~$[n]$.
+%In the present work we focus our attention to a subfamily of hypergraphs, namely we assume that all $H\in \HH$ are intervals of~$[n]$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Interval hypergraphic polytopes and their partial orders}
+\section{Interval hypergraphic polytopes and posets}
 \label{sec:IHP}
 
-In this paper, we consider an \defn{interval hypergraph}~$\II$, meaning that each $I \in \II$ is an interval of the form $I = [a,b] \eqdef \{a, a+1, a+2, \dots, b-1, b\}$.
+In this paper, we focus on the following family of hypergraphs on~$[n]$.
 
-\begin{example}\label{ex:seghyp}
-$\II=\{\{1\},\{2\},\{3\},\{4\},[1,3],[2,3],[2,4],[1,4]\}$ is an interval hypergraph and \linebreak $\Or_{4132} =\big\{ (4,\{1,2,3,4\}), (1,\{1,2,3\}),(3,\{2,3\}),(4,\{2,3,4\})\big\}$  is an example of acyclic orientation in $P_\II$.
+\begin{definition}
+An \defn{interval hypergraph}~$\II$ is an hypergraph on~$[n]$ where each~$I \in \II$ is an interval of the form $I = [a,b] \eqdef \{a, a+1, a+2, \dots, b-1, b\}$.
+\end{definition}
+
+\begin{example}
+\label{ex:seghyp}
+$\II = \{\{1\},\{2\},\{3\},\{4\},[1,3],[2,3],[2,4],[1,4]\}$ is an interval hypergraph and \linebreak $\Or_{4132} =\big\{ (4,\{1,2,3,4\}), (1,\{1,2,3\}),(3,\{2,3\}),(4,\{2,3,4\})\big\}$  is an acyclic orientation of~$\II$.
 We will represent interval hypergraphs and their orientations graphically as follow:
-\vincent{We should make a command for these drawings. I will take care of that soon.}
+\vincent{We should make a command for these drawings.}
 \[
- \II =  
+	\II =  
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\foreach \x in {1,...,4}
 		\node (\x) at (\x*.5,-.4) [inner sep = -1pt] {$\scriptstyle \x$};
@@ -378,111 +410,149 @@ We will represent interval hypergraphs and their orientations graphically as fol
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\foreach \x in {1,...,4}
 		\node (\x) at (\x*.5,-.4) [inner sep = -1pt] {$\scriptstyle \x$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.2)--(2,-.2);  \node at (2,-.2) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,0)--(1.5,0);   \node at (.5,0) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2);   \node at (1.5,.2) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.4)--(2,.4);   \node at (2,.4) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.2)--(2,-.2); \node at (2,-.2) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,0)--(1.5,0); \node at (.5,0) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2); \node at (1.5,.2) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.4)--(2,.4); \node at (2,.4) {$\bullet$};
 	\end{tikzpicture}
 \]
-and we omit to draw the singleton $\{i\}$ for $1\le i\le n$.
+and we omit to draw the singleton $\{i\}$ for $i \in [n]$.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Acyclic orientations of interval hypergraphs}  
+\subsection{Acyclic orientations for interval hypergraphs}
 \label{subsec:sourceinc}
 
-Let $\II$ be an interval  hypergraph.
-In this section we give a simple characterization of the orientations of $\II$ that are acyclic.
-Consider any orientation (not necessarily acyclic) $O \eqdef \set{(a_I,I)}{a_I \in I \in \II,  |I|>1}$ of $\II$.
-If the orientation $O$ has a cycle, then we can find $(a_1,I_{1}), (a_2,I_{2}),\ldots (a_m,I_{m})$ in $O$, such that
-$a_{s+1}\in I_s$ for $1\le s<m$, and $a_1\in I_m$. 
-\[
-	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (-.5,1) {$\scriptscriptstyle I_m$}; \draw [thick,{Bar[width=3pt]}-] (.3,1)--(1.2,1);   \node at (1.3,1) {$\scriptstyle \cdot$};\node at (1.4,1) {$\scriptstyle \cdot$};\node at (1.5,1) {$\scriptstyle \cdot$};
-	\node at (1,0.9) {$\scriptstyle \cdot$}; \node at (1.1,0.8) {$\scriptstyle \cdot$}; \node at (1.2,0.7) {$\scriptstyle \cdot$}; 
-	\node at (-.5,0.6) {$\scriptscriptstyle I_4$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2,.6)--(3,.6);  \node at (2.5,.6) {$\bullet$};
-	\node at (-.5,0.4) {$\scriptscriptstyle I_3$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2.5,.4)--(4.5,.4);   \node at (3.5,.4) {$\bullet$};
-	\node at (-.5,0.2) {$\scriptscriptstyle I_2$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(4,.2);   \node at (1.5,.2) {$\bullet$};
-	\node at (-.5,0) {$\scriptscriptstyle I_1$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,0)--(1.5,0);   \node at (.5,0) {$\bullet$};
-	\end{tikzpicture}
-\]
-We may assume that $m$ is the first time $a_1\in I_m$ and  $a_s\not\in I_m$ for $1<s<m$.
-By symmetry, let us assume $a_1<a_2$. Since $a_2\in I_1\ssm I_m$, then $\max(I_m)<\max(I_1)$. If we suppose that $a_m\not\in I_1$, then $a_m<a_1<a_2$.
-We thus have  $a_1\in\bigcup_{2\le s<m} I_s$ since $a_2\in I_2$ and $a_m\in I_{m-1}$. We thus have $a_1\in I_s$ for some $s<m$, a contradiction to our choice of $m$.
-Therefore, we have $m=2$.
+In this section we give a simple characterization of the acyclic orientations of an interval hypergraph~$\II$.
 
-\begin{proposition}\label{prop:acyclic}
- For an interval  hypergraph $\II$, an orientation $O$ of $\II$ is acyclic if and only if there is no $(i,I),(j,J)\in O$ such that $i\in J$ and $j\in I$.
- Graphically, there is no pattern
+\begin{proposition}
+An orientation~$O$ of an interval hypergraph~$\II$ is acyclic if and only if there is no distinct~$I,J \in \I$ such that~$O(I) \in J \ssm \{O(J)\}$ and~$O(J) \in I \ssm \{O(I)\}$.
+Graphically, there is no pattern
  \[
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (-.5,0.2) {$\scriptscriptstyle J$}; \draw [thick,{Bar[width=3pt]}-] (0,.2)--(1.8,.2);   \node at (1.5,.2) {$\bullet$};   \node at (1.9,.2) {$\scriptstyle \cdot$};\node at (2,.2) {$\scriptstyle \cdot$};\node at (2.1,.2) {$\scriptstyle \cdot$};
-	\node at (-.5,0) {$\scriptscriptstyle I$};  \node at (-.1,0) {$\scriptstyle \cdot$};\node at (0,0) {$\scriptstyle \cdot$};\node at (.1,0) {$\scriptstyle \cdot$}; \draw [thick,-{Bar[width=3pt]}] (.2,0)--(2,0);   \node at (.5,0) {$\bullet$};
-	\node at (.5,-.2) {$\scriptscriptstyle i$}; \node at (1.5,-.2) {$\scriptscriptstyle j$}; 
+	%
+	\node at (-.5,0.2) {$\scriptscriptstyle J$}; 
+	\node at (-.1,0.2) {$\scriptstyle \cdot$};
+	\node at (0,0.2) {$\scriptstyle \cdot$};
+	\node at (.1,0.2) {$\scriptstyle \cdot$};
+	\draw [thick] (.2,.2)--(1.8,.2);
+	\node at (1.9,.2) {$\scriptstyle \cdot$};
+	\node at (2,.2) {$\scriptstyle \cdot$};
+	\node at (2.1,.2) {$\scriptstyle \cdot$};
+	\node at (1.5,.2) {$\bullet$};
+	%
+	\node at (-.5,0) {$\scriptscriptstyle I$};
+	\node at (-.1,0) {$\scriptstyle \cdot$};
+	\node at (0,0) {$\scriptstyle \cdot$};
+	\node at (.1,0) {$\scriptstyle \cdot$};
+	\draw [thick] (.2,0)--(1.8,0);
+	\node at (1.9,0) {$\scriptstyle \cdot$};
+	\node at (2,0) {$\scriptstyle \cdot$};
+	\node at (2.1,0) {$\scriptstyle \cdot$};
+	\node at (.5,0) {$\bullet$};
+	%
+	\node at (.5,-.2) {$\scriptscriptstyle i$};
+	\node at (1.5,-.2) {$\scriptscriptstyle j$}; 
 	\end{tikzpicture}
 \]
 \end{proposition}
 
 \begin{proof}
-If the given orientation contain such pattern, clearly it is not acyclic. The converse was argued just before the proposition.
-\vincent{Argue inside}
-\end{proof}
-
-\begin{remark} \label{rem:separation}
-Given an acyclic orientation $A\in P_\II$,  the condition in Proposition~\ref{prop:acyclic} implies that the order $\less_A$ is \defn{separating}. That is, for any $I\in \II$ such that $|I|>1$,
-and for any $i<S(I,A)<j$, we have that $i$ and $j$ are incomparable in $\less_A$. 
-\end{remark}
-
-We add a  technical lemmas about  the linear extension of separating order on $[n]$ that will be useful to us. In general, we say an order $\less$ on $[n]$ is \defn{separating} if 
-for any $a\less b$ and any $i<a<j$, we have that $i$ and $j$ are incomparable in $\less$.
-
-\begin{lemma} \label{lem:XaWbY}
-Given a separating order $\less$ on $[n]$ and  $a,b\in [n]$ such that $a<b$ and $a\less b$. We can find $\pi= XaWbY$ a linear extension of $\less$ such that
-$a<w$ and $a\less w\less b$ for all $w\in W$. Moreover, we could choose $W$ such that $a<w<b$ and $a\less w\less b$ for all $w\in W$, if and only if  there is no $b<c$ such that $a\less c\less b$.
-\end{lemma}
-
-\begin{proof} We first find a linear extension $X_0aX_1$ of the restriction of the order $\less$ on $[1,a]\subseteq [n]$.
-Similarly, we find a linear extension $Y_0aY_1$ of the restriction of $\less$ on $[a,n]$. Since all elements of $X_0,X_1$ are separated by $a$ to all elements of $Y_0,Y_1$,
-then every element of $X_0,X_1$ is incomparable in $\less$ to every element of $Y_0,Y_1$. Therefor $X_0Y_0aY_1X_1$ is a linear extension of $\less$.
-In choosing linear extensions we can always assume that all incomparable elements  are placed before $a$, thus in $Y_0$ and $X_0$. 
-Thus for all $y\in Y_1$, we have $a<y$ and $a\less y$ and in particular $b\in Y_1$. We have $Y_1=WbY_2$ and $W$ is as desired by choosing to put all  $c\in Y_1$ incomparable to $b$ in $Y_2$.
-Moreovere, if there is no $b<c\in Y_1$ such that $c\less b$, then  $a<w<b$ and $a\less w\less b$ for all $w\in W$. The converse holds since if $b<c\in W$ for all $W$ implies $c\less b$.
+If the orientation~$O$ contains this pattern, it is clearly not acyclic.
+Conversely, assume that~$O$ is not acyclic.
+Then we can find $I_1, \dots, I_k \in \II$ with~$k \ge 2$ such that~$O(I_{i+1}) \in I_i \ssm \{O(I_i)\}$ for~$i \in [k-1]$ and~$O(I_1) \in I_k \ssm \{O(I_k)\}$.
+Graphically
+\[
+	\begin{tikzpicture}[scale=1,baseline=.0cm]
+	\node at (-.5,1) {$\scriptscriptstyle I_k$};
+	\draw [thick,{Bar[width=3pt]}-] (.3,1)--(1.2,1);
+	\node at (1.3,1) {$\scriptstyle \cdot$};
+	\node at (1.4,1) {$\scriptstyle \cdot$};
+	\node at (1.5,1) {$\scriptstyle \cdot$};
+	\node at (1,0.9) {$\scriptstyle \cdot$};
+	\node at (1.1,0.8) {$\scriptstyle \cdot$};
+	\node at (1.2,0.7) {$\scriptstyle \cdot$}; 
+	%
+%	\node at (-.5,0.6) {$\scriptscriptstyle I_4$};
+%	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2,.6)--(3,.6);
+%	\node at (2.5,.6) {$\bullet$};
+	%
+	\node at (-.5,0.4) {$\scriptscriptstyle I_3$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2.5,.4)--(4.5,.4);
+	\node at (3.5,.4) {$\bullet$};
+	%
+	\node at (-.5,0.2) {$\scriptscriptstyle I_2$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(4,.2);
+	\node at (1.5,.2) {$\bullet$};
+	%
+	\node at (-.5,0) {$\scriptscriptstyle I_1$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,0)--(1.5,0);
+	\node at (.5,0) {$\bullet$};
+	\end{tikzpicture}
+\]
+Assume that~$k > 2$ and that is minimal for this property.
+Note that~$O(I_i) \ne O(I_{i+1})$ for all~$i$.
+By symmetry, suppose~$O(I_1) < O(I_2)$.
+If there is~$1 \le i \le k-1$ such that~$O(I_{i+1}) < O(I_i)$, then for the smallest such~$i$, we have
+\begin{itemize}
+\item either~$O(I_{i-1}) \in [O(I_{i+1}), O(I_i)] \subseteq I_i$, so that~$O(I_{i-1}) \in I_i$ and $O(I_i) \in I_{i-1}$,
+\item or~$O(I_{i+1}) \in [O(I_{i-1}), O(I_i)] \subseteq I_{i-1}$, so that we can drop~$I_i$ from our sequence, contradicting the minimality of~$k$.
+\end{itemize}
+We thus obtain~$O(I_1) < \dots < O(I_k)$.
+As~$O(I_1) \in I_k$, we get~$O(I_{k-1}) \in [O(I_1), O(I_k)] \subseteq I_k$, so that~$O(I_{k-1}) \in I_k$ and~$O(I_k) \in I_{k-1}$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Preimage $\Or^{-1}$ for interval hypergraphs} 
+\subsection{Fibers of $\Or$ for interval hypergraphs} 
 \label{subsec:preimageI}
 
-One striking property for interval hypergraph is that  the sets  $\Or^{-1}(A)$ are intervals in the weak order.
-To describe this we first need to recall a classical result about linear extensions of posets on $[n]$.
+One striking property for interval hypergraphs is that the fibers of the surjection~$\Or$ are intervals in the weak order.
+To describe this we first need to recall the following classical result of A.~Bj\"orner and M.~Wachs~\cite[Thm.~6.8]{BjornerWachs}
 
 \begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
 \label{prop:WOIP}
-The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$I$ of the weak order if and only if for every~$i < j < k$,
-\[
-i \less k \implies i \less j \text{ or } j \less k
-\qquad\text{and}\qquad
-i \more k \implies i \more j \text{ or } j \more k.
-\]
-Moreover, the inversions of~$\min(I)$ are the pairs~$i,j \in [n]$ with $i < j$ and $i \more j$, and the non-inversions of~$\max(I)$ are the pairs~$i,j \in [n]$ with $i < j$ and $i \less j$.
+The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval of the weak order if and only if $a \less c \implies a \less b \text{ or } b \less c$, and~$a \more c \implies a \more b \text{ or } b \more c$, for every~$1 \le a < b < c \le n$.
+%for every~$1 \le a < b < c \le n$,
+%\[
+%a \less c \implies a \less b \text{ or } b \less c
+%\qquad\text{and}\qquad
+%a \more c \implies a \more b \text{ or } b \more c.
+%\]
+%Moreover, the inversions of~$\sigma$ are the pairs~$(b,a)$ with $a < b$ and $a \more b$, and the non-inversions of~$\tau$ are the pairs~$(a,b)$ with $a < b$ and $a \less b$.
 \end{proposition}
 
-\begin{proposition}\label{prop:preimage}
-Given an interval  hypergraph $\II$, the fiber~$\Or^{-1}(A)$ of any acyclic orientation~$A\in V_{\II}$ is an interval of the weak order with minimum avoiding the pattern $231$ and maximum avoiding the pattern $213$.
+This statement was refined in~\cite{ChatelPilaudPons} to describe Tamari interval posets.
+
+\begin{proposition}
+\label{prop:TOIP}
+The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern $213$ if and only if~${a \less c \implies a \less b}$ and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
+%for every~$1 \le a < b < c \le n$,
+%\[
+%a \less c \implies a \less b
+%\qquad\text{and}\qquad
+%a \more c \implies b \more c.
+%\]
+\end{proposition}
+
+\begin{proposition}
+\label{prop:preimage}
+Given an interval hypergraph $\II$, the fiber~$\Or^{-1}(A)$ of any acyclic orientation~$A$ of~$\II$ is an interval of the weak order with minimum avoiding the pattern $231$ and maximum avoiding the pattern $213$.
 \end{proposition}
 
 \begin{proof}
-From Lemma~\ref{lem:prepi} we have that any $\pi\in \Or^{-1}(A)$  is a linear extension of $\less_A$, we can therefore use Proposition~\ref{prop:WOIP} to prove our claim. 
-Let $i<j<k$ be any integers in the natural order of $[n]$. If we have $i\less_{A} k$, then, by definition of $\less_A$, there must be a sequence $(i_1,I_{1}), (i_2,I_{2}),\ldots (i_m,I_{m})$ of oriented edges in $A$ such that
-$i=i_1<i_2<\cdots <i_{m}$, for $1\le s<m$ we have $i_{s+1}\in I_s$, and~$k\in I_m$. We must therefore have $j\in\bigcup_{1\le s\le m} I_s$ since both $i$ and $k$ are in the union. This implies $i\less_{A} j$. The case $i\more_{A} k$ is similar and  implies
-that $j\more_A k$. This shows $\Or^{-1}(A)$ is an interval in the weak order.
-
-For the remaining of our claim, assume $\pi$ is the maximum of the interval of $\Or^{-1}(A)$ and has a $213$ pattern. That is,  we can find $i<j<k$ such that $\{i,k\}$ is a non-inversion of $\pi$ and $\{i,j\}$ is an inversion. Using Proposition~\ref{prop:WOIP} we must have $i\less_A k$ and $i\not\less_A j$, a contradiction to our proof above. The case for the minimum is similar.
+From \cref{lem:prepi}, the fiber~$\Or^{-1}(A)$ is the set of linear extensions of $\less_A$, so that we use the characterization of \cref{prop:TOIP} to prove \cref{prop:preimage}.
+Let $1 \le a < b < c \le [n]$.
+If we have $a \less_{A} c$, then, by definition of $\less_A$, there must be a sequence $I_1, \dots, I_k \in \II$ such that~$a = A(I_1)$, $A(I_{i+1}) \in I_i$ for all~$i \in [k-1]$, and~$c \in I_k$.
+As $\bigcup_{i \in [k]} I_i$ is an interval containing~$a$ and~$c$ and~$a < b < c$, it contains also~$b$.
+Hence, there is~$i \in [k]$ such that~$c \in I_i$, and the sequence~$I_1, \dots, I_i$ proves that~$a \less_{A} b$.
+The case $a \more_{A} c$ is similar and  implies that $b \more_A c$.
 \end{proof}
 
-\vincent{also Tamari intervals}
+\begin{remark}
+\cref{prop:preimage} fails for arbitrary hypergraphs~$\HH$, for instance for~$\HH \eqdef \{1,2,3,13\}$, there are two fibers~$\{123, 213, 132\}$ and~$\{231, 312, 321\}$ which are not intervals of the weak order.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -493,97 +563,104 @@ We now characterize the comparisons in the poset $P_\II$ in terms of the compari
 
 \begin{proposition}
 \label{prop:sourceorder}
-Let $\II$ be an interval  hypergraph. For any acyclic orientations~$A,B\in V_\II$ we have
+Let $\II$ be an interval  hypergraph.
+For any acyclic orientations~$A$ and~$B$ of~$\II$,
 \[
-A\le B \quad \iff \quad S(I,A)\le S(I,B) \text{ for all } I\in \II .
+A \le B \quad \iff \quad A(I) \le B(I) \text{ for all } I \in \II .
 \]
 \end{proposition}
-\begin{proof} Let $\pi$ be any permutation such that $A=\Or_\pi$. From Proposition~\ref{prop:WeakToP}, the order $P_\II$ is generated by  weak cover relations on $\fS$,
-so let $\pi<\pi'$ be a cover. That is $\pi'=\pi(i,i+1)$ where $a=\pi(i)<\pi(i+1)=b$. Fix $I\in \II$. If both $a,b\in I$ and $a=S(I,A)$, then $b=S(I, \Or_{\pi'})$.
-In all other cases $S(I,A)=S(I,\Or_{\pi'})$. The forward implication $\big(A\le B \implies S(I,A)\le S(I,B)\  \forall( I\in \II)\big)$ then follows by induction on the distance from $A$ to $B$.
 
-\vincent{Self-note: I want to read this proof in detail later.}
-For the converse, assume $S(I,A)\le S(I,B)$  for all $ I\in \II$. Let 
-\[
-\delta_{A,B}=\big\{(a,b)\  |\  a\not= b, a=S(K,A), b=S(K,B) \text{ for some } K \in \II \big\}.
-\]
-If $\delta_{A,B}=\varnothing $, then we have $A=B$ and the result holds. Otherwise, choose $(a,b)\in \delta_{A,B}$ such that $b$ is maximal, and for this $b$, let $a$ is maximal.
-We choose $\pi=XaWbY$ as in Lemma~\ref{lem:XaWbY} for $\less_A$ so that $A=\Or_\pi$. For $\pi'=(a,b)\pi$, we claim the orientation $A'=\Or_{\pi'}$ satisfies $A<A'$ and  that for all $I\in \II$ we have $S(I,A')\le S(I,B)$.
+\begin{proof}
+The forward direction is immediate as it holds for cover relations of~$P_\II$ by \cref{def:flip}.
+For the backward direction, assume that~$A(I) \le B(I)$ for all~$I \in \II$.
+The proof works by induction on~$|\set{I \in \II}{A(I) < B(I)}|$.
 
-To show the claim, first assume there is $c\in W$ such that $c>b$ and $c\less_A b$. Hence there is $\{(c_s,I_s)\}\subseteq A$ such that (using separation property) $c=c_1>c_2>\cdots>c_{m}>b$ 
-with $c_{s+1}\in I_s$ for $1\le s<m$ and $b\in I_m$. By choice of $b$,  we must have $\{(c_s,I_s)\}\subseteq B$ since all $c_s>b$. This gives $c\less_B b$. 
-Now we use $a\less_A c$ (true for any $c\in W$) which implies a set
-$\{(a_r,I_r)\}\subseteq A$ such that $a=a_1<a_2<\cdots<a_{p}<c$ 
-with $a_{r+1}\in I_r$ for $1\le r<p$ and $c\in I_{p}$. Since $a<b<c$ we have that $b\in \bigcup_{1\le r\le p} I_r$, so $b\in I_{r_0}$ for some $1\le r_0\le p$. 
-Choose $r_0$ to be maximal with this property. Hence for all $r_0<r\le p$ we have  $b< \min(I_r)$ and $a'_r=a_r$ by maximality of $b$. By choice of $b$, 
-there is a $K\in\II$ such that $(b,K)\in B$. We also have $(a'_{r_0},I_{r_0})\in B$ where 
- $$\min(I_{r_0+1})\le a_{r_0}\le a'_{r_0} \le \max(I_{r_0}) < a_{r_0+1} \le \max(I_{r_0+1}),$$
- hence $a'_{r_0} \in I_{r_0+1}$.
-The set $\{(b,K),(a'_{r_0},I_{r_0})\} \cup \{(a_r,I_r)\}_{r_0<r\le p} \subseteq B$ shows that $b\less_B c$ a contradiction to the acyclicity of $B$. 
-Therefore, there is no $c>b$ in $W$. All the inversion of $\pi=XaWbY$ are inversion of $\pi'=XbWaY$ since $a<w<b$ for all $w\in W$, which gives $A<A'$.
+%Consider the set of pairs~$1 \le i < j \le$ such that there is~$I \in \II$ with~$A(I) = i$ and~$B(I) = j$.
+%Choose~$i < j$ in this set such that~$j$ is maximal, and if draw, $i$ is maximal.
+Choose~$J \in \II$ such that~$A(J) < B(J)$ and for any~$I \in \II$ with~$A(I) < B(I)$, we have~$B(I) < B(J)$, or~$B(I) = B(J)$, then~$A(I) \le A(J)$.
 
-For the second part of the claim consider any $I\in \II$. if $\max(I)<a$ or $b<\min(I)$ or $a<\min(I)<\max(I)<b$, then $S(I,A')=S(I,A)\le S(I,B)$. 
+Let~$O$ be the orientation of~$\I$ obtained from~$A$ by flipping~$A(J)$ to~$B(J)$.
+We claim that~$O$ is acyclic and that~$O(I) \le B(I)$ for all~$I \in \II$. 
+We conclude by induction that~$O \le B$, and thus~$A \le O \le B$ as desired.
 
-If $a<\min(I)\le b\le \max(I)$, then either $S(I,A')=S(I,A)\le S(I,B)$
-or $a<c=S(I,A)<S(I,A')=b$. In the second case, we must have that $S(I,B)=b$, otherwise if $S(I,B)=c'<b$ then $(c',I)$ and $(b,K)$ would be a cycle 
-(recal that there is a $(b,K)\in B$ such that $a\in K$, $a<c\le c'<b$, therefore $c\in K$). The choice of $b$ eliminate the possibility that $S(I,B)=c'>b$, hence $S(I,A')=b=S(I,B)$ in this case.
+We first prove that~$O$ is acyclic.
+Otherwise, we would have~$I,I' \in \II$ such that~$O(I) \in I' \ssm \{O(I')\}$ and~$O(I') \in I \ssm \{O(I)\}$.
+As~$A$ is acyclic, we have~$A(I) \ne O(I)$ or~$A(I') \ne O(I')$, but not both since~$O(I) \ne O(I')$.
+Hence, we can assume by symmetry that~$O(I) = A(I)$ while~$A(I') = A(J)$ and~$O(I') = B(J)$.
+Up to updating~$J$ to~$I'$, we can thus also assume that~$I' = J$.
+As~$B$ is acyclic, we have~$B(I) \ne O(I)$.
+Since~$A(I) = O(I) \ne B(I)$, we have~$B(I) \le B(J)$ by our choice of~$J$.
+\vincent{Discard~$B(I) = B(J)??$}
+We thus obtain that~$A(I) \le B(I) < B(J)$.
+As~$A(I) = O(I) \in I' = J$ and~$B(J) \in J$, we thus get that~$B(I) \in J$.
+Moreover, $B(J) = O(I') \in I$.
+As~$B(I) \ne B(J)$, we obtain a contradiction.
+\vincent{todo}
 
-If $\min(I)\le a<b\le \max(I)$, then if $a\le S(I,A)\le b$ we must have  $S(I,B)=b$ as it cannot be greater by choice of $b$ and it cannot be smaller, creating a cycle with $(a,K)$. 
-if $S(I,A)<a$, then our choice of $\pi$ implies that $c$ is before $a$, therefore $S(I,A')=A(I,A)\le S(I,B)$. If $S(I,A)=c>b$, then we have shown above that  there is no $c>b$ in $W$ for $\pi$.
-Hence, $c$ is before $a$ in $\pi$ and we have again $S(I,A')=A(I,A)\le S(I,B)$.
-
-Finally, if $\min(I)\le a\le \max(I)<b$, then we cannot have $S(I,A)=c>a$ for this would create a cycle with $(a,K)\in A$. If $S(I,A)=c<a$, then as above $c$ is before $a$ in $\pi$ and we have 
-$S(I,A')=S(I,A)\le S(I,B)$. If $S(I,A)=a$, then $a \le S(I,A')=c<b$. Assume that $a<c<b$. Having $S(I,A')=c$ means that $c\in W$ in $\pi$, which in turn implies that $a\less_A c \less_A b$.
-We use $c\less_A b$ as before to exhibit $\{(c_s,I_s)\}\subseteq A$ with $c=c_1<c_2<\cdots <c_m<b$ where $c_{s+1}\in I_s$ and $b\in I_m$.
-The interval $I_m$ cannot contain $a<c\le c_m$ for otherwise we would get a cycle $a\less_A c_m \less_A a$. In $B$, we must have $S(I_m,B)=d=b$ since $c_m<b$ and the choice of $b$ prevent $d>b$,
-and $d<b$ is not allowed by $(b,K)$ and $a<\min(I_m)\le b$ (it would create a cycle). Now $a<c_m=S(I_m,A)<S(I_m,B)=b$ contradict the choice of $a$. Hence we can only have $S(I,A)=c<a$ which 
-conclude the end of our claim. 
-
-The proposition then follow by induction on the size of $\delta_{A,B}$ since $\delta_{A',B}\subsetneq \delta_{A,B}$.
-
-\Nantel{The argument of Vincent in the note is incomplete. What guaranties that flipping $a$ and $b$ gives comparable elements?
-I priori, even if we show it is a valid orientation, it may give us something incomparable? We have to show it is obtained by a  weak order relations as done above.}
+We now prove that~$O(I) \le B(I)$ for all~$I \in \II$.
+We thus consider~$I \in \II$ and distinguish two cases:
+\begin{itemize}
+\item Assume first that~$A(I) = A(J)$ and~$B(J) \in I$. By \cref{def:flip}, we then have~${O(I) = B(J)}$. Moreover, as~$I$ is an interval and contains~$A(J)$ and~$B(J)$, it contains~$[A(J), B(J)] \subseteq J$. As~$B$ is acyclic, this implies that~$B(I) \notin {[A(J), B(J)[}$. As~$A(J) = A(I) \le B(I)$, we thus obtain that~$O(I) = B(J) \le B(I)$.
+\item Otherwise, we have~$O(I) = A(I) \le B(I)$.
+\qedhere
+\end{itemize}
 \end{proof}
 
-\vincent{Does this hold for general hypergraphs? I guess not, but I want an example...}
+\vincent{Does this hold for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
+
+\vincent{I AM HERE !!!}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Flips and covers in $P_\II$}  
 \label{subsec:cover}
 
-In Remark~\ref{rem:EdgeNotCover} we saw that a cover in the weak order does not always give us a cover  in the order $P_\II$. Yet, it is a necessary condition, hence if
-$A<B$ is a cover  $P_\II$ we must be able to find a cover in the weak order $\pi_A<\pi_B$  such that $A=\Or_{\pi_A}$ and~$B=\Or_{\pi_B}$. The permutations $\pi_A<\pi_B$ 
-must satisfy $\pi_B=\pi_A(i,i+1)$ for some $1\le i<n$, where $a=\pi_A(i)<\pi_A(i+1)=b$.
-This will affect only the interval $I\in \II$ such that $[a,b]\subseteq I$ and such that $S(I,A)=a$. Indeed
-\begin{equation}\label{eq:PossibleCover}
+In \cref{rem:EdgeNotCover} we saw that a cover in the weak order does not always give us a cover  in the order $P_\II$.
+Yet, it is a necessary condition, hence if
+$A<B$ is a cover  $P_\II$ we must be able to find a cover in the weak order $\pi_A<\pi_B$  such that $A=\Or_{\pi_A}$ and~$B=\Or_{\pi_B}$.
+The permutations $\pi_A<\pi_B$ must satisfy $\pi_B=\pi_A(i,i+1)$ for some $1\le i<n$, where $a=\pi_A(i)<\pi_A(i+1)=b$.
+This will affect only the interval $I\in \II$ such that $[a,b]\subseteq I$ and such that $S(I,A)=a$.
+Indeed
+\begin{equation}
+\label{eq:PossibleCover}
  	S(I,B)=\begin{cases}
 		b& \text{if $S(I,A) = a$ and $[a,b]\subseteq I$},\\
 		S(I,A)& \text{otherwise.}
 	\end{cases}
 \end{equation}
 
-This suggests the following definition. A \defn{flip} in $A$ is a pair of integers~$a<b$ such that the orientation $B=(a,b)A$ defined by Equation~\eqref{eq:PossibleCover} is acyclic and distinct from~$A$. Using Proposition~\ref{prop:sourceorder}, we have that if $B=(a,b)A$ is a flip, then $A<B$. 
+This suggests the following definition.
+A \defn{flip} in $A$ is a pair of integers~$a<b$ such that the orientation $B=(a,b)A$ defined by Equation~\eqref{eq:PossibleCover} is acyclic and distinct from~$A$.
+Using \cref{prop:sourceorder}, we have that if $B=(a,b)A$ is a flip, then $A<B$.
 
-
-Our first task is to characterize flips. Let
- $$\cA(a)=\bigcup_{(a,I)\in A} \cA_{(a,I)}\,,\qquad\text{where}\qquad
- \cA_{(a,I)}= I \ssm  \bigcup_{(c,J)\in A \atop a\ne c\in I} (J\ssm \{c\})\,.$$
+Our first task is to characterize flips.
+Let
+\[
+\cA(a)=\bigcup_{(a,I)\in A} \cA_{(a,I)}\,,
+\qquad\text{where}\qquad
+\cA_{(a,I)}= I \ssm  \bigcup_{(c,J)\in A \atop a\ne c\in I} (J\ssm \{c\})\,.
+\]
 By construction, it is clear that if $b\in (I\ssm \cA_{(a,I)})$, then changing the source of $I$ from $a$ to $b$ would create a cycle with some $(c,J)$ and not be acyclic.
 
-\begin{lemma}\label{lem:isaflip}
+\begin{lemma}
+\label{lem:isaflip}
 $B=(a,b)A$ is a flip if and only if $b\in \cA(a).$
 \end{lemma}
 
 \begin{proof}
-If $b\not\in \cA (a)$, then either $b\not\in I$ for all $(a,I)\in A$, or there are $(a,I),(c,J)\in A$ such that $c\in I$ and  $b\in I\cap J$. In the first case $B=(a,b)A=A$ is not a flip, and in the second cases $(b,I),(c,J)$ is a cycle so 
-$B=(a,b)A$ is not acyclic, hence not a flip.  For the converse, if $a<b\in \cA (a)$, then there is at least one $(a,I)\in A$ such that $b\in I$. The orientation $B=(a,b)A\ne A$ since Equation~\eqref{eq:PossibleCover} change at least one source.
-For all of these change,  the definition of  $\cA_{(a,I)}$ guaranties there is no $(b,I)(c,J)\in B$ such that $b\ne c$ and $b,c\in I\cap J$. Hence, Proposition~\ref{prop:acyclic} gives us that $B$ is acyclic and thus $B=(a,b)A$ is a flip.
+If $b\not\in \cA (a)$, then either $b\not\in I$ for all $(a,I)\in A$, or there are $(a,I),(c,J)\in A$ such that $c\in I$ and  $b\in I\cap J$.
+In the first case $B=(a,b)A=A$ is not a flip, and in the second cases $(b,I),(c,J)$ is a cycle so $B=(a,b)A$ is not acyclic, hence not a flip.
+For the converse, if $a<b\in \cA (a)$, then there is at least one $(a,I)\in A$ such that $b\in I$.
+The orientation $B=(a,b)A\ne A$ since Equation~\eqref{eq:PossibleCover} change at least one source.
+For all of these change,  the definition of  $\cA_{(a,I)}$ guaranties there is no $(b,I)(c,J)\in B$ such that $b\ne c$ and $b,c\in I\cap J$.
+Hence, \cref{prop:acyclic} gives us that $B$ is acyclic and thus $B=(a,b)A$ is a flip.
 \end{proof}
 
 As described above, if $A<B$ is a cover, then we have $\pi_A<\pi_B$ is a cover which gives us $B=(a,b)A$ is a  flip.
 To understand the flips that are not covers we need to look at the set
- $$\cA(a,b)= \Big\{ i\in \cA (a) \,\big|\  a<i<b\  \text { and }\  i\not\in \!\!\!\bigcup_{(a,J)\in A \atop \max(J)<b} J \Big\}.$$
+ \[
+ \cA(a,b)= \Big\{ i\in \cA (a) \,\big|\  a<i<b\  \text { and }\  i\not\in \!\!\!\bigcup_{(a,J)\in A \atop \max(J)<b} J \Big\}.
+ \]
  
 \begin{proposition} \label{prop:segcover}
 $A<B$  is a cover if and only if it is a flip for some $a<b$ and $ \cA(a,b)=\varnothing .$
@@ -591,14 +668,20 @@ $A<B$  is a cover if and only if it is a flip for some $a<b$ and $ \cA(a,b)=\var
 
 \begin{proof}
 If $A<B$  is a cover, then it is a flip $B=(a,b)A$ for some $a<b$.
-Suppose $i\in  \cA(a,b)$, then $i\in \cA(a)$ and $B'=(a,i)A$ is a flip. This gives $A<B'$. By definition of $\cA(a,b)$, for any $(a,I)\in A$ such that $i\in I$, we must have $b\in I$ as well.
-Hence $S(I,B')=i<b=S(I,B)$ for all such $(a,I)$. In all other cases we have $S(I,B')=S(I,A)\le S(I,B)$. Hence $B'<B$ contradicting that $A<B$ is a cover.
+Suppose $i\in  \cA(a,b)$, then $i\in \cA(a)$ and $B'=(a,i)A$ is a flip.
+This gives $A<B'$.
+By definition of $\cA(a,b)$, for any $(a,I)\in A$ such that $i\in I$, we must have $b\in I$ as well.
+Hence $S(I,B')=i<b=S(I,B)$ for all such $(a,I)$.
+In all other cases we have $S(I,B')=S(I,A)\le S(I,B)$.
+Hence $B'<B$ contradicting that $A<B$ is a cover.
 
 Conversely, suppose $ \cA(a,b)=\varnothing $, that $B=(a,b)A$ is a flip but  is not a cover $A<B$.
 We can thus find a cover $A<B'$ such that $B'<B$.
-Using Proposition~\ref{prop:sourceorder}, we have that $A<B$ have the same source on all $[a,b]\not\subseteq I\in \II$ or $S(I,A)\ne a$. 
-Hence the cover $A<B'$ can only be achieved with $B'=(a,i)A$ for some $a<i<b$. Lemma~\ref{lem:isaflip} implies that $i\in \cA(a)$.
-Since $i\not\in \cA(a,b)$, then there is $(a,J)\in A$ such that $\max(J)<b$ and $i\in J$. For this particular $J$, we have $S(J,B) = a < i = S(J,B')$
+Using \cref{prop:sourceorder}, we have that $A<B$ have the same source on all $[a,b]\not\subseteq I\in \II$ or $S(I,A)\ne a$.
+Hence the cover $A<B'$ can only be achieved with $B'=(a,i)A$ for some $a<i<b$.
+\cref{lem:isaflip} implies that $i\in \cA(a)$.
+Since $i\not\in \cA(a,b)$, then there is $(a,J)\in A$ such that $\max(J)<b$ and $i\in J$.
+For this particular $J$, we have $S(J,B) = a < i = S(J,B')$
 wich implies $B'\not < B$, a contradiction.
 \end{proof}
 
@@ -609,26 +692,33 @@ wich implies $B'\not < B$, a contradiction.
 \section{Characterization of  $P_\II$ that are lattices}
 \label{sec:LatticePI}
 
-In this section, we  prove  Theorem~\ref{thm:latticeI} characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
+In this section, we  prove  \cref{thm:latticeI} characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{If $P_\II$ is a lattice, then $\II$ is closed under intersections}  
 \label{subsec:latticeI}
 
-We are now ready to show the forward implication of Theorem~\ref{thm:latticeI}.
+We are now ready to show the forward implication of \cref{thm:latticeI}.
 
-\begin{proposition}\label{prop:latticeForward}
+\begin{proposition}
+\label{prop:latticeForward}
 For an interval  hypergraph $\II$, if the poset $P_\II$ is a lattice, then $\II$ is closed under intersections.
 \end{proposition}
 
-\begin{proof} By contradiction, assume we have $I,J\in \II$ such that $\varnothing  \not = I\cap J\not\in \II$. Let $a<b<c<d$ be such that $a=b-1$, $b=\min(I\cap J)$, $c=\max(I\cap J)$, and $d=c+1$.
+\begin{proof}
+By contradiction, assume we have $I,J\in \II$ such that $\varnothing  \not = I\cap J\not\in \II$.
+Let $a<b<c<d$ be such that $a=b-1$, $b=\min(I\cap J)$, $c=\max(I\cap J)$, and $d=c+1$.
 Remark that $b\ne c$ since~$\II$ contains all singletons, hence~$a < b < c < d$.
-By symmetry, we assume that $a\in I\ssm J$ and $d\in J\ssm I$. Let $X$ be the complement of $\{a,b,c,d\}$ in~$[n]$ written in increasing order.
+By symmetry, we assume that $a\in I\ssm J$ and $d\in J\ssm I$.
+Let $X$ be the complement of $\{a,b,c,d\}$ in~$[n]$ written in increasing order.
 We now construct four permutations 
-$$ \pi_A=bacdX,\qquad \pi_B=acdbX,\qquad \pi_C=dbacX \qquad\text{and}\qquad \pi_D=cdbaX,$$
-and consider the four distinct orientations $A=\Or_{\pi_A}$, $B=\Or_{\pi_B}$, $C=\Or_{\pi_C}$ and $D=\Or_{\pi_D}$. We display below the four orientations highlighting only the intervals $I$ and $J$.
-$$
+\[
+\pi_A=bacdX,\qquad \pi_B=acdbX,\qquad \pi_C=dbacX \qquad\text{and}\qquad \pi_D=cdbaX,
+\]
+and consider the four distinct orientations $A=\Or_{\pi_A}$, $B=\Or_{\pi_B}$, $C=\Or_{\pi_C}$ and $D=\Or_{\pi_D}$.
+We display below the four orientations highlighting only the intervals $I$ and $J$.
+\[
 \begin{array}{lcr}
 	C =  
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
@@ -670,11 +760,14 @@ $$
 	\end{tikzpicture} 
 	=B
 \end{array}
-$$
-We have that $\pi_A<\pi_C$, $\pi_A<\pi_D$ and $\pi_B<\pi_D$ in the weak order. Proposition~\ref{prop:WeakToP} implies that $A<C$, $A<D$ and $B<D$ in the $P_\II$ order.
-We moreover claim that $B<C$  but this does not follow directly from the weak order since $\pi_B\not<\pi_C$. To show our claim, consider $\pi_E=adcbX$ and $\pi_F=adbcX$.
+\]
+We have that $\pi_A<\pi_C$, $\pi_A<\pi_D$ and $\pi_B<\pi_D$ in the weak order.
+\cref{prop:WeakToP} implies that $A<C$, $A<D$ and $B<D$ in the $P_\II$ order.
+We moreover claim that $B<C$  but this does not follow directly from the weak order since $\pi_B\not<\pi_C$.
+To show our claim, consider $\pi_E=adcbX$ and $\pi_F=adbcX$.
 For any $K\in \II$ such that $a,d\not\in K$, we cannot have both $c,d\in K$, since this would imply that $K=[c,d]=I\cap J\not\in \II$, a contradiction.
-This shows that $E=\Or_{\pi_E}=\Or_{\pi_F}=F$. Now we have $\pi_B<\pi_E$ and $\pi_F<\pi_C$ which gives $B<E=F<C$.
+This shows that $E=\Or_{\pi_E}=\Or_{\pi_F}=F$.
+Now we have $\pi_B<\pi_E$ and $\pi_F<\pi_C$ which gives $B<E=F<C$.
  
  If the poset $P_\II$ is a lattice and~$A \le C$ $A \le D$, $B \le C$ and~$B \le D$, there is~$M$ such that~$A \le M$, $B \le M$, $M \le C$ and~$M \le D$ (anything between~$A \join B$ and~$C \meet D$ works).
 %If the poset $P_\II$ is a lattice, then we can find a unique join $M= A \join B$.
@@ -682,22 +775,30 @@ This shows that $E=\Or_{\pi_E}=\Or_{\pi_F}=F$. Now we have $\pi_B<\pi_E$ and $\p
 %By definition $A\le M$ and $B\le M$.
 %By property of join we also have $M\le C$ and $M\le D$ since both $C$ and $D$ are  greater than $A$ and $B$.
 Let $\pi_M$ be any permutation such that $M=\Or_{\pi_M}$ and let  
-   $$m=\pi \big( \min\set{i}{\pi_M(i)\in I\cup J} \big).$$
-If $m<b$, then $(m,I)\in M$ and $(b,I)\in A$ and the easy forward implication of Proposition~\ref{prop:sourceorder} implies that $A\not\le M$.
+\[
+m=\pi \big( \min\set{i}{\pi_M(i)\in I\cup J} \big).
+\]
+If $m<b$, then $(m,I)\in M$ and $(b,I)\in A$ and the easy forward implication of \cref{prop:sourceorder} implies that $A\not\le M$.
 By a similar arguments $b\le m<c$ would imply~$B\not\le M$, $b< m\le c$ would imply~$M\not\le C$, and $c<m$ would imply~$M\not\le D$.
 This is a contradiction to the existence of $m$.
 \end{proof}
+
+\begin{remark}
+\cref{prop:latticeForward} fails when~$\HH$ is not an interval hypergraph.
+\vincent{todo}
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Properties of $\II$ is closed under intersections}  
 \label{subsec:IntClosedI}
 
-For the converse of Theorem~\ref{thm:latticeI}, we need to investigate the properties of interval hypergraphs that are closed under intersections.
-Recall from Proposition~\ref{prop:preimage} that given any $A\in P_\II$ the set $\Or^{-1}(A)$ is an interval $[\projDown_A,\projUp_A]$ in the weak order.
+For the converse of \cref{thm:latticeI}, we need to investigate the properties of interval hypergraphs that are closed under intersections.
+Recall from \cref{prop:preimage} that given any $A\in P_\II$ the set $\Or^{-1}(A)$ is an interval $[\projDown_A,\projUp_A]$ in the weak order.
 In the following we will keep this convention that $\projDown_A$ denote the minimum of this interval and $\projUp_A$ the maximum.
 
-\begin{theorem}\label{thm:propertieofintI}
+\begin{theorem}
+\label{thm:propertieofintI}
 If $\II$ is an interval  hypergraph that is closed under intersections, then the following are equivalent for two acyclic orientations $A$ and $B$ of $\II$:
 \begin{enumerate}[(a)]
 	\item $A\le B$ in $P_\II$,
@@ -707,53 +808,90 @@ If $\II$ is an interval  hypergraph that is closed under intersections, then the
 \end{enumerate}
 \end{theorem}
 
-\begin{proof} The equivalence (a)$\iff$(b) follows from Proposition~\ref{prop:sourceorder}. The implication (c)$\implies$(a) follows from  Proposition~\ref{prop:WeakToP}.
-For the equivalence (c)$\iff$(d), remark that Proposition~\ref{prop:preimage} combined with Proposition~\ref{prop:WOIP} gives us that the set of inversions of $\projDown_A$
-is $\big\{(i,j)\ |\  i<j, j\,\less_Ai \big\}$ and the set of non-inversions of $\projUp_B$ is  $\big\{(i,j)\ |\  i<j, i\,\less_B j \big\}$. Hence the inversion of $\projUp_B$ is  given $\big\{(i,j)\ |\  i<j, i\,\not\less_B j \big\}$.
+\begin{proof}
+The equivalence (a)$\iff$(b) follows from \cref{prop:sourceorder}.
+The implication (c)$\implies$(a) follows from  \cref{prop:WeakToP}.
+For the equivalence (c)$\iff$(d), remark that \cref{prop:preimage} combined with \cref{prop:WOIP} gives us that the set of inversions of $\projDown_A$ is $\big\{(i,j)\ |\  i<j, j\,\less_Ai \big\}$ and the set of non-inversions of $\projUp_B$ is  $\big\{(i,j)\ |\  i<j, i\,\less_B j \big\}$.
+Hence the inversion of $\projUp_B$ is  given $\big\{(i,j)\ |\  i<j, i\,\not\less_B j \big\}$.
 The equivalence of (c)$\iff$(d) is thus the characterization of the weak order in term of inclusion of inversion sets.
 
-Thus we only need to prove (b)$\implies$(d). For a contradiction, assume that $A\le B$ and we have some $i<j$ such that $j\less_Ai$ and  $i \less_B j$. Choose one such pair such that $|j-i|$ is minimal.
-Since $j\,\less_A i$ and $i \less_B j$, we can find
-$\{(j_s,I_{s})\}\subseteq A$ such that $j=j_1>j_2>\cdots>j_m>i$, each $j_{s+1}\in I_s$ and $i\in I_m$, and 
-$\{(i_r,I_{r})\}\subseteq B$ such that $i=i_1<i_2<\cdots<i_p<j$, each $i_{r+1}\in I_r$ and $j\in I_p$. Remark that $i<j_m$ with $j_m\less_A i$ and $i\less_B j_m$, since $j_m\in \bigcup_{1\le r\le p}I_r\supseteq [i,j]$.
-Our choice of minimality of $|i-j|$ prevent $m>1$. A similar argument in the other direction shows that we must have $p=1$. 
+Thus we only need to prove (b)$\implies$(d).
+For a contradiction, assume that $A\le B$ and we have some $i<j$ such that $j\less_Ai$ and  $i \less_B j$.
+Choose one such pair such that $|j-i|$ is minimal.
+Since $j\,\less_A i$ and $i \less_B j$, we can find $\{(j_s,I_{s})\}\subseteq A$ such that $j=j_1>j_2>\cdots>j_m>i$, each $j_{s+1}\in I_s$ and $i\in I_m$, and $\{(i_r,I_{r})\}\subseteq B$ such that $i=i_1<i_2<\cdots<i_p<j$, each $i_{r+1}\in I_r$ and $j\in I_p$.
+Remark that $i<j_m$ with $j_m\less_A i$ and $i\less_B j_m$, since $j_m\in \bigcup_{1\le r\le p}I_r\supseteq [i,j]$.
+Our choice of minimality of $|i-j|$ prevent $m>1$.
+A similar argument in the other direction shows that we must have $p=1$.
 
 If we have $i<j$ such that $j\less_Ai$ and  $i \less_B j$, then if we choose $|j-i|$ minimal, we can find be $(j,J)\in A$ such that $i\in J$ and $(i,I)\in B$ such that $j\in B$.
-Since $A\le B$, using Proposition~\ref{prop:sourceorder}, we must have that $S(I,A)\le S(I,B)=i$. In this case it must be that $S(I,A)<\min(J)$, otherwise it would be a cycle.
-Similarly, $S(J,B)\ge S(J,A)=j$ implies $S(J,B)>\max(I)$. We habe that $\II$ is closed under intersections, therefore $K=I\cap J\in \II$. Remark that $[i,j]\subseteq K$.
-In $A$, we must have $S(K,A)=j$ otherwise we would get a cycle with $(j,J)$. Similarly in $B$ we must have $S(K,B)=i$. The situation is depicted as follow.
-$$
+Since $A\le B$, using \cref{prop:sourceorder}, we must have that $S(I,A)\le S(I,B)=i$.
+In this case it must be that $S(I,A)<\min(J)$, otherwise it would be a cycle.
+Similarly, $S(J,B)\ge S(J,A)=j$ implies $S(J,B)>\max(I)$.
+We habe that $\II$ is closed under intersections, therefore $K=I\cap J\in \II$.
+Remark that $[i,j]\subseteq K$.
+In $A$, we must have $S(K,A)=j$ otherwise we would get a cycle with $(j,J)$.
+Similarly in $B$ we must have $S(K,B)=i$.
+The situation is depicted as follow.
+\[
 \begin{array}{lcr}
 	A =  
-	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (-.5,.3) {$\scriptstyle J$}; \draw [thick,{Bar[width=3pt]}-] (.5,.3)--(2.2,.3);   \node at (1.7,.3) {$\bullet$};
-									  \node at (2.3,.3) {$\scriptstyle \cdot$};\node at (2.4,.3) {$\scriptstyle \cdot$};\node at (2.5,.3) {$\scriptstyle \cdot$};
-									  \node at (-.1,0) {$\scriptstyle \cdot$};\node at (0,0) {$\scriptstyle \cdot$};\node at (-.2,0) {$\scriptstyle \cdot$};
-	\node at (-.5,0) {$\scriptstyle I$};  \draw [thick,-{Bar[width=3pt]}] (.1,0)--(2,0);   \node at (.3,0) {$\bullet$};
-	\node at (-.5,-.3) {$\scriptstyle I\cap J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.3)--(2,-.3);   \node at (1.7,-.3) {$\bullet$};
+	\begin{tikzpicture}[scale=1,baseline=-.1cm]
+	\node at (-.5,.3) {$\scriptstyle J$};
+	\draw [thick,{Bar[width=3pt]}-] (.5,.3)--(2.4,.3);
+	\node at (1.8,.3) {$\bullet$};
+	\node at (2.5,.3) {$\scriptstyle \cdot$};
+	\node at (2.6,.3) {$\scriptstyle \cdot$};
+	\node at (2.7,.3) {$\scriptstyle \cdot$};
+	%
+	\node at (-.5,0) {$\scriptstyle I$};
+	\node at (-.2,0) {$\scriptstyle \cdot$};
+	\node at (-.1,0) {$\scriptstyle \cdot$};
+	\node at (0,0) {$\scriptstyle \cdot$};
+	\draw [thick,-{Bar[width=3pt]}] (.1,0)--(2,0);
+	\node at (.3,0) {$\bullet$};
+	%
+	\node at (-.5,-.3) {$\scriptstyle I\cap J$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.3)--(2,-.3);
+	\node at (1.8,-.3) {$\bullet$};
+	%
 	\node at  (.7,-.6) {$\scriptstyle i$};
-	\node at  (1.7,-.6) {$\scriptstyle j$};
+	\node at  (1.8,-.6) {$\scriptstyle j$};
 	\end{tikzpicture} 
 	&\qquad\quad&
-	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (-.5,.3) {$\scriptstyle J$}; \draw [thick,{Bar[width=3pt]}-] (.5,.3)--(2.2,.3);   \node at (2.2,.3) {$\bullet$};
-									  \node at (2.3,.3) {$\scriptstyle \cdot$};\node at (2.4,.3) {$\scriptstyle \cdot$};\node at (2.5,.3) {$\scriptstyle \cdot$};
-									  \node at (-.1,0) {$\scriptstyle \cdot$};\node at (0,0) {$\scriptstyle \cdot$};\node at (-.2,0) {$\scriptstyle \cdot$};
-	\node at (-.5,0) {$\scriptstyle I$};  \draw [thick,-{Bar[width=3pt]}] (.1,0)--(2,0);   \node at (.7,0) {$\bullet$};
-	\node at (-.5,-.3) {$\scriptstyle I\cap J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.3)--(2,-.3);   \node at (.7,-.3) {$\bullet$};
+	\begin{tikzpicture}[scale=1,baseline=-.1cm]
+	\node at (-.5,.3) {$\scriptstyle J$};
+	\draw [thick,{Bar[width=3pt]}-] (.5,.3)--(2.4,.3);
+	\node at (2.2,.3) {$\bullet$};
+	\node at (2.5,.3) {$\scriptstyle \cdot$};
+	\node at (2.6,.3) {$\scriptstyle \cdot$};
+	\node at (2.7,.3) {$\scriptstyle \cdot$};
+	%
+	\node at (-.5,0) {$\scriptstyle I$};
+	\node at (-.2,0) {$\scriptstyle \cdot$};
+	\node at (-.1,0) {$\scriptstyle \cdot$};
+	\node at (0,0) {$\scriptstyle \cdot$};
+	\draw [thick,-{Bar[width=3pt]}] (.1,0)--(2,0);
+	\node at (.7,0) {$\bullet$};
+	%
+	\node at (-.5,-.3) {$\scriptstyle I\cap J$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.3)--(2,-.3);
+	\node at (.7,-.3) {$\bullet$};
+	%
 	\node at  (.7,-.6) {$\scriptstyle i$};
-	\node at  (1.7,-.6) {$\scriptstyle j$};
+	\node at  (1.8,-.6) {$\scriptstyle j$};
 	\end{tikzpicture} 
 	=B 
 \end{array}
-$$
-Now we have $S(K,A)=j>i=S(K,B)$ and Proposition~\ref{prop:sourceorder} gives that $A\not\le B$. A contradiction concluding our proof.
+\]
+Now we have $S(K,A)=j>i=S(K,B)$ and \cref{prop:sourceorder} gives that $A\not\le B$.
+A contradiction concluding our proof.
 \end{proof}
 
 
-\begin{remark} In Theorem~\ref{thm:propertieofintI} the hypothesis that $\II$ is closed under intersection is used only to prove (a)$\implies$(c).
-In general, this implication is not true as shown in the following example. 
-$$ \begin{array}{ccccc}
+\begin{remark} In \cref{thm:propertieofintI} the hypothesis that $\II$ is closed under intersection is used only to prove (a)$\implies$(c).
+In general, this implication is not true as shown in the following example.
+\[
+\begin{array}{ccccc}
 	\begin{tikzpicture}[scale=1,baseline=.2cm]
 	\foreach \x in {1,...,4}
 		\node (\x) at (\x*.5,-.1) [inner sep = -1pt] {$\scriptstyle \x$};
@@ -775,7 +913,8 @@ $$ \begin{array}{ccccc}
 	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(2,.2);   \node at (2,.2) {$\bullet$};
 	\end{tikzpicture}     \\ \\
      A&&B&&C
-    \end{array}$$
+\end{array}
+\]
 Here $[\projDown_A,\projUp_A]=[1324,1342]$, $[\projDown_B,\projUp_B]=[1423,4132]$ and $[\projDown_C,\projUp_C]=[4213,4231]$, but $\projDown_A\not\le \projUp_C$.
 \end{remark} 
 
@@ -784,9 +923,11 @@ Here $[\projDown_A,\projUp_A]=[1324,1342]$, $[\projDown_B,\projUp_B]=[1423,4132]
 \subsection{If $\II$ is closed under intersections, then $P_\II$ is a lattice}  
 \label{subsec:latticeII}
 
-We now conclude the proof of  Theorem~\ref{thm:latticeI}. This is a corollary of Theorem~\ref{thm:propertieofintI}.
+We now conclude the proof of  \cref{thm:latticeI}.
+This is a corollary of \cref{thm:propertieofintI}.
 
-\begin{corollary}\label{cor:lattice}
+\begin{corollary}
+\label{cor:lattice}
 For $\II$ closed under intersection, we have $P_\II$ is a lattice where
 \[
  A \join B =\Or_{\projDown_A \join \projDown_B}
@@ -796,21 +937,50 @@ A \meet B =\Or_{\projUp_A \meet \projUp_B}
 \]
 \end{corollary}
 
-\begin{proof} Assume we have $A,B,C,D\in P_\II$ such that $A\le C$, $A\le D$, $B\le C$ and $B\le D$.
-Theorem~\ref{thm:propertieofintI} implies that $\projDown_A\le \projUp_C$, $\projDown_A\le \projUp_D$, $\projDown_B\le \projUp_C$ and $\projDown_B\le \projUp_D$.
+\begin{proof}
+Assume we have $A,B,C,D\in P_\II$ such that $A\le C$, $A\le D$, $B\le C$ and $B\le D$.
+\cref{thm:propertieofintI} implies that $\projDown_A\le \projUp_C$, $\projDown_A\le \projUp_D$, $\projDown_B\le \projUp_C$ and $\projDown_B\le \projUp_D$.
 In the weak lattice, we have $\projDown_A \join \projDown_B$ is such that 
-  $$\projDown_A\le (\projDown_A \join \projDown_B),\quad  \projDown_B\le (\projDown_A \join \projDown_B),\quad (\projDown_A \join \projDown_B) \le \projUp_C\quad\text{and}\quad(\projDown_A \join \projDown_B)\le \projUp_D\,.$$
+\[
+\projDown_A\le (\projDown_A \join \projDown_B),\quad  \projDown_B\le (\projDown_A \join \projDown_B),\quad (\projDown_A \join \projDown_B) \le \projUp_C\quad\text{and}\quad(\projDown_A \join \projDown_B)\le \projUp_D\,.
+\]
 Using the fact that $\Or$ is order preserving, we get
-  $$A\le \Or_{\projDown_A \join \projDown_B},\quad B\le \Or_{\projDown_A \join \projDown_B},\quad \Or_{\projDown_A \join \projDown_B}\le C \quad \text{and}\quad  \Or_{\projDown_A \join \projDown_B}\le D\,.$$
-This implies that $A$ and $B$ admit a join $A\join B \le \Or_{\projDown_A \join \projDown_B}$. Using Theorem~\ref{thm:propertieofintI} with $A\le A\join B$ and $B\le A\join B$, we get 
+\[
+A\le \Or_{\projDown_A \join \projDown_B},\quad B\le \Or_{\projDown_A \join \projDown_B},\quad \Or_{\projDown_A \join \projDown_B}\le C \quad \text{and}\quad  \Or_{\projDown_A \join \projDown_B}\le D\,.
+\]
+This implies that $A$ and $B$ admit a join $A\join B \le \Or_{\projDown_A \join \projDown_B}$.
+Using \cref{thm:propertieofintI} with $A\le A\join B$ and $B\le A\join B$, we get 
   $ \projDown_A\join \projDown_B\le  \projUp_{A\join B}\,,$
-and this implies $\Or_{\projDown_A \join \projDown_B} \le A\join B$. This shows the result for $\join$. The proof for $\meet$ is similar.
+and this implies $\Or_{\projDown_A \join \projDown_B} \le A\join B$.
+This shows the result for $\join$.
+The proof for $\meet$ is similar.
 \end{proof}
 
+\begin{remark}
+\cref{cor:lattice} fails when~$\HH$ is not an interval hypergraph.
+\vincent{todo}
+\end{remark}
+
 \Nantel{In the note, there is an open question (should we make it a remark here or try to work it out?): A \defn{quasi-congruence} is an order preserving map  $\Psi\colon \fS_n\to P$ 
-such that for all $A\in P$ we have $\Psi^{-1}(A)=[\projDown_A, \projUp_A]$ is an interval and $A\le B$ implies $\projDown_A\le \projUp_B$. In this situation, the proof of Corollary~\ref{cor:lattice} applies
-and we conclude that $P$ is a lattice where $A\meet B =\Psi(\projDown_A\meet \projDown_B)$ and $A\join B =\Psi(\projDown_A\join \projDown_B)$. Can we characterize all semi-congruences of weak order?
+such that for all $A\in P$ we have $\Psi^{-1}(A)=[\projDown_A, \projUp_A]$ is an interval and $A\le B$ implies $\projDown_A\le \projUp_B$.
+In this situation, the proof of Corollary~\ref{cor:lattice} applies
+and we conclude that $P$ is a lattice where $A\meet B =\Psi(\projDown_A\meet \projDown_B)$ and $A\join B =\Psi(\projDown_A\join \projDown_B)$.
+Can we characterize all semi-congruences of weak order?
 }
+
+\begin{proposition}
+\label{prop:joinLattice}
+For $\II$ closed under intersection, any acyclic orientations~$A,B$ of~$\II$, and any~${I \in \II}$, we have
+\[
+%S(I, A \join B) = \min \Big( I \ssm \bigcup_{\substack{(j,J) \in A \cup B \\ \min(I) \le j \le \max(I)}} {[\min J, j[} \Big).
+S(I, A \join B) = \min \Big( I \ssm \bigcup {[\min J, j[} \Big).
+\]
+where the union ranges over~$(j,J) \in A \cup B$ such that~$\min(I) \le j \le \max(I)$.
+\end{proposition}
+
+\begin{proof}
+\vincent{See Proposition 14 in the notes.}
+\end{proof}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -820,14 +990,15 @@ and we conclude that $P$ is a lattice where $A\meet B =\Psi(\projDown_A\meet \pr
 \section{Characterization of  $P_\II$ that are distributive lattices}
 \label{sec:distributive}
 
-In this section, we characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a distributive lattice. To start, we must have an interval  hypergraph $\II$ that is closed under intersections.
+In this section, we characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a distributive lattice.
+To start, we must have an interval  hypergraph $\II$ that is closed under intersections.
 Our first task will be to identify the join irreducible of $P_\II$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Covers in lattice $P_\II$}  
 %\label{subsec:LatticeCover}
 %
-%In Section~\ref{subsec:cover} we describe cover for general interval hypergraph. If $\II$ is closed under intersection the situation is simpler
+%In \cref{subsec:cover} we describe cover for general interval hypergraph. If $\II$ is closed under intersection the situation is simpler
 %\Nantel{do we need this?}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -835,33 +1006,41 @@ Our first task will be to identify the join irreducible of $P_\II$.
 \subsection{Join irreducibles of lattice $P_\II$}  
 \label{subsec:irreducibles}
 
-Fix $\II$ an interval  hypergraph closed under intersections. 
+Fix $\II$ an interval  hypergraph closed under intersections.
 Let $O_0$ denote the unique \defn{minimum} of $P_\II$.
 Let
-  $$\cJ_\II=\bigcup_{I\in \II} I\ssm \{\min(I)\} \,.$$
+\[
+\cJ_\II=\bigcup_{I\in \II} I\ssm \{\min(I)\} \,.
+\]
 For $j\in \cJ_\II$ let
-\begin{equation}\label{eq:mu}
+\begin{equation}
+\label{eq:mu}
  \mu(j)=\max\big\{ \min(I) \big| \ I\in\II, j\in I\ssm\{\min(I)\}\big\}\,,
 \end{equation}
-\begin{equation}\label{eq:nu}
+\begin{equation}
+\label{eq:nu}
  \nu(j)=\min\big\{ \max(I) \big| \ j\in I\in\II, \min(I)=\mu(j)\big\}\,,
 \end{equation}
 and
-\begin{equation}\label{eq:nu}
+\begin{equation}
+\label{eq:nu}
  O_j=\Or_{(\mu(j),\mu(j)+1,\ldots,j)}\,,
 \end{equation}
 where $(\mu(j),\mu(j)+1,\ldots,j)$ is the cycle permutation
-  $$(\mu(j),\mu(j)+1,\ldots,j)= 12\cdots(\mu(j)-1)j\,\mu(j)\cdots (j-1) (j+1)\cdots n
-  $$
+\[
+(\mu(j),\mu(j)+1,\ldots,j)= 12\cdots(\mu(j)-1)j\,\mu(j)\cdots (j-1) (j+1)\cdots n
+\]
 with $j$ place just before $\mu(j)$ and all others in order. We remark that for all $I\in\II$ and $j\in\cJ_\II$
-\begin{equation}\label{eq:sourceOj}
- 	S(I,O_j)=\begin{cases}
-		j& \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
-		\min(I)& \text{otherwise.}
-	\end{cases}
+\begin{equation}
+\label{eq:sourceOj}
+S(I,O_j)=\begin{cases}
+	j& \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
+	\min(I)& \text{otherwise.}
+\end{cases}
 \end{equation}
 
-\begin{remark}\label{rem:munuseg}
+\begin{remark}
+\label{rem:munuseg}
 For any $j\in \cJ_\II$ and $j\in J\in \II$ such that $j\ne\min(J)$, we have $[\mu(j),\nu(j)]\in \II$ and $[\mu(j),\nu(j)]\subseteq J$.
 Indeed, the definition of $\mu(j)$ and $\nu(j)$ ensure that $[\mu(j),\nu(j)]\in \II$, and if we suppose that $[\mu(j),\nu(j)]\not\subseteq J$, then $[\mu(j),\nu(j)]\cap J\in \II$ is strictly smaller than $[\mu(j),\nu(j)]$ a contradiction to the definition of $\mu$ and $\nu$.
 \end{remark}
@@ -872,50 +1051,62 @@ For $i,j\in \cJ_\II$ we say $i\equiv j$ are \defn{irreducible congruent} if $\mu
  For $i,j\in \cJ_\II$, we have $O_i<O_j$ if and only if $i<j$ and $i\equiv j$.
 \end{lemma}
 
-\begin{proof} Proposition~\ref{prop:sourceorder} gives us that $O_i<O_j$ if and only if
- 	$$ S(I,O_i)=\begin{cases}
-		i<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
-		\min(I)& \text{otherwise.}
-	\end{cases}$$
-which is true if $i\equiv j$. Now if $i\not\equiv j$, then either $\mu(i)\ne \mu(j)$  or  $\nu(i)\ne \nu(j)$.
-If $\mu(i)\ne\mu(j)$, then there is $i\in I\in \II$ such that $\min(I)=\mu(i)\ne\mu(j)$ and
-  $S(I,O_i)=i>\min(I)=S(I,O_j)$. This implies $O_i\not<O_j$ a contradiction. If $\mu(i)= \mu(j)$  and  $\nu(i)\ne \nu(j)$,
-  then there is $i\in I\in \II$ such that $j\not\in I$, and again $S(I,O_i)=i>\min(I)=S(I,O_j)$, a contradiction.
-\end{proof} 
+\begin{proof}
+\cref{prop:sourceorder} gives us that $O_i<O_j$ if and only if
+\[
+S(I,O_i)=\begin{cases}
+	i<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
+	\min(I)& \text{otherwise.}
+\end{cases}
+\]
+which is true if $i\equiv j$.
+Now if $i\not\equiv j$, then either $\mu(i)\ne \mu(j)$  or  $\nu(i)\ne \nu(j)$.
+If $\mu(i)\ne\mu(j)$, then there is $i\in I\in \II$ such that $\min(I)=\mu(i)\ne\mu(j)$ and $S(I,O_i)=i>\min(I)=S(I,O_j)$.
+This implies $O_i\not<O_j$ a contradiction.
+If $\mu(i)= \mu(j)$  and  $\nu(i)\ne \nu(j)$, then there is $i\in I\in \II$ such that $j\not\in I$, and again $S(I,O_i)=i>\min(I)=S(I,O_j)$, a contradiction.
+\end{proof}
 
-\begin{lemma}\label{lem:irrOj}
+\begin{lemma}
+\label{lem:irrOj}
 	For any $j\in \cJ_\II$, $O_j$ is join irreducible.
 \end{lemma}
 
-\begin{proof} Proposition~\ref{prop:sourceorder} gives that any $A<O_j$ must satisfy
- 	$$ S(I,A)=\begin{cases}
-		a<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
-		\min(I)& \text{otherwise.}
-	\end{cases}$$
-Remark~\ref{rem:munuseg} ensure that $a$ must be the same for all $I\ni j$ and $\min(I)=\mu(j)$, otherwise $A$ would not be acyclic.
-$A=O_0$ is one possibility, otherwise $A=O_a$ for some $0<a<j$. In Lemma~\ref{lem:irrorder} we determined exactly the order $P_\II$ restricted
-to the set $\{ O_j |\, j=0 \text{ or } j\in \cJ_\II\}$. We have shown  that $A<O_j$ belong to that set hence the only cover is $O_a<O_j$
+\begin{proof}
+\cref{prop:sourceorder} gives that any $A<O_j$ must satisfy
+\[
+S(I,A)=\begin{cases}
+	a<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
+	\min(I)& \text{otherwise.}
+\end{cases}
+\]
+\cref{rem:munuseg} ensure that $a$ must be the same for all $I\ni j$ and $\min(I)=\mu(j)$, otherwise $A$ would not be acyclic.
+$A=O_0$ is one possibility, otherwise $A=O_a$ for some $0<a<j$.
+In \cref{lem:irrorder} we determined exactly the order $P_\II$ restricted
+to the set $\{ O_j |\, j=0 \text{ or } j\in \cJ_\II\}$.
+We have shown  that $A<O_j$ belong to that set hence the only cover is $O_a<O_j$
 such that $a=\max\{ i<j|\, i=0 \text{ or } i\equiv j\}$.
 \end{proof}
 
-\begin{lemma}\label{lem:subirr}
-	For any $A\in P_\II$,
-	 $$ O_j<A \iff j\le S([\mu(j),\nu(j)] A). $$
+\begin{lemma}
+\label{lem:subirr}
+For any $A\in P_\II$,
+\[
+O_j<A \iff j\le S([\mu(j),\nu(j)] A).
+\]
 \end{lemma}
 
 \begin{proof}
-This is a direct consequence of Proposition~\ref{prop:sourceorder} and Remark~\ref{rem:munuseg}.
+This is a direct consequence of \cref{prop:sourceorder} and \cref{rem:munuseg}.
 \end{proof}
 
-\begin{proposition} Assume that
- ``given any $I,J\in \II$ such that $I\cap J\ne \varnothing $, $I\not\subseteq J$ and $J\not\subseteq I$,
- then for all $K\in J$ such that  $I\cap J\subseteq K$ we have $\{\min(K),\max(K)\}\cap K\ne \varnothing $'',
- then $\{O_j|\,j\in \cJ_\II\}$ are the only join irreducible of $P_\II$. 
+\begin{proposition}
+Assume that ``given any $I,J\in \II$ such that $I\cap J\ne \varnothing $, $I\not\subseteq J$ and $J\not\subseteq I$, then for all $K\in J$ such that  $I\cap J\subseteq K$ we have $\{\min(K),\max(K)\}\cap K\ne \varnothing $'', then $\{O_j|\,j\in \cJ_\II\}$ are the only join irreducible of $P_\II$.
 \end{proposition}
 
 \begin{proof}
-   Let $O$ be a joint irreducible of $P_\II$ and let $A<O$ be its unique cover. It must be from a flip $O=(i,j)A$.
-   \nantel{that is all folks}
+Let $O$ be a joint irreducible of $P_\II$ and let $A<O$ be its unique cover.
+It must be from a flip $O=(i,j)A$.
+\nantel{that is all folks}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
