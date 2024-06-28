@@ -589,13 +589,17 @@ As~$A$ is acyclic, we have~$A(I) \ne O(I)$ or~$A(I') \ne O(I')$, but not both si
 Hence, we can assume by symmetry that~$O(I) = A(I)$ while~$A(I') = A(J)$ and~$O(I') = B(J)$.
 Up to updating~$J$ to~$I'$, we can thus also assume that~$I' = J$.
 As~$B$ is acyclic, we have~$B(I) \ne O(I)$.
-Since~$A(I) = O(I) \ne B(I)$, we have~$B(I) \le B(J)$ by our choice of~$J$.
-\vincent{Discard~$B(I) = B(J)??$}
-We thus obtain that~$A(I) \le B(I) < B(J)$.
+Since~$A(I) = O(I) \ne B(I)$, our choice of~$J$ ensures that
+\begin{itemize}
+\item either~$B(I) < B(J)$. 
+We then obtain that~$A(I) \le B(I) < B(J)$.
 As~$A(I) = O(I) \in I' = J$ and~$B(J) \in J$, we thus get that~$B(I) \in J$.
 Moreover, $B(J) = O(I') \in I$.
-As~$B(I) \ne B(J)$, we obtain a contradiction.
-\vincent{todo}
+As~$B(I) \ne B(J)$, we obtain a contradiction with the acyclicity of~$B$.
+\item or~$B(I) = B(J)$ and~$A(I) \le A(J)$.
+We then have~$A(I) \le A(J) \le B(J) = B(I)$ so that~$A(J) \in I$.
+As~$A(I) = O(I) \in I' = J$ and~$A(I) \ne A(J)$, we obtain a contradiction with the acyclicity of~$A$.
+\end{itemize}
 
 We now prove that~$O(I) \le B(I)$ for all~$I \in \II$.
 We thus consider~$I \in \II$ and distinguish two cases:
@@ -606,7 +610,7 @@ We thus consider~$I \in \II$ and distinguish two cases:
 \end{itemize}
 \end{proof}
 
-\vincent{Does this hold for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
+\vincent{Does \cref{prop:sourceorder} holds for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
 
 \vincent{I AM HERE !!!}
 
