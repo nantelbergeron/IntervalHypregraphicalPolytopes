@@ -672,6 +672,8 @@ Hence, we obtain that~$j \in \cY_{A,i}$.
 
 \begin{proposition}
 \label{prop:isCoverI}
+Let~$A$ and~$B$ be two acyclic orientations of an interval hypergraph~$\I$  related by an increasing flip of~$i$ to~$j$.
+Then~$A < B$ is a cover relation of~$P_\II$ if and only if
 \vincent{todo: characterize cover relations...}
 \end{proposition}
 
@@ -874,87 +876,29 @@ If $\II$ is an interval  hypergraph closed under intersection, then the followin
 \begin{proof}
 The equivalence \mbox{(a)$\iff$(b)} was established in \cref{prop:sourceOrderI}.
 
-For the equivalence \mbox{(c)$\iff$(d)}, remark that \cref{prop:preimageI} combined with \cref{prop:WOIP} gives us that the set of inversions of $\projDown_A$ is $\set{(j,i)}{i<j, \, i \more_A j}$ 
+For the equivalence \mbox{(c)$\iff$(d)}, \cref{prop:WOIP,prop:preimageI} show that the inversion set of $\projDown_A$ is $\set{(j,i)}{i<j, \, i \more_A j}$ 
 %and the set of non-inversions of $\projUp_B$ is  $\set{(i,j)}{i<j, \, i \less_B j}$.
-while the inversion set of $\projUp_B$ is  given $\set{(j,i)}{i<j, \, i \not\less_B j}$.
-The equivalence of \mbox{(c)$\iff$(d)} is thus the characterization of the weak order in terms of inclusion of inversion sets.
+while the inversion set of $\projUp_B$ is~$\set{(j,i)}{i<j, \, i \not\less_B j}$.
+The equivalence of \mbox{(c)$\iff$(d)} thus follows from the characterization of the weak order in terms of inclusion of inversion sets.
 
 The implication \mbox{(c)$\implies$(a)} follows from  \cref{coro:weakToP}.
 Thus we only need to prove \mbox{(b)$\implies$(d)}.
 
-For a contradiction, assume that $A\le B$ and we have some $i<j$ such that $i \more_A j$ and~$i \less_B j$.
-Choose one such pair such that $|j-i|$ is minimal.
-Since $i \more_A j$ there are~$I_1, \dots, I_k \in \II$ such that~$j = A(I_1)$, $O(I_{p+1}) \in I_p$ for all~$p \in [k-1]$, and~$i \in I_k$.
-Since $i \less_B j$ there are~$J_1, \dots, J_\ell \in \II$ such that~$i = B(J_1)$, $O(J_{q+1}) \in J_q$ for all~$q \in [\ell-1]$, and~$j \in J_\ell$.
+For a contradiction, assume that $A(I) \le B(I)$ for all~$I \in \II$ and that we have some $i<j$ such that $i \more_A j$ and~$i \less_B j$.
+Choose one such pair with~$j-i$ minimal.
+Since $i \more_A j$ there are~$I_1, \dots, I_a \in \II$ such that~$j = A(I_1)$, $A(I_{p+1}) \in I_p$ for all~$p \in [a-1]$, and~$i \in I_k$.
+Since $i \less_B j$ there are~$J_1, \dots, J_b \in \II$ such that~$i = B(J_1)$, $B(J_{q+1}) \in J_q$ for all~$q \in [\ell-1]$, and~$j \in J_\ell$.
+Note that~$i \more_A A(I_p)$ for all~$p \in [a]$ and that~$B(J_q) \less_B j$ for all~$q \in [b]$.
+Moreover, as~$\bigcup_{p \in [a]} I_p$ and~$\bigcup_{q \in [b]} J_q$ are both intervals containing~$i$ and~$j$, we have~$i \less_B k \more_A j$ for all~$i \le k \le j$.
+By minimality of~$j-i$, we thus obtain that~$A(I_p) \notin {]i,j[}$ for~$p \in [a]$ and~$B(J_q) \notin {]i,j[}$ for~$q \in [b]$.
+Hence, $[i,j]$ is contained in some~$I_p$ and some~$I_q$.
+As~$A$ and~$B$ are acyclic, we obtain that~$a = 1 = b$.
 
-\vincent{End of the proof needs to be worked out...}
-we can find $\{(j_s,I_{s})\}\subseteq A$ such that $j=j_1>j_2>\cdots>j_m>i$, each $j_{s+1}\in I_s$ and $i\in I_m$, and $\{(i_r,I_{r})\}\subseteq B$ such that $i=i_1<i_2<\cdots<i_p<j$, each $i_{r+1}\in I_r$ and $j\in I_p$.
-Remark that $i<j_m$ with $j_m\less_A i$ and $i\less_B j_m$, since $j_m\in \bigcup_{1\le r\le p}I_r\supseteq [i,j]$.
-Our choice of minimality of $|i-j|$ prevent $m>1$.
-A similar argument in the other direction shows that we must have $p=1$.
-
-If we have $i<j$ such that $j\less_Ai$ and  $i \less_B j$, then if we choose $|j-i|$ minimal, we can find be $(j,J)\in A$ such that $i\in J$ and $(i,I)\in B$ such that $j\in B$.
-Since $A\le B$, using \cref{prop:sourceOrderI}, we must have that $S(I,A)\le S(I,B)=i$.
-In this case it must be that $S(I,A)<\min(J)$, otherwise it would be a cycle.
-Similarly, $S(J,B)\ge S(J,A)=j$ implies $S(J,B)>\max(I)$.
-We habe that $\II$ is closed under intersection, therefore $K=I\cap J\in \II$.
-Remark that $[i,j]\subseteq K$.
-In $A$, we must have $S(K,A)=j$ otherwise we would get a cycle with $(j,J)$.
-Similarly in $B$ we must have $S(K,B)=i$.
-The situation is depicted as follow.
-\[
-\begin{array}{lcr}
-	A =  
-	\begin{tikzpicture}[scale=1,baseline=-.1cm]
-	\node at (-.5,.3) {$\scriptstyle J$};
-	\draw [thick,{Bar[width=3pt]}-] (.5,.3)--(2.4,.3);
-	\node at (1.8,.3) {$\bullet$};
-	\node at (2.5,.3) {$\scriptstyle \cdot$};
-	\node at (2.6,.3) {$\scriptstyle \cdot$};
-	\node at (2.7,.3) {$\scriptstyle \cdot$};
-	%
-	\node at (-.5,0) {$\scriptstyle I$};
-	\node at (-.2,0) {$\scriptstyle \cdot$};
-	\node at (-.1,0) {$\scriptstyle \cdot$};
-	\node at (0,0) {$\scriptstyle \cdot$};
-	\draw [thick,-{Bar[width=3pt]}] (.1,0)--(2,0);
-	\node at (.3,0) {$\bullet$};
-	%
-	\node at (-.5,-.3) {$\scriptstyle I\cap J$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.3)--(2,-.3);
-	\node at (1.8,-.3) {$\bullet$};
-	%
-	\node at  (.7,-.6) {$\scriptstyle i$};
-	\node at  (1.8,-.6) {$\scriptstyle j$};
-	\end{tikzpicture} 
-	&\qquad\quad&
-	\begin{tikzpicture}[scale=1,baseline=-.1cm]
-	\node at (-.5,.3) {$\scriptstyle J$};
-	\draw [thick,{Bar[width=3pt]}-] (.5,.3)--(2.4,.3);
-	\node at (2.2,.3) {$\bullet$};
-	\node at (2.5,.3) {$\scriptstyle \cdot$};
-	\node at (2.6,.3) {$\scriptstyle \cdot$};
-	\node at (2.7,.3) {$\scriptstyle \cdot$};
-	%
-	\node at (-.5,0) {$\scriptstyle I$};
-	\node at (-.2,0) {$\scriptstyle \cdot$};
-	\node at (-.1,0) {$\scriptstyle \cdot$};
-	\node at (0,0) {$\scriptstyle \cdot$};
-	\draw [thick,-{Bar[width=3pt]}] (.1,0)--(2,0);
-	\node at (.7,0) {$\bullet$};
-	%
-	\node at (-.5,-.3) {$\scriptstyle I\cap J$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.3)--(2,-.3);
-	\node at (.7,-.3) {$\bullet$};
-	%
-	\node at  (.7,-.6) {$\scriptstyle i$};
-	\node at  (1.8,-.6) {$\scriptstyle j$};
-	\end{tikzpicture} 
-	=B 
-\end{array}
-\]
-Now we have $S(K,A)=j>i=S(K,B)$ and \cref{prop:sourceOrderI} gives that $A\not\le B$.
-A contradiction concluding our proof.
+We can thus assume that we have~$I,J \in \II$ such that~$i = B(J) \in I$ and~$j = A(I) \in J$.
+As~$\II$ is closed by intersection, we have~$\{i,j\} \subseteq K \eqdef I \cap J \in \II$.
+We have~$A(K) = j$, as otherwise~${A(I) = j \in K}$ an~$A(K) \in K \subseteq I$ and~$A(I) \ne A(K)$ would contradict the acyclicity of~$A$.
+Similarly, we have~$B(K) = i$.
+We conclude that~$B(K) = i < j = A(K)$ and~$K \in \II$ contradicting our assumption.
 \end{proof}
 
 \begin{remark}
@@ -1043,7 +987,7 @@ The proof for the meet~$\meet$ is similar.
 \begin{remark}
 \cref{prop:latticeBackward} fails when~$\HH$ is not an interval hypergraph.
 For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 12, 13, 24, 34 \}$ is closed by intersection, while its hypergraphic poset~$P_\HH$ is not a lattice.
-More generally, all hypergraphs~$\HH$ with~$|H| \le 2$ for all~$H \in \HH$ are closed by intersection (as we assume that~$\{i\} \in \HH$ for all~$i \in [n]$), and the garphical zonotopes whose oriented skeleton is a lattice were characterized in~\cite{Pilaud-acyclicReorientationLattices}.
+More generally, all hypergraphs~$\HH$ with~$|H| \le 2$ for all~$H \in \HH$ are closed by intersection (as we assume that~$\{i\} \in \HH$ for all~$i \in [n]$), and the graphical zonotopes whose oriented skeleton is a lattice were characterized in~\cite{Pilaud-acyclicReorientationLattices}.
 % sage: HypergraphicalPolytopes([[1,2], [1,3], [2,4], [3,4]]).hypergraphical_poset().is_lattice()
 % False
 \end{remark}
@@ -1096,6 +1040,8 @@ We describe the join irreducible elements of~$P_\II$, that is, the acyclic orien
 
 \section{Interval hypergraphic distributive lattices}
 \label{sec:distributive}
+
+\vincent{I did not look at this section yet...}
 
 In this section, we characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a distributive lattice.
 To start, we must have an interval  hypergraph $\II$ that is closed under intersection.
