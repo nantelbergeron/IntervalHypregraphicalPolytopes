@@ -441,10 +441,10 @@ and we omit to draw the singleton $\{i\}$ for $i \in [n]$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Acyclic orientations and flips for interval hypergraphs}
+\subsection{Acyclic orientations for interval hypergraphs}
 \label{subsec:acyclicI}
 
-In this section we give a simple characterization of the acyclic orientations and the flips between them for an interval hypergraph~$\II$.
+In this section we give a simple characterization of the acyclic orientations of an interval hypergraph~$\II$.
 
 \begin{proposition}
 \label{prop:acyclicI}
@@ -522,37 +522,6 @@ If there is~$1 \le i \le k-1$ such that~$O(I_{i+1}) < O(I_i)$, then for the smal
 \end{itemize}
 We thus obtain~$O(I_1) < \dots < O(I_k)$.
 As~$O(I_1) \in I_k$, we get~$O(I_{k-1}) \in [O(I_1), O(I_k)] \subseteq I_k$, so that~$O(I_{k-1}) \in I_k$ and~$O(I_k) \in I_{k-1}$.
-\end{proof}
-
-\begin{proposition}
-\label{prop:isFlipI}
-The orientation obtained from an acyclic orientation~$A$ of an interval hypergraph~$\II$ by flipping~$i$ to~$j$ (in the sense of \cref{def:flip}) is acyclic if and only if~$j \in \cX_{A,i} \ssm \cY_{A,i}$~where
-\[
-\cX_{A,i} \eqdef \bigcup_{\substack{I \in \II \\ A(I) = i}} I \ssm \{i\}
-\qquad\text{and}\qquad
-\cY_{A,i} \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in \cX_{A,i}}} \!\!\!\! \big( J \ssm \{A(J)\} \big).
-\]
-\end{proposition}
-
-\begin{proof}
-Let~$B$ be the orientation obtained by flipping~$i$ to~$j$.
-Assume that~$j \notin \cX_{A,i} \ssm \cY_{A,i}$. Then
-\begin{itemize}
-\item either~$j \notin \cX_{A,i}$, hence there is no~$I \in \II$ with~$i = A(I)$ and~$j \in I$, and the flip is not~possible. % (\ie~$A = B$).
-\item or~$j \in \cX_{A,i} \cap \cY_{A,i}$. Since~$j \in \cX_{A,i}$, there is~$I \in \II$ with~$A(I) = i$ and~$j \in I \ssm \{i\}$. Since~$j \in \cY_{A,i}$, there is~$J \in \II$ with~$k \eqdef A(J) \in \cX_{A,i}$ and~$j \in J \ssm \{k\}$. As~$k \in \cX_{A,i}$, there is also~$K \in \II$ such that~$A(K) = i$ and~$k \in K \ssm \{i\}$. We now consider the three distinct values~$i, j, k$ and distinguish three cases depending on which is in between the other two:
-	\begin{itemize}
-	\item if~$i$ is in between~$j$ and~$k$, then~$i \in J$ since~$j,k \in J$ and~$J$ is an interval. Hence, $A(K) = i \in J$ and~$A(J) = k \in K$ and~$i \ne k$ contradicts the acyclicity of~$A$.
-	\item if~$j$ is in between~$i$ and~$k$, then~$i \in K$ since~$i,k \in K$ and~$K$ is an interval. Hence, $B(K) = j \in J$ and~$B(J) = k \in K$ and~$j \ne k$, so that~$B$ is cyclic.
-	\item if~$k$ is in between~$i$ and~$j$, then~$k \in I$ since~$i,j \in I$ and~$I$ is an interval. Hence, $B(I) = j \in J$ and~$B(J) = k \in I$ and~$j \ne k$, so that~$B$ is cyclic.
-	\end{itemize}
-\end{itemize}
-Conversely, assume that~$B$ is cyclic.
-By \cref{prop:acyclicI}, there are~$I,J \in \II$ with~$B(I) \in J \ssm \{B(J)\}$ and~$B(J) \in I \ssm \{B(I)\}$.
-As~$A$ is acyclic, we have~$i = A(I) \ne B(I) = j$ or~$i = A(J) \ne B(J) = j$, but not both since~$B(I) \ne B(J)$.
-By symmetry, we can assume that~$i = A(I) \ne B(I) = j$ and~$i \ne A(J) = B(J)$.
-As~$A(I) = i$ and~$i \ne A(J) = B(J) \in I$, we obtain that~$A(J) \in \cX_{A,i}$.
-Moreover~$j = B(I) \in J \ssm \{B(J)\} = J \ssm \{A(J)\}$.
-Hence, we obtain that~$j \in \cY_{A,i}$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -668,30 +637,45 @@ We thus consider~$I \in \II$ and distinguish two cases:
 \subsection{Flips and cover relations for interval hypergraphs}  
 \label{subsec:cover}
 
-In this section, we describe the cover relations of~$P_\II$ for an interval hypergraph~$\II$.
+In this section, we exploit \cref{prop:acyclicI} to provide a simple description of the flips and cover relations of~$P_\II$ for an interval hypergraph~$\II$.
 
 \begin{proposition}
-\label{prop:isCoverI}
-\vincent{todo}
+\label{prop:isFlipI}
+The orientation obtained from an acyclic orientation~$A$ of an interval hypergraph~$\II$ by flipping~$i$ to~$j$ (in the sense of \cref{def:flip}) is acyclic if and only if~$j \in \cX_{A,i} \ssm \cY_{A,i}$~where
+\[
+\cX_{A,i} \eqdef \bigcup_{\substack{I \in \II \\ A(I) = i}} I \ssm \{i\}
+\qquad\text{and}\qquad
+\cY_{A,i} \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in \cX_{A,i}}} \!\!\!\! \big( J \ssm \{A(J)\} \big).
+\]
 \end{proposition}
 
 \begin{proof}
-%Let~$B$ (resp.~$C$) be the acyclic orientation obtained from~$A$ by flipping~$j \eqdef \min (\cX_{A,i} \ssm \cY_{A,i}) \ssm [i]$ (resp.~some~$k \in (\cX_{A,i} \ssm \cY_{A,i}) \ssm \{k\}$).
-%For any~$I \in \I$, we have~$B(I) = j$ if~$A(I) = i$ and~$j \in I$, while~$B(I) = A(I)$ otherwise, and~$C(I) = k$ if~$A(I) = i$ and~$k \in I$, while~$C(I) = A(I)$ otherwise.
-%If~$A(I) \ne B(I)$, then we have~$B(I) = j$ and~$\{i,j\} \subseteq I$, so that~$\{i,j\} \subseteq I$ (since~$i < j < k$ and~$I$ is an interval), so that~$B(I) = j < k = C(I)$.
-%Otherwise, we have~$B(I) = A(I) \le C(I)$.
-%Hence, we obtain that
-%
-%
-%Let~$B$ (resp.~$C$) be the acyclic orientation obtained from~$A$ by flipping~$i$ to~$j$ (resp.~to~$k \eqdef \min (\cX_{A,i} \ssm \cY_{A,i}) \ssm [i]$).
-%
-%
-%
-%Assume first that~$j \ne k$.
-%If~$j < i$, then the flip from~$A$ to~$B$ is decreasing.
-%Otherwise, let~$C$ he the acyclic orientation obtained from~$A$ by flipping~$i$ to~.
-%
-%Assume that~$j = \min (\cX_{A,i} \ssm \cY_{A,i}) \ssm [i]$, then \cref{prop:isFlipI} ensures that for any acyclic orientation~$C$ obtained by an increasing flip from~$A$, we have
+Let~$B$ be the orientation obtained by flipping~$i$ to~$j$.
+Assume that~$j \notin \cX_{A,i} \ssm \cY_{A,i}$. Then
+\begin{itemize}
+\item either~$j \notin \cX_{A,i}$, hence there is no~$I \in \II$ with~$i = A(I)$ and~$j \in I$, and the flip is not~possible. % (\ie~$A = B$).
+\item or~$j \in \cX_{A,i} \cap \cY_{A,i}$. Since~$j \in \cX_{A,i}$, there is~$I \in \II$ with~$A(I) = i$ and~$j \in I \ssm \{i\}$. Since~$j \in \cY_{A,i}$, there is~$J \in \II$ with~$k \eqdef A(J) \in \cX_{A,i}$ and~$j \in J \ssm \{k\}$. As~$k \in \cX_{A,i}$, there is also~$K \in \II$ such that~$A(K) = i$ and~$k \in K \ssm \{i\}$. We now consider the three distinct values~$i, j, k$ and distinguish three cases depending on which is in between the other two:
+	\begin{itemize}
+	\item if~$i$ is in between~$j$ and~$k$, then~$i \in J$ since~$j,k \in J$ and~$J$ is an interval. Hence, $A(K) = i \in J$ and~$A(J) = k \in K$ and~$i \ne k$ contradicts the acyclicity of~$A$.
+	\item if~$j$ is in between~$i$ and~$k$, then~$i \in K$ since~$i,k \in K$ and~$K$ is an interval. Hence, $B(K) = j \in J$ and~$B(J) = k \in K$ and~$j \ne k$, so that~$B$ is cyclic.
+	\item if~$k$ is in between~$i$ and~$j$, then~$k \in I$ since~$i,j \in I$ and~$I$ is an interval. Hence, $B(I) = j \in J$ and~$B(J) = k \in I$ and~$j \ne k$, so that~$B$ is cyclic.
+	\end{itemize}
+\end{itemize}
+Conversely, assume that~$B$ is cyclic.
+By \cref{prop:acyclicI}, there are~$I,J \in \II$ with~$B(I) \in J \ssm \{B(J)\}$ and~$B(J) \in I \ssm \{B(I)\}$.
+As~$A$ is acyclic, we have~$i = A(I) \ne B(I) = j$ or~$i = A(J) \ne B(J) = j$, but not both since~$B(I) \ne B(J)$.
+By symmetry, we can assume that~$i = A(I) \ne B(I) = j$ and~$i \ne A(J) = B(J)$.
+As~$A(I) = i$ and~$i \ne A(J) = B(J) \in I$, we obtain that~$A(J) \in \cX_{A,i}$.
+Moreover~$j = B(I) \in J \ssm \{B(J)\} = J \ssm \{A(J)\}$.
+Hence, we obtain that~$j \in \cY_{A,i}$.
+\end{proof}
+
+\begin{proposition}
+\label{prop:isCoverI}
+\vincent{todo: characterize cover relations...}
+\end{proposition}
+
+\begin{proof}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
