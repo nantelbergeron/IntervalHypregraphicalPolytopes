@@ -199,7 +199,7 @@ We obtain the following characterizations.
 
 \begin{theoremA}
 \label{thm:latticeI}
-For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection (\ie $I, J \in \II \Rightarrow I \cap J \in \II \cup \{\varnothing\}$).
+For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection (\ie $I, J \in \II$ and~$|I \cap J| > 1$ implies~$I \cap J \in \II$).
 \end{theoremA}
 
 \begin{theoremA}
@@ -233,6 +233,7 @@ For instance, among the four above-mentioned families of interval hypergraphic p
 
 A \defn{hypergraph} $\HH$ on $[n] \eqdef \{1, \dots, n\}$ is a collection of  subsets of~$[n]$.
 By convention, we always assume that~$\HH$ contains all singletons~$\{i\}$ for~$i\in [n]$.
+\vincent{Remove the singletons?}
 %Following~\cite[Def 2.11]{BenedettiBergeronMachacek}, given an hypergraph $\HH$, we define 
 The \defn{hypergraphic polytope}~$\simplex_\HH$ is the Minkowski sum
 \[
@@ -277,6 +278,7 @@ Note that as~$n \le 9$ in all our examples, we simplify notations and write~$123
 
 \begin{remark}
 \label{rem:single}
+\vincent{Remove the singletons and replace this remark by its last sentence...}
 In~\cite{BenedettiBergeronMachacek}, the authors always assume that for all $i\in[n]$ we have $\{i\}\not\in\HH$ whereas here we took the opposite convention.
 When quoting results from~\cite{BenedettiBergeronMachacek}, the reader will have to be mindful of this difference.
 As illustrated in \cref{ex:DH}, we point out that $\simplex_{\{i\}}$ is a single point and in the definition of $\simplex_\HH$ it simply translate the polytope in the direction~$\b{e}_i$ but does not affect the  face structure of the polytope.
@@ -471,6 +473,7 @@ We will represent interval hypergraphs and their orientations graphically as fol
 	\end{tikzpicture}
 \]
 and we omit to draw the singleton $\{i\}$ for $i \in [n]$.
+\vincent{remove singletons}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -729,7 +732,7 @@ Then~$A < B$ is a cover relation of~$P_\II$ if and only if
 In this section, we prove \cref{thm:latticeI} which we first repeat: % characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
 
 \begin{definition}
-An interval hypergraph~$\II$ is stable by intersection if $I, J \in \II$ and~$I \cap J \ne \varnothing$ impiles~$I \cap J \in \II$.
+An interval hypergraph~$\II$ is stable by intersection if $I, J \in \II$ and~$|I \cap J| > 1$ impiles~$I \cap J \in \II$.
 \end{definition}
 
 \begin{theoremA}
