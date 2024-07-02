@@ -125,6 +125,8 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 % lattices
 \newcommand{\meet}{\wedge} % meet
 \newcommand{\join}{\vee} % join
+\newcommand{\bigMeet}{\bigwedge} % meet
+\newcommand{\bigJoin}{\bigvee} % join
 \newcommand{\less}{\vartriangleleft} % smaller WOIP
 \newcommand{\lesseq}{\trianglelefteq} % smaller WOIP
 \newcommand{\more}{\vartriangleright} % larger WOIP
@@ -186,21 +188,36 @@ In view of these two examples, we consider the following general questions:
 These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
 
 In this paper, we study the case of \defn{interval hypergraphs}~$\II$, \ie when all hyperedges of~$\II$ are intervals of~$[n]$.
-Note that this family does not contain the permutahedron, but it contains
+Note that this family does not contain the permutahedron, but contains
 \begin{itemize}
 \item the classical associahedron of~\cite{ShniderSternberg,Loday} when~$\II$ contains all intervals of~$[n]$,
 \item the Pitman--Stanley polytope of~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
 \item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$~for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
 \item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
-We first characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a lattice.
+We obtain the following characterizations.
 
 \begin{theoremA}
 \label{thm:latticeI}
 For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection (\ie $I, J \in \II \Rightarrow I \cap J \in \II \cup \{\varnothing\}$).
 \end{theoremA}
 
+\begin{theoremA}
+\label{thm:distributiveLatticeI}
+For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if and only if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$.
+\end{theoremA}
+
+\begin{theoremA}
+\label{thm:semidistributiveLatticeI}
+For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semidistributive lattice if and only if it does not contain the configuration...
+\vincent{todo}
+\end{theoremA}
+
+For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield are distributive lattices, the associahedron is a semidistributive (but not distributive) lattice, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
+
 \vincent{In progress}
+
+\setcounter{theoremA}{0}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -279,6 +296,10 @@ Equivalently, we often represent the orientation~$O$ as the set of pairs~$\set{(
 The orientation~$O$ is \defn{acyclic} if there is no~$H_1, \dots, H_k$ with~$k \ge 2$ such that~$O(H_{i+1}) \in H_i \ssm \{O(H_i)\}$ for~$i \in [k-1]$ and~$O(H_1) \in H_k \ssm \{O(H_k)\}$.
 \end{definition}
 
+\begin{example}
+\vincent{todo}
+\end{example}
+
 \begin{definition}
 \label{def:flip}
 Two orientations~$O \ne O'$ of~$\HH$ are related by an \defn{increasing flip} if there exist~${1 \le i < j \le n}$ such that for all~$H \in \HH$, 
@@ -287,6 +308,10 @@ Two orientations~$O \ne O'$ of~$\HH$ are related by an \defn{increasing flip} if
 \item if~$\{i,j\} \subseteq H$, then~$O(H) = i \iff O'(H) = j$.
 \end{itemize}
 \end{definition}
+
+\begin{example}
+\vincent{todo}
+\end{example}
 
 The following correspondance was already observed in~\cite[Thm.~2.18]{BenedettiBergeronMachacek} (it even extends to all faces of~$\simplex_\HH$, but we do not need this level of generality in this paper).
 We provide an alternative short proof for convenience.
@@ -311,6 +336,10 @@ Finally, the main objects of this paper are the following posets.
 \begin{definition}
 The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the increasing flip graph on acyclic orientations of~$\HH$.
 \end{definition}
+
+\begin{example}
+\vincent{todo}
+\end{example}
 
 \begin{remark}
 \label{rem:edgeNotCover}
@@ -343,6 +372,7 @@ As~$\simplex_\HH$ is a deformed permutahedra (\aka generalized permutahedra~~\ci
 Here, we focus on the surjection~$\Or$ from the permutations of $[n]$ to the acyclic orientations of~$\HH$.
 
 \begin{definition}
+\label{def:surjection}
 For a permutation~$\pi$ of~$[n]$, the orientation~$\Or_\pi$ of~$\HH$ is defined for all~$H \in \HH$ by
 \[
 \Or_\pi(H) \eqdef  \pi\big(\min\set{j}{\pi(j)\in H}\big).
@@ -384,6 +414,10 @@ The following lemma is straightforward.
 \label{lem:prepi}
 For any acyclic orientation $A$ of~$\HH$, the preimage $\Or^{-1}(A) \eqdef \set{\pi}{\Or_\pi=A}$ is the set of linear extensions of~$\less_A$.
 \end{lemma}
+
+\begin{example}
+\vincent{todo}
+\end{example}
 
 %In general, given a hypergraph~$\HH$ we would be interested to understand what are the cover of~$P_\HH$? 
 %When is $P_\HH$ a lattice? distributive lattice? a semi-lattice? (semi-)lattice quotient of the $fS_n$-weak lattice?
@@ -512,10 +546,10 @@ Graphically
 	\node at (.5,0) {$\bullet$};
 	\end{tikzpicture}
 \]
-Assume that~$k > 2$ and that is minimal for this property.
+Assume that~$k > 2$ and is minimal for this property.
 Note that~$O(I_i) \ne O(I_{i+1})$ for all~$i$.
 By symmetry, suppose~$O(I_1) < O(I_2)$.
-If there is~$1 \le i \le k-1$ such that~$O(I_{i+1}) < O(I_i)$, then for the smallest such~$i$, we have
+If there is~$i \in [k-1]$ such that~$O(I_{i+1}) < O(I_i)$, then for the smallest such~$i$, we have
 \begin{itemize}
 \item either~$O(I_{i-1}) \in [O(I_{i+1}), O(I_i)] \subseteq I_i$, so that~$O(I_{i-1}) \in I_i$ and $O(I_i) \in I_{i-1}$,
 \item or~$O(I_{i+1}) \in [O(I_{i-1}), O(I_i)] \subseteq I_{i-1}$, so that we can drop~$I_i$ from our sequence, contradicting the minimality of~$k$.
@@ -570,6 +604,10 @@ As $\bigcup_{i \in [k]} I_i$ is an interval containing~$a$ and~$c$ and~$a < b < 
 Hence, there is~$i \in [k]$ such that~$c \in I_i$, and the sequence~$I_1, \dots, I_i$ proves that~$a \less_{A} b$.
 The case $a \more_{A} c$ is similar and  implies that $b \more_A c$.
 \end{proof}
+
+\begin{example}
+\vincent{todo}
+\end{example}
 
 \begin{remark}
 \cref{prop:preimageI} fails for arbitrary hypergraphs~$\HH$, for instance for~$\HH \eqdef \{1,2,3,13\}$, there are two fibers~$\{123, 213, 132\}$ and~$\{231, 312, 321\}$ which are not intervals of the weak order.
@@ -645,7 +683,7 @@ The orientation obtained from an acyclic orientation~$A$ of an interval hypergra
 \[
 \cX_{A,i} \eqdef \bigcup_{\substack{I \in \II \\ A(I) = i}} I \ssm \{i\}
 \qquad\text{and}\qquad
-\cY_{A,i} \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in \cX_{A,i}}} \!\!\!\! \big( J \ssm \{A(J)\} \big).
+\cY_{A,i} \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in \cX_{A,i}}} \!\!\!\! J \ssm \{A(J)\}.
 \]
 \end{proposition}
 
@@ -687,7 +725,15 @@ Then~$A < B$ is a cover relation of~$P_\II$ if and only if
 \section{Interval hypergraphic lattices}
 \label{sec:LatticePI}
 
-In this section, we  prove  \cref{thm:latticeI} characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
+In this section, we prove \cref{thm:latticeI} which we first repeat: % characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
+
+\begin{definition}
+An interval hypergraph~$\II$ is stable by intersection if $I, J \in \II$ and~$I \cap J \ne \varnothing$ impiles~$I \cap J \in \II$.
+\end{definition}
+
+\begin{theoremA}
+For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
+\end{theoremA}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -743,9 +789,9 @@ We display below the four orientations highlighting only the intervals $I$ and $
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
 	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (.3,0) {$\bullet$};
-	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
-	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.2,-.33) {$\scriptstyle c$};
 	\node at  (1.5,-.3) {$\scriptstyle d$};
 	\end{tikzpicture} 
 &&
@@ -753,9 +799,9 @@ We display below the four orientations highlighting only the intervals $I$ and $
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (0,.3) {$\bullet$};
 	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
-	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
-	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.2,-.33) {$\scriptstyle c$};
 	\node at  (1.5,-.3) {$\scriptstyle d$};
 	\end{tikzpicture} 
 &&
@@ -763,9 +809,9 @@ We display below the four orientations highlighting only the intervals $I$ and $
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
 	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.5,0) {$\bullet$};
-	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
-	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.2,-.33) {$\scriptstyle c$};
 	\node at  (1.5,-.3) {$\scriptstyle d$};
 	\end{tikzpicture} 
 &&
@@ -773,9 +819,9 @@ We display below the four orientations highlighting only the intervals $I$ and $
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (1.2,.3) {$\bullet$};
 	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
-	\node at  (0,-.3) {$\scriptstyle a$};
+	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
-	\node at  (1.2,-.3) {$\scriptstyle c$};
+	\node at  (1.2,-.33) {$\scriptstyle c$};
 	\node at  (1.5,-.3) {$\scriptstyle d$};
 	\end{tikzpicture} 
 &
@@ -898,7 +944,7 @@ We can thus assume that we have~$I,J \in \II$ such that~$i = B(J) \in I$ and~$j 
 As~$\II$ is closed by intersection, we have~$\{i,j\} \subseteq K \eqdef I \cap J \in \II$.
 We have~$A(K) = j$, as otherwise~${A(I) = j \in K}$ an~$A(K) \in K \subseteq I$ and~$A(I) \ne A(K)$ would contradict the acyclicity of~$A$.
 Similarly, we have~$B(K) = i$.
-We conclude that~$B(K) = i < j = A(K)$ and~$K \in \II$ contradicting our assumption.
+We conclude that~$B(K) = i < j = A(K)$ and~$K \in \II$ contradicting~(b).
 \end{proof}
 
 \begin{remark}
@@ -1018,150 +1064,204 @@ where the union ranges over~$(j,J) \in A \cup B$ such that~$\min(I) \le j \le \m
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\section{Interval hypergraphic distributive lattices}
+\label{sec:distributive}
+
+In this section, we prove \cref{thm:distributiveLatticeI} which we first repeat:
+%characterizing the interval hypergraphs $\II$ for which $P_\II$ are distributive lattices.
+
+\begin{definition}
+We say that an interval hypergraph~$\II$ is \defn{distributive} if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$.
+\end{definition}
+
+\begin{theoremA}
+For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is a distributive interval hypergraph.
+\end{theoremA}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Some join irreducibles acyclic orientations}  
+\label{subsec:someJoinIrreducibles}
+
+Fix $\II$ an interval  hypergraph closed under intersection.
+Our first task will be to identify some join irreducible acyclic orientations of~$\II$ (a complete description of the join irreducible acyclic orientations of~$\II$ will appear later in~\cref{sec:joinIrreducibles}).
+
+\begin{notation}
+Define
+\(\displaystyle
+\cJ_\II \eqdef \bigcup_{I\in \II} I\ssm \{\min(I)\}.
+\)
+\end{notation}
+
+\begin{notation}
+For~$j \in \cJ_\II$, let~$J_j$ be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
+\end{notation}
+
+\begin{notation}
+For $i,j \in \cJ_\II$, we write $i \preccurlyeq j$ if and only if $J_i = J_j$ and $i \le j$.
+\end{notation}
+
+\begin{notation}
+For~$j \in \cJ_\II$, consider the acyclic orientation~$A_j \eqdef \Or_{(\mu_j, \mu_j+1, \ldots, j)}$, obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation
+\[
+(\mu_j, \mu_j+1, \dots, j) = 12 \cdots (\mu_j-1)j\,\mu_j \cdots (j-1) (j+1) \cdots n
+\]
+obtained from the identity permutation by placing~$j$ just before $\mu_j$.
+Note that that for all $I\in\II$
+\begin{equation}
+\label{eq:sourceOj}
+A_j(I)=\begin{cases}
+	j & \text{if } j \in I \text{ and } \min(I)=\mu_j,\\
+	\min(I) & \text{otherwise.}
+\end{cases}
+\end{equation}
+\end{notation}
+
+\begin{lemma}
+\label{lem:irrorder}
+For $i,j \in \cJ_\II$, we have $A_i \le A_j \iff i \preccurlyeq j$.
+\end{lemma}
+
+\begin{proof}
+By \cref{prop:sourceOrderI} we have~$A_i \le A_j$ if and only if~$A_i(I) \le A_j(I)$ for all~$I \in \II$.
+%
+The forward direction is thus a direct consequence of the following four observations:
+\begin{itemize}
+\item if~$\mu_i \ne \mu_j$, then~$A_i(J_i) = i > \mu_i = \min(J_i) = A_j(J_i)$,
+\item if~$\nu_i < \nu_j$, then~$j \notin J_i \ssm \mu_i$, so that~$A_i(J_i) = i > \mu_i = \min(J_i) = A_j(J_i)$,
+\item if~$i > j$, then~$A_i(J_i) = i > j \ge A_j(J_i)$,
+\item $i \le j$ implies that~$\mu_i \le \mu_j$ and~$\nu_i \le \nu_j$.
+\end{itemize}
+%
+For the backward direction, assume~$i \preccurlyeq j $, and consider~$I \in \II$.
+As~$i < j$, $A_i(I) \in \{\min(I), i\}$ and~$A_j(I) \in \{\min(I), j\}$, we have~$A_i(I) \le A_j(I)$ except if~$A_i(I) = i$ and~$A_j(I) = \min(I)$.
+As~$A_i(I) = i$, we would have~$i \in I$ and~$\min(I) = \mu_i$. As~$A_j(I) = \min(I)$ and~$\min(I) = \mu_i = \mu_j$, we would have~$j \notin I$.
+This contradicts the fact that~$\nu_i = \nu_j$.
+\end{proof}
+
+\begin{lemma}
+\label{lem:subirr}
+For any~$j \in \cJ_\II$ and any acyclic orientation~$A$ of~$\II$, we have
+\begin{itemize}
+\item $A < A_j \iff A = \min(P_\II)$ or~$A = A_i$ with~$i \preccurlyeq j$,
+\item $A_j < A \iff j \le A(J_j)$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+By \cref{prop:sourceOrderI}, $A < A_j$ implies that~$A(I) \le A_j(I)$ for all~$I \in \II$.
+For~$I, I' \in \II$ such that~$j \in I \cap I'$ and~$\min(I) = \min(I') = \mu_j$, we have~$A(I) = A(I')$ since~$A$ is acyclic.
+We conclude that there is~$i \in {[\mu_j, j[}$ such that~$A(I) = i$ if~$j \in I$ and~$\min(I) = \mu_j$, and~$A(I) = \min(I)$ otherwise.
+Hence, $A = \min(P_\II)$ or~$A = A_i$.
+The first point thus follows from \cref{lem:irrorder}.
+
+For the second point, $A_j \le A$ implies $j = A_j(J_j) \le A(J_j)$ by \cref{prop:sourceOrderI}.
+Conversely, if~$j \le A(J_j)$, then for any~$I \in \II$,
+\begin{itemize}
+\item if~$j \in I$ and~$\min(I) = \mu_j$, we have~$A_j(I) = j \le A(I)$ (by acyclicity of~$A$),
+\item otherwise, $A_j(I) = \min(I) \le A(I)$.
+\end{itemize}
+Hence, $A_j \le A$ by \cref{prop:sourceOrderI}.
+\end{proof}
+
+\begin{proposition}
+\label{prop:irrOj}
+For any~$j\in \cJ_\II$, the acyclic orientation~$A_j$ is join irreducible.
+\end{proposition}
+
+\begin{proof}
+By \cref{lem:subirr}, the lower set of~$A_j$ in~$P_\II$ is the chain $\min(P_\II) < A_{i_1} < \dots < A_{i_p} < A_j$ where~$\{i_1 < \dots < i_p\} = \set{i \in \cJ_\II}{J_i = J_j \text{ and } i < j}$.
+Hence, $A_j$ is join irreducible.
+\end{proof}
+
+\begin{proposition}
+For any two lower sets~$X$ and~$Y$ of~$(\cJ_\II, \preccurlyeq)$, if~$\bigJoin\limits_{x \in X} A_x = \bigJoin\limits_{y \in Y} A_y$ then~$X = Y$.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{proposition}
+$\displaystyle \max(P_\II) = \bigJoin\limits_{j \in \cJ_\II} A_j$.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{corollary}
+For any interval hypergraph~$\II$ closed under intersection, $P_\II$ contains a distributive sublattice containing~$\min(P_\II)$ and~$\max(P_\II)$.
+\end{corollary}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{If~$\II$ is distributive then $P_\II$ is distributive}
+\label{subsec:distributiveLatticeBackward}
+
+\begin{lemma}
+For a distributive interval hypergraph~$\II$, an acyclic orientation~$A$ of~$\II$, and~$J \in \II$ such that~$A(J) \ne \min(J)$, then there exists~$i \in J$ such that the orientation obtained from~$A$ by flipping~$j$ to~$i$ is acyclic.
+\end{lemma}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{proposition}
+\label{prop:distributiveForwardI}
+If~$\II$ is a distributive interval hypergraph, then the map $j \mapsto A_j$ is a poset isomorphism from~$(\cJ_\II, \preccurlyeq)$ to the subposet of join irreducibles of~$P_\II$.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{proposition}
+If~$\II$ is a distributive interval hypergraph, then the map~$A \mapsto \set{j \in \cJ_\II}{A_j \le A}$ is a bijection from acyclic orientations of~$\II$ to lower sets of~$(\cJ_\II, \preccurlyeq)$. Hence~$P_\II$ is a distributive lattice.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{If~$P_\II$ is distributive then~$\II$ is distributive}
+\label{subsec:distributiveLatticeForward}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \section{Join irreducible acyclic orientations}
 \label{sec:joinIrreducibles}
 
 In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward},.
 We describe the join irreducible elements of~$P_\II$, that is, the acyclic orientations~$A$ of~$\II$ which cover a single acyclic orientation~$A_\star$.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Construction}
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Characterization}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section{Interval hypergraphic distributive lattices}
-\label{sec:distributive}
-
-\vincent{I did not look at this section yet...}
-
-In this section, we characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a distributive lattice.
-To start, we must have an interval  hypergraph $\II$ that is closed under intersection.
-Our first task will be to identify the join irreducible of $P_\II$.
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\subsection{Covers in lattice $P_\II$}  
-%\label{subsec:LatticeCover}
-%
-%In \cref{subsec:cover} we describe cover for general interval hypergraph. If $\II$ is closed under intersection the situation is simpler
-%\Nantel{do we need this?}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\subsection{Join irreducibles of lattice $P_\II$}  
-\label{subsec:irreducibles}
-
-Fix $\II$ an interval  hypergraph closed under intersection.
-Let $O_0$ denote the unique \defn{minimum} of $P_\II$.
-Let
+\begin{definition}
+Let~$1 \le i < j \le n$ be such that there exists~$i \in \II$ with~$\{i,j\} \subseteq I$ and
 \[
-\cJ_\II=\bigcup_{I\in \II} I\ssm \{\min(I)\} \,.
+i = \max \Big( {[\min(I), j[} \; \ssm \!\!\!\!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\min(I), j[}}} \!\!\!\!\!\!\!\! J \ssm \{\min(J)\} \Big).
 \]
-For $j\in \cJ_\II$ let
-\begin{equation}
-\label{eq:mu}
- \mu(j)=\max\big\{ \min(I) \big| \ I\in\II, j\in I\ssm\{\min(I)\}\big\}\,,
-\end{equation}
-\begin{equation}
-\label{eq:nu}
- \nu(j)=\min\big\{ \max(I) \big| \ j\in I\in\II, \min(I)=\mu(j)\big\}\,,
-\end{equation}
-and
-\begin{equation}
-\label{eq:nu}
- O_j=\Or_{(\mu(j),\mu(j)+1,\ldots,j)}\,,
-\end{equation}
-where $(\mu(j),\mu(j)+1,\ldots,j)$ is the cycle permutation
+Let~$\mu_{i,j}^\II \eqdef \max \bigset{\min(I)}{\{i,j\} \subseteq I \in \II}$.
+Let~$\pi_{i,j}^\II$ be the permutation with a unique nontrivial cycle~$(\mu_{i,j}^\II, \mu_{i,j}^\II + 1, \dots, j-1, j)$ (in other words, the $\pi_{i,j}^\II$ is obtained from the identity by placing~$j$ before~$\mu_{i,j}^\II$).
+Let~$A_{i,j}^\II \eqdef \Or_{\pi_{i,j}^\II}$ be acyclic orientation obtained as the image of~$\pi_{i,j}^\II$ under the surjection~$\Or$ of \cref{def:surjection}.
+In other words,
 \[
-(\mu(j),\mu(j)+1,\ldots,j)= 12\cdots(\mu(j)-1)j\,\mu(j)\cdots (j-1) (j+1)\cdots n
-\]
-with $j$ place just before $\mu(j)$ and all others in order. We remark that for all $I\in\II$ and $j\in\cJ_\II$
-\begin{equation}
-\label{eq:sourceOj}
-S(I,O_j)=\begin{cases}
-	j& \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
-	\min(I)& \text{otherwise.}
-\end{cases}
-\end{equation}
-
-\begin{remark}
-\label{rem:munuseg}
-For any $j\in \cJ_\II$ and $j\in J\in \II$ such that $j\ne\min(J)$, we have $[\mu(j),\nu(j)]\in \II$ and $[\mu(j),\nu(j)]\subseteq J$.
-Indeed, the definition of $\mu(j)$ and $\nu(j)$ ensure that $[\mu(j),\nu(j)]\in \II$, and if we suppose that $[\mu(j),\nu(j)]\not\subseteq J$, then $[\mu(j),\nu(j)]\cap J\in \II$ is strictly smaller than $[\mu(j),\nu(j)]$ a contradiction to the definition of $\mu$ and $\nu$.
-\end{remark}
-
-For $i,j\in \cJ_\II$ we say $i\equiv j$ are \defn{irreducible congruent} if $\mu(i)=\mu(j)$ and $\nu(i)=\nu(j)$.
-
-\begin{lemma} \label{lem:irrorder}
- For $i,j\in \cJ_\II$, we have $O_i<O_j$ if and only if $i<j$ and $i\equiv j$.
-\end{lemma}
-
-\begin{proof}
-\cref{prop:sourceOrderI} gives us that $O_i<O_j$ if and only if
-\[
-S(I,O_i)=\begin{cases}
-	i<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
-	\min(I)& \text{otherwise.}
+A_{i,j}^\II(I) =
+\begin{cases}
+	j & \text{if } j \in I \text{ and } \min(I) \ge \mu_{i,j}^\II, \\
+	\min(I) & \text{otherwise.}
 \end{cases}
 \]
-which is true if $i\equiv j$.
-Now if $i\not\equiv j$, then either $\mu(i)\ne \mu(j)$  or  $\nu(i)\ne \nu(j)$.
-If $\mu(i)\ne\mu(j)$, then there is $i\in I\in \II$ such that $\min(I)=\mu(i)\ne\mu(j)$ and $S(I,O_i)=i>\min(I)=S(I,O_j)$.
-This implies $O_i\not<O_j$ a contradiction.
-If $\mu(i)= \mu(j)$  and  $\nu(i)\ne \nu(j)$, then there is $i\in I\in \II$ such that $j\not\in I$, and again $S(I,O_i)=i>\min(I)=S(I,O_j)$, a contradiction.
-\end{proof}
-
-\begin{lemma}
-\label{lem:irrOj}
-	For any $j\in \cJ_\II$, $O_j$ is join irreducible.
-\end{lemma}
-
-\begin{proof}
-\cref{prop:sourceOrderI} gives that any $A<O_j$ must satisfy
-\[
-S(I,A)=\begin{cases}
-	a<j & \text{if $j\in I$ and $\min(I)=\mu(j)$},\\
-	\min(I)& \text{otherwise.}
-\end{cases}
-\]
-\cref{rem:munuseg} ensure that $a$ must be the same for all $I\ni j$ and $\min(I)=\mu(j)$, otherwise $A$ would not be acyclic.
-$A=O_0$ is one possibility, otherwise $A=O_a$ for some $0<a<j$.
-In \cref{lem:irrorder} we determined exactly the order $P_\II$ restricted
-to the set $\{ O_j |\, j=0 \text{ or } j\in \cJ_\II\}$.
-We have shown  that $A<O_j$ belong to that set hence the only cover is $O_a<O_j$
-such that $a=\max\{ i<j|\, i=0 \text{ or } i\equiv j\}$.
-\end{proof}
-
-\begin{lemma}
-\label{lem:subirr}
-For any $A\in P_\II$,
-\[
-O_j<A \iff j\le S([\mu(j),\nu(j)] A).
-\]
-\end{lemma}
-
-\begin{proof}
-This is a direct consequence of \cref{prop:sourceOrderI} and \cref{rem:munuseg}.
-\end{proof}
+\end{definition}
 
 \begin{proposition}
-Assume that ``given any $I,J\in \II$ such that $I\cap J\ne \varnothing $, $I\not\subseteq J$ and $J\not\subseteq I$, then for all $K\in J$ such that  $I\cap J\subseteq K$ we have $\{\min(K),\max(K)\}\cap K\ne \varnothing $'', then $\{O_j|\,j\in \cJ_\II\}$ are the only join irreducible of $P_\II$.
+\label{prop:joinIrreducibles}
 \end{proposition}
-
-\begin{proof}
-Let $O$ be a joint irreducible of $P_\II$ and let $A<O$ be its unique cover.
-It must be from a flip $O=(i,j)A$.
-\nantel{that is all folks}
-\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
