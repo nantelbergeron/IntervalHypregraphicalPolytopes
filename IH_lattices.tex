@@ -112,9 +112,9 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 \newcommand{\green}[1]{{\color{darkgreen} #1}} % green
 \newcommand{\defn}[1]{\textbf{\textsf{\color{PineGreen} #1}}} % emphasis of a definition
 \usepackage{todonotes}
-\newcommand{\nantel}[1]{\todo[color=red!30]{#1 \\ \hfill --- N.}}
+\newcommand{\nantel}[1]{\todo[size=\tiny,color=red!30]{ #1 \\ \hfill --- N.}\,}
 \newcommand{\Nantel}[1]{\todo[inline,color=red!30]{#1 \\ \hfill --- N.}}
-\newcommand{\vincent}[1]{\todo[color=blue!30]{#1 \\ \hfill --- V.}}
+\newcommand{\vincent}[1]{\todo[size=\tiny,color=blue!30]{ #1 \\ \hfill --- V.}\,}
 \newcommand{\Vincent}[1]{\todo[inline,color=blue!30]{#1 \\ \hfill --- V.}}
 
 % permutations
@@ -186,6 +186,7 @@ In view of these two examples, we consider the following general questions:
 \item when~$P_\HH$ is a semidistributive lattice, describe the lattice quotients of~$P_\HH$ and realize them geometrically.
 \end{itemize}
 These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
+\nantel{interesting that zonotope is subset of permutahedron and interval is subset of associahedron}
 
 In this paper, we study the case of \defn{interval hypergraphs}~$\II$, \ie when all hyperedges of~$\II$ are intervals of~$[n]$.
 Note that this family does not contain the permutahedron, but contains
@@ -204,7 +205,7 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if 
 
 \begin{theoremA}
 \label{thm:distributiveLatticeI}
-For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if and only if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$.
+For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if and only if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$. \nantel{what about singleton?}
 \end{theoremA}
 
 \begin{theoremA}
@@ -284,17 +285,19 @@ When quoting results from~\cite{BenedettiBergeronMachacek}, the reader will have
 As illustrated in \cref{ex:DH}, we point out that $\simplex_{\{i\}}$ is a single point and in the definition of $\simplex_\HH$ it simply translate the polytope in the direction~$\b{e}_i$ but does not affect the  face structure of the polytope.
 \end{remark}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Acyclic orientations, increasing flips, and hypergraphic posets} 
 \label{subsec:P_H}
 
 We now recall from \cite[Thm.~2.18]{BenedettiBergeronMachacek} a combinatorial model for the graph~$(V_\HH, E_\HH)$ of~$\simplex_\HH$.
+\Nantel{As we are only interested in the one skeleton, we simplify some of the general definitions}
 
 \begin{definition}
 \label{def:acyclicOrientation}
 An \defn{orientation} of~$\HH$ is a map~$O$ from~$\HH$ to~$[n]$ such that~$O(H) \in H$ for all~${H \in \HH}$.
-Equivalently, we often represent the orientation~$O$ as the set of pairs~$\set{(O(H),H)}{H \in \HH, \, |H| > 1}$.
+Equivalently, we often represent the orientation~$O$ as the set of pairs~$\set{(O(H),H)}{H \in \HH, \, |H| > 1}$.\nantel{ $\scriptstyle |H|>1$ is not needed if we remove singleton}
 The orientation~$O$ is \defn{acyclic} if there is no~$H_1, \dots, H_k$ with~$k \ge 2$ such that~$O(H_{i+1}) \in H_i \ssm \{O(H_i)\}$ for~$i \in [k-1]$ and~$O(H_1) \in H_k \ssm \{O(H_k)\}$.
 \end{definition}
 
@@ -613,7 +616,7 @@ The case $a \more_{A} c$ is similar and  implies that $b \more_A c$.
 \end{example}
 
 \begin{remark}
-\cref{prop:preimageI} fails for arbitrary hypergraphs~$\HH$, for instance for~$\HH \eqdef \{1,2,3,13\}$, there are two fibers~$\{123, 213, 132\}$ and~$\{231, 312, 321\}$ which are not intervals of the weak order.
+\cref{prop:preimageI} fails for arbitrary hypergraphs~$\HH$, for instance for~$\HH \eqdef \{1,2,3,13\}$,\nantel{ Just $\scriptstyle \{ 13\}$ if we remove singleton} there are two fibers~$\{123, 213, 132\}$ and~$\{231, 312, 321\}$ which are not intervals of the weak order.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -632,7 +635,7 @@ A \le B \quad \iff \quad A(I) \le B(I) \text{ for all } I \in \II .
 \end{proposition}
 
 \begin{proof}
-The forward direction is immediate as it holds for cover relations of~$P_\II$ by \cref{def:flip}.
+The forward direction is immediate\nantel{ as it holds for increasing flip by \cref{def:flip} and any cover is an increasing flip.} as it holds for cover relations of~$P_\II$ by \cref{def:flip}.
 For the backward direction, assume that~$A(I) \le B(I)$ for all~$I \in \II$.
 The proof works by induction on~$|\set{I \in \II}{A(I) < B(I)}|$.
 
@@ -640,7 +643,7 @@ The proof works by induction on~$|\set{I \in \II}{A(I) < B(I)}|$.
 %Choose~$i < j$ in this set such that~$j$ is maximal, and if draw, $i$ is maximal.
 Choose~$J \in \II$ such that~$A(J) < B(J)$ and for any~$I \in \II$ with~$A(I) < B(I)$, we have~$B(I) < B(J)$, or~$B(I) = B(J)$, then~$A(I) \le A(J)$.
 
-Let~$O$ be the orientation of~$\I$ obtained from~$A$ by flipping~$A(J)$ to~$B(J)$.
+Let~$O$ be the orientation of~$\I$ obtained from~$A$ by flipping~$A(J)$ to~$B(J)$.\nantel{please clarify how to obtain $O$}
 We claim that~$O$ is acyclic and that~$O(I) \le B(I)$ for all~$I \in \II$. 
 We conclude by induction that~$O \le B$, and thus~$A \le O \le B$ as desired.
 
