@@ -1060,16 +1060,31 @@ Note that the lattice maps where described by N.~Reading in~\cite{Reading-lattic
 
 \begin{proposition}
 \label{prop:joinLattice}
-For an interval hypergraph~$\II$ closed under intersection, any acyclic orientations~$A,B$ of~$\II$, and any~${I \in \II}$, we have
+For an interval hypergraph~$\II$ closed under intersection, any acyclic orientations~$A_1, \dots A_q$ of~$\II$, and any~${I \in \II}$, we have
 \[
 %S(I, A \join B) = \min \Big( I \ssm \bigcup_{\substack{(j,J) \in A \cup B \\ \min(I) \le j \le \max(I)}} {[\min J, j[} \Big).
-( A \join B)(I) = \min \Big( I \ssm \bigcup {[\min J, j[} \Big).
+\Big( \bigJoin_{p \in [q]} A_p \Big)(I) = \min I \ssm \Big( \bigcup_{p \in [q]} \bigcup_{\substack{J \in \II \\ A_p(J) \in I}} {[\min(J), A_p(J)[} \Big).
 \]
-where the union ranges over~$(j,J) \in A \cup B$ such that~$\min(I) \le j \le \max(I)$.
 \end{proposition}
 
 \begin{proof}
-\vincent{See Proposition 14 in the notes.}
+Let~$O$ be the orientation of~$\II$ defined by the formula of the statement.
+We first prove that~$O$ is acyclic.
+Otherwise, \cref{prop:acyclicI} ensures the existence of~$I,J \in \II$ such that~$O(I) \in J \ssm \{O(J)\}$ and~$O(J) \in I \ssm \{O(I)\}$.
+Assume by symmetry that~$O(I) < O(J)$.
+As~$O(I) \in J$ and~$O(J) > O(J)$, there exists~$p \in [q]$ and~$K \in \II$ such that~$A_p(K) \in J$ and~$\min(K) \le O(I) < A_p(K) \le O(J)$.
+As~$I$ is an interval containing~$O(I)$ and~$O(J)$, and~$O(I) < A_p(K) \le O(J)$, it also contains~$A_p(K)$.
+We thus obtain that~$A_p(K) \in I$ and~$\min(K) \le O(I) < A_p(K)$ contradicting our definition of~$O$.
+
+We now prove that~$O = \bigJoin_{p \in [q]} A_p$.
+For~$p \in [q]$ and~$I \in \II$, we have~$A_p(I) \in I$, hence~${O(I) \ge A_p(I)}$, so that~$O \ge A_p$ by \cref{prop:sourceOrderI}.
+Consider now an acyclic orientation~$O'$ of~$\II$ such that~$A_p \le O'$ for all~$p \in [q]$.
+Assume that there are~$I, J \in \II$ and~$p \in [q]$ such that~$A_p(J) \in I$.
+Then~$A_p(J) \in I \cap J \in \II$, so that~$A_p(I \cap J) = A_p(J)$ by acyclicity of~$A_p$.
+By \cref{prop:sourceOrderI}, we thus obtain~$O'(I \cap J) = A_p(J)$.
+By acyclicity of~$O'$, this implies that~$O'(I) \notin {[\min(I \cap J), A_p(J)[}$, so that~$O'(I) \notin [\min(J), A_p(J)[$.
+We conclude that~$O(I) \le O'(I)$.
+Hence, $O \le O'$ by \cref{prop:sourceOrderI}.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1199,7 +1214,10 @@ For any two lower sets~$X$ and~$Y$ of~$(\cJ_\II, \preccurlyeq)$, if~$\bigJoin\li
 \end{proposition}
 
 \begin{proof}
-\vincent{todo}
+Assume~$\bigJoin\limits_{x \in X} A_x = \bigJoin\limits_{y \in Y} A_y$ and let~$x \in X$.
+Then $x = A_x(J_x) \le \big( \bigJoin\limits_{x \in X} A_x \big)(J_i) = \big( \bigJoin\limits_{y \in Y} A_y \big)(J_i)$.
+From the description of the join of \cref{prop:joinLattice}, we thus obtain that there exists~$y \in Y$ and~$J \in \II$ such that~$A_y(J) \in I$ and~$\min(J) \le x < A_y(J)$.
+\vincent{IN PROGRESS...}
 \end{proof}
 
 \begin{proposition}
