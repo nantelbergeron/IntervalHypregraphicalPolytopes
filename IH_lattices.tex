@@ -169,11 +169,15 @@ When~$P_\II$ is lattice, we describe the join irreducibles of~$P_\II$.
 \section{Introduction}
 \label{sec:introduction}
 
+Fix an integer~$n \ge 1$ and denote by~$(\b{e}_i)_{i \in [n]}$ the standard basis of~$\R^n$.
 The \defn{hypergraphic polytope} of a hypergraph~$\HH$ on~$[n]$ is the Minkowski sum
 \(
 \simplex_\HH \eqdef \sum_{H\in \HH} \simplex_H\,,
 \)
 where $\simplex_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$ of~$\R^n$.
+Note that the singletons of~$\HH$ are irrelevant for the combinatorics of~$\triangle_\HH$ as they just contribute to translations.
+It is convenient for us to assume that~$\{i\} \in \HH$ for all~$i \in [n]$.
+
 The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the skeleton of~$\simplex_\HH$ oriented in the direction~$\b{\omega} \eqdef (n, n-1, \dots, 2, 1) - (1, 2, \dots, n-1, n) = (n-1, n-3, \dots, 3-n, 1-n)$.
 For instance, 
 \begin{itemize}
@@ -200,7 +204,7 @@ We obtain the following characterizations.
 
 \begin{theoremA}
 \label{thm:latticeI}
-For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection (\ie $I, J \in \II$ and~$|I \cap J| > 1$ implies~$I \cap J \in \II$).
+For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection (\ie $I, J \in \II$ and~$I \cap J \ne \varnothing$ implies~$I \cap J \in \II$).
 \end{theoremA}
 
 \begin{theoremA}
@@ -214,7 +218,7 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semid
 \vincent{todo}
 \end{theoremA}
 
-For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield are distributive lattices, the associahedron is a semidistributive (but not distributive) lattice, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
+For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
 
 \vincent{In progress}
 
@@ -234,7 +238,6 @@ For instance, among the four above-mentioned families of interval hypergraphic p
 
 A \defn{hypergraph} $\HH$ on $[n] \eqdef \{1, \dots, n\}$ is a collection of  subsets of~$[n]$.
 By convention, we always assume that~$\HH$ contains all singletons~$\{i\}$ for~$i\in [n]$.
-\vincent{Remove the singletons?}
 %Following~\cite[Def 2.11]{BenedettiBergeronMachacek}, given an hypergraph $\HH$, we define 
 The \defn{hypergraphic polytope}~$\simplex_\HH$ is the Minkowski sum
 \[
@@ -270,7 +273,7 @@ we  have
 	\draw (0,0) -- (.6,.75)-- (1.6,1.25) -- (2.2,.5) -- (1.2,0) -- (0,0) ; 
 	\draw [thick,color=red!80] (1.2,0) -- (2.2,0.5); 
 \end{tikzpicture}\\
-\blue{\simplex_{123}}& \red{\simplex_{34}} & \simplex_\HH=\simplex_1+\simplex_2+\simplex_3+\simplex_4+\blue{\simplex_{123}}+ \red{\simplex_{34}}\\
+\blue{\simplex_{123}}& \red{\simplex_{34}} & \simplex_\HH = \simplex_1 + \simplex_2 + \simplex_3 + \simplex_4 + \blue{\simplex_{123}} + \red{\simplex_{34}}\\
 \end{array}
 \]
 which is a 3-dimensional polytope sitting in $\R^4$.
@@ -279,10 +282,10 @@ Note that as~$n \le 9$ in all our examples, we simplify notations and write~$123
 
 \begin{remark}
 \label{rem:single}
-\vincent{Remove the singletons and replace this remark by its last sentence...}
-In~\cite{BenedettiBergeronMachacek}, the authors always assume that for all $i\in[n]$ we have $\{i\}\not\in\HH$ whereas here we took the opposite convention.
-When quoting results from~\cite{BenedettiBergeronMachacek}, the reader will have to be mindful of this difference.
-As illustrated in \cref{ex:DH}, we point out that $\simplex_{\{i\}}$ is a single point and in the definition of $\simplex_\HH$ it simply translate the polytope in the direction~$\b{e}_i$ but does not affect the  face structure of the polytope.
+Note that the singletons hyperedges are irrelevant for our purposes.
+Namely, adding to~$\HH$ the hyperedge~$\{i\}$ for some~$i \in [n]$ just translates the polytope~$\simplex_\HH$ in the direction~$\b{e}_i$, which does not affect the face structure of the polytope.
+For our conditions on hypergraphs of \cref{thm:latticeI,thm:distributiveLatticeI}, it is convenient for us to assume that $\{i\} \in \HH$ for all $i \in [n]$.
+When quoting results from~\cite{BenedettiBergeronMachacek}, the reader will have to be mindful that they took the opposite convention.
 \end{remark}
 
 
@@ -292,12 +295,12 @@ As illustrated in \cref{ex:DH}, we point out that $\simplex_{\{i\}}$ is a single
 \label{subsec:P_H}
 
 We now recall from \cite[Thm.~2.18]{BenedettiBergeronMachacek} a combinatorial model for the graph~$(V_\HH, E_\HH)$ of~$\simplex_\HH$.
-\Nantel{As we are only interested in the one skeleton, we simplify some of the general definitions}
+As we are only interested in the $1$-skeleton of~$\simplex_\HH$, we simplify some of the general definitions of~\cite{BenedettiBergeronMachacek} which were designed to deal with all faces of~$\simplex_\HH$.
 
 \begin{definition}
 \label{def:acyclicOrientation}
 An \defn{orientation} of~$\HH$ is a map~$O$ from~$\HH$ to~$[n]$ such that~$O(H) \in H$ for all~${H \in \HH}$.
-Equivalently, we often represent the orientation~$O$ as the set of pairs~$\set{(O(H),H)}{H \in \HH, \, |H| > 1}$.\nantel{ $\scriptstyle |H|>1$ is not needed if we remove singleton}
+Equivalently, we often represent the orientation~$O$ as the set of pairs~$\set{(O(H),H)}{H \in \HH}$.
 The orientation~$O$ is \defn{acyclic} if there is no~$H_1, \dots, H_k$ with~$k \ge 2$ such that~$O(H_{i+1}) \in H_i \ssm \{O(H_i)\}$ for~$i \in [k-1]$ and~$O(H_1) \in H_k \ssm \{O(H_k)\}$.
 \end{definition}
 
@@ -348,13 +351,13 @@ The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the increasin
 
 \begin{remark}
 \label{rem:edgeNotCover}
-It is important to note that the edges in $E_\HH$ are not necessarily cover relations in $P_\HH$.
+It is important to note that the edges in $E_\HH$ are not necessarily cover relations in~$P_\HH$.
 The simplest example is given by
 %$\HH=\big\{\{1\},\{2\},\{3\},\{1,2,3\}\big\}$, 
 $\HH=\{ 1, 2, 3, 123 \}$, 
 whose hypergraphic polytope~is
 \[
-	\simplex_\HH=\simplex_1+\simplex_2+\simplex_3+\simplex_{123}=
+	\simplex_\HH = \simplex_1 + \simplex_2 + \simplex_3 + \simplex_{123} =
 	\begin{tikzpicture}[scale=.7,baseline=.0cm]
 		\node (a) at (0,-1.2) {$\scriptscriptstyle \{(1, 123)\}$};
 		\node (b) at (2.7,0) {$\scriptscriptstyle \{(2, 123)\}$};
@@ -384,10 +387,11 @@ For a permutation~$\pi$ of~$[n]$, the orientation~$\Or_\pi$ of~$\HH$ is defined 
 \]
 \end{definition}
 
-\begin{proposition}[{\cite[Lem.~2.9]{BenedettiBergeronMachacek}}] ~
+\begin{proposition}[{\cite[Lem.~2.9]{BenedettiBergeronMachacek}}]
+For any hypergraph~$\HH$ on~$[n]$,
 \begin{itemize}
-\item The map~$\Or$ is a surjection from the permutations of~$[n]$ to the acyclic orientations of~$\HH$.
-\item Two acyclic orientations~$A,B$ of~$\HH$ are related by a flip if and only if there are permutations~$\pi_A, \pi_B$ of~$[n]$ which differ by a simple transposition such that~$\Or_{\pi_A} = A$ and~$\Or_{\pi_B} = B$.
+\item the map~$\Or$ is a surjection from the permutations of~$[n]$ to the acyclic orientations of~$\HH$,
+\item two acyclic orientations~$A,B$ of~$\HH$ are related by a flip if and only if there are permutations~$\pi_A, \pi_B$ of~$[n]$ which differ by a simple transposition such that~$\Or_{\pi_A} = A$ and~$\Or_{\pi_B} = B$.
 \end{itemize}
 In other words, the graph~$(V_\HH, E_\HH)$ of~$\simplex_\HH$ is isomorphic to the graph obtained by contracting the fibers of~$\Or$ in the graph of the permutahedron.
 \end{proposition}
@@ -476,7 +480,6 @@ We will represent interval hypergraphs and their orientations graphically as fol
 	\end{tikzpicture}
 \]
 and we omit to draw the singleton $\{i\}$ for $i \in [n]$.
-\vincent{remove singletons}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -586,9 +589,9 @@ Moreover, the inversions of~$\sigma$ are the pairs~$(b,a)$ with~$a < b$ and~$a \
 
 This statement was refined in~\cite{ChatelPilaudPons} to describe Tamari interval posets.
 
-\begin{proposition}
+\begin{proposition}[{\cite[Coro.~2.24]{ChatelPilaudPons}}]
 \label{prop:TOIP}
-The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern $213$ if and only if~${a \less c \implies a \less b}$ and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
+The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern~$213$ if and only if~${a \less c \implies a \less b}$ and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
 %for every~$1 \le a < b < c \le n$,
 %\[
 %a \less c \implies a \less b
@@ -616,7 +619,7 @@ The case $a \more_{A} c$ is similar and  implies that $b \more_A c$.
 \end{example}
 
 \begin{remark}
-\cref{prop:preimageI} fails for arbitrary hypergraphs~$\HH$, for instance for~$\HH \eqdef \{1,2,3,13\}$,\nantel{ Just $\scriptstyle \{ 13\}$ if we remove singleton} there are two fibers~$\{123, 213, 132\}$ and~$\{231, 312, 321\}$ which are not intervals of the weak order.
+\cref{prop:preimageI} fails for arbitrary hypergraphs~$\HH$, for instance for~$\HH \eqdef \{1, 2, 3, 13\}$, there are two fibers~$\{123, 213, 132\}$ and~$\{231, 312, 321\}$ which are not intervals of the weak order.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -635,7 +638,7 @@ A \le B \quad \iff \quad A(I) \le B(I) \text{ for all } I \in \II .
 \end{proposition}
 
 \begin{proof}
-The forward direction is immediate\nantel{ as it holds for increasing flip by \cref{def:flip} and any cover is an increasing flip.} as it holds for cover relations of~$P_\II$ by \cref{def:flip}.
+The forward direction is immediate as it holds for increasing flip by \cref{def:flip} and any cover of~$P_\II$ is an increasing flip.
 For the backward direction, assume that~$A(I) \le B(I)$ for all~$I \in \II$.
 The proof works by induction on~$|\set{I \in \II}{A(I) < B(I)}|$.
 
@@ -643,7 +646,7 @@ The proof works by induction on~$|\set{I \in \II}{A(I) < B(I)}|$.
 %Choose~$i < j$ in this set such that~$j$ is maximal, and if draw, $i$ is maximal.
 Choose~$J \in \II$ such that~$A(J) < B(J)$ and for any~$I \in \II$ with~$A(I) < B(I)$, we have~$B(I) < B(J)$, or~$B(I) = B(J)$, then~$A(I) \le A(J)$.
 
-Let~$O$ be the orientation of~$\I$ obtained from~$A$ by flipping~$A(J)$ to~$B(J)$.\nantel{please clarify how to obtain $O$}
+Let~$O$ be the orientation of~$\I$ obtained from~$A$ by flipping~$A(J)$ to~$B(J)$ as described in \cref{def:flip}.
 We claim that~$O$ is acyclic and that~$O(I) \le B(I)$ for all~$I \in \II$. 
 We conclude by induction that~$O \le B$, and thus~$A \le O \le B$ as desired.
 
@@ -735,15 +738,17 @@ Then~$A < B$ is a cover relation of~$P_\II$ if and only if
 In this section, we prove \cref{thm:latticeI} which we first repeat: % characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
 
 \begin{definition}
-An interval hypergraph~$\II$ is stable by intersection if $I, J \in \II$ and~$|I \cap J| > 1$ impiles~$I \cap J \in \II$.
+An interval hypergraph~$\II$ is \defn{closed under intersection} if $I, J \in \II$ and~$I \cap J \ne \varnothing$ impiles~$I \cap J \in \II$.
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
 \end{theoremA}
 
 \begin{example}
 \vincent{todo}
+The hypergraphic poset of the hypergraph containing all singletons and all initial intervals is a lattice (in fact, it is the boolean lattice).
+The hypergraphic poset of the hypergraph containing all intervals is a lattice (in fact, it is the Tamari lattice).
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -904,7 +909,7 @@ This is a contradiction to the existence of $m$.
 
 \begin{remark}
 \cref{prop:latticeForward} fails when~$\HH$ is not an interval hypergraph.
-For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 5, 1234, 2345, 23, 24, 34 \}$ is not closed by intersection, while its hypergraphic poset~$P_\HH$ is a lattice.
+For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 5, 1234, 2345, 23, 24, 34 \}$ is not closed under intersection, while its hypergraphic poset~$P_\HH$ is a lattice.
 % sage: HypergraphicalPolytopes([[1,2,3,4], [2,3,4,5], [2,3], [2,4], [3,4]]).hypergraphical_poset().is_lattice()
 % True
 \vincent{Maybe we could draw this lattice. It has 24 elements.}
@@ -915,9 +920,9 @@ For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 5, 1234, 2345, 23, 24, 3
 \subsection{Properties of $P_\II$ when~$\II$ is closed under intersection}  
 \label{subsec:IntClosedI}
 
-For the converse of \cref{thm:latticeI}, we need to investigate the properties of interval hypergraphs that are closed under intersection.
+For the backward implication of \cref{thm:latticeI}, we need to investigate the properties of interval hypergraphs that are closed under intersection.
 Recall from \cref{prop:preimageI} that the fiber $\Or^{-1}(A)$ of any acyclic orientation~$A$ of~$\II$ is an interval~$[\projDown_A,\projUp_A]$ in the weak order.
-In the following we will keep this convention that $\projDown_A$ denote the minimum of this interval and $\projUp_A$ the maximum of~$\Or^{-1}(A)$.
+In the following we will keep this convention that $\projDown_A$ and $\projUp_A$ respectively denote the minimum and the maximum of the interval~$\Or^{-1}(A)$.
 
 \begin{theorem}
 \label{thm:propertiesI}
@@ -952,7 +957,7 @@ Hence, $[i,j]$ is contained in some~$I_p$ and some~$I_q$.
 As~$A$ and~$B$ are acyclic, we obtain that~$a = 1 = b$.
 
 We can thus assume that we have~$I,J \in \II$ such that~$i = B(J) \in I$ and~$j = A(I) \in J$.
-As~$\II$ is closed by intersection, we have~$\{i,j\} \subseteq K \eqdef I \cap J \in \II$.
+As~$\II$ is closed under intersection, we have~$\{i,j\} \subseteq K \eqdef I \cap J \in \II$.
 We have~$A(K) = j$, as otherwise~${A(I) = j \in K}$ an~$A(K) \in K \subseteq I$ and~$A(I) \ne A(K)$ would contradict the acyclicity of~$A$.
 Similarly, we have~$B(K) = i$.
 We conclude that~$B(K) = i < j = A(K)$ and~$K \in \II$ contradicting~(b).
@@ -960,7 +965,7 @@ We conclude that~$B(K) = i < j = A(K)$ and~$K \in \II$ contradicting~(b).
 
 \begin{remark}
 The implication \mbox{(a)$\implies$(c)} in \cref{thm:propertiesI} fails when~$\II$ is not closed under intersection.
-For instance, for~$\II = \{123, 234\}$ and the acyclic orientations
+For instance, for~$\II = \{1, 2, 3, 4, 123, 234\}$ and the acyclic orientations
 \[
 \begin{array}{ccccc}
 	\begin{tikzpicture}[scale=1,baseline=.2cm]
@@ -1047,8 +1052,8 @@ The proof for the meet~$\meet$ is similar.
 
 \begin{remark}
 \cref{prop:latticeBackward} fails when~$\HH$ is not an interval hypergraph.
-For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 12, 13, 24, 34 \}$ is closed by intersection, while its hypergraphic poset~$P_\HH$ is not a lattice.
-More generally, all hypergraphs~$\HH$ with~$|H| \le 2$ for all~$H \in \HH$ are closed by intersection (as we assume that~$\{i\} \in \HH$ for all~$i \in [n]$), and the graphical zonotopes whose oriented skeleton is a lattice were characterized in~\cite{Pilaud-acyclicReorientationLattices}.
+For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 12, 13, 24, 34 \}$ is closed under intersection, while its hypergraphic poset~$P_\HH$ is not a lattice.
+More generally, all hypergraphs~$\HH$ with~$|H| \le 2$ for all~$H \in \HH$ are closed under intersection, and the graphical zonotopes whose oriented skeleta are lattices were characterized in~\cite{Pilaud-acyclicReorientationLattices}.
 % sage: HypergraphicalPolytopes([[1,2], [1,3], [2,4], [3,4]]).hypergraphical_poset().is_lattice()
 % False
 \end{remark}
@@ -1058,7 +1063,7 @@ In fact, our proof of \cref{prop:latticeBackward} is a general statement about \
 Namely, if~$L$ is a lattice and~$P$ a poset, and $\Psi : L \to P$ is a poset morphism such that~$\Psi^{-1}(A) = [\projDown_A, \projUp_A]$ is an interval  for all $A\in P$, and $A \le B$ implies $\projDown_A \le \projUp_B$, then $P$ is a lattice where~$A \join B =\Psi(\projDown_A \join \projDown_B)$ and~$A \meet B =\Psi(\projUp_A \meet \projUp_B)$.
 Note that lattice maps satisfy the stronger condition that~$A \le B$ implies~$\projDown_A \le \projDown_B$ and~$\projUp_A \le \projUp_B$.
 It would be interesting to characterize the quasi lattice maps of the weak order.
-Note that the lattice maps where described by N.~Reading in~\cite{Reading-latticeCongruences, Reading-arcDiagrams}.
+Note that the lattice maps of the weak order where described by N.~Reading in~\cite{Reading-latticeCongruences, Reading-arcDiagrams}.
 \end{remark}
 
 \begin{proposition}
@@ -1105,11 +1110,15 @@ We say that an interval hypergraph~$\II$ is \defn{distributive} if for all~$I, J
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is a distributive interval hypergraph.
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is a distributive interval hypergraph.
 \end{theoremA}
 
 \begin{example}
-\vincent{todo}
+\vincent{todo: one more concrete example.}
+The hypergraphic poset of the hypergraph containing all singletons and all initial intervals is a distributive lattice (in fact, it is the boolean lattice).
+
+The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a lattice but is not distributive (it is a pentagon).
+In general, the hypergraphic poset of all intervals is the Tamari lattice which is not distributive.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1128,7 +1137,7 @@ Define
 \end{notation}
 
 \begin{notation}
-For~$j \in \cJ_\II$, let~$J_j$ be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
+For~$j \in \cJ_\II$, let~$J_j$ be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection) and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
 \end{notation}
 
 \begin{notation}
@@ -1141,12 +1150,13 @@ For~$j \in \cJ_\II$, consider the acyclic orientation~$A_j \eqdef \Or_{(\mu_j, \
 (\mu_j, \mu_j+1, \dots, j) = 12 \cdots (\mu_j-1)j\,\mu_j \cdots (j-1) (j+1) \cdots n
 \]
 obtained from the identity permutation by placing~$j$ just before $\mu_j$.
-Note that that for all $I\in\II$
+Note that that for all $J \in \II$
 \begin{equation}
 \label{eq:sourceOj}
-A_j(I)=\begin{cases}
-	j & \text{if } j \in I \text{ and } \min(I)=\mu_j,\\
-	\min(I) & \text{otherwise.}
+A_j(J) =
+\begin{cases}
+	j & \text{if } j \in J \text{ and } \min(J)=\mu_j,\\
+	\min(J) & \text{otherwise.}
 \end{cases}
 \end{equation}
 \end{notation}
@@ -1154,6 +1164,15 @@ A_j(I)=\begin{cases}
 \begin{example}
 \vincent{todo}
 \end{example}
+
+\begin{lemma}
+\label{lem:distinctIrreducibles}
+For $i \ne j \in \cJ_\II$, we have $A_i \ne A_j$.
+\end{lemma}
+
+\begin{proof}
+If~$i \ne j$, then we have~$A_i(J_j) \in \{\mu_j, i\}$ while~$A_j(J_j) = j \notin \{\mu_j,i\}$.
+\end{proof}
 
 \begin{lemma}
 \label{lem:irrorder}
@@ -1166,7 +1185,7 @@ By \cref{prop:sourceOrderI} we have~$A_i \le A_j$ if and only if~$A_i(I) \le A_j
 The forward direction is thus a direct consequence of the following four observations:
 \begin{itemize}
 \item if~$\mu_i \ne \mu_j$, then~$A_i(J_i) = i > \mu_i = \min(J_i) = A_j(J_i)$,
-\item if~$\nu_i < \nu_j$, then~$j \notin J_i \ssm \mu_i$, so that~$A_i(J_i) = i > \mu_i = \min(J_i) = A_j(J_i)$,
+\item if~$\nu_i < \nu_j$, then~$j \notin J_i \ssm \{\mu_i\}$, so that~$A_i(J_i) = i > \mu_i = \min(J_i) = A_j(J_i)$,
 \item if~$i > j$, then~$A_i(J_i) = i > j \ge A_j(J_i)$,
 \item $i \le j$ implies that~$\mu_i \le \mu_j$ and~$\nu_i \le \nu_j$.
 \end{itemize}
@@ -1203,7 +1222,7 @@ Hence, $A_j \le A$ by \cref{prop:sourceOrderI}.
 \end{proof}
 
 \begin{proposition}
-\label{prop:irrOj}
+\label{prop:AjJoinIrreducible}
 For any~$j\in \cJ_\II$, the acyclic orientation~$A_j$ is join irreducible.
 \end{proposition}
 
@@ -1212,15 +1231,28 @@ By \cref{lem:subirr}, the lower set of~$A_j$ in~$P_\II$ is the chain $\min(P_\II
 Hence, $A_j$ is join irreducible.
 \end{proof}
 
+\begin{corollary}
+\label{coro:irreduciblePosetMorphism}
+Then the map $j \mapsto A_j$ is an injective poset morphism from~$(\cJ_\II, \preccurlyeq)$ to the subposet of join irreducibles of~$P_\II$.
+\end{corollary}
+
+\begin{proof}
+Immediate from \cref{lem:distinctIrreducibles,prop:AjJoinIrreducible,lem:irrorder}.
+\end{proof}
+
 \begin{proposition}
+\label{prop:injectivityDistributive}
 For any two lower sets~$X$ and~$Y$ of~$(\cJ_\II, \preccurlyeq)$, if~$\bigJoin\limits_{x \in X} A_x = \bigJoin\limits_{y \in Y} A_y$ then~$X = Y$.
 \end{proposition}
 
 \begin{proof}
 Assume~$\bigJoin\limits_{x \in X} A_x = \bigJoin\limits_{y \in Y} A_y$ and let~$x \in X$.
-Then $x = A_x(J_x) \le \big( \bigJoin\limits_{x \in X} A_x \big)(J_i) = \big( \bigJoin\limits_{y \in Y} A_y \big)(J_i)$.
-From the description of the join of \cref{prop:joinLattice}, we thus obtain that there exists~$y \in Y$ and~$J \in \II$ such that~$A_y(J) \in I$ and~$\min(J) \le x < A_y(J)$.
-\vincent{IN PROGRESS...}
+Then $x = A_x(J_x) \le \big( \bigJoin\limits_{x \in X} A_x \big)(J_x) = \big( \bigJoin\limits_{y \in Y} A_y \big)(J_x)$.
+From the description of the join of \cref{prop:joinLattice}, we thus obtain that there exists~$y \in Y$ and~$J \in \II$ such that~$A_y(J) \in J_x$ and~$\min(J) < x \le A_y(J)$.
+As~$\min(J) \ne A_y(J)$, we obtain that~$A_y(J) = y$ and~$\min(J) = \mu_y$.
+We get that~$\mu_y < x \le y \le \nu_x$, hence that~$x \in J_y \ssm \{\mu_y\}$ and~$y \in J_x \ssm \{\mu_x\}$ so that~$J_x = J_y$.
+As~$x \le y$, we conclude that~$x \preccurlyeq y$, so that~$x \in Y$.
+We thus obtained that~$X \subseteq Y$, and thus~$X = Y$ by symmetry.
 \end{proof}
 
 \begin{proposition}
@@ -1228,7 +1260,12 @@ $\displaystyle \max(P_\II) = \bigJoin\limits_{j \in \cJ_\II} A_j$.
 \end{proposition}
 
 \begin{proof}
-\vincent{todo}
+Assume by contradiction~$\max(P_\II) \ne \bigJoin_{j \in \cJ_\II} A_j \defeq A$.
+Then there is~$I \in \II$ with~${A(I) < \max(I)}$.
+Let~$j \eqdef A(I) + 1$.
+As~$j \in I \ssm \{\min(I)\}$, we have~$A(J_j) \in J_j \subseteq I$ and~$A(I) = j-1 \in J_j$.
+As~$A_j \le A$, we have~$A(I) = j-1 < j = A_j(J_j) \le A(J_j)$ so that~$A(I) \ne A(J_j)$.
+We thus obtain that~$A$ is cyclic, a contradiction.
 \end{proof}
 
 \begin{corollary}
@@ -1240,29 +1277,87 @@ For any interval hypergraph~$\II$ closed under intersection, $P_\II$ contains a 
 \subsection{If~$\II$ is distributive then $P_\II$ is distributive}
 \label{subsec:distributiveLatticeBackward}
 
+We now prove the backward direction of \cref{thm:distributiveLatticeI}.
+
 \begin{lemma}
-For a distributive interval hypergraph~$\II$, an acyclic orientation~$A$ of~$\II$, and~$J \in \II$ such that~$A(J) \ne \min(J)$, then there exists~$i \in J$ such that the orientation obtained from~$A$ by flipping~$j$ to~$i$ is acyclic.
+\label{lem:alwaysFlippable}
+For a distributive interval hypergraph~$\II$, an acyclic orientation~$A$ of~$\II$, and~$J \in \II$ such that~$j \eqdef A(J) \ne \min(J)$, then there exists~$i$ such that
+\[
+\min(J) \le i \le \max\set{\max(I)}{I \in \II, \; \min(I) = \min(J), \; \max(I) < j}
+\]
+and the orientation obtained from~$A$ by flipping~$j$ to~$i$ is acyclic.
 \end{lemma}
 
 \begin{proof}
-\vincent{todo}
+%Assume without loss of generality that $\min(J) \le \min(J')$ for all~$J' \in \II$ with~$A(J') = j$.
+Let~$I \in \II$ be maximal such that~$\min(I) = \min(J)$ and~$\max(I) < j$, and let~$i \eqdef A(I)$.
+Let~$O$ be the orientation obtained from~$A$ by flipping~$j$ to~$i$ as in \cref{def:flip}.
+If~$O$ is cyclic, there exists~$K,K' \in \II$ such that~$O(K) \in K'$, $O(K') \in K$, and~$O(K) \ne O(K')$.
+As~$A$ is acyclic, we have either~$A(K) \ne O(K)$ or~$A(K') \ne O(K')$, but not both since~$O(K) \ne O(K')$.
+We can thus assume that~$A(K) = O(K)$ while $A(K') = j$ and~$O(K') = i$.
+%As~$A(K') = j$, we have~$\min(I) = \min(J) \le \min(K')$ by the first assumption of the proof.
+%Moreover, we have~$i \in K$ and~$\{i,j\} \subseteq K'$.
+If~$j \in K$, then we have~$A(K) \ne j = A(K')$ (otherwise, $O(K) = i = O(K')$), and $A(K) = O(K) \in K'$ and~$A(K') = j \in K$, contradicting the acyclicity of~$A$.
+As~$i \in K$ and~$j \notin K$, we obtain that~$\max(K) < j$.
+As~$A(I) = i \in K$ and~$A(K) = O(K) \ne O(K') = i = A(I)$, we have~$K \not\subseteq I$ by acyclicity of~$A$.
+If~$\min(I) < \min(K)$, then~$I \not\subseteq K$ and~$I \not\supseteq K$ and~$I \cap K \ni i$, and $K$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$.
+If~$\min(K) < \min(J)$ and~$\min(K') < \min(J)$, then we have~$J \not\subseteq K$ and~$J \not\supseteq K$ and~$J \cap K \ni i$, and~$J \cap K$ is neither initial nor final in~$K'$, contradicting the distributivity of~$\II$.
+As~$\II$ is closed under intersection and we have~$A(K) = O(K) \in K'$, we can thus assume that~$\min(I) = \min(K)$.
+We thus obtain that~$K \subseteq I$.
+As~$A(K) = O(K) \ne O(K') = i = A(I)$, this contradicts the acyclicity of~$A$.
+We conclude that~$O$ is acyclic, which proves the statement.
 \end{proof}
 
+\begin{remark}
+\cref{lem:alwaysFlippable} fails when~$\II$ is distributive.
+For instance, for~$\II = \{1, 2, 3, 12, 23, 123\}$, the interval~$J = 23$ and the acyclic orientation
+\[
+	A = 
+	\begin{tikzpicture}[scale=1,baseline=.2cm]
+	\foreach \x in {1,...,3}
+		\node (\x) at (\x*.5,-.1) [inner sep = -1pt] {$\scriptstyle \x$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,.4)--(1,.4);   \node at (.5,.4) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2);   \node at (1.5,.2) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,.6)--(1.5,.6);   \node at (1.5,.6) {$\bullet$};
+	\end{tikzpicture}
+\]
+\end{remark}
+
 \begin{proposition}
-\label{prop:distributiveForwardI}
+\label{prop:irreduciblePosetIsomorphism}
 If~$\II$ is a distributive interval hypergraph, then the map $j \mapsto A_j$ is a poset isomorphism from~$(\cJ_\II, \preccurlyeq)$ to the subposet of join irreducibles of~$P_\II$.
 \end{proposition}
 
 \begin{proof}
-\vincent{todo}
+We have already seen in \cref{coro:irreduciblePosetMorphism} that~$j \mapsto A_j$ is an injective poset morphism.
+We thus just need to show that the distributivity of~$\II$ implies the surjectivity of this morphism.
+Let~$A < A'$ be two acyclic orientations of~$\II$ related by an increasing flip or~$i$ to~$j$.
+If there is~$J \in \II$ such that~$A'(J) \notin \{\min(J), j\}$, then \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$A(J')$ to some~$k < A(J') \ne j$.
+If there is~$J \in \II$ such that~$A'(J) = j$ and~$\min(J) < \mu_j$, then the distributivity of~$\II$ implies that~$\max(I) < \mu_j$ for any~$I \in \II$ such that~$\min(I) = \min(J)$ and~$\max(I) < j$ (otherwise, $I \not\subseteq J_j$ and~$I \not\supseteq J_j$ and~$I \cap J_i \ni \mu_j$, and~$I \cap J_j$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$).
+Hence, \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$j$ to some~$k < \mu_j$.
+As $A'$ is acyclic, there is no~$J \in \II$ such that~$A'(J) = \min(J) = \mu_j$ and~$j \in J$.
+We conclude that if~$A'$ admits a single decreasing flip, then~$A'(J) = j$ if~$j \in J$ and~$\min(J) = \mu_j$, and~$A'(J) = \min(J)$ otherwise, so that~$A' = A_j$.
 \end{proof}
 
+\begin{remark}
+We will see in \cref{lem:oneMoreIrreducible} that the surjectivity in \cref{prop:irreduciblePosetIsomorphism} fails when~$\II$ is not distributive.
+\end{remark}
+
 \begin{proposition}
-If~$\II$ is a distributive interval hypergraph, then the map~$A \mapsto \set{j \in \cJ_\II}{A_j \le A}$ is a bijection from acyclic orientations of~$\II$ to lower sets of~$(\cJ_\II, \preccurlyeq)$. Hence~$P_\II$ is a distributive lattice.
+\label{prop:distributiveForwardI}
+If~$\II$ is a distributive interval hypergraph, then the maps
+\[
+\Phi : A \mapsto \set{j \in \cJ_\II}{A_j \le A}
+\qquad\text{and}\qquad
+\Psi : X \mapsto \bigJoin_{x \in X} A_x
+\]
+are inverse bijections between the acyclic orientations of~$\II$ and the lower sets of~$(\cJ_\II, \preccurlyeq)$. Hence~$P_\II$ is a distributive lattice.
 \end{proposition}
 
 \begin{proof}
-\vincent{todo}
+In a finite lattice, any element can always be written as the join of the join-irreducible elements below it.
+\cref{prop:irreduciblePosetIsomorphism} thus implies that~$\Psi(\Phi(A)) = A$.
+The statement follows since $\Psi$ is injective by \cref{prop:injectivityDistributive}.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1270,7 +1365,40 @@ If~$\II$ is a distributive interval hypergraph, then the map~$A \mapsto \set{j \
 \subsection{If~$P_\II$ is distributive then~$\II$ is distributive}
 \label{subsec:distributiveLatticeForward}
 
+We now prove the forward direction of \cref{thm:distributiveLatticeI}.
 
+\begin{lemma}
+\label{lem:oneMoreIrreducible}
+If an interval hypergraph~$\II$ is not distributive, there is a join irreducible acyclic orientation~$A$ such that~$A \not\le A_j$ for all~$j \in \cJ_\II$.
+\end{lemma}
+
+\begin{proof}
+As $\II$ is not distributive, there exist~$I,J,K \in \II$ with~$I \not\subseteq J$, $I \not\supseteq J$, $I \cap J \ne \varnothing$, and~$I \cap J$ is neither initial nor final in~$K$.
+Assume by symmetry that~$\min(I) < \min(J) \le \max(I) < \max(J)$, and let~$j \eqdef \min(J \ssm I)$ and~$k \eqdef \min(K)$.
+Let~$A \eqdef \Or_{(k, \dots, j)}$ be the acyclic orientation of~$\II$ obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation~$(k, \dots, j)  = 12 \cdots (k-1)j\, k \cdots (j-1) (j+1) \cdots n$.
+In other words,
+\[
+A(K) = 
+\begin{cases}
+j & \text{if } j \in J \text{ and } \min(J) \ge k \\
+\min(J) & \text{otherwise.}
+\end{cases}
+\]
+We claim that the flip of~$j$ to~$k$ is the only decreasing flip from~$A$.
+\vincent{todo}
+
+Finally, as~$A(K) = j$ while~$A_j(K) = \min(K) < j$, we have~$A \not\le A_j$ for all~$j \in \cJ_\II$ by \cref{prop:sourceOrderI}.
+\end{proof}
+
+\begin{proposition}
+If~$\II$ is an interval hypergraph such that $P_\II$ is a distributive lattice, then~$\II$ is distributive.
+\end{proposition}
+
+\begin{proof}
+If~$\II$ is not closed under intersection, then~$P_\II$ is not even a lattice by \cref{prop:latticeForward}.
+If~$\II$ is closed under intersection but not distributive, consider the join irreducible acyclic orientation~$A$ of \cref{lem:oneMoreIrreducible}.
+As~$A \not\le A_j$ for all~$j \in \cJ_\II$, and~$\max(P_\II) = \bigJoin_{j \in \cJ_\II} A_j = A \join \bigJoin_{j \in \cJ_\II} A_j$, we obtain that~$P_\II$ is not distributive.
+\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
