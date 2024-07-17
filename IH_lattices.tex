@@ -200,7 +200,7 @@ Note that this family does not contain the permutahedron, but contains
 \item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$~for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
 \item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
-We obtain the following characterizations.
+We obtain the following characterizations, where we assume that~$\{i\} \in \II$ for all~$i \in [n]$ as mentioned earlier.
 
 \begin{theoremA}
 \label{thm:latticeI}
@@ -209,7 +209,7 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a lattice if and only if 
 
 \begin{theoremA}
 \label{thm:distributiveLatticeI}
-For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if and only if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$. \nantel{what about singleton?}
+For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if and only if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$.
 \end{theoremA}
 
 \begin{theoremA}
@@ -1333,7 +1333,7 @@ We have already seen in \cref{coro:irreduciblePosetMorphism} that~$j \mapsto A_j
 We thus just need to show that the distributivity of~$\II$ implies the surjectivity of this morphism.
 Let~$A < A'$ be two acyclic orientations of~$\II$ related by an increasing flip or~$i$ to~$j$.
 If there is~$J \in \II$ such that~$A'(J) \notin \{\min(J), j\}$, then \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$A(J')$ to some~$k < A(J') \ne j$.
-If there is~$J \in \II$ such that~$A'(J) = j$ and~$\min(J) < \mu_j$, then the distributivity of~$\II$ implies that~$\max(I) < \mu_j$ for any~$I \in \II$ such that~$\min(I) = \min(J)$ and~$\max(I) < j$ (otherwise, $I \not\subseteq J_j$ and~$I \not\supseteq J_j$ and~$I \cap J_i \ni \mu_j$, and~$I \cap J_j$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$).
+If there is~$J \in \II$ such that~$A'(J) = j$ and~$\min(J) < \mu_j$, then the distributivity of~$\II$ implies that~$\max(I) < \mu_j$ for any~$I \in \II$ such that~$\min(I) = \min(J)$ and~$\max(I) < j$ (otherwise, $I \not\subseteq J_j$ and~$I \not\supseteq J_j$ and~$\mu_j \in I \cap J_i \subseteq J$, and~$I \cap J_j$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$).
 Hence, \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$j$ to some~$k < \mu_j$.
 As $A'$ is acyclic, there is no~$J \in \II$ such that~$A'(J) = \min(J) = \mu_j$ and~$j \in J$.
 We conclude that if~$A'$ admits a single decreasing flip, then~$A'(J) = j$ if~$j \in J$ and~$\min(J) = \mu_j$, and~$A'(J) = \min(J)$ otherwise, so that~$A' = A_j$.
@@ -1369,23 +1369,30 @@ We now prove the forward direction of \cref{thm:distributiveLatticeI}.
 
 \begin{lemma}
 \label{lem:oneMoreIrreducible}
-If an interval hypergraph~$\II$ is not distributive, there is a join irreducible acyclic orientation~$A$ such that~$A \not\le A_j$ for all~$j \in \cJ_\II$.
+If an interval hypergraph~$\II$ is closed under intersection but not distributive, there is a join irreducible acyclic orientation~$A$ such that~$A \not\le A_j$ for all~$j \in \cJ_\II$.
 \end{lemma}
 
 \begin{proof}
-As $\II$ is not distributive, there exist~$I,J,K \in \II$ with~$I \not\subseteq J$, $I \not\supseteq J$, $I \cap J \ne \varnothing$, and~$I \cap J$ is neither initial nor final in~$K$.
-Assume by symmetry that~$\min(I) < \min(J) \le \max(I) < \max(J)$, and let~$j \eqdef \min(J \ssm I)$ and~$k \eqdef \min(K)$.
-Let~$A \eqdef \Or_{(k, \dots, j)}$ be the acyclic orientation of~$\II$ obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation~$(k, \dots, j)  = 12 \cdots (k-1)j\, k \cdots (j-1) (j+1) \cdots n$.
+As $\II$ is closed under intersection but not distributive, there are~$I,J,K \in \II$ with~$I \not\subseteq J$,~$I \not\supseteq J$, $\varnothing \ne I \cap J \subseteq K$, and~$I \cap J$ is neither initial nor final in~$K$.
+By symmetry, we can assume that~$\min(I) < \min(J) \le \max(I) < \max(J)$. 
+As~$I \cap J$ is neither initial nor final in~$K$, we have~$\min(K) < \min(J) \le \max(I) < \max(K)$.
+As~$\II$ is closed under intersection, we can even assume that~$\min(I) = \min(K)$ and~$\max(J) = \max(K)$.
+Let~$i \eqdef \min(I) = \min(K)$ and~$j \eqdef \min(J \ssm I)$.
+Let~$A \eqdef \Or_{(i, \dots, j)}$ be the acyclic orientation of~$\II$ obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation~$(i, \dots, j)  = 12 \cdots (i-1)j\, i \cdots (j-1) (j+1) \cdots n$.
 In other words,
 \[
 A(K) = 
 \begin{cases}
-j & \text{if } j \in J \text{ and } \min(J) \ge k \\
+j & \text{if } j \in J \text{ and } \min(J) \ge i \\
 \min(J) & \text{otherwise.}
 \end{cases}
 \]
-We claim that the flip of~$j$ to~$k$ is the only decreasing flip from~$A$.
-\vincent{todo}
+We claim that the flip of~$j$ to~$i$ is the only decreasing flip from~$A$.
+Let~$A'$ be an acyclic orientation of~$\II$ obtained by a decreasing flip from~$A$.
+Let~$H \in \II$ be such that~$A'(H) < A(H)$.
+Since~$A(H) \in \{\min(H), j\}$, we have~$A(H) = j$, so that~$i \le \min(H) \le A'(H) < A(H) = j$.
+If~$A'(H) \ne i$, then~$A'(K) = A'(H) \in I$ (since~$A'(H) \in K$ and~$A(K) = j$) and $A'(I) \le A(I) = \min(I) = i \in K$ (since~$j \notin I$), contradicting the acyclicity of~$A'$.
+We conclude that~$A'(H) = i$, so that~$A'$ is indeed obtained from~$A$ by flipping $j$ to~$i$.
 
 Finally, as~$A(K) = j$ while~$A_j(K) = \min(K) < j$, we have~$A \not\le A_j$ for all~$j \in \cJ_\II$ by \cref{prop:sourceOrderI}.
 \end{proof}
