@@ -4,6 +4,7 @@
 \hypersetup{colorlinks=true, citecolor=PineGreen, linkcolor=PineGreen}
 %\usepackage[all]{xy}
 \usepackage{tikz}\usetikzlibrary{trees,snakes,shapes,arrows,matrix,calc,arrows.meta}
+\usepackage{tikz-qtree}
 \usepackage{comment}
 \usepackage{etex}
 \usepackage{ulem}\normalem % to strike through a word
@@ -140,9 +141,47 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 \newcommand{\HH}{\mathbb H}  % general hypergraph
 \newcommand{\II}{\mathbb I} % interval hypergraph
 \newcommand{\cJ}{\cal{J}} % basic irreducibles index set
+\newcommand{\cIJ}{\cal{IJ}} % basic irreducibles index set
 \newcommand{\cX}{\cal{X}}
 \newcommand{\cY}{\cal{Y}}
 \newcommand{\cA}{\cal{A}}
+
+% interval hypergraph acyclic orientation
+\newcommand{\intervalHypergraph}[2]{
+	\begin{tikzpicture}[baseline=0]
+		\foreach \x in {1,...,#1} {
+			\node (\x) at (\x*.5,-.3) [inner sep = -1pt] {$\scriptstyle \x$};
+		}
+		\newcount{\y} \y=0
+		\foreach \a/\b in {#2} {
+			\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (\a*.5,\y*.2)--(\b*.5,\y*.2);
+			\global\advance\y by 1
+		}
+		\node at (.5,0) {\phantom{$\bullet$}};
+		\node at (#1*.5,0) {\phantom{$\bullet$}};
+	\end{tikzpicture}
+}
+
+\newcommand{\acyclicOrientation}[2]{
+	\begin{tikzpicture}[baseline=0]
+		\foreach \x in {1,...,#1} {
+			\node (\x) at (\x*.5,-.3) [inner sep = -1pt] {$\scriptstyle \x$};
+		}
+		\newcount{\y} \y=0
+		\foreach \a/\b/\c in {#2} {
+			\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (\a*.5,\y*.2)--(\b*.5,\y*.2); \node at (\c*.5,\y*.2) {$\bullet$};
+			\global\advance\y by 1
+		}
+		\node at (.5,0) {\phantom{$\bullet$}};
+		\node at (#1*.5,0) {\phantom{$\bullet$}};
+	\end{tikzpicture}
+}
+
+\newcommand{\tree}[1]{
+	\begin{tikzpicture}[level distance = 20pt]
+	\Tree #1
+	\end{tikzpicture}
+}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -196,11 +235,12 @@ In this paper, we study the case of \defn{interval hypergraphs}~$\II$, \ie when 
 Note that this family does not contain the permutahedron, but contains
 \begin{itemize}
 \item the classical associahedron of~\cite{ShniderSternberg,Loday} when~$\II$ contains all intervals of~$[n]$,
-\item the Pitman--Stanley polytope of~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
+\item the Pitman--Stanley polytope~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
 \item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$~for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
 \item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
 We obtain the following characterizations, where we assume that~$\{i\} \in \II$ for all~$i \in [n]$ as mentioned earlier.
+See \cref{fig:notLattices,fig:notSemidistributiveLattices,fig:Tamari,fig:distributiveLattices} for illustrations of these characterizations.
 
 \begin{theoremA}
 \label{thm:latticeI}
@@ -218,6 +258,11 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semid
 \vincent{todo}
 \end{theoremA}
 
+\begin{theoremA}
+\label{thm:quotientLatticeI}
+For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semilattice quotient of the weak order on permutations if and only if it is closed under left (resp.~right) subintervals.
+\end{theoremA}
+
 For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
 
 \vincent{In progress}
@@ -228,6 +273,7 @@ For instance, among the four above-mentioned families of interval hypergraphic p
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
 \section{Hypergraphic posets}
 \label{sec:HP}
 
@@ -371,6 +417,19 @@ whose hypergraphic polytope~is
 and clearly the left edge of $\simplex_\HH$ is not a cover relation of~$P_\HH$.
 \end{remark}
 
+\begin{proposition}
+\label{prop:antiIsomorphism}
+For~$x \in n$, define~$x^\leftrightarrow \eqdef n-x+1$.
+For~$H \subseteq [n]$, define~$H^\leftrightarrow \eqdef \set{h^\leftrightarrow}{h \in H}$.
+For an hypergraph~$\HH$, define~$\HH^\leftrightarrow \eqdef \set{H^\leftrightarrow}{H \in \HH}$.
+For an orientation~$O$ of~$\HH$, define the orientation~$O^\leftrightarrow$ of~$\HH^\leftrightarrow$ by~$O^\leftrightarrow(H^\leftrightarrow) \eqdef O(H)^\leftrightarrow$.
+Then the map~$A \mapsto A^\leftrightarrow$ is an anti-isomorphism from~$P_\HH$ to~$P_{\HH^\leftrightarrow}$.
+\end{proposition}
+
+\begin{proof}
+Straightforward.
+\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Surjection map} 
@@ -459,27 +518,15 @@ is an acyclic orientation of~$\II$.
 We will represent interval hypergraphs and their orientations graphically as follow:
 \vincent{We should make a command for these drawings.}
 \[
-	\II =  
-	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\foreach \x in {1,...,4}
-		\node (\x) at (\x*.5,-.4) [inner sep = -1pt] {$\scriptstyle \x$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.2)--(2,-.2); 
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,0)--(1.5,0); 
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2); 
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.4)--(2,.4); 
-	\end{tikzpicture}
+	\II =  \raisebox{-.2cm}{\intervalHypergraph{4}{1/4,1/3,2/3,2/4}}
 	\qquad\qquad
-	\Or_{4132}  =  
-	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\foreach \x in {1,...,4}
-		\node (\x) at (\x*.5,-.4) [inner sep = -1pt] {$\scriptstyle \x$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,-.2)--(2,-.2); \node at (2,-.2) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,0)--(1.5,0); \node at (.5,0) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2); \node at (1.5,.2) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.4)--(2,.4); \node at (2,.4) {$\bullet$};
-	\end{tikzpicture}
+	\Or_{4132}  =  \raisebox{-.2cm}{\acyclicOrientation{4}{1/4/4,1/3/1,2/3/3,2/4/4}}
 \]
 and we omit to draw the singleton $\{i\}$ for $i \in [n]$.
+\end{example}
+
+\begin{example}
+We have represented some hypergraphic posets in \cref{fig:notLattices,fig:notSemidistributiveLattices,fig:Tamari,fig:distributiveLattices}.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -574,6 +621,7 @@ As~$O(I_1) \in I_k$, we get~$O(I_{k-1}) \in [O(I_1), O(I_k)] \subseteq I_k$, so 
 
 One striking property for interval hypergraphs is that the fibers of the surjection~$\Or$ are intervals in the weak order.
 To describe this we first need to recall the following classical result of A.~Bj\"orner and M.~Wachs~\cite[Thm.~6.8]{BjornerWachs}
+\vincent{We need pictures of the surjection map and of the fibers. Here and latter.}
 
 \begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
 \label{prop:WOIP}
@@ -735,11 +783,129 @@ Then~$A < B$ is a cover relation of~$P_\II$ if and only if
 \section{Interval hypergraphic lattices}
 \label{sec:LatticePI}
 
+\begin{figure}
+	\centerline{
+		\begin{tabular}{c@{\qquad}c}
+			\begin{tikzpicture}[scale=1.5,baseline=-3.5cm]
+				\node (a) at (2,0) {\acyclicOrientation{4}{1/3/1,2/4/2}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/3/1,2/4/3}};
+				\node (c) at (3,1) {\acyclicOrientation{4}{1/3/2,2/4/2}};
+				\node (d) at (1,2) {\acyclicOrientation{4}{1/3/1,2/4/4}};
+				\node (e) at (3,3) {\acyclicOrientation{4}{1/3/3,2/4/3}};
+				\node (f) at (1,3) {\acyclicOrientation{4}{1/3/2,2/4/4}};
+				\node (g) at (2,4) {\acyclicOrientation{4}{1/3/3,2/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (b)--(d);
+				\draw (b)--(e);
+				\draw (c)--(e);
+				\draw (c)--(f);
+				\draw (d)--(f);
+				\draw (f)--(g);
+				\draw (e)--(g);
+			\end{tikzpicture}
+			&
+			\begin{tikzpicture}[scale=2.5]
+				\node (a) at (2.5,0) {\acyclicOrientation{4}{1/2/1,1/3/1,1/4/1,2/4/2,3/4/3}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/2/1,1/3/1,1/4/1,2/4/3,3/4/3}};
+				\node (c) at (2.5,1) {\acyclicOrientation{4}{1/2/1,1/3/1,1/4/1,2/4/2,3/4/4}};
+				\node (d) at (4,1) {\acyclicOrientation{4}{1/2/2,1/3/2,1/4/2,2/4/2,3/4/3}};
+				\node (e) at (1,2) {\acyclicOrientation{4}{1/2/1,1/3/1,1/4/1,2/4/4,3/4/4}};
+				\node (f) at (2,2) {\acyclicOrientation{4}{1/2/1,1/3/3,1/4/3,2/4/3,3/4/3}};
+				\node (g) at (4,2) {\acyclicOrientation{4}{1/2/2,1/3/2,1/4/2,2/4/2,3/4/4}};
+				\node (h) at (1,3) {\acyclicOrientation{4}{1/2/1,1/3/1,1/4/4,2/4/4,3/4/4}};
+				\node (i) at (3,3) {\acyclicOrientation{4}{1/2/2,1/3/3,1/4/3,2/4/3,3/4/3}};
+				\node (j) at (2,4) {\acyclicOrientation{4}{1/2/1,1/3/2,1/4/4,2/4/4,3/4/4}};
+				\node (k) at (4,4) {\acyclicOrientation{4}{1/2/2,1/3/2,1/4/4,2/4/4,3/4/4}};
+				\node (l) at (3,5) {\acyclicOrientation{4}{1/2/2,1/3/3,1/4/4,2/4/4,3/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (a)--(d);
+				\draw (b)--(e);
+				\draw (b)--(f);
+				\draw (c)--(e);
+				\draw (c)--(g);
+				\draw (d)--(i);
+				\draw (d)--(g);
+				\draw (e)--(h);
+				\draw (f)--(i);
+				\draw (f)--(j);
+				\draw (g)--(k);
+				\draw (h)--(j);
+				\draw (h)--(k);
+				\draw (i)--(l);
+				\draw (j)--(l);
+				\draw (k)--(l);
+			\end{tikzpicture}
+			\\[.2cm]
+			$\{1,2,3,4,123,234\}$
+			&
+			$\{1,2,3,4,12,123,1234,234,34\}$
+			\\
+			not lattice
+			&
+			not lattice
+		\end{tabular}
+	}
+	\caption{Two interval hypergraphic posets which are not lattices.}
+	\label{fig:notLattices}
+\end{figure}
+
+\begin{figure}
+	\centerline{
+		\begin{tikzpicture}[scale=2.2]
+			\node (a) at (3,0) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/3,1/3/1,2/4/2,1/4/1}};
+			\node (b) at (1,1) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/3/2,2/4/2,1/4/2}};
+			\node (c) at (3,1) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/1,2/4/3,1/4/1}};
+			\node (d) at (5,1) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/2,1/4/1}};
+			\node (e) at (3,3) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/3/2,2/4/2,1/4/2}};
+			\node (f) at (5,2) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/1}};
+			\node (g) at (2,4) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/3,2/4/3,1/4/3}};
+			\node (h) at (4,3.5) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/4}};
+			\node (i) at (5,3) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/1,2/4/4,1/4/1}};
+			\node (j) at (1,5) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/3,1/3/3,2/4/3,1/4/3}};
+			\node (k) at (3,5) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/3/2,2/4/4,1/4/4}};
+			\node (l) at (5,4) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/1,2/4/4,1/4/4}};
+			\node (m) at (5,5) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/3,2/4/4,1/4/4}};
+			\node (n) at (3,6) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/4,1/3/3,2/4/4,1/4/4}};
+			\draw (a)--(b);
+			\draw (a)--(c);
+			\draw (a)--(d);
+			\draw (b)--(e);
+			\draw (b)--(j);
+			\draw (c)--(g);
+			\draw (c)--(i);
+			\draw (d)--(e);
+			\draw (d)--(f);
+			\draw (e)--(k);
+			\draw (f)--(h);
+			\draw (f)--(i);
+			\draw (g)--(j);
+			\draw (g)--(m);
+			\draw (h)--(k);
+			\draw (h)--(l);
+			\draw (i)--(l);
+			\draw (j)--(n);
+			\draw (k)--(n);
+			\draw (l)--(m);
+			\draw (m)--(n);
+		\end{tikzpicture}
+	}
+	\vspace{.2cm}
+	\centerline{$\{1,2,3,4,12,23,34,1234\}$}
+	\centerline{semidistributive lattice, but not distributive}
+	\caption{The Tamari lattice.}
+	\label{fig:Tamari}
+\end{figure}
+
 In this section, we prove \cref{thm:latticeI} which we first repeat: % characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
 
 \begin{definition}
+\label{def:intersectionClosed}
 An interval hypergraph~$\II$ is \defn{closed under intersection} if $I, J \in \II$ and~$I \cap J \ne \varnothing$ impiles~$I \cap J \in \II$.
 \end{definition}
+
+\vincent{recall basic definitions of lattices.}
 
 \begin{theoremA}
 For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
@@ -747,8 +913,9 @@ For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n
 
 \begin{example}
 \vincent{todo}
-The hypergraphic poset of the hypergraph containing all singletons and all initial intervals is a lattice (in fact, it is the boolean lattice).
-The hypergraphic poset of the hypergraph containing all intervals is a lattice (in fact, it is the Tamari lattice).
+The hypergraphic poset of the hypergraph containing all singletons and all initial intervals is a lattice (in fact, it is the boolean lattice). See \cref{fig:notLattices}.
+
+The hypergraphic poset of the hypergraph containing all intervals is a lattice (in fact, it is the Tamari lattice). See \cref{fig:Tamari}.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -757,6 +924,7 @@ The hypergraphic poset of the hypergraph containing all intervals is a lattice (
 \label{subsec:latticeForward}
 
 We are now ready to show the forward implication of \cref{thm:latticeI}.
+See \cref{fig:notLattices} for an illustration.
 
 \begin{proposition}
 \label{prop:latticeForward}
@@ -803,8 +971,10 @@ We display below the four orientations highlighting only the intervals $I$ and $
 &
 	A =  
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
-	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (.3,0) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (.3,0) {$\bullet$};
+	\node at (1.8,.3) {$\scriptstyle I$};
+	\node at (1.8,0) {$\scriptstyle J$};
 	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
 	\node at  (1.2,-.33) {$\scriptstyle c$};
@@ -813,8 +983,10 @@ We display below the four orientations highlighting only the intervals $I$ and $
 &&
 	B =
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (0,.3) {$\bullet$};
-	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (0,.3) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
+	\node at (1.8,.3) {$\scriptstyle I$};
+	\node at (1.8,0) {$\scriptstyle J$};
 	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
 	\node at  (1.2,-.33) {$\scriptstyle c$};
@@ -823,8 +995,10 @@ We display below the four orientations highlighting only the intervals $I$ and $
 &&
 	C =  
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
-	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.5,0) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.5,0) {$\bullet$};
+	\node at (1.8,.3) {$\scriptstyle I$};
+	\node at (1.8,0) {$\scriptstyle J$};
 	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
 	\node at  (1.2,-.33) {$\scriptstyle c$};
@@ -833,8 +1007,10 @@ We display below the four orientations highlighting only the intervals $I$ and $
 &&
 	D =
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
-	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (1.2,.3) {$\bullet$};
-	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (1.2,.3) {$\bullet$};
+	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
+	\node at (1.8,.3) {$\scriptstyle I$};
+	\node at (1.8,0) {$\scriptstyle J$};
 	\node at  (0,-.33) {$\scriptstyle a$};
 	\node at  (.3,-.3) {$\scriptstyle b$};
 	\node at  (1.2,-.33) {$\scriptstyle c$};
@@ -968,27 +1144,13 @@ The implication \mbox{(a)$\implies$(c)} in \cref{thm:propertiesI} fails when~$\I
 For instance, for~$\II = \{1, 2, 3, 4, 123, 234\}$ and the acyclic orientations
 \[
 \begin{array}{ccccc}
-	\begin{tikzpicture}[scale=1,baseline=.2cm]
-	\foreach \x in {1,...,4}
-		\node (\x) at (\x*.5,-.1) [inner sep = -1pt] {$\scriptstyle \x$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,.4)--(1.5,.4);   \node at (.5,.4) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(2,.2);   \node at (1.5,.2) {$\bullet$};
-	\end{tikzpicture}
-     &\qquad \le \qquad\qquad&
-	\begin{tikzpicture}[scale=1,baseline=.2cm]
-	\foreach \x in {1,...,4}
-		\node (\x) at (\x*.5,-.1) [inner sep = -1pt] {$\scriptstyle \x$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,.4)--(1.5,.4);   \node at (.5,.4) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(2,.2);   \node at (2,.2) {$\bullet$};
-	\end{tikzpicture}     
-     &\qquad \le \qquad\qquad&
-	\begin{tikzpicture}[scale=1,baseline=.2cm]
-	\foreach \x in {1,...,4}
-		\node (\x) at (\x*.5,-.1) [inner sep = -1pt] {$\scriptstyle \x$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,.4)--(1.5,.4);   \node at (1,.4) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(2,.2);   \node at (2,.2) {$\bullet$};
-	\end{tikzpicture}     \\ \\
-     A&&B&&C
+	\acyclicOrientation{4}{1/3/1,2/4/3}
+	&\qquad \le \qquad\qquad&
+	\acyclicOrientation{4}{1/3/1,2/4/4}
+	&\qquad \le \qquad\qquad&
+	\acyclicOrientation{4}{1/3/2,2/4/3}
+	\\[.6cm]
+	A && B && C
 \end{array}
 \]
 we have $[\projDown_A,\projUp_A]=[1324,1342]$, $[\projDown_B,\projUp_B]=[1423,4132]$ and $[\projDown_C,\projUp_C]=[4213,4231]$, so~$\projDown_A\not\le \projUp_C$.
@@ -1099,26 +1261,140 @@ Hence, $O \le O'$ by \cref{prop:sourceOrderI}.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Interval hypergraphic distributive lattices}
+\section{Distributive interval hypergraphic lattices}
 \label{sec:distributive}
+
+\begin{figure}
+	\centerline{
+		\begin{tabular}{c@{\qquad}c}
+			\begin{tikzpicture}[scale=2.5]
+				\node (a) at (2,0) {\acyclicOrientation{4}{1/3/1,2/3/2,2/4/2}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/3/2,2/3/2,2/4/2}};
+				\node (c) at (2,1) {\acyclicOrientation{4}{1/3/1,2/3/3,2/4/3}};
+				\node (d) at (3,1) {\acyclicOrientation{4}{1/3/1,2/3/2,2/4/4}};
+				\node (e) at (1,2) {\acyclicOrientation{4}{1/3/3,2/3/3,2/4/3}};
+				\node (f) at (2,2) {\acyclicOrientation{4}{1/3/2,2/3/2,2/4/4}};
+				\node (g) at (3,2) {\acyclicOrientation{4}{1/3/1,2/3/3,2/4/4}};
+				\node (h) at (2,3) {\acyclicOrientation{4}{1/3/3,2/3/3,2/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (a)--(d);
+				\draw (b)--(e);
+				\draw (b)--(f);
+				\draw (c)--(e);
+				\draw (c)--(g);
+				\draw (d)--(f);
+				\draw (d)--(g);
+				\draw (e)--(h);
+				\draw (f)--(h);
+				\draw (g)--(h);
+			\end{tikzpicture}
+			&
+			\begin{tikzpicture}[scale=2.5]
+				\node (a) at (2,0) {\acyclicOrientation{4}{1/3/1,1/4/1}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/3/1,1/4/4}};
+				\node (c) at (3,1) {\acyclicOrientation{4}{1/3/2,1/4/2}};
+				\node (d) at (2,2) {\acyclicOrientation{4}{1/3/2,1/4/4}};
+				\node (e) at (4,2) {\acyclicOrientation{4}{1/3/3,1/4/3}};
+				\node (f) at (3,3) {\acyclicOrientation{4}{1/3/3,1/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (b)--(d);
+				\draw (c)--(d);
+				\draw (c)--(e);
+				\draw (d)--(f);
+				\draw (e)--(f);
+			\end{tikzpicture}
+			\\[.2cm]
+			$\{1,2,3,4,123,23,234\}$
+			&
+			$\{1,2,3,4,123,1234\}$
+			\\
+			boolean lattice
+			&
+			distributive lattice
+			\\[.8cm]
+			\begin{tikzpicture}[scale=2.5]
+				\node (a) at (2,0) {\acyclicOrientation{4}{1/2/1,3/4/3,1/4/1}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/2/2,3/4/3,1/4/2}};
+				\node (c) at (2,1) {\acyclicOrientation{4}{1/2/1,3/4/4,1/4/1}};
+				\node (d) at (3,1) {\acyclicOrientation{4}{1/2/1,3/4/3,1/4/3}};
+				\node (e) at (1,2) {\acyclicOrientation{4}{1/2/2,3/4/4,1/4/2}};
+				\node (f) at (2,2) {\acyclicOrientation{4}{1/2/2,3/4/3,1/4/3}};
+				\node (g) at (3,2) {\acyclicOrientation{4}{1/2/1,3/4/4,1/4/4}};
+				\node (h) at (2,3) {\acyclicOrientation{4}{1/2/2,3/4/4,1/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (a)--(d);
+				\draw (b)--(e);
+				\draw (b)--(f);
+				\draw (c)--(e);
+				\draw (c)--(g);
+				\draw (d)--(f);
+				\draw (d)--(g);
+				\draw (e)--(h);
+				\draw (f)--(h);
+				\draw (g)--(h);
+			\end{tikzpicture}
+			&
+			\begin{tikzpicture}[scale=2.5]
+				\node (a) at (2,0) {\acyclicOrientation{4}{1/2/1,1/3/1,1/4/1}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/2/2,1/3/2,1/4/2}};
+				\node (c) at (2,1) {\acyclicOrientation{4}{1/2/1,1/3/3,1/4/3}};
+				\node (d) at (3,1) {\acyclicOrientation{4}{1/2/1,1/3/1,1/4/4}};
+				\node (e) at (1,2) {\acyclicOrientation{4}{1/2/2,1/3/3,1/4/3}};
+				\node (f) at (2,2) {\acyclicOrientation{4}{1/2/2,1/3/2,1/4/4}};
+				\node (g) at (3,2) {\acyclicOrientation{4}{1/2/1,1/3/3,1/4/4}};
+				\node (h) at (2,3) {\acyclicOrientation{4}{1/2/2,1/3/3,1/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (a)--(d);
+				\draw (b)--(e);
+				\draw (b)--(f);
+				\draw (c)--(e);
+				\draw (c)--(g);
+				\draw (d)--(f);
+				\draw (d)--(g);
+				\draw (e)--(h);
+				\draw (f)--(h);
+				\draw (g)--(h);
+			\end{tikzpicture}
+			\\[.2cm]
+			$\{1,2,3,4,12,34,1234\}$
+			&
+			$\{1,2,3,4,12,123,1234\}$
+			\\
+			boolean lattice
+			&
+			boolean lattice
+		\end{tabular}
+	}
+	\caption{Four distributive interval hypergraphic lattices.}
+	\label{fig:distributiveLattices}
+\end{figure}
 
 In this section, we prove \cref{thm:distributiveLatticeI} which we first repeat:
 %characterizing the interval hypergraphs $\II$ for which $P_\II$ are distributive lattices.
 
 \begin{definition}
+\label{def:distributive}
 We say that an interval hypergraph~$\II$ is \defn{distributive} if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$.
 \end{definition}
+
+\vincent{recall basic definitions and properties of distributive lattices.}
 
 \begin{theoremA}
 For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is a distributive interval hypergraph.
 \end{theoremA}
 
 \begin{example}
-\vincent{todo: one more concrete example.}
-The hypergraphic poset of the hypergraph containing all singletons and all initial intervals is a distributive lattice (in fact, it is the boolean lattice).
+\cref{fig:distributiveLattices} shows four distributive interval hypergraphic lattices.
+
+The hypergraphic poset of~$\{ 1, 2, 3, 12, 123 \}$ is distributive (it is a square). More generally, the hypergraphic poset of the hypergraph containing all singletons and all initial intervals is the boolean lattice, which is distributive.
+See \cref{subsec:SchroderHypergraphs} for more examples of distributive hypergraphs.
 
 The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a lattice but is not distributive (it is a pentagon).
-In general, the hypergraphic poset of all intervals is the Tamari lattice which is not distributive.
+In general, the hypergraphic poset of all intervals is the Tamari lattice, which is not distributive.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1127,7 +1403,7 @@ In general, the hypergraphic poset of all intervals is the Tamari lattice which 
 \label{subsec:someJoinIrreducibles}
 
 Fix $\II$ an interval  hypergraph closed under intersection.
-Our first task will be to identify some join irreducible acyclic orientations of~$\II$ (a complete description of the join irreducible acyclic orientations of~$\II$ will appear later in~\cref{sec:joinIrreducibles}).
+Our first task will be to identify some join irreducible acyclic orientations of~$\II$ (a complete description of the join irreducible acyclic orientations of~$\II$ will appear later in~\cref{subsec:joinIrreducibles}).
 
 \begin{notation}
 Define
@@ -1162,7 +1438,20 @@ A_j(J) =
 \end{notation}
 
 \begin{example}
-\vincent{todo}
+For~$\II = \{1, 2, 3, 12, 123\}$, we have~$\cJ_\II = \{2,3\}$ and the corresponding acyclic orientations are
+\[
+A_2 = \acyclicOrientation{3}{1/2/2,1/3/2}
+\qquad\text{and}\qquad
+A_3 = \acyclicOrientation{3}{1/2/1,1/3/3}
+\]
+
+\smallskip\noindent
+For~$\II = \{1, 2, 3, 12, 23, 123\}$, we have~$\cJ_\II = \{2,3\}$ and the corresponding acyclic orientations are
+\[
+A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
+\qquad\text{and}\qquad
+A_3 = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/1}
+\]
 \end{example}
 
 \begin{lemma}
@@ -1309,17 +1598,11 @@ We conclude that~$O$ is acyclic, which proves the statement.
 \end{proof}
 
 \begin{remark}
+\label{rem:alwaysFlippable}
 \cref{lem:alwaysFlippable} fails when~$\II$ is distributive.
 For instance, for~$\II = \{1, 2, 3, 12, 23, 123\}$, the interval~$J = 23$ and the acyclic orientation
 \[
-	A = 
-	\begin{tikzpicture}[scale=1,baseline=.2cm]
-	\foreach \x in {1,...,3}
-		\node (\x) at (\x*.5,-.1) [inner sep = -1pt] {$\scriptstyle \x$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,.4)--(1,.4);   \node at (.5,.4) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (1,.2)--(1.5,.2);   \node at (1.5,.2) {$\bullet$};
-	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.5,.6)--(1.5,.6);   \node at (1.5,.6) {$\bullet$};
-	\end{tikzpicture}
+A = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/3}
 \]
 \end{remark}
 
@@ -1360,6 +1643,14 @@ In a finite lattice, any element can always be written as the join of the join-i
 The statement follows since $\Psi$ is injective by \cref{prop:injectivityDistributive}.
 \end{proof}
 
+\begin{corollary}
+If~$\II$ is a distributive hypergraph, then~$P_\II$ is a Cartesian product of chains.
+\end{corollary}
+
+\begin{proof}
+The poset~$(\cJ_\II, \preccurlyeq)$ is a disjoint union of chains, hence its lattice of lower sets is a Cartesian product of chains.
+\end{proof}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{If~$P_\II$ is distributive then~$\II$ is distributive}
@@ -1397,6 +1688,18 @@ We conclude that~$A'(H) = i$, so that~$A'$ is indeed obtained from~$A$ by flippi
 Finally, as~$A(K) = j$ while~$A_j(K) = \min(K) < j$, we have~$A \not\le A_j$ for all~$j \in \cJ_\II$ by \cref{prop:sourceOrderI}.
 \end{proof}
 
+\begin{example}
+\label{rem:oneMoreIrreducible}
+Following on \cref{rem:alwaysFlippable}, the join irreducible acyclic orientations of~$\II = \{1, 2, 3, 12, 23, 123\}$ are
+\[
+A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
+\qquad\quad
+A_3 = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/1}
+\qquad\text{and}\qquad
+A = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/3}
+\]
+\end{example}
+
 \begin{proposition}
 If~$\II$ is an interval hypergraph such that $P_\II$ is a distributive lattice, then~$\II$ is distributive.
 \end{proposition}
@@ -1407,37 +1710,288 @@ If~$\II$ is closed under intersection but not distributive, consider the join ir
 As~$A \not\le A_j$ for all~$j \in \cJ_\II$, and~$\max(P_\II) = \bigJoin_{j \in \cJ_\II} A_j = A \join \bigJoin_{j \in \cJ_\II} A_j$, we obtain that~$P_\II$ is not distributive.
 \end{proof}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{corollary}
+For an internal hypergraph~$\II$, the poset~$P_\II$ is a distributive lattice if and only if it is a Cartesian product of chains.
+\end{corollary}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Join irreducible acyclic orientations}
-\label{sec:joinIrreducibles}
+\subsection{Schr\"oder hypergraphs}
+\label{subsec:SchroderHypergraphs}
 
-In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward},.
-We describe the join irreducible elements of~$P_\II$, that is, the acyclic orientations~$A$ of~$\II$ which cover a single acyclic orientation~$A_\star$.
+As an illustration of this section, we now consider a special family of distributive hypergraphs which were already considered in~\cite{Defant-fertilitopes}.
 
 \begin{definition}
-Let~$1 \le i < j \le n$ be such that there exists~$i \in \II$ with~$\{i,j\} \subseteq I$ and
+Let~$S$ be a \defn{Schr\"oder tree} (\ie a rooted plane tree where each internal node has at least two children) with~$n$ leaves labeled by~$[n]$ from left to right.
+Label each node of~$S$ by the set of leaves of its subtree.
+We say that the hypergraph~$\II_S$ formed by all singletons and the labels of the nodes of~$S$ is a \defn{Schr\"oder hypergraph}.
+\end{definition}
+
+\begin{example}
+All but the top left interval hypergraphs of \cref{fig:distributiveLattices} are Schr\"oder hypergraphs:
+\[
+	\begin{array}{c|ccc}
+		\raisebox{1cm}{$S$}
+		& 
+		\tree{[.1234 [.123 [.{\phantom{1}} ] [.{\phantom{1}} ] [.{\phantom{1}} ] ] [.{\phantom{1}} ] ]}
+		& 
+		\tree{[.1234 [.12 [.{\phantom{1}} ] [.{\phantom{1}} ] ] [.34 [.{\phantom{1}} ] [.{\phantom{1}} ] ] ]}
+		& 
+		\tree{[.1234 [.123 [.12 [.{\phantom{1}} ] [.{\phantom{1}} ] ] [.{\phantom{1}} ] ] [.{\phantom{1}} ] ]}
+		\\[-.3cm]
+		\hline
+		\\[-.3cm]
+		\II_S
+		&
+		\{1,2,3,4,123,1234\}
+		&
+		\{1,2,3,4,12,34,1234\}
+		&
+		\{1,2,3,4,12,123,1234\}
+	\end{array}
+\]
+\end{example}
+
+\begin{example}
+For instance, for the left comb~$C$, the Schr\"oder hypergraph~$\II_C$ consists of all singletons and all initial intervals. The hypergraphic polytope~$\triangle_{\II_C}$ is the Pitman--Stanley polytope~\cite{PitmanStanley}.
+\end{example}
+
+\begin{proposition}
+\label{prop:characterizationSchroder}
+An interval hypergraph~$\II$ is a Schr\"oder hypergraph if and only if~$I \subseteq J$ or~$I \supseteq J$ or~$I \cap J = \varnothing$ for all~$I,J \in \II$.
+\end{proposition}
+
+\begin{proof}
+Consider first two nodes~$i$ and~$j$ of a Schr\"oder tree~$S$, and let~$I$ and~$J$ be the corresponding labels.
+Then~$I \subseteq J$ if~$i$ is a descendant of~$j$, $I \supseteq J$ if~$i$ is a ancestor of~$j$, and~$I \cap J = \varnothing$ otherwise.
+
+Conversely, consider an interval hypergraph~$\II$ where any two hyperedges are nested or disjoint. Then the inclusion poset on~$\II$ is a Schr\"oder tree~$S$ with~$\II_S = \II$.
+\end{proof}
+
+\begin{remark}
+\cref{prop:characterizationSchroder} implies that Schr\"oder hypergraphs are building sets, so that Schr\"oder hypergraphic polytopes are nestohedra~\cite{FeichtnerSturmfels,Postnikov}.
+In fact, the latter were already considered in the literature under the name \defn{fertilotopes}~\cite{Defant-fertilitopes}.
+\end{remark}
+
+\begin{corollary}
+Any Schr\"oder hypergraph is a distributive interval hypergraph, hence the Schr\"oder hypergraphic posets are distributive lattices.
+\end{corollary}
+
+\begin{proof}
+The distributivity condition of \cref{def:distributive} is clearly fulfilled as any~$I \subseteq J$ or~$I \supseteq J$ or~$I \cap J = \varnothing$ for all~$I,J \in \II$.
+\end{proof}
+
+\begin{proposition}
+Given a Schr\"oder tree~$S$, the poset of join irreducible acyclic orientations on~$\II_S$ is isomorphic to a disjoint union of chains.
+More precisely, it has one chain for each node~$n$ of~$S$, whose elements are the leaves of~$n$ and the leftmost leaves of the children of~$n$, except the leftmost leaf below~$n$.
+\end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Semidistributive interval hypergraphic lattices}
+\label{sec:semidistributive}
+
+In this section, we prove \cref{thm:semidistributiveLatticeI} which we first repeat:
+%characterizing the interval hypergraphs $\II$ for which $P_\II$ are semidistributive lattices.
+
+\begin{definition}
+\label{def:semidistributive}
+We say that an interval hypergraph~$\II$ is \defn{semidistributive} if ...
+\vincent{todo}
+\end{definition}
+
+\vincent{recall basic definitions and properties of semidistributive lattices.}
+
+\begin{theoremA}
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a semidistributive lattice if and only if $\II$ is a semidistributive interval hypergraph.
+\end{theoremA}
+
+\begin{example}
+\cref{fig:distributiveLattices} shows four distributive (hence semidistributive) interval hypergraphic lattices.
+
+\cref{fig:notSemidistributiveLattices} shows two interval hypergraphic lattices which are not semidistributive.
+
+The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a semidistributive (but not distributive) lattice (it is a pentagon).
+In general, the hypergraphic poset of all intervals is the Tamari lattice, which is semidistributive but not distributive.
+See \cref{fig:Tamari}.
+\end{example}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{All join irreducible acyclic orientations}
+\label{subsec:joinIrreducibles}
+
+%
+\begin{figure}
+	\centerline{
+		\begin{tabular}{c@{\qquad}c}
+			\begin{tikzpicture}[scale=2.5]
+				\node (a) at (3,0) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/3,1/4/1}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/1}};
+				\node (c) at (3,1) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/1}};
+				\node (d) at (4,1) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/4/2}};
+				\node (e) at (1,2) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/1}};
+				\node (f) at (2,2) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/3}};
+				\node (g) at (3,2) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/4}};
+				\node (h) at (4,2) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/4/2}};
+				\node (i) at (1,3) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/4}};
+				\node (j) at (3,3) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/3,1/4/3}};
+				\node (k) at (4,3) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/4/4}};
+				\node (l) at (3,4) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/4,1/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (a)--(d);
+				\draw (b)--(e);
+				\draw (b)--(f);
+				\draw (c)--(e);
+				\draw (c)--(g);
+				\draw (c)--(h);
+				\draw (d)--(j);
+				\draw (d)--(h);
+				\draw (e)--(i);
+				\draw (f)--(i);
+				\draw (f)--(j);
+				\draw (g)--(i);
+				\draw (g)--(k);
+				\draw (h)--(k);
+				\draw (i)--(l);
+				\draw (j)--(l);
+				\draw (k)--(l);
+			\end{tikzpicture}
+			&
+			\begin{tikzpicture}[scale=2.5]
+				\node (a) at (2,0) {\acyclicOrientation{4}{1/2/1,2/3/2,2/4/2,1/4/1}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/1}};
+				\node (c) at (2,1) {\acyclicOrientation{4}{1/2/2,2/3/2,2/4/2,1/4/2}};
+				\node (d) at (3,1) {\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/1}};
+				\node (e) at (1,2) {\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/3}};
+				\node (f) at (2,2) {\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/1}};
+				\node (g) at (3,2) {\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}};
+				\node (h) at (1,3) {\acyclicOrientation{4}{1/2/2,2/3/3,2/4/3,1/4/3}};
+				\node (i) at (2,3) {\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/4}};
+				\node (j) at (3,3) {\acyclicOrientation{4}{1/2/3,2/3/2,2/4/4,1/4/4}};
+				\node (k) at (2,4) {\acyclicOrientation{4}{1/2/2,2/3/3,2/4/4,1/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (a)--(d);
+				\draw (b)--(e);
+				\draw (b)--(f);
+				\draw (c)--(h);
+				\draw (c)--(j);
+				\draw (d)--(f);
+				\draw (d)--(g);
+				\draw (e)--(h);
+				\draw (e)--(i);
+				\draw (f)--(i);
+				\draw (g)--(i);
+				\draw (g)--(j);
+				\draw (h)--(k);
+				\draw (i)--(k);
+				\draw (j)--(k);
+			\end{tikzpicture}
+			\\[.2cm]
+			$\{1,2,3,4,12,23,34,1234\}$
+			&
+			$\{1,2,3,4,12,23,234,1234\}$
+			\\
+			lattice but neither join
+			&
+			meet semidistributive lattice,
+			\\
+			nor meet semidistributive
+			&
+			but not join semistributive
+		\end{tabular}
+	}
+	\caption{Two interval hypergraphic lattices which are not semidistributive.}
+	\label{fig:notSemidistributiveLattices}
+\end{figure}
+
+In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward}, and we describe all the join irreducible elements of~$P_\II$. % that is, the acyclic orientations~$A$ of~$\II$ which cover a single acyclic orientation~$A_\star$.
+
+\begin{notation}
+Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$i \in \II$ with~$\{i,j\} \subseteq I$ and
 \[
 i = \max \Big( {[\min(I), j[} \; \ssm \!\!\!\!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\min(I), j[}}} \!\!\!\!\!\!\!\! J \ssm \{\min(J)\} \Big).
 \]
-Let~$\mu_{i,j}^\II \eqdef \max \bigset{\min(I)}{\{i,j\} \subseteq I \in \II}$.
-Let~$\pi_{i,j}^\II$ be the permutation with a unique nontrivial cycle~$(\mu_{i,j}^\II, \mu_{i,j}^\II + 1, \dots, j-1, j)$ (in other words, the $\pi_{i,j}^\II$ is obtained from the identity by placing~$j$ before~$\mu_{i,j}^\II$).
-Let~$A_{i,j}^\II \eqdef \Or_{\pi_{i,j}^\II}$ be acyclic orientation obtained as the image of~$\pi_{i,j}^\II$ under the surjection~$\Or$ of \cref{def:surjection}.
-In other words,
+\end{notation}
+
+\begin{notation}
+For~$(i,j) \in \cIJ_\II$, let~$J_{ij}$ be the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I \ssm \{\min(I)\}}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and let~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
+\end{notation}
+
+\begin{notation}
+For~$(i,j) \in \cIJ_\II$, consider the acyclic orientation~$A_{ij} \eqdef \Or_{(\mu_{ij}, \mu_{ij}+1, \ldots, j)}$, obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation
 \[
-A_{i,j}^\II(I) =
-\begin{cases}
-	j & \text{if } j \in I \text{ and } \min(I) \ge \mu_{i,j}^\II, \\
-	\min(I) & \text{otherwise.}
-\end{cases}
+(\mu_{ij}, \mu_{ij}+1, \dots, j) = 12 \cdots (\mu_{ij}-1)j\,\mu_{ij} \cdots (j-1) (j+1) \cdots n
 \]
-\end{definition}
+obtained from the identity permutation by placing~$j$ just before $\mu_{ij}$.
+Note that that for all $J \in \II$
+\begin{equation}
+\label{eq:sourceOj}
+A_{ij}(J) =
+\begin{cases}
+	j & \text{if } j \in J \text{ and } \min(J) \ge \mu_{ij},\\
+	\min(J) & \text{otherwise.}
+\end{cases}
+\end{equation}
+\end{notation}
+
+\begin{example}
+Following \cref{rem:oneMoreIrreducible}, for the interval hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$, we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$ and the join irreducible acyclic orientations are~$A_{12} = A_2$, $A_{23} = A_3$ and~$A_{13} = A$.
+\end{example}
 
 \begin{proposition}
 \label{prop:joinIrreducibles}
+If~$\II$ is an interval hypergraph closed under intersection, then the map~${(i,j) \mapsto A_{ij}}$ is a bijection from~$\cIJ_\II$ to the join irreducible acyclic orientations of~$\II$.
 \end{proposition}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{If~$\II$ is semidistributive then $P_\II$ is semidistributive}
+\label{subsec:semidistributiveLatticeBackward}
+
+We now prove the backward direction of \cref{thm:semidistributiveLatticeI}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{If~$P_\II$ is semidistributive then~$\II$ is semidistributive}
+\label{subsec:semidistributiveLatticeForward}
+
+We now prove the forward direction of \cref{thm:semidistributiveLatticeI}.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Quotient interval hypergraphic lattices}
+\label{sec:quotient}
+
+In this section, we prove \cref{thm:quotientLatticeI} which we first repeat:
+%characterizing the interval hypergraphs $\II$ for which $P_\II$ are semidistributive lattices.
+
+\begin{definition}
+\label{def:subinterval}
+We say that an interval hypergraph~$\II$ is \defn{closed under left} (resp.~\defn{right}) \defn{subintervals} if~$[i,k] \in \II$ implies~$[i,j] \in \II$ (resp.~$[j,k] \in \II$) for any~$i < j < k$.
+\end{definition}
+
+\vincent{recall basic definitions and properties of lattice quotients of the weak order.}
+
+\begin{theoremA}
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join (resp.~meet) semilattice quotient of the weak order on permutations if and only if it is closed under left (resp.~right) subintervals.
+\end{theoremA}
+
+\vincent{Conversely, it seems I had a characterization of the quotients we obtain in terms of arcs... I can't remember it at the moment.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
