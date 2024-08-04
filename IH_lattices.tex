@@ -28,7 +28,7 @@
 \urladdr{http://bergeron.mathstats.yorku.ca}
 
 \author{Vincent Pilaud}
-\address{Universitat de Barcelona}
+\address[V.~Pilaud]{Universitat de Barcelona}
 \email{vincent.pilaud@ub.edu}
 \urladdr{\url{https://www.ub.edu/comb/vincentpilaud/}}
 
@@ -260,7 +260,7 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semid
 
 \begin{theoremA}
 \label{thm:quotientLatticeI}
-For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semilattice quotient of the weak order on permutations if and only if it is closed under left (resp.~right) subintervals.
+For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semilattice quotient of the weak order on permutations if and only if it is closed under initial (resp.~final) subintervals.
 \end{theoremA}
 
 For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
@@ -619,7 +619,6 @@ is an interval hypergraph and \linebreak
 $\Or_{4132} = \{ (4, 1234), (1, 123), (3, 23), (4, 234) \}$ 
 is an acyclic orientation of~$\II$.
 We will represent interval hypergraphs and their orientations graphically as follow:
-\vincent{We should make a command for these drawings.}
 \[
 	\II =  \raisebox{-.2cm}{\intervalHypergraph{4}{1/4,1/3,2/3,2/4}}
 	\qquad\qquad
@@ -1008,7 +1007,9 @@ In this section, we prove \cref{thm:latticeI} which we first repeat: % character
 An interval hypergraph~$\II$ is \defn{closed under intersection} if $I, J \in \II$ and~$I \cap J \ne \varnothing$ impiles~$I \cap J \in \II$.
 \end{definition}
 
-\vincent{recall basic definitions of lattices.}
+\begin{definition}
+A poset~$P$ is a \defn{lattice} if any subset of~$P$ admits a \defn{join} (least upper bound) and a \defn{meet} (greatest lower bound).
+\end{definition}
 
 \begin{theoremA}
 For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
@@ -1484,7 +1485,16 @@ In this section, we prove \cref{thm:distributiveLatticeI} which we first repeat:
 We say that an interval hypergraph~$\II$ is \defn{distributive} if for all~$I, J \in \II$ such that~$I \not\subseteq J$, $I \not\supseteq J$ and~$I \cap J \ne \varnothing$, the intersection~$I \cap J$ is in~$\II$ and is initial or final in any~$K \in \II$ with~$I \cap J \subseteq K$.
 \end{definition}
 
-\vincent{recall basic definitions and properties of distributive lattices.}
+\begin{definition}
+A lattice~$(L, \le , \join, \meet)$ is \defn{distributive} if
+\[
+x \join (y \meet z) = (x \join y) \meet (x \join z)
+\qquad\text{and}\qquad
+x \meet (y \join z) = (x \meet y) \join (x \meet z)
+\]
+for all~$x,y,z \in L$ (the two conditions are in fact equivalent).
+Equivalently, $L$ is distributive if and only if it is isomorphic to the inclusion lattice on lower sets of its poset of join irreducible elements.
+\end{definition}
 
 \begin{theoremA}
 For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is a distributive interval hypergraph.
@@ -1890,7 +1900,7 @@ More precisely, it has one chain for each node~$n$ of~$S$, whose elements are th
 \end{proposition}
 
 \begin{proof}
-\vincent{todo}
+This description is a specialization of the description of the join irreducible poset of distributive interval hypergraphic posets from \cref{subsec:someJoinIrreducibles}.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1909,7 +1919,19 @@ We say that an interval hypergraph~$\II$ is \defn{semidistributive} if ...
 \vincent{todo}
 \end{definition}
 
-\vincent{recall basic definitions and properties of semidistributive lattices.}
+\begin{definition}
+A lattice~$(L, \le , \join, \meet)$ is \defn{join semidistributive} if
+\[
+x \join y = x \join z
+\qquad\text{implies}\qquad
+x \join (y \meet z) = x \join y
+\]
+for all~$x,y,z \in L$.
+The meet semidistributivity is defined dually.
+A lattice~$L$ is \defn{semidistributive} if it is both meet and join semidistributive.
+\vincent{recall basic definitions and properties of semidistributive lattices. Canonical join representations.}
+\end{definition}
+
 
 \begin{theoremA}
 For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a semidistributive lattice if and only if $\II$ is a semidistributive interval hypergraph.
@@ -2065,6 +2087,7 @@ If~$\II$ is an interval hypergraph closed under intersection, then the map~${(i,
 \label{subsec:semidistributiveLatticeBackward}
 
 We now prove the backward direction of \cref{thm:semidistributiveLatticeI}.
+\vincent{todo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2072,6 +2095,7 @@ We now prove the backward direction of \cref{thm:semidistributiveLatticeI}.
 \label{subsec:semidistributiveLatticeForward}
 
 We now prove the forward direction of \cref{thm:semidistributiveLatticeI}.
+\vincent{todo}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2085,13 +2109,13 @@ In this section, we prove \cref{thm:quotientLatticeI} which we first repeat:
 
 \begin{definition}
 \label{def:subinterval}
-We say that an interval hypergraph~$\II$ is \defn{closed under left} (resp.~\defn{right}) \defn{subintervals} if~$[i,k] \in \II$ implies~$[i,j] \in \II$ (resp.~$[j,k] \in \II$) for any~$i < j < k$.
+We say that an interval hypergraph~$\II$ is \defn{closed under initial} (resp.~\defn{final}) \defn{subintervals} if~$[i,k] \in \II$ implies~$[i,j] \in \II$ (resp.~$[j,k] \in \II$) for any~$i < j < k$.
 \end{definition}
 
 \vincent{recall basic definitions and properties of lattice quotients of the weak order.}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join (resp.~meet) semilattice quotient of the weak order on permutations if and only if it is closed under left (resp.~right) subintervals.
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join (resp.~meet) semilattice quotient of the weak order on permutations if and only if it is closed under initial (resp.~final) subintervals.
 \end{theoremA}
 
 \vincent{Conversely, it seems I had a characterization of the quotients we obtain in terms of arcs... I can't remember it at the moment.}
