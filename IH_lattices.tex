@@ -494,7 +494,8 @@ Finally, the main objects of this paper are the following posets.
 The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the increasing flip graph on acyclic orientations of~$\HH$.
 \end{definition}
 
-\begin{example} On the right side of~\cref{Fig:Orientation1}, we find the poset $P_\HH$ associated to $\Delta_\HH$ for $\\HH=\{ 1, 2, 3, 4, 123, 134 \}$. 
+\begin{example} On the right side of~\cref{Fig:Orientation1}, we find the poset $P_\HH$ associated to 
+$\Delta_\HH$ for $\HH=\{ 1, 2, 3, 4, 123, 134 \}$. 
 \nantel{done}
 \end{example}
 
@@ -566,8 +567,9 @@ The map~$\Or$ defines a poset morphism from the weak order on permutations to th
 Finally, we describe the fibers of the surjection~$\Or : \fS_n \to V_\HH$.
 Given an acyclic orientation~$A$ of~$\HH$, define $\less_A$ as the order on $[n]$ obtained by the transitive closure of the union of the \linebreak orders $\set{A(H) < h}{h \in H \ssm \{A(H)\}}$ for each $H \in \HH$.
 That is
-\[
-	\less_A =  \bigcup_{H \in \HH} 
+\[ 
+	\less_A =  \text{Trans. cl. }
+	\bigcup_{H \in \HH} 
 	\begin{tikzpicture}[scale=1,baseline=.0cm]
 		\node at (0,-.45) {$\scriptstyle A(H)$};
 		\node at (0,.6) {$\scriptstyle h \in H \ssm \{A(H)\}$};
@@ -586,8 +588,40 @@ The following lemma is straightforward.
 For any acyclic orientation $A$ of~$\HH$, the preimage $\Or^{-1}(A) \eqdef \set{\pi}{\Or_\pi=A}$ is the set of linear extensions of~$\less_A$.
 \end{lemma}
 
-\begin{example}
-\vincent{todo}
+\begin{example} Continuing with the example $\HH=\{ 1, 2, 3, 4, 123, 134 \}$, let $A$ be the acyclic orientation $(2,4)$.
+The order~$\less_A$ is the following
+\[
+	\less_A= \text{Trans. cl. }\Big(
+	\begin{tikzpicture}[scale=1,baseline=.2cm]
+		\node (2) at (0,0) {$\scriptstyle 2$};
+		\node (1) at (-.4,.7) {$\scriptstyle 1$};
+		\node (3) at (.4,.7) {$\scriptstyle 3$};
+		\draw [thick] (2)--(1); 
+		\draw [thick] (2)--(3); 
+	\end{tikzpicture} 
+	\cup
+	\begin{tikzpicture}[scale=1,baseline=.2cm]
+		\node (4) at (0,0) {$\scriptstyle 4$};
+		\node (1) at (-.4,.7) {$\scriptstyle 1$};
+		\node (3) at (.4,.7) {$\scriptstyle 3$};
+		\draw [thick] (4)--(1); 
+		\draw [thick] (4)--(3); 
+	\end{tikzpicture} 
+	\Big)
+	=
+	\begin{tikzpicture}[scale=1,baseline=.2cm]
+		\node (4) at (.4,0) {$\scriptstyle 4$};
+		\node (2) at (-.4,0) {$\scriptstyle 2$};
+		\node (1) at (-.4,.7) {$\scriptstyle 1$};
+		\node (3) at (.4,.7) {$\scriptstyle 3$};
+		\draw [thick] (4)--(1); 
+		\draw [thick] (4)--(3); 
+		\draw [thick] (2)--(1); 
+		\draw [thick] (2)--(3); 
+	\end{tikzpicture} 	
+\]
+There are four linear extensions of this order that correspond to the permutations $2413$, $2431$, $4213$ and $4231$.
+\nantel{done}
 \end{example}
 
 %In general, given a hypergraph~$\HH$ we would be interested to understand what are the cover of~$P_\HH$? 
@@ -625,6 +659,8 @@ We will represent interval hypergraphs and their orientations graphically as fol
 	\Or_{4132}  =  \raisebox{-.2cm}{\acyclicOrientation{4}{1/4/4,1/3/1,2/3/3,2/4/4}}
 \]
 and we omit to draw the singleton $\{i\}$ for $i \in [n]$.
+
+The running example of the previous section, $\HH=\{ 1, 2, 3, 4, 123, 134 \}$, is not an interval hypergraphs.
 \end{example}
 
 \begin{example}
