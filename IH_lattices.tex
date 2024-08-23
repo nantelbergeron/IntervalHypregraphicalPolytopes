@@ -647,20 +647,19 @@ An \defn{interval hypergraph}~$\II$ is an hypergraph on~$[n]$ where each~$I \in 
 \label{exm:intervalHypergraph}
 For instance, 
 %$\II = \{\{1\},\{2\},\{3\},\{4\},[1,3],[2,3],[2,4],[1,4]\}$ 
-$\II = \{ 1, 2, 3, 4, 1234, 123, 23, 234 \}$ 
+$\II = \{ 1, 2, 3, 4,123,  1234, 23, 234 \}$ 
 is an interval hypergraph and \linebreak
 %$\Or_{4132} = \big\{ (4, \{1,2,3,4\}), (1, \{1,2,3\}), (3, \{2,3\}), (4, \{2,3,4\})\big\}$ 
-$\Or_{4132} = \{ (4, 1234), (1, 123), (3, 23), (4, 234) \}$ 
+$\Or_{4132} = (1,4,3,4)$ for the lexicographic order of the nonsingleton $(123,  1234, 23, 234)$,
 is an acyclic orientation of~$\II$.
 We will represent interval hypergraphs and their orientations graphically as follow:
 \[
-	\II =  \raisebox{-.2cm}{\intervalHypergraph{4}{1/4,1/3,2/3,2/4}}
+	\II =  \raisebox{-.2cm}{\intervalHypergraph{4}{1/3,1/4,2/3,2/4}}
 	\qquad\qquad
-	\Or_{4132}  =  \raisebox{-.2cm}{\acyclicOrientation{4}{1/4/4,1/3/1,2/3/3,2/4/4}}
+	\Or_{4132}  =  \raisebox{-.2cm}{\acyclicOrientation{4}{1/3/1,1/4/4,2/3/3,2/4/4}}
 \]
-and we omit to draw the singleton $\{i\}$ for $i \in [n]$.
-
-The running example of the previous section, $\HH=\{ 1, 2, 3, 4, 123, 134 \}$, is not an interval hypergraphs.
+and, as before, we omit to draw the singleton $\{i\}$ for $i \in [n]$.
+Remark that the running example of the previous section, $\HH=\{ 1, 2, 3, 4, 123, 134 \}$, is not an interval hypergraphs.
 \end{example}
 
 \begin{example}
@@ -742,7 +741,8 @@ Graphically
 \]
 Assume that~$k > 2$ and is minimal for this property.
 Note that~$O(I_i) \ne O(I_{i+1})$ for all~$i$.
-By symmetry, suppose~$O(I_1) < O(I_2)$.
+By symmetry,\nantel{Should we specify which symmetry (i.e. refer to~\cref{prop:antiIsomorphism})}
+suppose~$O(I_1) < O(I_2)$.
 If there is~$i \in [k-1]$ such that~$O(I_{i+1}) < O(I_i)$, then for the smallest such~$i$, we have
 \begin{itemize}
 \item either~$O(I_{i-1}) \in [O(I_{i+1}), O(I_i)] \subseteq I_i$, so that~$O(I_{i-1}) \in I_i$ and $O(I_i) \in I_{i-1}$,
@@ -759,7 +759,6 @@ As~$O(I_1) \in I_k$, we get~$O(I_{k-1}) \in [O(I_1), O(I_k)] \subseteq I_k$, so 
 
 One striking property for interval hypergraphs is that the fibers of the surjection~$\Or$ are intervals in the weak order.
 To describe this we first need to recall the following classical result of A.~Bj\"orner and M.~Wachs~\cite[Thm.~6.8]{BjornerWachs}
-\vincent{We need pictures of the surjection map and of the fibers. Here and latter.}
 
 \begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
 \label{prop:WOIP}
@@ -796,12 +795,12 @@ From \cref{lem:prepi}, the fiber~$\Or^{-1}(A)$ is the set of linear extensions o
 Let $1 \le a < b < c \le [n]$.
 If we have $a \less_{A} c$, then, by definition of $\less_A$, there must be a sequence $I_1, \dots, I_k \in \II$ such that~$a = A(I_1)$, $A(I_{i+1}) \in I_i$ for all~$i \in [k-1]$, and~$c \in I_k$.
 As $\bigcup_{i \in [k]} I_i$ is an interval containing~$a$ and~$c$ and~$a < b < c$, it contains also~$b$.
-Hence, there is~$i \in [k]$ such that~$c \in I_i$, and the sequence~$I_1, \dots, I_i$ proves that~$a \less_{A} b$.
+Hence, there is~$i \in [k]$ such that~$b \in I_i$, and the sequence~$I_1, \dots, I_i$ proves that~$a \less_{A} b$.
 The case $a \more_{A} c$ is similar and  implies that $b \more_A c$.
 \end{proof}
 
 \begin{example}
-\vincent{todo}
+\vincent{todo: We need pictures of the surjection map and of the fibers. Here and latter.}
 \end{example}
 
 \begin{remark}
@@ -830,7 +829,7 @@ The proof works by induction on~$|\set{I \in \II}{A(I) < B(I)}|$.
 
 %Consider the set of pairs~$1 \le i < j \le$ such that there is~$I \in \II$ with~$A(I) = i$ and~$B(I) = j$.
 %Choose~$i < j$ in this set such that~$j$ is maximal, and if draw, $i$ is maximal.
-Choose~$J \in \II$ such that~$A(J) < B(J)$ and for any~$I \in \II$ with~$A(I) < B(I)$, we have~$B(I) < B(J)$, or~$B(I) = B(J)$, then~$A(I) \le A(J)$.
+Choose~$J \in \II$ such that~$A(J) < B(J)$ and for any~$I \in \II$ with~$A(I) < B(I)$, we have~$B(I) < B(J)$, or~$B(I) = B(J)$ and~$A(I) \le A(J)$.
 
 Let~$O$ be the orientation of~$\I$ obtained from~$A$ by flipping~$A(J)$ to~$B(J)$ as described in \cref{def:flip}.
 We claim that~$O$ is acyclic and that~$O(I) \le B(I)$ for all~$I \in \II$. 
@@ -862,8 +861,9 @@ We thus consider~$I \in \II$ and distinguish two cases:
 \qedhere
 \end{itemize}
 \end{proof}
-
 \vincent{Does \cref{prop:sourceOrderI} holds for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
+
+\Nantel{if Felix proof holds, we will have to add a remark stating the general statement and citiong a forthcoming paper}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -872,6 +872,7 @@ We thus consider~$I \in \II$ and distinguish two cases:
 
 In this section, we exploit \cref{prop:acyclicI} to provide a simple description of the flips and cover relations of~$P_\II$ for an interval hypergraph~$\II$.
 \vincent{Not sure we really need all this anymore...}
+\Nantel{Since we are not using the following section anymore, it is very technical and no so relevant anymore... I vote to remove it}
 
 \begin{proposition}
 \label{prop:isFlipI}
