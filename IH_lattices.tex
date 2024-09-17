@@ -30,7 +30,7 @@
 \author{Vincent Pilaud}
 \address[V.~Pilaud]{Universitat de Barcelona}
 \email{vincent.pilaud@ub.edu}
-\urladdr{\url{https://www.ub.edu/comb/vincentpilaud/}}
+\urladdr{https://www.ub.edu/comb/vincentpilaud/}
 
 \thanks{
 NB was supported by NSERC and York Research Chair in Applied Algebra.
@@ -44,6 +44,7 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{theoremA}{Theorem}
 \renewcommand{\thetheoremA}{\Alph{theoremA}}
+\crefname{theoremA}{Theorem}{Theorems}
 \newtheorem{corollary}[theorem]{Corollary}
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
@@ -221,7 +222,7 @@ The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the skeleton 
 For instance, 
 \begin{itemize}
 \item if~$\HH = \binom{[n]}{2}$ is the complete graph on~$[n]$ (or any hypergraph containing it), then~$\simplex_\HH$ is the permutahedron and $P_\HH$ is the weak order on permutations,
-\item if~$\HH = \set{[a,b]}{1 \le a \le b \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} associahedron~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the Tamari lattice~\cite{Tamari}.
+\item if~$\HH = \set{[a,b]}{1 \le a \le b \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} associahedron~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the Tamari lattice on binary trees~\cite{Tamari}.
 \end{itemize}
 In view of these two examples, we consider the following general questions:
 \begin{itemize}
@@ -291,47 +292,9 @@ The \defn{hypergraphic polytope}~$\simplex_\HH$ is the Minkowski sum
 \]
 where $\simplex_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$ of~$\R^n$.
 
-%\begin{example}
-%\label{ex:DH}
-%\vincent{This example is taken from~\cite{BenedettiBergeronMachacek}, and does not really illustrates Minkowski sums... we should change it.}
-%For the hypergraph
-%%$\HH=\big\{\{1\},\{2\},\{3\},\{4\},\{3,4\},\{1,2,3\}\big\}$,
-%$\HH=\{ 1, 2, 3, 4, 34, 123 \}$,
-%we  have
-%\[
-%\begin{array}{ccc}
-% \begin{tikzpicture}[scale=1,baseline=.5cm]
-%	\node (1) at (0.6,1.0) {$\scriptstyle e_1$};
-%	\node (2) at (-.2,-.2) {$\scriptstyle e_2$};
-%	\node (3) at (1.5,-.2) {$\scriptstyle e_3$};
-%	\draw [fill=blue!40] (0,0) -- (.6,.75) -- (1.2,0) --(0,0) ; 
-%\end{tikzpicture} \quad &
-% \begin{tikzpicture}[scale=1,baseline=.5cm]
-%	\node at (-.2,0) {$\scriptstyle e_3$};
-%	\node at (1.2,.5) {$\scriptstyle e_4$};
-%	\draw [thick,color=red] (0,0) -- (1,.5 ); 
-%\end{tikzpicture} \quad &
-%\begin{tikzpicture}[scale=1,baseline=.5cm]
-%	\draw [fill=gray!10] (0,0) -- (.6,.75)-- (1.6,1.25) -- (2.2,.5) -- (1.2,0) --(0,0) ; 
-%	\draw [color=gray!10,fill=blue!20] (0,0) -- (.6,.75) -- (1.2,0) --(0,0) ; 
-%	\draw [dotted,color=red] (0,0)--(1,.5);
-%	\draw [dotted,color=blue] (1.6,1.25)--(1,.5)--(2.2,.5);
-%	\draw (0,0) -- (.6,.75)-- (1.6,1.25) -- (2.2,.5) -- (1.2,0) -- (0,0) ; 
-%	\draw [thick,color=red!80] (1.2,0) -- (2.2,0.5); 
-%\end{tikzpicture}\\
-%\blue{\simplex_{123}}& \red{\simplex_{34}} & \simplex_\HH = \simplex_1 + \simplex_2 + \simplex_3 + \simplex_4 + \blue{\simplex_{123}} + \red{\simplex_{34}}\\
-%\end{array}
-%\]
-%which is a 3-dimensional polytope sitting in $\R^4$.
-%Note that as~$n \le 9$ in all our examples, we simplify notations and write~$123$ for the set~$\{1,2,3\}$.
-%\end{example}
-
 \begin{example}
-\label{ex:DH}
-\nantel{This is ok? I use it for many other example after.}
-For the hypergraph
-%$\HH=\big\{\{1\},\{2\},\{3\},\{4\},\{3,4\},\{1,2,3\}\big\}$,
-$\HH=\{ 1, 2, 3, 4, 123, 134 \}$,
+\label{ex:DH1}
+For the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$,
 we  have
 \[
 \begin{array}{ccc}
@@ -363,12 +326,11 @@ which is a 3-dimensional polytope sitting in $\R^4$.
 Note that as~$n \le 9$ in all our examples, we simplify notations and write~$123$ for the set~$\{1,2,3\}$.
 \end{example}
 
-
 \begin{remark}
 \label{rem:single}
 Note that the singletons hyperedges are irrelevant for our purposes.
 Namely, adding to~$\HH$ the hyperedge~$\{i\}$ for some~$i \in [n]$ just translates the polytope~$\simplex_\HH$ in the direction~$\b{e}_i$, which does not affect the face structure of the polytope.
-For our conditions on hypergraphs of \cref{thm:latticeI} and \cref{thm:distributiveLatticeI}, it is convenient for us to assume that $\{i\} \in \HH$ for all $i \in [n]$.
+For our conditions on hypergraphs of \cref{thm:latticeI,thm:distributiveLatticeI}, it is convenient for us to assume that $\{i\} \in \HH$ for all $i \in [n]$.
 When quoting results from~\cite{BenedettiBergeronMachacek}, the reader will have to be mindful that they took the opposite convention.
 \end{remark}
 
@@ -388,17 +350,18 @@ Equivalently, we often represent the orientation~$O$ as the set of pairs~$\set{(
 The orientation~$O$ is \defn{acyclic} if there is no~$H_1, \dots, H_k$ with~$k \ge 2$ such that~$O(H_{i+1}) \in H_i \ssm \{O(H_i)\}$ for~$i \in [k-1]$ and~$O(H_1) \in H_k \ssm \{O(H_k)\}$.
 \end{definition}
 
-\Nantel{Remark: The singleton~$\{i\}$ of~$\HH$ are always oriented $O(\{i\})=i$, and thus plays no role in determining acyclicity  since $\{i\}\ssm  \{O(\{i\}i)\}=\emptyset$.
-We will therefor omit the singletons when describing orientations or drawing them (see~\cref{exm:intervalHypergraph}). If we list the non-singleton elements $(H_1,H_2,...,H_k)$ of $\HH$ in some fixed order,
-it is then convenient to describe an orientation as the tuple $O=(O(H_1),O(H_2),\ldots,O(H_k))$. 
-}
-\begin{example} Using $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ as in~\cref{ex:DH},  We order the two non-singleton $(123,134)=(H_1,H_2)$.
-There are seven acyclic orientations as displayed in~\cref{Fig:Orientation1}. 
-The orientation $(O(H_1),O(H_2))=(1,3)$ is not acyclic
-since $O(H1)=1\in H_2$ and $O(H_2)=3\in H_1$ is a cycle with $k=2$.
-\nantel{done}
-\end{example}
+\begin{remark}
+The singleton~$\{i\}$ of~$\HH$ is always oriented $O(\{i\})=i$, and thus plays no role in determining  the acyclicity of~$O$ since $\{i\} \ssm \{O(\{i\})\} = \varnothing$.
+We will therefore omit the singletons when describing or drawing orientations (see also~\cref{exm:intervalHypergraph}).
+If we list the non-singleton elements $(H_1,H_2,...,H_k)$ of $\HH$ in some fixed order, it is then convenient to describe an orientation~$O$ as the tuple $O=(O(H_1),O(H_2),\ldots,O(H_k))$. 
+\end{remark}
 
+\begin{example}
+\label{ex:DH2}
+Using $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ as in~\cref{ex:DH1}, we order the two non-singleton $(123,134)=(H_1,H_2)$.
+There are $9$ orientations of~$\HH$, $7$ of which are acyclic as displayed in~\cref{Fig:Orientation1}. 
+For instance, the orientation $(O(H_1),O(H_2))=(1,3)$ is not acyclic since $O(H_1)=1\in H_2$ and $O(H_2)=3\in H_1$ is a cycle with $k=2$.
+%
 \begin{figure}
 	\centerline{
 	\begin{tabular}{c@{\qquad}c}
@@ -446,11 +409,11 @@ since $O(H1)=1\in H_2$ and $O(H_2)=3\in H_1$ is a cycle with $k=2$.
 	$\Delta_\HH$ & $P_\HH$\\
 	\end{tabular}
 	}
-	\caption{The polytope $\Delta_{\HH}$ for $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ has seven vertices corresponding to the acyclic orientations of $\HH$ and eleven (oriented) edges corresponding to the increasing flips between orientations.
-	The poset $P_\HH$ is obtain by taking the transitive closure of the increasing flip relation.}
+	\caption{The polytope $\Delta_{\HH}$ for $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ has seven vertices corresponding to the acyclic orientations of $\HH$ and eleven (oriented) edges corresponding to the increasing flips between these orientations.
+	The poset $P_\HH$ is the transitive closure of the increasing flip graph.}
 	\label{Fig:Orientation1}
 \end{figure}
-
+\end{example}
 
 \begin{definition}
 \label{def:flip}
@@ -461,13 +424,10 @@ Two orientations~$O \ne O'$ of~$\HH$ are related by an \defn{increasing flip} if
 \end{itemize}
 \end{definition}
 
-
-
-\begin{example} \cref{Fig:Orientation1} shows all the increasing flip between the acyclic orientation of $\HH=\{ 1, 2, 3, 4, 123, 134 \}$. For example 
-$(2,3)\, \begin{tikzpicture}[scale=1,baseline=-.1cm] \path[color=red, ->]  (0,0) edge node[fill=white,inner sep=2pt, font=\tiny ] {$  23$} (1,0); \end{tikzpicture}\, (3,3)$
-indicate that there is an increasing flip from  $O=(2,3)$ to $O'=(3,3)$ with $i=2<3=j$.
-
-\nantel{done}
+\begin{example}
+\label{ex:DH3}
+\cref{Fig:Orientation1} shows all the increasing flips between the acyclic orientations of the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2}.
+For instance, $(2,3)\, \begin{tikzpicture}[scale=1,baseline=-.1cm] \path[color=red, ->]  (0,0) edge node[fill=white,inner sep=2pt, font=\tiny ] {$  23$} (1,0); \end{tikzpicture}\, (3,3)$ indicates that there is an increasing flip from  $O=(2,3)$ to $O'=(3,3)$ with $i=2<3=j$.
 \end{example}
 
 The following correspondance was already observed in~\cite[Thm.~2.18]{BenedettiBergeronMachacek} (it even extends to all faces of~$\simplex_\HH$, but we do not need this level of generality in this paper).
@@ -494,9 +454,9 @@ Finally, the main objects of this paper are the following posets.
 The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the increasing flip graph on acyclic orientations of~$\HH$.
 \end{definition}
 
-\begin{example} On the right side of~\cref{Fig:Orientation1}, we find the poset $P_\HH$ associated to 
-$\Delta_\HH$ for $\HH=\{ 1, 2, 3, 4, 123, 134 \}$. 
-\nantel{done}
+\begin{example}
+\label{ex:DH4}
+For $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2,ex:DH3}, the poset  $P_\HH$ is represented in~\cref{Fig:Orientation1}\,(right).
 \end{example}
 
 \begin{remark}
@@ -588,10 +548,11 @@ The following lemma is straightforward.
 For any acyclic orientation $A$ of~$\HH$, the preimage $\Or^{-1}(A) \eqdef \set{\pi}{\Or_\pi=A}$ is the set of linear extensions of~$\less_A$.
 \end{lemma}
 
-\begin{example} Continuing with the example $\HH=\{ 1, 2, 3, 4, 123, 134 \}$, let $A$ be the acyclic orientation $(2,4)$.
+\begin{example}
+Continuing with the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2,ex:DH3,ex:DH4}, let $A$ be the acyclic orientation $(2,4)$.
 The order~$\less_A$ is the following
 \[
-	\less_A= \text{Trans. cl. }\Big(
+	\less_A= \text{Transitive closure }\Bigg(
 	\begin{tikzpicture}[scale=1,baseline=.2cm]
 		\node (2) at (0,0) {$\scriptstyle 2$};
 		\node (1) at (-.4,.7) {$\scriptstyle 1$};
@@ -607,7 +568,7 @@ The order~$\less_A$ is the following
 		\draw [thick] (4)--(1); 
 		\draw [thick] (4)--(3); 
 	\end{tikzpicture} 
-	\Big)
+	\Bigg)
 	=
 	\begin{tikzpicture}[scale=1,baseline=.2cm]
 		\node (4) at (.4,0) {$\scriptstyle 4$};
@@ -620,8 +581,7 @@ The order~$\less_A$ is the following
 		\draw [thick] (2)--(3); 
 	\end{tikzpicture} 	
 \]
-There are four linear extensions of this order that correspond to the permutations $2413$, $2431$, $4213$ and $4231$.
-\nantel{done}
+The linear extensions of this order are the permutations $2413$, $2431$, $4213$ and $4231$.
 \end{example}
 
 %In general, given a hypergraph~$\HH$ we would be interested to understand what are the cover of~$P_\HH$? 
@@ -863,57 +823,55 @@ We thus consider~$I \in \II$ and distinguish two cases:
 \end{proof}
 \vincent{Does \cref{prop:sourceOrderI} holds for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
 
-\Nantel{if Felix proof holds, we will have to add a remark stating the general statement and citiong a forthcoming paper}
+\Nantel{if Felix proof holds, we will have to add a remark stating the general statement and citing a forthcoming paper}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Flips and cover relations for interval hypergraphs}  
-\label{subsec:cover}
-
-In this section, we exploit \cref{prop:acyclicI} to provide a simple description of the flips and cover relations of~$P_\II$ for an interval hypergraph~$\II$.
-\vincent{Not sure we really need all this anymore...}
-\Nantel{Since we are not using the following section anymore, it is very technical and no so relevant anymore... I vote to remove it}
-
-\begin{proposition}
-\label{prop:isFlipI}
-The orientation obtained from an acyclic orientation~$A$ of an interval hypergraph~$\II$ by flipping~$i$ to~$j$ (in the sense of \cref{def:flip}) is acyclic if and only if~$j \in \cX_{A,i} \ssm \cY_{A,i}$~where
-\[
-\cX_{A,i} \eqdef \bigcup_{\substack{I \in \II \\ A(I) = i}} I \ssm \{i\}
-\qquad\text{and}\qquad
-\cY_{A,i} \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in \cX_{A,i}}} \!\!\!\! J \ssm \{A(J)\}.
-\]
-\end{proposition}
-
-\begin{proof}
-Let~$B$ be the orientation obtained by flipping~$i$ to~$j$.
-Assume that~$j \notin \cX_{A,i} \ssm \cY_{A,i}$. Then
-\begin{itemize}
-\item either~$j \notin \cX_{A,i}$, hence there is no~$I \in \II$ with~$i = A(I)$ and~$j \in I$, and the flip is not~possible. % (\ie~$A = B$).
-\item or~$j \in \cX_{A,i} \cap \cY_{A,i}$. Since~$j \in \cX_{A,i}$, there is~$I \in \II$ with~$A(I) = i$ and~$j \in I \ssm \{i\}$. Since~$j \in \cY_{A,i}$, there is~$J \in \II$ with~$k \eqdef A(J) \in \cX_{A,i}$ and~$j \in J \ssm \{k\}$. As~$k \in \cX_{A,i}$, there is also~$K \in \II$ such that~$A(K) = i$ and~$k \in K \ssm \{i\}$. We now consider the three distinct values~$i, j, k$ and distinguish three cases depending on which is in between the other two:
-	\begin{itemize}
-	\item if~$i$ is in between~$j$ and~$k$, then~$i \in J$ since~$j,k \in J$ and~$J$ is an interval. Hence, $A(K) = i \in J$ and~$A(J) = k \in K$ and~$i \ne k$ contradicts the acyclicity of~$A$.
-	\item if~$j$ is in between~$i$ and~$k$, then~$i \in K$ since~$i,k \in K$ and~$K$ is an interval. Hence, $B(K) = j \in J$ and~$B(J) = k \in K$ and~$j \ne k$, so that~$B$ is cyclic.
-	\item if~$k$ is in between~$i$ and~$j$, then~$k \in I$ since~$i,j \in I$ and~$I$ is an interval. Hence, $B(I) = j \in J$ and~$B(J) = k \in I$ and~$j \ne k$, so that~$B$ is cyclic.
-	\end{itemize}
-\end{itemize}
-Conversely, assume that~$B$ is cyclic.
-By \cref{prop:acyclicI}, there are~$I,J \in \II$ with~$B(I) \in J \ssm \{B(J)\}$ and~$B(J) \in I \ssm \{B(I)\}$.
-As~$A$ is acyclic, we have~$i = A(I) \ne B(I) = j$ or~$i = A(J) \ne B(J) = j$, but not both since~$B(I) \ne B(J)$.
-By symmetry, we can assume that~$i = A(I) \ne B(I) = j$ and~$i \ne A(J) = B(J)$.
-As~$A(I) = i$ and~$i \ne A(J) = B(J) \in I$, we obtain that~$A(J) \in \cX_{A,i}$.
-Moreover~$j = B(I) \in J \ssm \{B(J)\} = J \ssm \{A(J)\}$.
-Hence, we obtain that~$j \in \cY_{A,i}$.
-\end{proof}
-
-\begin{proposition}
-\label{prop:isCoverI}
-Let~$A$ and~$B$ be two acyclic orientations of an interval hypergraph~$\I$  related by an increasing flip of~$i$ to~$j$.
-Then~$A < B$ is a cover relation of~$P_\II$ if and only if
-\vincent{todo: characterize cover relations...}
-\end{proposition}
-
-\begin{proof}
-\end{proof}
+%\subsection{Flips and cover relations for interval hypergraphs}  
+%\label{subsec:cover}
+%
+%In this section, we exploit \cref{prop:acyclicI} to provide a simple description of the flips and cover relations of~$P_\II$ for an interval hypergraph~$\II$.
+%
+%\begin{proposition}
+%\label{prop:isFlipI}
+%The orientation obtained from an acyclic orientation~$A$ of an interval hypergraph~$\II$ by flipping~$i$ to~$j$ (in the sense of \cref{def:flip}) is acyclic if and only if~$j \in \cX_{A,i} \ssm \cY_{A,i}$~where
+%\[
+%\cX_{A,i} \eqdef \bigcup_{\substack{I \in \II \\ A(I) = i}} I \ssm \{i\}
+%\qquad\text{and}\qquad
+%\cY_{A,i} \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in \cX_{A,i}}} \!\!\!\! J \ssm \{A(J)\}.
+%\]
+%\end{proposition}
+%
+%\begin{proof}
+%Let~$B$ be the orientation obtained by flipping~$i$ to~$j$.
+%Assume that~$j \notin \cX_{A,i} \ssm \cY_{A,i}$. Then
+%\begin{itemize}
+%\item either~$j \notin \cX_{A,i}$, hence there is no~$I \in \II$ with~$i = A(I)$ and~$j \in I$, and the flip is not~possible. % (\ie~$A = B$).
+%\item or~$j \in \cX_{A,i} \cap \cY_{A,i}$. Since~$j \in \cX_{A,i}$, there is~$I \in \II$ with~$A(I) = i$ and~$j \in I \ssm \{i\}$. Since~$j \in \cY_{A,i}$, there is~$J \in \II$ with~$k \eqdef A(J) \in \cX_{A,i}$ and~$j \in J \ssm \{k\}$. As~$k \in \cX_{A,i}$, there is also~$K \in \II$ such that~$A(K) = i$ and~$k \in K \ssm \{i\}$. We now consider the three distinct values~$i, j, k$ and distinguish three cases depending on which is in between the other two:
+%	\begin{itemize}
+%	\item if~$i$ is in between~$j$ and~$k$, then~$i \in J$ since~$j,k \in J$ and~$J$ is an interval. Hence, $A(K) = i \in J$ and~$A(J) = k \in K$ and~$i \ne k$ contradicts the acyclicity of~$A$.
+%	\item if~$j$ is in between~$i$ and~$k$, then~$i \in K$ since~$i,k \in K$ and~$K$ is an interval. Hence, $B(K) = j \in J$ and~$B(J) = k \in K$ and~$j \ne k$, so that~$B$ is cyclic.
+%	\item if~$k$ is in between~$i$ and~$j$, then~$k \in I$ since~$i,j \in I$ and~$I$ is an interval. Hence, $B(I) = j \in J$ and~$B(J) = k \in I$ and~$j \ne k$, so that~$B$ is cyclic.
+%	\end{itemize}
+%\end{itemize}
+%Conversely, assume that~$B$ is cyclic.
+%By \cref{prop:acyclicI}, there are~$I,J \in \II$ with~$B(I) \in J \ssm \{B(J)\}$ and~$B(J) \in I \ssm \{B(I)\}$.
+%As~$A$ is acyclic, we have~$i = A(I) \ne B(I) = j$ or~$i = A(J) \ne B(J) = j$, but not both since~$B(I) \ne B(J)$.
+%By symmetry, we can assume that~$i = A(I) \ne B(I) = j$ and~$i \ne A(J) = B(J)$.
+%As~$A(I) = i$ and~$i \ne A(J) = B(J) \in I$, we obtain that~$A(J) \in \cX_{A,i}$.
+%Moreover~$j = B(I) \in J \ssm \{B(J)\} = J \ssm \{A(J)\}$.
+%Hence, we obtain that~$j \in \cY_{A,i}$.
+%\end{proof}
+%
+%\begin{proposition}
+%\label{prop:isCoverI}
+%Let~$A$ and~$B$ be two acyclic orientations of an interval hypergraph~$\I$  related by an increasing flip of~$i$ to~$j$.
+%Then~$A < B$ is a cover relation of~$P_\II$ if and only if
+%\vincent{todo: characterize cover relations...}
+%\end{proposition}
+%
+%\begin{proof}
+%\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -980,10 +938,10 @@ Then~$A < B$ is a cover relation of~$P_\II$ if and only if
 			$\{1,2,3,4,123,234\}$
 			&
 			$\{1,2,3,4,12,123,1234,234,34\}$
-			\\
-			not lattice
-			&
-			not lattice
+%			\\
+%			not lattice
+%			&
+%			not lattice
 		\end{tabular}
 	}
 	\caption{Two interval hypergraphic posets which are not lattices.}
@@ -992,48 +950,65 @@ Then~$A < B$ is a cover relation of~$P_\II$ if and only if
 
 \begin{figure}
 	\centerline{
-		\begin{tikzpicture}[scale=2.2]
-			\node (a) at (3,0) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/3,1/3/1,2/4/2,1/4/1}};
-			\node (b) at (1,1) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/3/2,2/4/2,1/4/2}};
-			\node (c) at (3,1) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/1,2/4/3,1/4/1}};
-			\node (d) at (5,1) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/2,1/4/1}};
-			\node (e) at (3,3) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/3/2,2/4/2,1/4/2}};
-			\node (f) at (5,2) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/1}};
-			\node (g) at (2,4) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/3,2/4/3,1/4/3}};
-			\node (h) at (4,3.5) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/4}};
-			\node (i) at (5,3) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/1,2/4/4,1/4/1}};
-			\node (j) at (1,5) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/3,1/3/3,2/4/3,1/4/3}};
-			\node (k) at (3,5) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/3/2,2/4/4,1/4/4}};
-			\node (l) at (5,4) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/1,2/4/4,1/4/4}};
-			\node (m) at (5,5) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/3,2/4/4,1/4/4}};
-			\node (n) at (3,6) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/4,1/3/3,2/4/4,1/4/4}};
-			\draw (a)--(b);
-			\draw (a)--(c);
-			\draw (a)--(d);
-			\draw (b)--(e);
-			\draw (b)--(j);
-			\draw (c)--(g);
-			\draw (c)--(i);
-			\draw (d)--(e);
-			\draw (d)--(f);
-			\draw (e)--(k);
-			\draw (f)--(h);
-			\draw (f)--(i);
-			\draw (g)--(j);
-			\draw (g)--(m);
-			\draw (h)--(k);
-			\draw (h)--(l);
-			\draw (i)--(l);
-			\draw (j)--(n);
-			\draw (k)--(n);
-			\draw (l)--(m);
-			\draw (m)--(n);
-		\end{tikzpicture}
+		\begin{tabular}{c@{\qquad}c}
+			\begin{tikzpicture}[scale=1.5,baseline=-3.5cm]
+				\node (a) at (1,0) {\acyclicOrientation{3}{1/2/1,2/3/2,1/3/1}};
+				\node (b) at (0,1.3) {\acyclicOrientation{3}{1/2/1,2/3/3,1/3/1}};
+				\node (c) at (2,2) {\acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}};
+				\node (d) at (0,2.7) {\acyclicOrientation{3}{1/2/2,2/3/3,1/3/3}};
+				\node (e) at (1,4) {\acyclicOrientation{3}{1/2/2,2/3/3,1/3/3}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (b)--(d);
+				\draw (c)--(e);
+				\draw (d)--(e);
+			\end{tikzpicture}
+			&
+			\begin{tikzpicture}[scale=2.2]
+				\node (a) at (3,0) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/3,1/3/1,2/4/2,1/4/1}};
+				\node (b) at (1,1) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/3/2,2/4/2,1/4/2}};
+				\node (c) at (3,1) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/1,2/4/3,1/4/1}};
+				\node (d) at (5,1) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/2,1/4/1}};
+				\node (e) at (3,3) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/3/2,2/4/2,1/4/2}};
+				\node (f) at (5,2) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/1}};
+				\node (g) at (2,4) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/3,2/4/3,1/4/3}};
+				\node (h) at (4,3) {\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/4}};
+				\node (i) at (5,3) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/1,2/4/4,1/4/1}};
+				\node (j) at (1,5) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/3,1/3/3,2/4/3,1/4/3}};
+				\node (k) at (3,5) {\acyclicOrientation{4}{1/2/2,2/3/2,3/4/4,1/3/2,2/4/4,1/4/4}};
+				\node (l) at (5,4) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/1,2/4/4,1/4/4}};
+				\node (m) at (5,5) {\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/3/3,2/4/4,1/4/4}};
+				\node (n) at (3,6) {\acyclicOrientation{4}{1/2/2,2/3/3,3/4/4,1/3/3,2/4/4,1/4/4}};
+				\draw (a)--(b);
+				\draw (a)--(c);
+				\draw (a)--(d);
+				\draw (b)--(e);
+				\draw (b)--(j);
+				\draw (c)--(g);
+				\draw (c)--(i);
+				\draw (d)--(e);
+				\draw (d)--(f);
+				\draw (e)--(k);
+				\draw (f)--(h);
+				\draw (f)--(i);
+				\draw (g)--(j);
+				\draw (g)--(m);
+				\draw (h)--(k);
+				\draw (h)--(l);
+				\draw (i)--(l);
+				\draw (j)--(n);
+				\draw (k)--(n);
+				\draw (l)--(m);
+				\draw (m)--(n);
+			\end{tikzpicture}
+			\\[.2cm]
+			$\{1,2,3,12,23,123\}$
+			&
+			$\{1,2,3,4,12,23,34,123,234,1234\}$
+		\end{tabular}
 	}
-	\vspace{.2cm}
-	\centerline{$\{1,2,3,4,12,23,34,1234\}$}
-	\centerline{semidistributive lattice, but not distributive}
-	\caption{The Tamari lattice.}
+%	\centerline{semidistributive lattice, but not distributive}
+	\caption{The Tamari lattice (semidistributive lattice, but not distributive).}
 	\label{fig:Tamari}
 \end{figure}
 
@@ -1053,10 +1028,13 @@ For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n
 \end{theoremA}
 
 \begin{example}
-\vincent{todo}
-The hypergraphic poset of the hypergraph containing all singletons and all initial intervals is a lattice (in fact, it is the boolean lattice). See \cref{fig:notLattices}.
-
-The hypergraphic poset of the hypergraph containing all intervals is a lattice (in fact, it is the Tamari lattice). See \cref{fig:Tamari}.
+The interval hypergraphic posets of \cref{fig:notLattices} are not lattices, while those of \cref{fig:Tamari,fig:distributiveLattices,fig:notSemidistributiveLattices} are lattices.
+%Note that
+%\begin{itemize}
+%\item the hypergraphic poset of the hypergraph containing all intervals is the Tamari lattice, % see \cref{fig:Tamari},
+%\item the hypergraphic poset of the hypergraph containing all singletons and all initial intervals is the boolean lattice, % see \cref{fig:distributiveLattices}\,(bottom right),
+%\item the hypergraphic poset of the hypergraph containing all singletons and all initial and final intervals is not a lattice (this motivated \cite{PilaudPolyakova} to define the Hochschild polytopes). % see \cref{fig:notLattices}\,(right). 
+%\end{itemize}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1534,17 +1512,17 @@ Equivalently, $L$ is distributive if and only if it is isomorphic to the inclusi
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is a distributive interval hypergraph.
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is distributive.
 \end{theoremA}
 
 \begin{example}
-\cref{fig:distributiveLattices} shows four distributive interval hypergraphic lattices.
-
-The hypergraphic poset of~$\{ 1, 2, 3, 12, 123 \}$ is distributive (it is a square). More generally, the hypergraphic poset of the hypergraph containing all singletons and all initial intervals is the boolean lattice, which is distributive.
-See \cref{subsec:SchroderHypergraphs} for more examples of distributive hypergraphs.
-
-The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a lattice but is not distributive (it is a pentagon).
-In general, the hypergraphic poset of all intervals is the Tamari lattice, which is not distributive.
+The interval hypergraphic posets of \cref{fig:distributiveLattices} are distributive lattices, while those of \cref{fig:notLattices,fig:Tamari,fig:notSemidistributiveLattices} are not.
+%Note that,
+%\begin{itemize}
+%\item The hypergraphic poset of~$\{ 1, 2, 3, 12, 123 \}$ is distributive (it is a square). More generally, the hypergraphic poset of the hypergraph containing all singletons and all initial intervals is the boolean lattice, which is distributive.
+%See \cref{subsec:SchroderHypergraphs} for more examples of distributive hypergraphs.
+%\item  The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a lattice but is not distributive (it is a pentagon). In general, the hypergraphic poset of all intervals is the Tamari lattice, which is not distributive.
+%\end{itemize}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1564,6 +1542,7 @@ Define
 
 \begin{notation}
 For~$j \in \cJ_\II$, let~$J_j$ be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection) and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
+By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
 \end{notation}
 
 \begin{notation}
@@ -1840,7 +1819,7 @@ Finally, as~$A(K) = j$ while~$A_j(K) = \min(K) < j$, we have~$A \not\le A_j$ for
 
 \begin{example}
 \label{rem:oneMoreIrreducible}
-Following on \cref{rem:alwaysFlippable}, the join irreducible acyclic orientations of~$\II = \{1, 2, 3, 12, 23, 123\}$ are
+Following on \cref{rem:alwaysFlippable}, the join irreducible acyclic orientations of~$\II = \{1, 2, 3, 12, 23, 123\}$ illustrated in \cref{fig:Tamari}\,(left) are
 \[
 A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
 \qquad\quad
@@ -1971,7 +1950,7 @@ A lattice~$L$ is \defn{semidistributive} if it is both meet and join semidistrib
 
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a semidistributive lattice if and only if $\II$ is a semidistributive interval hypergraph.
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a semidistributive lattice if and only if $\II$ is semidistributive.
 \end{theoremA}
 
 \begin{example}
@@ -2078,7 +2057,7 @@ See \cref{fig:Tamari}.
 In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward}, and we describe all the join irreducible elements of~$P_\II$. % that is, the acyclic orientations~$A$ of~$\II$ which cover a single acyclic orientation~$A_\star$.
 
 \begin{notation}
-Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$i \in \II$ with~$\{i,j\} \subseteq I$ and
+Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and
 \[
 i = \max \Big( {[\min(I), j[} \; \ssm \!\!\!\!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\min(I), j[}}} \!\!\!\!\!\!\!\! J \ssm \{\min(J)\} \Big).
 \]
@@ -2086,6 +2065,12 @@ i = \max \Big( {[\min(I), j[} \; \ssm \!\!\!\!\!\!\!\! \bigcup_{\substack{J \in 
 
 \begin{notation}
 For~$(i,j) \in \cIJ_\II$, let~$J_{ij}$ be the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I \ssm \{\min(I)\}}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and let~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
+By definition~$\mu_{ij} < i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j \ssm \{\mu_j\}$.
+\end{notation}
+
+\begin{notation}
+For $(i,j), (k,\ell) \in \cIJ_\II$, we write $(i,j) \preccurlyeq (k,\ell)$ if and only if $i \ge k$ and~$j = \ell$.
+\vincent{Is this correct? It seems wrong...}
 \end{notation}
 
 \begin{notation}
@@ -2106,8 +2091,84 @@ A_{ij}(J) =
 \end{notation}
 
 \begin{example}
-Following \cref{rem:oneMoreIrreducible}, for the interval hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$, we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$ and the join irreducible acyclic orientations are~$A_{12} = A_2$, $A_{23} = A_3$ and~$A_{13} = A$.
+Following \cref{rem:oneMoreIrreducible}, for the interval hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$ illustrated in \cref{fig:Tamari}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$, the join irreducible acyclic orientations are %~$A_{12} = A_2$, $A_{23} = A_3$ and~$A_{13} = A$.
+\[
+A_{12} = A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
+\qquad\quad
+A_{23} = A_3 = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/1}
+\qquad\text{and}\qquad
+A_{13} = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/3}
+\]
+and we have~$A_{23} \le A_{13}$.
 \end{example}
+
+\begin{example}
+For the hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 34, 123, 234, 1234\}$ illustrated in \cref{fig:Tamari}\,(right), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (2,4), (1,4)\}$, the join irreducible acyclic orientations~are
+\begin{gather*}
+A_{12} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/3/2,2/4/2,1/4/2}}
+\qquad\quad
+A_{23} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/1,2/4/3,1/4/1}}
+\qquad\quad
+A_{34} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/2,1/4/1}}
+\\[.3cm]
+A_{13} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/3/3,2/4/3,1/4/3}}
+\qquad\quad
+A_{24} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/1}}
+\qquad\quad
+A_{14} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/4}}
+\end{gather*}
+and we have~$A_{23} \le A_{13}$ and~$A_{34} \le A_{24} \le A_{14}$.
+\end{example}
+
+\begin{example}
+For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 34, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (1,4)\}$, the join irreducible acyclic orientations~are
+\begin{gather*}
+A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/4/2}}
+\qquad\quad
+A_{23} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/1}}
+\qquad\quad
+A_{34} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/1}}
+\\
+A_{13} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/3}}
+\qquad\quad
+A_{14} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/4}}
+\end{gather*}
+and we have~$A_{23} \le A_{13}$ and~$A_{34} \le A_{14}$.
+\end{example}
+
+\begin{example}
+For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (1,4)\}$, the join irreducible acyclic orientations~are
+\begin{gather*}
+A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/2,2/3/2,2/4/2,1/4/2}}
+\qquad\quad
+A_{23} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/1}}
+\qquad\quad
+A_{13} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/3}}
+\\
+A_{24} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/1}}
+\qquad\quad
+A_{14} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
+\end{gather*}
+and we have~$A_{23} \le A_{13}$ and~$A_{24} \le A_{14}$.
+\end{example}
+
+\begin{lemma}
+\label{lem:distinctIrreducibles2}
+For $(i,j) \ne (k,\ell) \in \cIJ_\II$, we have $A_{ij} \ne A_{k\ell}$.
+\end{lemma}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
+
+\begin{lemma}
+\label{lem:irrorder2}
+For $(i,j), (k,\ell) \in \cIJ_\II$, we have $A_{ij} \le A_{k\ell} \iff (i,j) \preccurlyeq (k,\ell)$.
+\end{lemma}
+
+\begin{proof}
+\vincent{todo}
+\end{proof}
 
 \begin{proposition}
 \label{prop:joinIrreducibles}
