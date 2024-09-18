@@ -184,6 +184,9 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 	\end{tikzpicture}
 }
 
+% flip
+\newcommand{\flip}[4]{\ensuremath{#1 \, \begin{tikzpicture}[scale=1,baseline=-.1cm] \path[->]  (0,0) edge node[fill=white,inner sep=2pt, font=\tiny ] {$#2#3$} (.7,0); \end{tikzpicture} \, #4}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -422,12 +425,13 @@ Two orientations~$O \ne O'$ of~$\HH$ are related by an \defn{increasing flip} if
 \item if~$O(H) \ne O'(H)$, then~$O(H) = i$ and~$O'(H) = j$, and
 \item if~$\{i,j\} \subseteq H$, then~$O(H) = i \iff O'(H) = j$.
 \end{itemize}
+We denote such a flip by~\flip{O}{i}{j}{O'}.
 \end{definition}
 
 \begin{example}
 \label{ex:DH3}
 \cref{Fig:Orientation1} shows all the increasing flips between the acyclic orientations of the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2}.
-For instance, $(2,3)\, \begin{tikzpicture}[scale=1,baseline=-.1cm] \path[color=red, ->]  (0,0) edge node[fill=white,inner sep=2pt, font=\tiny ] {$  23$} (1,0); \end{tikzpicture}\, (3,3)$ indicates that there is an increasing flip from  $O=(2,3)$ to $O'=(3,3)$ with $i=2<3=j$.
+For instance, \flip{(2,3)}{2}{3}{(3,3)} indicates that there is an increasing flip from  $O=(2,3)$ to $O'=(3,3)$ with $i=2<3=j$.
 \end{example}
 
 The following correspondance was already observed in~\cite[Thm.~2.18]{BenedettiBergeronMachacek} (it even extends to all faces of~$\simplex_\HH$, but we do not need this level of generality in this paper).
@@ -1652,7 +1656,7 @@ Hence, $A_j$ is join irreducible.
 
 \begin{corollary}
 \label{coro:irreduciblePosetMorphism}
-Then the map $j \mapsto A_j$ is an injective poset morphism from~$(\cJ_\II, \preccurlyeq)$ to the subposet of join irreducibles of~$P_\II$.
+The map $j \mapsto A_j$ is an injective poset morphism from~$(\cJ_\II, \preccurlyeq)$ to the subposet of join irreducibles of~$P_\II$.
 \end{corollary}
 
 \begin{proof}
@@ -1744,7 +1748,8 @@ If~$\II$ is a distributive interval hypergraph, then the map $j \mapsto A_j$ is 
 \begin{proof}
 We have already seen in \cref{coro:irreduciblePosetMorphism} that~$j \mapsto A_j$ is an injective poset morphism.
 We thus just need to show that the distributivity of~$\II$ implies the surjectivity of this morphism.
-Let~$A < A'$ be two acyclic orientations of~$\II$ related by an increasing flip or~$i$ to~$j$.
+Consider an increasing flip~\flip{A}{i}{j}{A'}.
+%Let~$A < A'$ be two acyclic orientations of~$\II$ related by an increasing flip from~$i$ to~$j$.
 If there is~$J \in \II$ such that~$A'(J) \notin \{\min(J), j\}$, then \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$A(J')$ to some~$k < A(J') \ne j$.
 If there is~$J \in \II$ such that~$A'(J) = j$ and~$\min(J) < \mu_j$, then the distributivity of~$\II$ implies that~$\max(I) < \mu_j$ for any~$I \in \II$ such that~$\min(I) = \min(J)$ and~$\max(I) < j$ (otherwise, $I \not\subseteq J_j$ and~$I \not\supseteq J_j$ and~$\mu_j \in I \cap J_i \subseteq J$, and~$I \cap J_j$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$).
 Hence, \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$j$ to some~$k < \mu_j$.
@@ -2299,6 +2304,18 @@ As $A_{ij}(I) \in \{j, \min(I)\}$ and~$A_{k\ell} \in \{\ell, \min(I)\}$, and~$j 
 As~$A_{ij}(I) = j$, we have~$j \in I$ and~$\mu_{ij} \le \min(I)$, hence~$\{i,j\} \subseteq [\mu_{i,j},j] \subseteq I$ so that~$\ell \in J_{ij} \subseteq I$ by minimality of~$J_{ij}$.
 As~$A_{k\ell}(I) \ne \ell$ and~$\ell \in I$, we obtain that~$\min(I) < \mu_{k\ell}$.
 We thus obtain that~$\mu_{ij} \le \min(I) < \mu_{k\ell}$ contradicting our assumption that~$\mu_{ij} \ge \mu_{k\ell}$.
+\end{proof}
+
+\begin{proposition}
+\label{prop:AijJoinIrreducible}
+For any~$(i,j) \in \cIJ_\II$, the acyclic orientation~$A_{ij}$ is join irreducible.
+\end{proposition}
+
+\begin{proof}
+Consider an increasing flip~\flip{A}{k}{\ell}{A_{ij}}.
+By definition, there is~$I \in \II$ such that~$\{k,\ell\} \subseteq I$ and~$A(I) = k$ while~$A_{ij}(I) = \ell > \min(I)$.
+As $A_{ij}(I) \in \{j, \min(I)\}$ for all~$I \in \II$, we obtain that~$j = \ell$.
+\vincent{todo}
 \end{proof}
 
 \begin{proposition}
