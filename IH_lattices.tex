@@ -218,6 +218,7 @@ The \defn{hypergraphic polytope} of a hypergraph~$\HH$ on~$[n]$ is the Minkowski
 \simplex_\HH \eqdef \sum_{H\in \HH} \simplex_H\,,
 \)
 where $\simplex_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$ of~$\R^n$.
+The face lattice of~$\simplex_\HH$ was described combinatorially in terms of acyclic orientations of~$\HH$ in~\cite{BenedettiBergeronMachacek}.
 Note that the singletons of~$\HH$ are irrelevant for the combinatorics of~$\triangle_\HH$ as they just contribute to translations.
 It is convenient for us to assume that~$\{i\} \in \HH$ for all~$i \in [n]$.
 
@@ -227,11 +228,14 @@ For instance,
 \item if~$\HH = \binom{[n]}{2}$ is the complete graph on~$[n]$ (or any hypergraph containing it), then~$\simplex_\HH$ is the permutahedron and $P_\HH$ is the weak order on permutations,
 \item if~$\HH = \set{[a,b]}{1 \le a \le b \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} associahedron~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the Tamari lattice on binary trees~\cite{Tamari}.
 \end{itemize}
-In view of these two examples, we consider the following general questions:
-\begin{itemize}
-\item characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a (semi-)lattice quotient of the weak order on permutations,
-\item when~$P_\HH$ is a semidistributive lattice, describe the lattice quotients of~$P_\HH$ and realize them geometrically.
-\end{itemize}
+%In view of these two examples, we consider the following general questions:
+%\begin{itemize}
+%\item characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a (semi-)lattice quotient of the weak order on permutations,
+%\item when~$P_\HH$ is a semidistributive lattice, describe the lattice quotients of~$P_\HH$ and realize them geometrically.
+%\end{itemize}
+%These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
+
+In view of these two examples, we would like to characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a \mbox{(semi-)lattice} quotient of the weak order on permutations.
 These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
 \nantel{interesting that zonotope is subset of permutahedron and interval is subset of associahedron}
 
@@ -244,7 +248,7 @@ Note that this family does not contain the permutahedron, but contains
 \item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
 We obtain the following characterizations, where we assume that~$\{i\} \in \II$ for all~$i \in [n]$ as mentioned earlier.
-See \cref{fig:notLattices,fig:Tamari,fig:distributiveLattices,fig:semidistributiveLattices,fig:notSemidistributiveLattices} for illustrations of these characterizations.
+See \cref{fig:notLattices,fig:Tamari,fig:distributiveLattices,fig:semidistributiveLattices,fig:notSemidistributiveLattices} for illustrations.
 
 \begin{theoremA}
 \label{thm:latticeI}
@@ -258,8 +262,26 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if
 
 \begin{theoremA}
 \label{thm:semidistributiveLatticeI}
-For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semidistributive lattice if and only if it does not contain the configuration...
-\vincent{todo}
+%For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if there is no~$I, J, K, L \in \II$ such that
+%\begin{itemize}
+%\item $\min(I) < \min(J) \le \max(I) < \max(J)$,
+%\item $\min(I) < \min(K) \le \max(J) < \max(K)$,
+%\item $\min(L) < \min(\min(J), \min(K))$ and~$\max(K) \le \max(L)$,
+%%\item there is no~$M \!\in\! \II$ with~$\min(M) < \min(\min(J), \min(K))$ and~$\max(J) \le \max(M) < \max(K)$.
+%\item $\min(\min(J), \min(K)) \le \min(M)$ or~$\max(M) < \max(J)$ or $\max(K) \le \max(M)$~for~all~${M \!\in\! \II}$.
+%\end{itemize}
+%
+%For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if there is no~$[i,i'], [j,j'], [k,k'], [\ell,\ell'] \in \II$ such that
+%\begin{itemize}
+%\item $i < j \le i' < j'$ and $i < k \le j' < k'$ and $\ell < \min(j, k)$ and~$k' \le \ell'$,
+%%\item there is no~$[m,m'] \in \II$ with~$m < \min(j, k) \le $ and~$j' \le m' < k'$.
+%\item for all~$[m,m'] \in \II$, we have $\min(j, k) \le m$ or~$m' < j'$ or $k' \le m'$.
+%\end{itemize}
+%
+For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if it is closed under intersection and
+%for all~$[i,i'], [j,j'], [k,k'], [\ell,\ell'] \in \II$ such that $i < j \le i' < j'$, $i < k \le j' < k'$, $\ell < \min(j, k)$ and~$k' \le \ell'$, there is $[m,m'] \in \II$ such that~$m < \min(j, k)$ and~$j' \le m' < k'$.
+for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
+A symmetric characterization holds for meet semidistributive lattices.
 \end{theoremA}
 
 \begin{theoremA}
@@ -268,6 +290,10 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semil
 \end{theoremA}
 
 For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
+
+Once \cref{thm:latticeI} is established, an important step for \cref{thm:distributiveLatticeI,thm:semidistributiveLatticeI} is to understand join irreducibles.
+\cref{subsec:joinIrreducibles} provides a combinatorial description of the join irreducible elements of~$P_\II$ for an arbitrary interval hypergraph~$\II$ closed under intersections.
+To prepare this slightly technical description, we already describe some join irreducible elements of~$P_\II$ in \cref{subsec:someJoinIrreducibles}, which happen to be all join irreducible elements of~$P_\II$ under the condition of~\cref{thm:distributiveLatticeI}.
 
 \vincent{In progress}
 
@@ -627,8 +653,14 @@ Remark that the running example of the previous section, $\HH=\{ 1, 2, 3, 4, 123
 \end{example}
 
 \begin{example}
-We have represented some hypergraphic posets in \cref{fig:notLattices,fig:Tamari,fig:distributiveLattices,fig:semidistributiveLattices,fig:notSemidistributiveLattices}.
-\vincent{list of examples from the introduction...}
+We have represented some interval hypergraphic posets in \cref{fig:notLattices,fig:Tamari,fig:distributiveLattices,fig:semidistributiveLattices,fig:notSemidistributiveLattices}.
+These figures illustrate in particular the following relevant families of interval hypergraphic posets mentioned in the introduction:
+\begin{itemize}
+\item if~$\II = \set{[i,j]}{1 \le i \le j \le n}$ is the set of all intervals of~$[n]$, then~$P_\II$ is the Tamari lattice corresponding to the classical associahedron of~\cite{ShniderSternberg,Loday}; see \cref{fig:Tamari};
+\item if~$\II = \set{[1,i]}{i \in [n]}$ is the set of initial intervals of~$[n]$, then~$P_\II$ is the boolean lattice corresponding to the Pitman--Stanley polytope~\cite{PitmanStanley}; see \cref{fig:distributiveLattices}\,(bottom~right);
+\item if~$\II = \set{[1,i]}{i \in [n]} \cup \set{[i,n]}{i \in [n]}$ is the set of all initial or final intervals of~$[n]$, then~$P_\II$ is a poset given by the freehedron of~\cite{Saneblidze-freehedron}, which is not even a lattice; see \cref{fig:notLattices}\,(right);
+\item if any two intervals of~$\II$ are either nested or disjoint, then~$P_\II$ is a distributive lattice given by the fertilotope of~\cite{Defant-fertilitopes}; see \cref{fig:distributiveLattices}\,(top right and bottom) and \cref{subsec:SchroderHypergraphs}.
+\end{itemize}
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1042,6 +1074,18 @@ The interval hypergraphic posets of \cref{fig:notLattices} are not lattices, whi
 %\end{itemize}
 \end{example}
 
+\begin{example}
+The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123\}$ (resp.~of~$\{ 1, 2, 3, 12, 123\}$) is a lattice.
+In general, the hypergraphic poset of all intervals (resp. all initial intervals) is the Tamari lattice (resp.~the boolean lattice).
+See \cref{fig:Tamari,fig:distributiveLattices}\,(bottom right).
+\end{example}
+
+\begin{example}
+The hypergraphic posets of~$\{1, 2, 3, 4, 123, 234\}$ and of~$\{ 1, 2, 3, 4, 12, 123, 1234, 234, 34\}$ is not a lattice.
+In general, the hypergraphic poset of all initial and final intervals is not a lattice.
+See \cref{fig:notLattices}.
+\end{example}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{If $P_\II$ is a lattice, then $\II$ is closed under intersection}  
@@ -1356,8 +1400,8 @@ Note that the lattice maps of the weak order where described by N.~Reading in~\c
 \label{prop:joinLattice}
 For an interval hypergraph~$\II$ closed under intersection, any acyclic orientations~$A_1, \dots A_q$ of~$\II$, and any~${I \in \II}$, we have
 \[
-%S(I, A \join B) = \min \Big( I \ssm \bigcup_{\substack{(j,J) \in A \cup B \\ \min(I) \le j \le \max(I)}} {[\min J, j[} \Big).
-\Big( \bigJoin_{p \in [q]} A_p \Big)(I) = \min I \ssm \Big( \bigcup_{p \in [q]} \bigcup_{\substack{J \in \II \\ A_p(J) \in I}} {[\min(J), A_p(J)[} \Big).
+%S(I, A \join B) = \min \Big( I \ssm \bigcup_{\substack{(j,J) \in A \cup B \\ \min(I) \le j \le \max(I)}} {[\min(J), j[} \Big).
+\Big( \bigJoin_{p \in [q]} A_p \Big)(I) = \min(I) \ssm \Big( \bigcup_{p \in [q]} \bigcup_{\substack{J \in \II \\ A_p(J) \in I}} {[\min(J), A_p(J)[} \Big).
 \]
 \end{proposition}
 
@@ -1530,6 +1574,18 @@ The interval hypergraphic posets of \cref{fig:distributiveLattices} are distribu
 %\end{itemize}
 \end{example}
 
+\begin{example}
+The hypergraphic poset of~$\{ 1, 2, 3, 12, 123\}$ is a distributive lattice (it is square).
+In general, the hypergraphic poset of all initial intervals is the boolean lattice, which distributive.
+See \cref{fig:distributiveLattices} and \cref{subsec:SchroderHypergraphs} for more examples of distributive hypergraphs.
+\end{example}
+
+\begin{example}
+The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a semidistributive but not distributive lattice (it is a pentagon).
+In general, the hypergraphic poset of all intervals is the Tamari lattice, which is semidistributive but not distributive.
+See \cref{fig:Tamari}.
+\end{example}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Some join irreducible acyclic orientations}  
@@ -1561,14 +1617,13 @@ For~$j \in \cJ_\II$, consider the acyclic orientation~$A_j \eqdef \Or_{(\mu_j, \
 \]
 obtained from the identity permutation by placing~$j$ just before $\mu_j$.
 Note that that for all $J \in \II$
-\begin{equation}
-\label{eq:sourceOj}
+\[
 A_j(J) =
 \begin{cases}
 	j & \text{if } j \in J \text{ and } \min(J)=\mu_j,\\
 	\min(J) & \text{otherwise.}
 \end{cases}
-\end{equation}
+\]
 \end{notation}
 
 \begin{example}
@@ -1773,7 +1828,7 @@ are inverse bijections between the acyclic orientations of~$\II$ and the lower s
 \end{proposition}
 
 \begin{proof}
-In a finite lattice, any element can always be written as the join of the join-irreducible elements below it.
+In a finite lattice, any element can always be written as the join of the join irreducible elements below it.
 \cref{prop:irreduciblePosetIsomorphism} thus implies that~$\Psi(\Phi(A)) = A$.
 The statement follows since $\Psi$ is injective by \cref{prop:injectivityDistributive}.
 \end{proof}
@@ -1937,8 +1992,9 @@ In this section, we prove \cref{thm:semidistributiveLatticeI} which we first rep
 
 \begin{definition}
 \label{def:semidistributive}
-We say that an interval hypergraph~$\II$ is \defn{semidistributive} if ...
-\vincent{todo}
+We say that an interval hypergraph~$\II$ is \defn{join semidistributive} if it is closed under intersection and for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
+%        if p0[0] < p1[0] <= p0[1] < p1[1] and p0[0] < p2[0] <= p1[1] < p2[1] and p1[1] != p2[1] and all(inter[0] >= min(p1[0], p2[0]) or inter[1] < p1[1] or inter[1] >= p2[1] for inter in intervals) and any(inter[0] < min(p1[0], p2[0]) and p1[1] < inter[1] for inter in intervals):
+%            return False
 \end{definition}
 
 \begin{definition}
@@ -1956,16 +2012,19 @@ A lattice~$L$ is \defn{semidistributive} if it is both meet and join semidistrib
 
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a semidistributive lattice if and only if $\II$ is semidistributive.
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join semidistributive lattice if and only if $\II$ is join semidistributive.
+A dual characterization holds for meet semidistributive.
 \end{theoremA}
 
 \begin{example}
 \cref{fig:distributiveLattices} shows four distributive (hence semidistributive) interval hypergraphic lattices.
-
+%
 \cref{fig:semidistributiveLattices} shows two interval hypergraphic lattices which are semidistributive but not distributive.
-
+%
 \cref{fig:notSemidistributiveLattices} shows two interval hypergraphic lattices which are not semidistributive.
+\end{example}
 
+\begin{example}
 The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a semidistributive (but not distributive) lattice (it is a pentagon).
 In general, the hypergraphic poset of all intervals is the Tamari lattice, which is semidistributive but not distributive.
 See \cref{fig:Tamari}.
@@ -2167,20 +2226,20 @@ i = \max \Big( {[\mu_{ij}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ 
 \end{notation}
 
 \begin{notation}
+\label{not:joinIrreducibles}
 For~$(i,j) \in \cIJ_\II$, consider the acyclic orientation~$A_{ij} \eqdef \Or_{(\mu_{ij}, \mu_{ij}+1, \ldots, j)}$, obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation
 \[
 (\mu_{ij}, \mu_{ij}+1, \dots, j) = 12 \cdots (\mu_{ij}-1)j\,\mu_{ij} \cdots (j-1) (j+1) \cdots n
 \]
 obtained from the identity permutation by placing~$j$ just before $\mu_{ij}$.
 Note that that for all $J \in \II$
-\begin{equation}
-\label{eq:sourceOj}
+\[
 A_{ij}(J) =
 \begin{cases}
 	j & \text{if } j \in J \text{ and } \min(J) \ge \mu_{ij},\\
 	\min(J) & \text{otherwise.}
 \end{cases}
-\end{equation}
+\]
 \end{notation}
 
 \begin{example}
@@ -2313,9 +2372,9 @@ For any~$(i,j) \in \cIJ_\II$, the acyclic orientation~$A_{ij}$ is join irreducib
 
 \begin{proof}
 Consider an increasing flip~\flip{A}{k}{\ell}{A_{ij}}.
-By definition, there is~$I \in \II$ such that~$\{k,\ell\} \subseteq I$ and~$A(I) = k$ while~$A_{ij}(I) = \ell > \min(I)$.
-As $A_{ij}(I) \in \{j, \min(I)\}$ for all~$I \in \II$, we obtain that~$j = \ell$.
-\vincent{todo}
+By definition, there is~$I \in \II$ such that~$\{k,\ell\} \subseteq I$ and~$A(I) = k$ while~$A_{ij}(I) = \ell$.
+As $A_{ij}(I) \in \{j, \min(I)\}$ and~$A_{ij}(I) = \ell > k \ge \min(I)$, we obtain that~$j = \ell$.
+\vincent{todo: prove that~$i = k$...}
 \end{proof}
 
 \begin{proposition}
@@ -2341,7 +2400,72 @@ We now prove the backward direction of \cref{thm:semidistributiveLatticeI}.
 \label{subsec:semidistributiveLatticeForward}
 
 We now prove the forward direction of \cref{thm:semidistributiveLatticeI}.
-\vincent{todo}
+
+\begin{proposition}
+If~$\II$ is an interval hypergraph such that $P_\II$ is a join (resp.~meet) semidistributive lattice, then~$\II$ is join (resp.~meet) semidistributive.
+\end{proposition}
+
+\begin{proof}
+We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
+
+Assume that there is~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, and there is no~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
+Let
+\[
+j \eqdef a'+1,
+\quad
+i \eqdef \max \Big( [c,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [c,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big)
+\;\;\text{and}\;\;
+i' \eqdef \max \Big( [d,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big).
+\]
+Similarly, let
+\[
+\ell \eqdef b'+1
+\qquad
+k \eqdef \max \Big( [d,\ell[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,\ell[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big)
+\quad\text{and}\quad
+k' \eqdef \max \Big( [d,\ell[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,\ell[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big).
+\]
+Note that~$i = k$.
+Consider the join irreducible acyclic orientations~$A_{ij}, A_{i'j}, A_{k\ell}$ and~$A_{k'\ell}$ as defined in \cref{not:joinIrreducibles}.
+Moreover, let~$A$ be defined as ...
+\vincent{todo: define properly~$A$.}
+Observe that
+\[
+A_{ij} \join A_{i'j} = A = A_{k\ell} \join A_{k'\ell}.
+\]
+Moreover
+\[
+A_{ij} < A_{i'j}
+\quad\text{and}\quad
+A_{k\ell} < A_{k'\ell},
+\]
+and there is no other comparisons among~$A_{ij}, A_{i'j}, A_{k\ell}$ and~$A_{k'\ell}$.
+Hence, $A$ admits two incomparable join representations, so that~$P_\II$ is not join irreducible.
+\vincent{todo: prove all statements.}
+\end{proof}
+
+\begin{example}
+For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
+\[
+\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c|c}
+a & a' & b & b' & c & c' & d & d' & i & i' & j & k & k' & \ell \\
+\hline
+1 & 2 & 2 & 3 & 2 & 4 & 1 & 4 & 2 & 1 & 3 & 2 & 1 & 4
+\end{array}
+\]
+and
+\[
+\begin{array}{c@{}c@{}c@{}c@{}c@{}c@{}c}
+A_{23} && A_{14} & A & A_{13} && A_{24} \\
+\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/1}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
+& = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/4}} = &
+\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/3}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/1}}
+\\
+~
+\end{array}
+\]
+and we have~$A_{23} \le A_{13}$ and~$A_{24} \le A_{14}$ but no other comparisons, so that~$A$ admits two incomparable join representations.
+\end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
