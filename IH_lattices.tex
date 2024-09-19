@@ -1607,10 +1607,6 @@ By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
 \end{notation}
 
 \begin{notation}
-For $i,j \in \cJ_\II$, we write $i \preccurlyeq j$ if and only if $J_i = J_j$ and $i \le j$.
-\end{notation}
-
-\begin{notation}
 For~$j \in \cJ_\II$, consider the acyclic orientation~$A_j \eqdef \Or_{(\mu_j, \mu_j+1, \ldots, j)}$, obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation
 \[
 (\mu_j, \mu_j+1, \dots, j) = 12 \cdots (\mu_j-1)j\,\mu_j \cdots (j-1) (j+1) \cdots n
@@ -1624,6 +1620,10 @@ A_j(J) =
 	\min(J) & \text{otherwise.}
 \end{cases}
 \]
+\end{notation}
+
+\begin{notation}
+For $i,j \in \cJ_\II$, we write $i \preccurlyeq j$ if and only if $J_i = J_j$ and $i \le j$.
 \end{notation}
 
 \begin{example}
@@ -2214,11 +2214,6 @@ By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j$.
 \end{notation}
 
 \begin{notation}
-For $(i,j), (k,\ell)$, we write $(i,j) \preccurlyeq (k,\ell)$ if and only $j \le \ell$ and~$\ell \in J_{ij}$ and~$\mu_{ij} \ge \mu_{k\ell}$.
-\vincent{not sure we really need this definition...}
-\end{notation}
-
-\begin{notation}
 Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and
 \[
 i = \max \Big( {[\mu_{ij}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\! J \ssm \{\min(J)\} \Big).
@@ -2242,6 +2237,10 @@ A_{ij}(J) =
 \]
 \end{notation}
 
+\begin{notation}
+For $(i,j), (k,\ell) \in \IJ_\II$, we write $(i,j) \preccurlyeq (k,\ell)$ if and only $j \le \ell$ and~$\ell \in J_{ij}$ and~$\mu_{ij} \ge \mu_{k\ell}$.
+\end{notation}
+
 \begin{example}
 Following \cref{rem:oneMoreIrreducible}, for the interval hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$ illustrated in \cref{fig:Tamari}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$, the join irreducible acyclic orientations are %~$A_{12} = A_2$, $A_{23} = A_3$ and~$A_{13} = A$.
 \[
@@ -2251,7 +2250,7 @@ A_{23} = A_3 = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/1}
 \qquad\text{and}\qquad
 A_{13} = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/3}
 \]
-and we have~$A_{23} \le A_{13}$.
+and we have~$A_{23} < A_{13}$.
 \end{example}
 
 \begin{example}
@@ -2269,7 +2268,7 @@ A_{24} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1
 \qquad\quad
 A_{14} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/3/1,2/4/4,1/4/4}}
 \end{gather*}
-and we have~$A_{23} \le A_{13}$ and~$A_{34} \le A_{24} \le A_{14}$.
+and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{24} < A_{14}$.
 \end{example}
 
 \begin{example}
@@ -2283,7 +2282,7 @@ A_{24} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/3/1,2/3/2,2/4/4,1/4/1}}
 \qquad
 A_{14} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/3/1,2/3/2,2/4/4,1/4/4}}
 \end{gather*}
-and we have~$A_{24} \le A_{14}$.
+and we have~$A_{24} < A_{14}$.
 \end{example}
 
 \begin{example}
@@ -2297,7 +2296,7 @@ A_{34} = \raisebox{-.2cm}{\acyclicOrientation{4}{2/3/2,3/4/4,1/4/1}}
 \qquad
 A_{24} = \raisebox{-.2cm}{\acyclicOrientation{4}{2/3/2,3/4/4,1/4/4}}
 \end{gather*}
-and we have~$A_{12} \le A_{24}$ and~$A_{34} \le A_{24}$.
+and we have~$A_{12} < A_{24}$ and~$A_{34} < A_{24}$.
 \end{example}
 
 \begin{example}
@@ -2313,7 +2312,7 @@ A_{13} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/3}}
 \qquad\quad
 A_{14} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/4}}
 \end{gather*}
-and we have~$A_{23} \le A_{13}$ and~$A_{34} \le A_{14}$.
+and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{14}$.
 \end{example}
 
 \begin{example}
@@ -2329,7 +2328,7 @@ A_{24} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/1}}
 \qquad\quad
 A_{14} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
 \end{gather*}
-and we have~$A_{23} \le A_{13}$ and~$A_{24} \le A_{14}$.
+and we have~$A_{23} < A_{13}$ and~$A_{24} < A_{14}$.
 \end{example}
 
 \begin{lemma}
@@ -2341,14 +2340,13 @@ For $(i,j) \ne (k,\ell) \in \cIJ_\II$, we have $A_{ij} \ne A_{k\ell}$.
 Assume that~$A_{ij} = A_{k\ell}$.
 As~$j = A_{ij}(J_{ij}) = A_{k\ell}(J_{i,j}) \in \{\ell, \mu_{ij}\}$ and~$\mu_{ij} < j$, we obtain that~$j = \ell = A_{k\ell}(J_{ij})$ hence that~$\mu_{ij} \ge \mu_{k\ell}$.
 By symmetry, we have~$\mu_{ij} = \mu_{k\ell}$.
-As $j = \ell$ and $\mu_{ij} = \mu_{k\ell}$, we obtain that~$i = k$ by definition of~$\IJ_\II$
+As $j = \ell$ and $\mu_{ij} = \mu_{k\ell}$, we obtain that~$i = k$ by definition of~$\cIJ_\II$
 We conclude that~$(i,j) = (k,\ell)$.
 \end{proof}
 
 \begin{lemma}
 \label{lem:irrorder2}
 For $(i,j), (k,\ell) \in \cIJ_\II$, we have $A_{ij} \le A_{k\ell} \iff (i,j) \preccurlyeq (k,\ell)$.
-\vincent{not sure we really need this lemma...}
 \end{lemma}
 
 \begin{proof}
@@ -2405,58 +2403,126 @@ We now prove the forward direction of \cref{thm:semidistributiveLatticeI}.
 If~$\II$ is an interval hypergraph such that $P_\II$ is a join (resp.~meet) semidistributive lattice, then~$\II$ is join (resp.~meet) semidistributive.
 \end{proposition}
 
+%\begin{proof}
+%We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
+%
+%Assume that there is~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, and there is no~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
+%Let
+%\[
+%j \eqdef a'+1,
+%\quad
+%i \eqdef \max \Big( [c,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [c,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big)
+%\;\;\text{and}\;\;
+%i' \eqdef \max \Big( [d,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big).
+%\]
+%Similarly, let
+%\[
+%\ell \eqdef b'+1
+%\qquad
+%k \eqdef \max \Big( [d,\ell[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,\ell[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big)
+%\quad\text{and}\quad
+%k' \eqdef \max \Big( [d,\ell[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,\ell[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big).
+%\]
+%Note that~$i = k$.
+%Consider the join irreducible acyclic orientations~$A_{ij}, A_{i'j}, A_{k\ell}$ and~$A_{k'\ell}$ as defined in \cref{not:joinIrreducibles}.
+%Moreover, let~$A$ be defined as ...
+%\vincent{todo: define properly~$A$.}
+%Observe that
+%\[
+%A_{ij} \join A_{i'j} = A = A_{k\ell} \join A_{k'\ell}.
+%\]
+%Moreover
+%\[
+%A_{ij} < A_{i'j}
+%\quad\text{and}\quad
+%A_{k\ell} < A_{k'\ell},
+%\]
+%and there is no other comparisons among~$A_{ij}, A_{i'j}, A_{k\ell}$ and~$A_{k'\ell}$.
+%Hence, $A$ admits two incomparable join representations, so that~$P_\II$ is not join irreducible.
+%\vincent{todo: prove all statements.}
+%\end{proof}
+
 \begin{proof}
 We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
 Assume that there is~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, and there is no~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
+Let~$j \eqdef a'+1$ and~$k \eqdef b'+1$.
+As~$\II$ is closed under intersection, we have~$[b,a'] \in \II$ so that~$(b,j) \in \cIJ_\II$.
+Similarly, we have~$(c,k) \in \cIJ_\II$ (because $[c,b'] \in \II$ if~$b \le c$, and~$[c,a'], [b,b'] \in \II$ if~$c < b$).
 Let
 \[
-j \eqdef a'+1,
-\quad
-i \eqdef \max \Big( [c,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [c,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big)
-\;\;\text{and}\;\;
-i' \eqdef \max \Big( [d,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big).
+i \eqdef \max \Big( [d,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big) = \max \Big( [d,k[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,k[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big),
 \]
-Similarly, let
-\[
-\ell \eqdef b'+1
-\qquad
-k \eqdef \max \Big( [d,\ell[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,\ell[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big)
-\quad\text{and}\quad
-k' \eqdef \max \Big( [d,\ell[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,\ell[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big).
-\]
-Note that~$i = k$.
-Consider the join irreducible acyclic orientations~$A_{ij}, A_{i'j}, A_{k\ell}$ and~$A_{k'\ell}$ as defined in \cref{not:joinIrreducibles}.
-Moreover, let~$A$ be defined as ...
-\vincent{todo: define properly~$A$.}
+so that~$(i,j) \in \cIJ_\II$ and~$(i,k) \in \cIJ_\II$.
+(The equality holds since $j \in [b,b'] \subseteq [d,k[$ and $\II$ is closed under intersection.
+
+Note that~$j \ne k$ (since~$a' < b'$), and~$i \le \min(a,d) < \min(b,c)$ (since~$\II$ is closed under intersection).
+Hence, $(b,j), (i,j), (c,k), (i,k)$ are four distinct elements of~$\cIJ_\II$.
+Consider now the four corresponding join irreducible acyclic orientations~$A_{bj}, A_{ij}, A_{ck}$ and~$A_{ik}$ as defined in \cref{not:joinIrreducibles}.
+%Moreover, let~$A$ be defined as ...
+%\vincent{todo: define properly~$A$.}
+
 Observe that
 \[
-A_{ij} \join A_{i'j} = A = A_{k\ell} \join A_{k'\ell}.
+A_{bj} \join A_{ik} = A_{ij} \join A_{ck}.
 \]
-Moreover
+\vincent{todo: Argue this...}
+\vincent{We will use here the hypothesis that there is no~$[e,e']$ with ...}
+\vincent{We just need to prove that 
+
+By \cref{lem:irrorder2}, we obtain that $A_{bj} \join A_{ik} \ge A_{ij}$ and~$A_{ij} \join A_{ck} \ge A_{ik}$. The first seems to be the problematic one on the counter-example of the Tamari lattice...}
 \[
-A_{ij} < A_{i'j}
+A_{bj} < A_{ij}
 \quad\text{and}\quad
-A_{k\ell} < A_{k'\ell},
+A_{ck} < A_{ik}.
 \]
-and there is no other comparisons among~$A_{ij}, A_{i'j}, A_{k\ell}$ and~$A_{k'\ell}$.
-Hence, $A$ admits two incomparable join representations, so that~$P_\II$ is not join irreducible.
-\vincent{todo: prove all statements.}
+Moreover, since
+\begin{align*}
+& A_{bj}([b,b']) = A_{i,j}([b,b']) = j > b = A_{ck}([b,b']) = A_{ik}([b,b']) \\
+\text{and}\quad &
+\max \big( A_{bj}([c,c']), A_{i,j}([c,c']) \big) \le j < k = A_{ck}([c,c']) = A_{ik}([c,c']),
+\end{align*}
+there is no other comparisons among~$A_{bj}, A_{ij}, A_{ck}$ and~$A_{ik}$.
+
+We conclude that $A_{bj} \join A_{ik} = A_{ij} \join A_{ck}$ admits two incomparable join representations, so that~$P_\II$ is not join semidistributive.
 \end{proof}
 
 \begin{example}
-For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
+For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 34, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
 \[
-\begin{array}{c|c|c|c|c|c|c|c|c|c|c|c|c|c}
-a & a' & b & b' & c & c' & d & d' & i & i' & j & k & k' & \ell \\
+\begin{array}{c|c|c|c|c|c|c|c|c|c|c}
+a & a' & b & b' & c & c' & d & d' & i & j & k \\
 \hline
-1 & 2 & 2 & 3 & 2 & 4 & 1 & 4 & 2 & 1 & 3 & 2 & 1 & 4
+1 & 2 & 2 & 3 & 3 & 4 & 1 & 4 & 1 & 3 & 4
 \end{array}
 \]
 and
 \[
 \begin{array}{c@{}c@{}c@{}c@{}c@{}c@{}c}
-A_{23} && A_{14} & A & A_{13} && A_{24} \\
+A_{23} && A_{14} & & A_{13} && A_{34} \\
+\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/1}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/4}}
+& = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/4}} = &
+\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/3}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/1}}
+\\
+~
+\end{array}
+\]
+and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{14}$ but no other comparisons among~$A_{23}, A_{13}, A_{34}, A_{14}$, so that~$A$ admits two incomparable join representations.
+\end{example}
+
+\begin{example}
+For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
+\[
+\begin{array}{c|c|c|c|c|c|c|c|c|c|c}
+a & a' & b & b' & c & c' & d & d' & i & j & k \\
+\hline
+1 & 2 & 2 & 3 & 2 & 4 & 1 & 4 & 1 & 3 & 4
+\end{array}
+\]
+and
+\[
+\begin{array}{c@{}c@{}c@{}c@{}c@{}c@{}c}
+A_{23} && A_{14} & & A_{13} && A_{24} \\
 \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/1}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
 & = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/4}} = &
 \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/3}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/1}}
@@ -2464,7 +2530,7 @@ A_{23} && A_{14} & A & A_{13} && A_{24} \\
 ~
 \end{array}
 \]
-and we have~$A_{23} \le A_{13}$ and~$A_{24} \le A_{14}$ but no other comparisons, so that~$A$ admits two incomparable join representations.
+and we have~$A_{23} < A_{13}$ and~$A_{24} < A_{14}$ but no other comparisons among~$A_{23}, A_{13}, A_{24}, A_{14}$, so that~$A$ admits two incomparable join representations.
 \end{example}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
