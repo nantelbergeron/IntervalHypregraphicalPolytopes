@@ -280,7 +280,8 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if
 %
 For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if it is closed under intersection and
 %for all~$[i,i'], [j,j'], [k,k'], [\ell,\ell'] \in \II$ such that $i < j \le i' < j'$, $i < k \le j' < k'$, $\ell < \min(j, k)$ and~$k' \le \ell'$, there is $[m,m'] \in \II$ such that~$m < \min(j, k)$ and~$j' \le m' < k'$.
-for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
+%for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~${a' < e' < c'}$.
+for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${a' < e' < c'}$.
 A symmetric characterization holds for meet semidistributive lattices.
 \end{theoremA}
 
@@ -1642,6 +1643,7 @@ A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
 A_3 = \acyclicOrientation{3}{1/2/1,2/3/3,1/3/1}
 \]
 \end{example}
+\vincent{add examples here}
 
 \begin{lemma}
 \label{lem:distinctIrreducibles}
@@ -1992,8 +1994,9 @@ In this section, we prove \cref{thm:semidistributiveLatticeI} which we first rep
 
 \begin{definition}
 \label{def:semidistributive}
-We say that an interval hypergraph~$\II$ is \defn{join semidistributive} if it is closed under intersection and for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
-%        if p0[0] < p1[0] <= p0[1] < p1[1] and p0[0] < p2[0] <= p1[1] < p2[1] and p1[1] != p2[1] and all(inter[0] >= min(p1[0], p2[0]) or inter[1] < p1[1] or inter[1] >= p2[1] for inter in intervals) and any(inter[0] < min(p1[0], p2[0]) and p1[1] < inter[1] for inter in intervals):
+We say that an interval hypergraph~$\II$ is \defn{join semidistributive} if it is closed under intersection and
+for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${a' < e' < c'}$.
+%        if p0[0] < p1[0] <= p0[1] < p1[1] and p0[0] < p2[0] <= p1[1] < p2[1] and all(inter[0] >= p1[0] or inter[1] <= p0[1] or inter[1] >= p2[1] for inter in intervals) and any(inter[0] < min(p1[0], p2[0]) and p1[1] < inter[1] for inter in intervals):
 %            return False
 \end{definition}
 
@@ -2013,7 +2016,7 @@ A lattice~$L$ is \defn{semidistributive} if it is both meet and join semidistrib
 
 \begin{theoremA}
 For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join semidistributive lattice if and only if $\II$ is join semidistributive.
-A dual characterization holds for meet semidistributive.
+Under the symmetry of \cref{prop:antiIsomorphism}, a dual characterization holds for meet semidistributive.
 \end{theoremA}
 
 \begin{example}
@@ -2441,11 +2444,13 @@ If~$\II$ is an interval hypergraph such that $P_\II$ is a join (resp.~meet) semi
 %Hence, $A$ admits two incomparable join representations, so that~$P_\II$ is not join irreducible.
 %\vincent{todo: prove all statements.}
 %\end{proof}
+\vincent{I have a big problem in this proof... see the comment in the middle...}
+\vincent{Maybe we should try to find $x,y,z$ which contradict the semidistributivity. But it seems difficult to define in general...}
 
 \begin{proof}
 We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
-Assume that there is~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, and there is no~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~$b' \le e' < c'$.
+Assume that there is~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, and there is no~$[e,e'] \in \II$ such that~$e < b$ and~$a' < e' < c'$.
 Let~$j \eqdef a'+1$ and~$k \eqdef b'+1$.
 As~$\II$ is closed under intersection, we have~$[b,a'] \in \II$ so that~$(b,j) \in \cIJ_\II$.
 Similarly, we have~$(c,k) \in \cIJ_\II$ (because $[c,b'] \in \II$ if~$b \le c$, and~$[c,a'], [b,b'] \in \II$ if~$c < b$).
@@ -2462,15 +2467,7 @@ Consider now the four corresponding join irreducible acyclic orientations~$A_{bj
 %Moreover, let~$A$ be defined as ...
 %\vincent{todo: define properly~$A$.}
 
-Observe that
-\[
-A_{bj} \join A_{ik} = A_{ij} \join A_{ck}.
-\]
-\vincent{todo: Argue this...}
-\vincent{We will use here the hypothesis that there is no~$[e,e']$ with ...}
-\vincent{We just need to prove that 
-
-By \cref{lem:irrorder2}, we obtain that $A_{bj} \join A_{ik} \ge A_{ij}$ and~$A_{ij} \join A_{ck} \ge A_{ik}$. The first seems to be the problematic one on the counter-example of the Tamari lattice...}
+By \cref{lem:irrorder2}, we obtain that
 \[
 A_{bj} < A_{ij}
 \quad\text{and}\quad
@@ -2480,11 +2477,40 @@ Moreover, since
 \begin{align*}
 & A_{bj}([b,b']) = A_{i,j}([b,b']) = j > b = A_{ck}([b,b']) = A_{ik}([b,b']) \\
 \text{and}\quad &
-\max \big( A_{bj}([c,c']), A_{i,j}([c,c']) \big) \le j < k = A_{ck}([c,c']) = A_{ik}([c,c']),
+\max \big( A_{bj}([c,c']), A_{ij}([c,c']) \big) \le j < k = A_{ck}([c,c']) = A_{ik}([c,c']),
 \end{align*}
 there is no other comparisons among~$A_{bj}, A_{ij}, A_{ck}$ and~$A_{ik}$.
 
-We conclude that $A_{bj} \join A_{ik} = A_{ij} \join A_{ck}$ admits two incomparable join representations, so that~$P_\II$ is not join semidistributive.
+Moreover, we claim that~$A \eqdef A_{bj} \join A_{ik} \ge A_{ij}$.
+By \cref{prop:sourceOrderI}, we just need to prove that~$A([e,e']) \ge A_{ij}([e,e'])$ for all~$[e,e'] \in \II$.
+By definition, we have~$A_{ij}([e,e']) \in \{e,j\}$, and we have nothing to prove if~$A_{ij}([e,e']) = e$.
+Assume thus that~$A_{ij}([e,e']) = j$, and let us prove that~$A([e,e']) \ge j$.
+As~$A_{ij}([e,e']) = j$, we have~$j \in [e,e']$ and~$e \ge \mu_{ij} \ge \mu_{ik}$.
+If~$e' \ge k$, then~$A([e,e']) \ge A_{ik}([e,e']) = k > j$.
+If~$b \le e$, then~$A([e,e']) \ge A_{bj}([e,e']) = j$.
+Hence, we obtain that~$e < b$ and~$a' < j \le e' < k \le c'$, contradicting our assumption.
+
+Since~$A_{bj} < A_{ij}$, we obtain from our claim that~$A_{bj} \join A_{ik} = A_{ij} \join A_{ik}$.
+Similarly, we prove that~$A_{ij} \join A_{ck} = A_{ij} \join A_{ik}$.
+\vincent{I have a problem here with $\{12, 234, 45, 12345\}$...}
+%sage: intervals = ((1,2),(2,4),(4,5),(1,5))                                                                                                                                                                                                   
+%sage: HP = HypergraphicalPolytopes(interval_hypergraph([1,n], intervals))                                                                                                                                                                     
+%sage: pos = HP.hypergraphical_poset()                                                                                                                                                                                                         
+%sage: lat = LatticePoset(pos)                                                                                                                                                                                                                 
+%sage: lat.is_semidistributive()                                                                                                                                                                                                               
+%False
+%sage: is_quasi_schroder_hypergraph(tuple(tuple(i) for i in intervals))                                                                                                                                                                        
+%False
+%sage: ll = lat.relabel(lambda v: tuple(vector(v)-vector([2,2,2,2,2])))                                                                                                                                                                        
+%sage: ll.join((1,0,2,1,0), (2,1,0,0,1))                                                                                                                                                                                                       
+%(1, 0, 2, 0, 1)
+%sage: ll.join((1,1,0,0,2), (2,0,1,1,0))                                                                                                                                                                                                       
+%(1, 0, 1, 0, 2)
+We conclude that
+\[
+A_{bj} \join A_{ik} = A_{ij} \join A_{ck}
+\]
+admits two incomparable join representations, so that~$P_\II$ is not join semidistributive.
 \end{proof}
 
 \begin{example}
