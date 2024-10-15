@@ -281,7 +281,8 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if
 For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if it is closed under intersection and
 %for all~$[i,i'], [j,j'], [k,k'], [\ell,\ell'] \in \II$ such that $i < j \le i' < j'$, $i < k \le j' < k'$, $\ell < \min(j, k)$ and~$k' \le \ell'$, there is $[m,m'] \in \II$ such that~$m < \min(j, k)$ and~$j' \le m' < k'$.
 %for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~${a' < e' < c'}$.
-for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${b' < e' < c'}$.
+%for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${b' < e' < c'}$.
+for all~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that ${r < s \le r' < s'}$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, there is~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
 A symmetric characterization holds for meet semidistributive lattices.
 \end{theoremA}
 
@@ -905,10 +906,13 @@ Hence, we obtain that~$j \in \cY_{A,i}$.
 \label{prop:isCoverI}
 %Let~$A$ and~$B$ be two acyclic orientations of an interval hypergraph~$\II$  related by an increasing flip of~$i$ to~$j$.
 An increasing flip \flip{A}{i}{j}{B} between two acyclic orientations of an interval hypergraph~$\II$ is a cover relation of~$P_\II$ if and only if
-\vincent{todo: characterize cover relations...}
+\[
+{]i,j[} \subseteq \bigcup_{\substack{J \in \II \\ A(J) \in {]i,j]}}} J \ssm \{A(J)\}.
+\]
 \end{proposition}
 
 \begin{proof}
+\vincent{todo}
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1568,11 +1572,11 @@ We say that an interval hypergraph~$\II$ is \defn{distributive} if for all~$I, J
 \begin{definition}
 A lattice~$(L, \le , \join, \meet)$ is \defn{distributive} if
 \[
-x \join (y \meet z) = (x \join y) \meet (x \join z)
+a \join (b \meet c) = (a \join b) \meet (a \join c)
 \qquad\text{and}\qquad
-x \meet (y \join z) = (x \meet y) \join (x \meet z)
+a \meet (b \join c) = (a \meet b) \join (a \meet c)
 \]
-for all~$x,y,z \in L$ (the two conditions are in fact equivalent).
+for all~$a,b,c \in L$ (the two conditions are in fact equivalent).
 Equivalently, $L$ is distributive if and only if it is isomorphic to the inclusion lattice on lower sets of its poset of join irreducible elements.
 \end{definition}
 
@@ -2018,11 +2022,11 @@ for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$
 \begin{definition}
 A lattice~$(L, \le , \join, \meet)$ is \defn{join semidistributive} if
 \[
-x \join y = x \join z
+a \join b = a \join c
 \qquad\text{implies}\qquad
-x \join (y \meet z) = x \join y
+a \join (b \meet c) = a \join b
 \]
-for all~$x,y,z \in L$.
+for all~$a,b,c \in L$.
 The meet semidistributivity is defined dually.
 A lattice~$L$ is \defn{semidistributive} if it is both meet and join semidistributive.
 \vincent{recall basic definitions and properties of semidistributive lattices. Canonical join representations.}
@@ -2256,7 +2260,8 @@ A_{ij}(J) =
 \end{notation}
 
 \begin{notation}
-For $(i,j), (k,\ell) \in \IJ_\II$, we write $(i,j) \preccurlyeq (k,\ell)$ if and only $j \le \ell$ and~$\ell \in J_{ij}$ and~$\mu_{ij} \ge \mu_{k\ell}$.
+For $(i,j), (k,\ell) \in \cIJ_\II$, we write $(i,j) \preccurlyeq (k,\ell)$ if and only $j \le \ell$ and~$\ell \in J_{ij}$ and~$\mu_{ij} \ge \mu_{k\ell}$.
+Note in particular that~$i \ge k$ and~$j = \ell$ implies $(i,j) \preccurlyeq (k,\ell)$.
 \end{notation}
 
 \begin{example}
@@ -2365,6 +2370,7 @@ We conclude that~$(i,j) = (k,\ell)$.
 \begin{lemma}
 \label{lem:irrorder2}
 For $(i,j), (k,\ell) \in \cIJ_\II$, we have $A_{ij} \le A_{k\ell} \iff (i,j) \preccurlyeq (k,\ell)$.
+In particular~$j = \ell$ implies that $A_{ij}$ and~$A_{k\ell}$ are comparable in~$P_\II$.
 \end{lemma}
 
 \begin{proof}
@@ -2408,10 +2414,55 @@ If~$\II$ is an interval hypergraph closed under intersection, then the map~${(i,
 \label{subsec:semidistributiveLatticeBackward}
 
 We now prove the backward direction of \cref{thm:semidistributiveLatticeI}.
-\vincent{todo}
-\vincent{Note that we cannot use interval doubling since some interval hypergraph lattices are join semidistributive but not meet semidistributive or the opposite.}
-\vincent{Is it possible to use the BEZ type lemma for semidistributivity? (See Reading's chapter). This means that we only have to check the join semidistributivity condition when $y$ and $z$ are covered by a common element.}
-\vincent{Another method is to prove that for any cover relation $x \lessdot y$ of~$L$, the set $K_\join(x \lessdot y) \eqdef \set{z \in L}{x \join z = y}$ admits a unique minimal element~$k_\join(x \lessdot y)$. Then this also gives the canonical join representation for free.}
+
+\begin{proposition}
+\label{prop:semidistributiveBackward}
+If~$\II$ is a join (resp.~meet) semidistributive interval hypergraph, then $P_\II$ is a join (resp.~meet) semidistributive lattice.
+\end{proposition}
+
+\begin{proof}
+Assume that~$\II$ is a join (resp.~meet) semidistributive interval hypergraph.
+Consider a cover relation~$\flip{A}{p}{q}{B}$ of~$P_\II$ and assume by means of contradiction that there are~$(i,j), (k,\ell) \in \cIJ_||$ such that~$A_{ij}$ and~$A_{k\ell}$ are both minimal in~$P_\II$ such that~$A \join A_{ij} = B = A \join A_{k\ell}$.
+As~$A_{ij}$ and~$A_{k\ell}$ are incomparable, we have~$j \ne \ell$ by \cref{lem:irrorder2}, and we assume by symmetry that~$j < \ell$.
+
+As~$A_{ij} \not\le A$ but~$A_{ij} \le B$, there is~$U \in \II$ such that~$A(U) < A_{ij}(U) \le B(U)$ by \cref{prop:sourceOrderI}.
+Since~$A$ and~$B$ only differ by the flip of~$p$ to~$q$, this implies that~$A(U) = p$ while~$B(U) = q$.
+Moreover, by definition of~$A_{ij}$, we obtain that~$\mu_{ij} \le \min(I) \le p < j \le q$.
+Similarly, ${\mu_{k\ell} \le p < \ell < q}$.
+
+Observe that for any~$J \in \II$ such that~$A(J) \in {]p,q]}$, we have
+\begin{itemize}
+\item $p < \min(J)$ as otherwise~$A(I) = p \in J$ while~$A(J) \in {]p,q]} \subseteq I \ssm \{A(I)\}$ would contradict the acyclicity of~$A$,
+\item if~$j \in J$, then~$A(J) = B(J) \ge A_{ij}(J) = j$.
+\end{itemize}
+%Observe that for any~$J \in \II$ such that~$j \in J \subseteq {]p,q[}$, we have~$A(J) = B(J) \ge A_{ij}(J) = j$ (since~$j \in J$ and~$\mu_{ij} \le p < \min(J)$).
+Since~$\flip{A}{p}{q}{B}$ is a cover relation of~$P_\II$, \cref{prop:isCoverI} implies that there is~$S \in \II$ such that~$A(S) \in {]p,q]}$ and~$j \in S \ssm \{A(S)\}$.
+%Note that~$p < \min(J)$ as otherwise~$A(I) = p \in J$ while~$A(J) \in {]p,q]} \subseteq I$ would contradict the acyclicity of~$A$.
+We have~$p < \min(S)$ and we moreover assume at the moment that~$\max(S) < q$.
+As~$A(S) \in S \subseteq {]p,q[}$, \cref{prop:isCoverI} implies that there is~$T \in \II$ such that~$A(T) \in {]p,q]}$ and~$A(S) \in T \ssm \{A(T)\}$.
+We choose such a~$T$ such that~$\max(T)$ is minimal.
+From the observation above, we have~$A(T) \ge j$, as otherwise~$\min(T) \le A(T) < j \le A(S) \le \max(T)$ so that~$j \in T$ which would contradict the observation above.
+We deduce that~$A(T) > \max(S)$ as otherwise~$A(T) \in S$ and~$A(S) \in T \ssm \{A(T)\}$ would contradict the acyclicity of~$A$.
+As~$\mu_{ij} \le p < \min(S)$ and~$j \in S$, we have~$i < \min(S)$, from which we deduce that there is~$R \in \II$ such that~$R \subseteq {[\mu_{i,j},j [}$ and~$\min(S) \in R \ssm \min(R)$.
+Let~$r,r',s,s',t,t',u,u'$ be such that~$[r,r'] \eqdef R$, $[s,s'] \eqdef S$, $[t,t'] \eqdef T$, and~$[u,u'] \eqdef U$.
+As~$\min(S) \in R \ssm \min(R)$ and~$\max(R) < j \in S$, we have~$r < s \le r' < s'$.
+As~$A(S) \in T$ and~$\max(S) < A(T) \in T$, we have~$t \le s' < t'$.
+\vincent{I have a problem here to prove that~$r < t$...}
+As~$[p,q] \subseteq U$ and~$p < \min(S)$, $\max(S) < q$, and~$p < \min(T)$, we have~$u < \min(s,t)$ and~$s' < u'$.
+As~$\II$ is join semidistributive, there is~$V \eqdef [v,v'] \in \II$ such that~$v < s$ and~$s' < v' < t'$.
+As~$\II$ is closed under intersection, we can assume that~$u \le v$.
+Hence, if~$v \le p$, then~$A(V) = p$ since otherwise~$A(U) = p \in V \ssm \{A(V)\}$ and~$A(V) \in V \subseteq U$ would contradict the acyclicity of~$A$.
+\vincent{I have a problem here to prove that~$B(V) = p$.}
+As~$B(V) = p \in J_{ij}$ and~$B(J_{ij}) \ge A_{ij}(J_{ij}) = j \in V \ssm \{B(V)\}$, this contradicts the acyclicity of~$B$.
+Hence, we obtain that~$p < v < s \le A(S) \le s' < v < t'$, so that~$V$ contradicts our choice of~$T$.
+
+\vincent{Still need to explain the case~$\max(S) \ge q$.}
+\end{proof}
+
+
+
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2580,76 +2631,76 @@ If~$\II$ is an interval hypergraph such that $P_\II$ is a join (resp.~meet) semi
 We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
 First, we can assume that~$\II$ is closed under intersection, otherwise $P_\II$ is not even a lattice by \cref{prop:latticeForward}.
-Assume now that there is~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, and there is no~$[e,e'] \in \II$ such that~$e < b$ and~$b' < e' < c'$.
+Assume now that there is~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that $r < s \le r' < s'$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, and there is no~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
 Let
 \[
-j \eqdef \max \Big( [d,c'[ \ssm \!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq [d,c'[}} \!\!\!\!\! J \ssm \{\min(J)\} \Big)
+j \eqdef \max \Big( [u,t'[ \ssm \!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq [u,t'[}} \!\!\!\!\! J \ssm \{\min(J)\} \Big)
 \quad\text{and}\quad
-i \eqdef \mu_{jc'} \eqdef \max\set{\min(I)}{\{j,c'\} \subseteq I \in \II}.
+i \eqdef \mu_{jt'} \eqdef \max\set{\min(I)}{\{j,t'\} \subseteq I \in \II}.
 \]
-Note that $i \le j < b < b' < c'$.
+Note that $i \le j < s < s' < t'$.
 We further assume below that~$i < j$, the argument for~$i = j$ is similar and even slightly simpler.
 
 Consider the three permutations
 \begin{align*}
-\pi_X & \eqdef 1 \cdots (i-1) \, j \, i \cdots (j-1) \, (j+1) \cdots (b-1) \, c' \, b' \, b \cdots (b'-1) \, (b'+1) \cdots (c'-1) \, (c'+1) \cdots n \\
-\pi_Y & \eqdef 1 \cdots (i-1) \, b' \, i \cdots (b'-1) \, (b'+1) \cdots n \\
-\pi_Z & \eqdef 1 \cdots (i-1) \, c' \, i \cdots (c'-1) \, (c'+1) \cdots n
+\pi_A & \eqdef 1 \cdots (i-1) \, j \, i \cdots (j-1) \, (j+1) \cdots (s-1) \, t' \, s' \, s \cdots (s'-1) \, (s'+1) \cdots (t'-1) \, (t'+1) \cdots n \\
+\pi_B & \eqdef 1 \cdots (i-1) \, s' \, i \cdots (s'-1) \, (s'+1) \cdots n \\
+\pi_C & \eqdef 1 \cdots (i-1) \, t' \, i \cdots (t'-1) \, (t'+1) \cdots n
 \end{align*}
-(written in one line notation), and let~$X \eqdef \Or_{\pi_X}$, $Y \eqdef \Or_{\pi_Y}$ and $Z \eqdef \Or_{\pi_Z}$ be the corresponding acyclic orientations of~$\II$.
+(written in one line notation), and let~$A \eqdef \Or_{\pi_A}$, $B \eqdef \Or_{\pi_B}$ and $C \eqdef \Or_{\pi_C}$ be the corresponding acyclic orientations of~$\II$.
 
-\para{Claim 1:} $X \join Y = X \join Z$.
+\para{Claim 1:} $A \join B = A \join C$.
 %
-Note that~$\pi_X = \projDown_X$.
-Indeed, $\pi_X$ has only $3$ descents $ji$, $c'b'$ and~$b'b$.
-Let~$\tau$, $\sigma$ and $\rho$ denote the permutations obtained from~$\pi_X$ by exchanging $ji$, $c'b'$ and $b'b$, respectively.
+Note that~$\pi_A = \projDown_A$.
+Indeed, $\pi_A$ has only $3$ descents $ji$, $t's'$ and~$s's$.
+Let~$\tau$, $\sigma$ and $\rho$ denote the permutations obtained from~$\pi_A$ by exchanging $ji$, $t's'$ and $s's$, respectively.
 Then
 \[
-\Or_{\tau}(J_{jc'}) = i \ne j = X(J_{jc'}),
+\Or_{\tau}(J_{jt'}) = i \ne j = X(J_{jt'}),
 \;\;
-\Or_{\sigma}([c,c']) = b' \ne c' = X([c,c'])
+\Or_{\sigma}([t,t']) = s' \ne t' = X([t,t'])
 \;\;\text{and}\;\;
-\Or_{\rho}([b,b']) = b \ne b' = X([b,b']).
+\Or_{\rho}([s,s']) = s \ne s' = X([s,s']).
 \]
-Hence, $\pi_X$ is indeed the minimal permutation for~$X$.
-Similarly, $\pi_Y = \projDown_Y$ and $\pi_Z = \projDown_Z$.
+Hence, $\pi_A$ is indeed the minimal permutation for~$A$.
+Similarly, $\pi_B = \projDown_B$ and $\pi_C = \projDown_C$.
 
 We therefore obtain from \cref{prop:latticeBackward} that
-$X \join Y = \Or_{\pi_X \join \pi_Y}$ and $X \join Z = \Or_{\pi_X \join \pi_Z}$.
+$A \join B = \Or_{\pi_A \join \pi_B}$ and $A \join C = \Or_{\pi_A \join \pi_C}$.
 %\[
-%X \join Y = \Or_{\pi_X \join \pi_Y}
+%A \join B = \Or_{\pi_A \join \pi_B}
 %\qquad\text{and}\qquad
-%X \join Z = \Or_{\pi_X \join \pi_Z}.
+%A \join C = \Or_{\pi_A \join \pi_C}.
 %\]
 As
 \begin{align*}
-\pi_X \join \pi_Y & = 1 \cdots (i-1) \, c' \, b' \, j \, i \cdots (j-1) \, (j+1) \cdots (b'-1) \, (b'+1) \cdots (c'-1) \, (c'+1) \cdots n \\
-\pi_X \join \pi_Z & = 1 \cdots (i-1) \, c' \, j \, i \cdots (j-1) \, (j+1) \cdots (b-1) \, b' \, b \cdots (b'-1) \, (b'+1) \cdots (c'-1) \, (c'+1) \cdots n
+\pi_A \join \pi_B & = 1 \cdots (i-1) \, t' \, s' \, j \, i \cdots (j-1) \, (j+1) \cdots (s'-1) \, (s'+1) \cdots (t'-1) \, (t'+1) \cdots n \\
+\pi_A \join \pi_C & = 1 \cdots (i-1) \, t' \, j \, i \cdots (j-1) \, (j+1) \cdots (s-1) \, s' \, s \cdots (s'-1) \, (s'+1) \cdots (t'-1) \, (t'+1) \cdots n
 \end{align*}
 %(still in one line notation), 
-and there is no~$[e,e'] \in \II$ such that~$e < b$ and~$b' < e' < c'$ by assumption, we have~$X \join Y = X \join Z$.
+and there is no~$[v,v'] \in \II$ such that~$v < s$ and~$s' < v' < s'$ by assumption, we have~$A \join B = A \join C$.
 
-\para{Claim 2:} $X \ge Y \meet Z$.
+\para{Claim 2:} $A \ge B \meet C$.
 %
 For any interval~$I$, we have
 \[
-Y(I) = \begin{cases} b' & \text{if $b' \in I$ and~$i \le \min(I)$,} \\ \min(I) & \text{otherwise} \end{cases}
+B(I) = \begin{cases} s' & \text{if $s' \in I$ and~$i \le \min(I)$,} \\ \min(I) & \text{otherwise} \end{cases}
 \quad\text{and}\quad
-Z(I) = \begin{cases} c' & \text{if $c' \in I$ and~$i \le \min(I)$,} \\ \min(I) & \text{otherwise} \end{cases}
+C(I) = \begin{cases} t' & \text{if $t' \in I$ and~$i \le \min(I)$,} \\ \min(I) & \text{otherwise} \end{cases}
 \]
-Hence, $(Y \meet Z)(I) = \min(I)$ except maybe if~$[b',c'] \subseteq I$ and~$i \le \min(I)$.
+Hence, $(B \meet C)(I) = \min(I)$ except maybe if~$[s',t'] \subseteq I$ and~$i \le \min(I)$.
 For such~$I$, we actually have that
 \begin{itemize}
-\item $(Y \meet Z)(I) \le j$ since $Y(I) = b'$ and~$Z(J) = \min(J)$ for all~$J \subseteq [d,c'[$ and using the definition of~$j$,
-\item $X(I) = j$ since~$j \in I$ and~$i \le \min(I)$.
+\item $(B \meet C)(I) \le j$ since $B(I) = s'$ and~$C(J) = \min(J)$ for all~$J \subseteq [u,t'[$ and using the definition of~$j$,
+\item $A(I) = j$ since~$j \in I$ and~$i \le \min(I)$.
 \end{itemize}
-Hence, we obtain that~$X(I) \ge (Y \meet Z)(I)$ for all~$I \in \II$ so that~$X \ge Y \meet Z$.
+Hence, we obtain that~$A(I) \ge (B \meet C)(I)$ for all~$I \in \II$ so that~$A \ge B \meet C$ by \cref{prop:sourceOrderI}.
 
-\para{Claim 3:} $X \join Y = X \join Z \ne X = X \join (Y \meet Z)$.
+\para{Claim 3:} $A \join B = A \join C \ne A = A \join (B \meet C)$.
 %
 The first equality holds by Claim 1.
 The last equality holds by Claim 2.
-The inequality holds since~$X(J_{jc'}) = j$ while~$(X \meet Z)(J_{jc'}) \ge Z(J_{jc'}) = c'$.
+The inequality holds since~$A(J_{jt'}) = j$ while~$(B \meet C)(J_{jt'}) \ge C(J_{jt'}) = t'$.
 We conclude that~$P_\II$ is not semidistributive.
 \end{proof}
 
@@ -2657,22 +2708,22 @@ We conclude that~$P_\II$ is not semidistributive.
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 34, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
 \[
 \begin{array}{c|c|c|c|c|c|c|c|c|c}
-a & a' & b & b' & c & c' & d & d' & i & j \\
+r & r' & s & s' & t & t' & u & u' & i & j \\
 \hline
 1 & 2 & 2 & 3 & 3 & 4 & 1 & 4 & 1 & 1
 \end{array}
 \]
 and
 \[
-X = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/1}}
+A = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/1}}
 \qquad
-Y = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/3}}
+B = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/3}}
 \qquad
-Z = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/4}}
+C = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/4}}
 \]
 so that
 \[
-X \join Y = X \join Z = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/1}} \ne X = X \join \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/3,1/4/1}} = X \join (Y \meet Z).
+A \join B = A \join C = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/1}} \ne C = C \join \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/3,1/4/1}} = A \join (B \meet C).
 \]
 \end{example}
 
@@ -2680,22 +2731,22 @@ X \join Y = X \join Z = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
 \[
 \begin{array}{c|c|c|c|c|c|c|c|c|c}
-a & a' & b & b' & c & c' & d & d' & i & j \\
+r & r' & s & s' & t & t' & u & u' & i & j \\
 \hline
 1 & 2 & 2 & 3 & 2 & 4 & 1 & 4 & 1 & 1
 \end{array}
 \]
 and
 \[
-X = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/1}}
+A = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/1}}
 \qquad
-Y = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/3}}
+B = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/3}}
 \qquad
-Z = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
+C = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
 \]
 so that
 \[
-X \join Y = X \join Z = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/2,1/4/1}} \ne X = X \join \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/1}} = X \join (Y \meet Z).
+A \join B = A \join C = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/2,1/4/1}} \ne A = A \join \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/1}} = A \join (B \meet C).
 \]
 \end{example}
 
