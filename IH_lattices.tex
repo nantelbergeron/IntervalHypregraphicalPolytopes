@@ -195,10 +195,10 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 
 \begin{abstract}
 For a hypergraph~$\HH$ on~$[n]$, the hypergraphic poset~$P_\HH$ is the transitive closure of the oriented skeleton of the hypergraphic polytope~$\simplex_\HH$ (the Minkowski sum of the standard simplices~$\simplex_H$ for all~$H \in \HH$).
-Hypergraphic posets include the weak order for the permutahedron (when~$\HH$ is the complete graph on~$[n]$) and the Tamari lattice for the associahedron (when~$\HH$ is the set of all intervals of~$[n]$), and it is natural to study lattice properties of hypergraphic posets.
+Hypergraphic posets include the weak order for the permutahedron (when~$\HH$ is the complete graph on~$[n]$) and the Tamari lattice for the associahedron (when~$\HH$ is the set of all intervals of~$[n]$), which motivates the study of lattice properties of hypergraphic posets.
 In this paper, we focus on interval hypergraphs, where all hyperedges are intervals of~$[n]$.
 We characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a lattice, a distributive lattice, a semidistributive lattice, and a lattice quotient of the weak order.
-When~$P_\II$ is lattice, we describe the join irreducibles of~$P_\II$.
+%When~$P_\II$ is lattice, we describe the join irreducibles of~$P_\II$.
 \end{abstract}
 
 \maketitle
@@ -217,7 +217,7 @@ The \defn{hypergraphic polytope} of a hypergraph~$\HH$ on~$[n]$ is the Minkowski
 \(
 \simplex_\HH \eqdef \sum_{H\in \HH} \simplex_H\,,
 \)
-where $\simplex_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$ of~$\R^n$.
+where $\simplex_H$ is the simplex given by the convex hull of the points $\set{\b{e}_h}{h \in H}$.
 The face lattice of~$\simplex_\HH$ was described combinatorially in terms of acyclic orientations of~$\HH$ in~\cite{BenedettiBergeronMachacek}.
 Note that the singletons of~$\HH$ are irrelevant for the combinatorics of~$\triangle_\HH$ as they just contribute to translations.
 It is convenient for us to assume that~$\{i\} \in \HH$ for all~$i \in [n]$.
@@ -225,7 +225,7 @@ It is convenient for us to assume that~$\{i\} \in \HH$ for all~$i \in [n]$.
 The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the skeleton of~$\simplex_\HH$ oriented in the direction~$\b{\omega} \eqdef (n, n-1, \dots, 2, 1) - (1, 2, \dots, n-1, n) = (n-1, n-3, \dots, 3-n, 1-n)$.
 For instance, 
 \begin{itemize}
-\item if~$\HH = \binom{[n]}{2}$ is the complete graph on~$[n]$ (or any hypergraph containing it), then~$\simplex_\HH$ is the permutahedron and $P_\HH$ is the weak order on permutations,
+\item if~$\HH = \binom{[n]}{2}$ is the complete graph (or any hypergraph containing it), then~$\simplex_\HH$ is the permutahedron and $P_\HH$ is the weak order on permutations,
 \item if~$\HH = \set{[a,b]}{1 \le a \le b \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} associahedron~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the Tamari lattice on binary trees~\cite{Tamari}.
 \end{itemize}
 %In view of these two examples, we consider the following general questions:
@@ -235,16 +235,15 @@ For instance,
 %\end{itemize}
 %These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
 
-In view of these two examples, we would like to characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a \mbox{(semi-)lattice} quotient of the weak order on permutations.
+In view of these two examples, we would like to characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a \mbox{(semi-)lattice} quotient of the weak order on permutations, etc.
 These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
-\nantel{interesting that zonotope is subset of permutahedron and interval is subset of associahedron}
 
 In this paper, we study the case of \defn{interval hypergraphs}~$\II$, \ie when all hyperedges of~$\II$ are intervals of~$[n]$.
 Note that this family does not contain the permutahedron, but contains
 \begin{itemize}
 \item the classical associahedron of~\cite{ShniderSternberg,Loday} when~$\II$ contains all intervals of~$[n]$,
 \item the Pitman--Stanley polytope~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
-\item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$~for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
+\item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$ for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
 \item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
 We obtain the following characterizations, where we assume that~$\{i\} \in \II$ for all~$i \in [n]$ as mentioned earlier.
@@ -283,7 +282,7 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive l
 %for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~${a' < e' < c'}$.
 %for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${b' < e' < c'}$.
 for all~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that ${r < s \le r' < s'}$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, there is~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
-A symmetric characterization holds for meet semidistributive lattices.
+A symmetric characterization holds for meet semidistributivity.
 \end{theoremA}
 
 \begin{theoremA}
@@ -291,13 +290,11 @@ A symmetric characterization holds for meet semidistributive lattices.
 For an interval hypergraph $\II$, the poset $P_\II$ is a join (resp.~meet) semilattice quotient of the weak order on permutations if and only if it is closed under initial (resp.~final) subintervals.
 \end{theoremA}
 
-For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
+For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice which is a quotient of the weak order, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
 
 Once \cref{thm:latticeI} is established, an important step for \cref{thm:distributiveLatticeI,thm:semidistributiveLatticeI} is to understand join irreducibles.
 \cref{subsec:joinIrreducibles} provides a combinatorial description of the join irreducible elements of~$P_\II$ for an arbitrary interval hypergraph~$\II$ closed under intersections.
 To prepare this slightly technical description, we already describe some join irreducible elements of~$P_\II$ in \cref{subsec:someJoinIrreducibles}, which happen to be all join irreducible elements of~$P_\II$ under the condition of~\cref{thm:distributiveLatticeI}.
-
-\vincent{In progress}
 
 \setcounter{theoremA}{0}
 
@@ -740,8 +737,7 @@ Graphically
 \]
 Assume that~$k > 2$ and is minimal for this property.
 Note that~$O(I_i) \ne O(I_{i+1})$ for all~$i$.
-By symmetry,\nantel{Should we specify which symmetry (i.e. refer to~\cref{prop:antiIsomorphism})}
-suppose~$O(I_1) < O(I_2)$.
+By symmetry, suppose~$O(I_1) < O(I_2)$.
 If there is~$i \in [k-1]$ such that~$O(I_{i+1}) < O(I_i)$, then for the smallest such~$i$, we have
 \begin{itemize}
 \item either~$O(I_{i-1}) \in [O(I_{i+1}), O(I_i)] \subseteq I_i$, so that~$O(I_{i-1}) \in I_i$ and $O(I_i) \in I_{i-1}$,
@@ -860,9 +856,8 @@ We thus consider~$I \in \II$ and distinguish two cases:
 \qedhere
 \end{itemize}
 \end{proof}
-\vincent{Does \cref{prop:sourceOrderI} holds for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
-
-\Nantel{if Felix proof holds, we will have to add a remark stating the general statement and citing a forthcoming paper}
+%\vincent{Does \cref{prop:sourceOrderI} holds for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
+%\Nantel{if Felix proof holds, we will have to add a remark stating the general statement and citing a forthcoming paper}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -907,12 +902,31 @@ Hence, we obtain that~$j \in \cY_{A,i}$.
 %Let~$A$ and~$B$ be two acyclic orientations of an interval hypergraph~$\II$  related by an increasing flip of~$i$ to~$j$.
 An increasing flip \flip{A}{i}{j}{B} between two acyclic orientations of an interval hypergraph~$\II$ is a cover relation of~$P_\II$ if and only if
 \[
-{]i,j[} \subseteq \bigcup_{\substack{J \in \II \\ A(J) \in {]i,j]}}} J \ssm \{A(J)\}.
+{]i,j[} \;\; \subseteq \bigcup_{\substack{J \in \II \\ A(J) \in {]i,j]}}} J \ssm \{A(J)\}.
 \]
 \end{proposition}
 
 \begin{proof}
-\vincent{todo}
+%Let~$I \in \II$ be such that~$A(I) = i$ and~$B(I) = j$.
+Assume first that there is~$k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
+Then~$k \in \cX_{A,i}$ since there is~$I \in \II$ with~$A(I) = i$ and~$B(I) = j$.
+Moreover, for any~$I,J \in \II$ with~$A(I) = i$, $A(J) \in I \ssm \{i\}$ and~$k \in J \ssm A(J)$, we have 
+\begin{itemize}
+\item $i < A(J)$, otherwise~$A(I) = i \in [A(J),k] \subseteq J$ and~${A(J) \in I \ssm \{A(I)\}}$, so that~$A$ is cyclic,
+\item $A(J) \le j$, otherwise~$B(I) = j \in [k,A(J)] \subseteq J$ and~${B(J) = A(J) \in I \ssm \{B(I)\}}$, so that~$B$ is cyclic,
+\end{itemize}
+so that~$A(J) \in {]i,j]}$, which implies by definition of~$k$ that~$k \notin J \ssm \{A(J)\}$.
+Hence~$k \notin \cY_{A,i}$.
+As~$k \in \cX_{A,i} \ssm \cY_{A,i}$, \cref{prop:isFlipI} ensures that the orientation~$C$ of~$\II$ obtained by flipping~$i$ to~$k$ is acyclic.
+This implies that~$\flip{A}{i}{j}{B}$ is not a cover relation as it is obtained transitively from~$\flip{A}{i}{k}{C}$ and~$\flip{C}{k}{j}{B}$.
+
+Assume now that~$A \le B$ is not a cover relation.
+Then there exists~$k \ne i$ and an acyclic orientation~$C$ of~$I$ such that~$\flip{A}{i}{k}{C}$ is a flip and~$A < C < B$.
+Since~$\flip{A}{i}{j}{B}$ is a flip, we have~$A(I) = C(I) = B(I)$ except if~$A(I) = i$ and~$B(I) = j$.
+Hence, there is~$I$ such that~$A(I) = i < C(I) = k < j = B(I)$.
+Since~$\flip{A}{i}{k}{C}$ is a flip, we obtain from \cref{prop:isFlipI} that~$k \notin \cY_{A,i}$.
+As~$]i,j] \subseteq I \ssm \{i\} \subseteq \cX_{A,i}$, there is no~$J \in \II$ with~$A(J) \in {]i,j]}$ and~$k \in J \ssm \{A(J)\}$.
+Hence, $k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 \end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1276,7 +1290,7 @@ D = \acyclicOrientation{4}{1/3/3,2/4/3}.
 For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 5, 1234, 2345, 23, 24, 34 \}$ is not closed under intersection, while its hypergraphic poset~$P_\HH$ is a lattice.
 % sage: HypergraphicalPolytopes([[1,2,3,4], [2,3,4,5], [2,3], [2,4], [3,4]]).hypergraphical_poset().is_lattice()
 % True
-\vincent{Maybe we could draw this lattice. It has 24 elements.}
+%\vincent{Maybe we could draw this lattice. It has 24 elements.}
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2824,10 +2838,7 @@ There is a natural edge labeling of $P_\II$. Is it an interesting labeling? (EL-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section*{Acknowledgments}
-
-Thanks!
-\Nantel{Still to do: Finish Section 5,   description of $\join$ and $\meet$ in term of sources(?), characterize which Segment hypergraph gives lattice quotient(?), semi-distributive, what else?}
+%\section*{Acknowledgments}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
