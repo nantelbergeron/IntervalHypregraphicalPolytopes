@@ -2027,11 +2027,31 @@ a \join b = a \join c
 a \join (b \meet c) = a \join b
 \]
 for all~$a,b,c \in L$.
+Equivalently, $L$ is join semidistributive if and only if for any cover relation~$a \lessdot b$ in~$L$, the set~$\set{c \in L}{a \join c = b}$ admits a unique minimal element~$k_{a \lessdot b}$.
 The meet semidistributivity is defined dually.
 A lattice~$L$ is \defn{semidistributive} if it is both meet and join semidistributive.
-\vincent{recall basic definitions and properties of semidistributive lattices. Canonical join representations.}
 \end{definition}
 
+\begin{remark}
+\label{rem:semidistributiveCriterion}
+In general, the set~$\set{c \in L}{a \join c = b}$ might have more than one minimal element.
+Note however that any minimal element of~$\set{c \in L}{a \join c = b}$ is always join irreducible.
+Indeed, Assume that~$a \join c = b$ and~$c = d \join e$.
+Then~$a \ne a \join d$ or~$a \ne a \join e$ since~$a < b = a \join c = a \join (d \join e) = (a \join d) \join (a \join e)$.
+Moreover, $a \join d \le b$ and~$a \join e \le b$ since~$a \le b$ and~$d \le c \le b$ and~$e \le c \le b$.
+As~$a \lessdot b$ is a cover relation of~$L$, we conclude that $a \join d = b$ or~$a \join e = b$ so that~$c$ is not minimal.
+\end{remark}
+
+\begin{remark}
+Although we will not insist on this aspect in this paper, the join semidistributivity is equivalent to the existence of canonical join representations.
+A \defn{join representation} of~${b \in L}$ is a subset~$J \subseteq L$ such that~$b = \bigJoin J$.
+Such a representation is \defn{irredundant} if~$b \ne \bigJoin J'$ for any strict subset~$J' \subsetneq J$.
+The irredundant join representations of~$b \in L$ are ordered by~$J \le J'$ if and only if for any~$j \in J$ there is~${j' \in J'}$~with~$j \le j'$.
+The \defn{canonical join representation} of~$b$ is the minimal irredundant join representation of~$b$ for this order when it exists.
+%Note that the canonical joinands form an antichain of join irreducible elements of~$L$.
+The lattice~$L$ is semidistributive if and only if any element of~$L$ admits a canonical join representation.
+Moreover, the canonical join representation of~$b$ is given by~$b = \bigJoin_{a \lessdot b} k_{a \lessdot b}$, where $a$ ranges over all elements of~$L$ covered by~$b$.
+\end{remark}
 
 \begin{theoremA}
 For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join semidistributive lattice if and only if $\II$ is join semidistributive.
@@ -2423,8 +2443,8 @@ If~$\II$ is a join (resp.~meet) semidistributive interval hypergraph, then $P_\I
 \begin{proof}
 We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
-Consider a join semidistributive interval hypergraph~$\II$.
-Consider a cover relation~$\flip{A}{p}{q}{B}$ of~$P_\II$ and assume by means of contradiction that there are~$(i,j), (k,\ell) \in \cIJ_\II$ such that~$A_{ij}$ and~$A_{k\ell}$ are both minimal in~$P_\II$ with~$A \join A_{ij} = B = A \join A_{k\ell}$.
+Assume by means of contradiction that~$\II$ is a semidistributive interval hypergraph for which~$P_\II$ is not join semidistributive.
+By \cref{rem:semidistributiveCriterion}, there exist a cover relation~$\flip{A}{p}{q}{B}$ of~$P_\II$ and some~$(i,j), (k,\ell) \in \cIJ_\II$ such that~$A_{ij}$ and~$A_{k\ell}$ are both minimal in~$P_\II$ with~$A \join A_{ij} = B = A \join A_{k\ell}$.
 Assume by symmetry that~$j \le \ell$.
 As~$A_{ij} \not\le A_{k\ell}$, we obtain by \cref{lem:irrorder2} that~$j < \ell$, and that~$\ell \notin J_{ij}$ or~$\mu_{ij} < \mu_{k\ell}$.
 
@@ -2443,14 +2463,14 @@ Observe that for any~$V \in \II$ such that~$A(V) \in {]p,q]}$, we have
 Since~$\flip{A}{p}{q}{B}$ is a cover relation of~$P_\II$, \cref{prop:isCoverI} implies that there is~$S \eqdef [s,s'] \in \II$ such that~$A(S) \in {]p,q]}$ and~$j \in S \ssm \{A(S)\}$.
 From the observation above, we have~$p < s$ and~$A(S) \ge j$.
 We claim that we can moreover assume that~$s' < \ell$.
-Indeed, assume that~$s' \ge \ell$.
+Indeed, suppose that~$s' \ge \ell$.
 As~$\mu_{k\ell} \le p < s \le j < \ell \le s'$, we obtain that~$k < s \le j < \ell$.
 Hence, there exists~$I \in \II$ such that~$j \in I \subseteq {[k,\ell[}$.
 As~$\II$ is closed under intersection, we can replace~$S$ by~$S \cap I$ which proves the~claim.
 Hence, we have found~$S \eqdef [s,s'] \in \II$ with~$p < s \le j \le A(S) \le s' < \ell \le q$, and we choose such an~$S$ so that~$s$ is minimal.
 
-As~$A(S) \in S \subseteq {]p,q[}$, \cref{prop:isCoverI} implies that there is~$T \eqdef [t,t'] \in \II$ such that~$A(T) \in {]p,q]}$ and~$A(S) \in T \ssm \{A(T)\}$.
-From the observation above, we have~$A(T) \ge j$, as otherwise~$j \in [A(T), A(S)] \subseteq T$ and~$A(T) < j$ which would contradict the observation above.
+As~$A(S) \in S \subseteq {]p,q[}$, \cref{prop:isCoverI} implies that there is~$T \eqdef [t,t'] \in \II$ such that~${A(T) \in {]p,q]}}$ and~$A(S) \in T \ssm \{A(T)\}$.
+We have~$A(T) \ge j$, as otherwise~${j \in [A(T), A(S)] \subseteq T}$ and~$A(T) < j$ would contradict the observation above.
 We deduce that~$A(T) > s'$ as otherwise~$A(T) \in [j, s'] \subseteq S$ and~$A(S) \in T \ssm \{A(T)\}$ would contradict the acyclicity of~$A$.
 Hence, we have found~$T \eqdef [t,t'] \in \II$ with~$p < t \le s' < t'$, and we choose such a~$T$ so that~$t'$ is minimal.
 
@@ -2467,7 +2487,7 @@ Moreover, $A_{kj}(J_{kj}) = j > \mu_{kj} = A(J_{kj})$, so that~$A \not\le A_{kj}
 Hence, $A_{kj} \join A = B$ and~$A_{kj} < A_{ij}$ contradicting the minimality of~$A_{ij}$.
 We conclude that~$r < t$.
 
-We have thus found~$R \eqdef [r,r']$, $S \eqdef [s,s']$, $T \eqdef [t,t']$ and~$U \eqdef [u,u']$ in~$\II$ with~$r < s \le r' < s'$, $r < t \le s' < t'$, and~$u < \min(s,t)$ and~$s' < u'$.
+We have thus found~$R \eqdef [r,r']$, $S \eqdef [s,s']$, $T \eqdef [t,t']$ and~$U \eqdef [u,u']$ in~$\II$ with~$r < s \le r' < s'$, $r < t \le s' < t'$, and~$u \le p < \min(s,t)$ and~$s' < q \le u'$.
 As~$\II$ is join semidistributive, there is~$V \eqdef [v,v'] \in \II$ such that~$v < s$ and~$s' < v' < t'$.
 As~$\II$ is closed under intersection, it contains~$T \cap V = [\max(v,t), v']$.
 But~$\max(v,t) \le s' < v' < t'$ which contradicts the minimality of~$t'$ in our choice of~$T$.
