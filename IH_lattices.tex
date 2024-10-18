@@ -2014,7 +2014,7 @@ In this section, we prove \cref{thm:semidistributiveLatticeI} which we first rep
 \begin{definition}
 \label{def:semidistributive}
 We say that an interval hypergraph~$\II$ is \defn{join semidistributive} if it is closed under intersection and
-for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${b' < e' < c'}$.
+for all~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that ${r < s \le r' < s'}$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, there is~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
 %        if p0[0] < p1[0] <= p0[1] < p1[1] and p0[0] < p2[0] <= p1[1] < p2[1] and all(inter[0] >= p1[0] or inter[1] <= p0[1] or inter[1] >= p2[1] for inter in intervals) and any(inter[0] < min(p1[0], p2[0]) and p1[1] < inter[1] for inter in intervals):
 %            return False
 \end{definition}
@@ -2421,48 +2421,57 @@ If~$\II$ is a join (resp.~meet) semidistributive interval hypergraph, then $P_\I
 \end{proposition}
 
 \begin{proof}
-Assume that~$\II$ is a join (resp.~meet) semidistributive interval hypergraph.
-Consider a cover relation~$\flip{A}{p}{q}{B}$ of~$P_\II$ and assume by means of contradiction that there are~$(i,j), (k,\ell) \in \cIJ_||$ such that~$A_{ij}$ and~$A_{k\ell}$ are both minimal in~$P_\II$ such that~$A \join A_{ij} = B = A \join A_{k\ell}$.
-As~$A_{ij}$ and~$A_{k\ell}$ are incomparable, we have~$j \ne \ell$ by \cref{lem:irrorder2}, and we assume by symmetry that~$j < \ell$.
+We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
-As~$A_{ij} \not\le A$ but~$A_{ij} \le B$, there is~$U \in \II$ such that~$A(U) < A_{ij}(U) \le B(U)$ by \cref{prop:sourceOrderI}.
-Since~$A$ and~$B$ only differ by the flip of~$p$ to~$q$, this implies that~$A(U) = p$ while~$B(U) = q$.
-Moreover, by definition of~$A_{ij}$, we obtain that~$\mu_{ij} \le \min(I) \le p < j \le q$.
-Similarly, ${\mu_{k\ell} \le p < \ell < q}$.
+Consider a join semidistributive interval hypergraph~$\II$.
+Consider a cover relation~$\flip{A}{p}{q}{B}$ of~$P_\II$ and assume by means of contradiction that there are~$(i,j), (k,\ell) \in \cIJ_\II$ such that~$A_{ij}$ and~$A_{k\ell}$ are both minimal in~$P_\II$ with~$A \join A_{ij} = B = A \join A_{k\ell}$.
+Assume by symmetry that~$j \le \ell$.
+As~$A_{ij} \not\le A_{k\ell}$, we obtain by \cref{lem:irrorder2} that~$j < \ell$, and that~$\ell \notin J_{ij}$ or~$\mu_{ij} < \mu_{k\ell}$.
 
-Observe that for any~$J \in \II$ such that~$A(J) \in {]p,q]}$, we have
+As~$A_{ij} \not\le A$ but~$A_{ij} \le B$, there is~$U \eqdef [u,u'] \in \II$ such that~$A(U) < A_{ij}(U) \le B(U)$ by \cref{prop:sourceOrderI}.
+Since~$A$ and~$B$ only differ by the flip of~$p$ to~$q$, this implies that~${A(U) = p}$ while~${B(U) = q}$.
+Moreover, by definition of~$A_{ij}$, we must have~$A_{ij}(U) = j$, hence~$j \in U$ and~${\mu_{ij} \le u}$.
+We conclude that~$\mu_{ij} \le u \le p < j \le q \le u'$.
+Similarly, ${\mu_{k\ell} \le u \le p < \ell \le q \le u'}$.
+
+Observe that for any~$V \in \II$ such that~$A(V) \in {]p,q]}$, we have
 \begin{itemize}
-\item $p < \min(J)$ as otherwise~$A(I) = p \in J$ while~$A(J) \in {]p,q]} \subseteq I \ssm \{A(I)\}$ would contradict the acyclicity of~$A$,
-\item if~$j \in J$, then~$A(J) = B(J) \ge A_{ij}(J) = j$.
+\item $p < \min(V)$ as otherwise~$A(U) = p \in V \ssm \{A(V)\}$ while~$A(V) \in {]p,q]} \subseteq U \ssm \{A(U)\}$ would contradict the acyclicity of~$A$,
+\item if~$j \in V$, then~$A(V) = B(V) \ge A_{ij}(V) = j$.
 \end{itemize}
-%Observe that for any~$J \in \II$ such that~$j \in J \subseteq {]p,q[}$, we have~$A(J) = B(J) \ge A_{ij}(J) = j$ (since~$j \in J$ and~$\mu_{ij} \le p < \min(J)$).
-Since~$\flip{A}{p}{q}{B}$ is a cover relation of~$P_\II$, \cref{prop:isCoverI} implies that there is~$S \in \II$ such that~$A(S) \in {]p,q]}$ and~$j \in S \ssm \{A(S)\}$.
-%Note that~$p < \min(J)$ as otherwise~$A(I) = p \in J$ while~$A(J) \in {]p,q]} \subseteq I$ would contradict the acyclicity of~$A$.
-We have~$p < \min(S)$ and we moreover assume at the moment that~$\max(S) < q$.
-As~$A(S) \in S \subseteq {]p,q[}$, \cref{prop:isCoverI} implies that there is~$T \in \II$ such that~$A(T) \in {]p,q]}$ and~$A(S) \in T \ssm \{A(T)\}$.
-We choose such a~$T$ such that~$\max(T)$ is minimal.
-From the observation above, we have~$A(T) \ge j$, as otherwise~$\min(T) \le A(T) < j \le A(S) \le \max(T)$ so that~$j \in T$ which would contradict the observation above.
-We deduce that~$A(T) > \max(S)$ as otherwise~$A(T) \in S$ and~$A(S) \in T \ssm \{A(T)\}$ would contradict the acyclicity of~$A$.
-As~$\mu_{ij} \le p < \min(S)$ and~$j \in S$, we have~$i < \min(S)$, from which we deduce that there is~$R \in \II$ such that~$R \subseteq {[\mu_{i,j},j [}$ and~$\min(S) \in R \ssm \min(R)$.
-Let~$r,r',s,s',t,t',u,u'$ be such that~$[r,r'] \eqdef R$, $[s,s'] \eqdef S$, $[t,t'] \eqdef T$, and~$[u,u'] \eqdef U$.
-As~$\min(S) \in R \ssm \min(R)$ and~$\max(R) < j \in S$, we have~$r < s \le r' < s'$.
-As~$A(S) \in T$ and~$\max(S) < A(T) \in T$, we have~$t \le s' < t'$.
-\vincent{I have a problem here to prove that~$r < t$...}
-As~$[p,q] \subseteq U$ and~$p < \min(S)$, $\max(S) < q$, and~$p < \min(T)$, we have~$u < \min(s,t)$ and~$s' < u'$.
+
+Since~$\flip{A}{p}{q}{B}$ is a cover relation of~$P_\II$, \cref{prop:isCoverI} implies that there is~$S \eqdef [s,s'] \in \II$ such that~$A(S) \in {]p,q]}$ and~$j \in S \ssm \{A(S)\}$.
+From the observation above, we have~$p < s$ and~$A(S) \ge j$.
+We claim that we can moreover assume that~$s' < \ell$.
+Indeed, assume that~$s' \ge \ell$.
+As~$\mu_{k\ell} \le p < s \le j < \ell \le s'$, we obtain that~$k < s \le j < \ell$.
+Hence, there exists~$I \in \II$ such that~$j \in I \subseteq {[k,\ell[}$.
+As~$\II$ is closed under intersection, we can replace~$S$ by~$S \cap I$ which proves the~claim.
+Hence, we have found~$S \eqdef [s,s'] \in \II$ with~$p < s \le j \le A(S) \le s' < \ell \le q$, and we choose such an~$S$ so that~$s$ is minimal.
+
+As~$A(S) \in S \subseteq {]p,q[}$, \cref{prop:isCoverI} implies that there is~$T \eqdef [t,t'] \in \II$ such that~$A(T) \in {]p,q]}$ and~$A(S) \in T \ssm \{A(T)\}$.
+From the observation above, we have~$A(T) \ge j$, as otherwise~$j \in [A(T), A(S)] \subseteq T$ and~$A(T) < j$ which would contradict the observation above.
+We deduce that~$A(T) > s'$ as otherwise~$A(T) \in [j, s'] \subseteq S$ and~$A(S) \in T \ssm \{A(T)\}$ would contradict the acyclicity of~$A$.
+Hence, we have found~$T \eqdef [t,t'] \in \II$ with~$p < t \le s' < t'$, and we choose such a~$T$ so that~$t'$ is minimal.
+
+As~$\mu_{ij} \le p < s$ and~$j \in S$, we have~$i < s$, from which we deduce that there is~$R \eqdef [r,r'] \in \II$ such that~$R \subseteq {[\mu_{i,j},j [}$ and~$s \in R \ssm \{r\}$.
+As~$r' < j \le s'$, we have~$r < s \le r' < s'$, and we choose such an~$R$ so that~$r$ is minimal.
+Assume for a moment that~$t \le r$.
+Then~$t < s$, which by minimality of~$s$ in our choice of~$S$ implies that~$\ell \in T$.
+If~$\ell \notin J_{ij}$, then~$J_{ij} \cap T$ contradicts the minimality of~$t'$ in our choice of~$T$.
+Hence, $\ell \in J_{ij}$ which implies that~$\mu_{ij} < \mu_{k\ell}$.
+We conclude that~$i < k < j < \ell$, as~$\mu_{k\ell} \le p < t$ and~$\ell \in T$.
+As~$\II$ is closed under intersection, $i < k < j < \ell$ implies that~$(i,j) \in \cIJ_\II$.
+As~$i < k$, we have~$A_{kj} < A_{ij} \le B$.
+Moreover, $A_{kj}(J_{kj}) = j > \mu_{kj} = A(J_{kj})$, so that~$A \not\le A_{kj}$.
+Hence, $A_{kj} \join A = B$ and~$A_{kj} < A_{ij}$ contradicting the minimality of~$A_{ij}$.
+We conclude that~$r < t$.
+
+We have thus found~$R \eqdef [r,r']$, $S \eqdef [s,s']$, $T \eqdef [t,t']$ and~$U \eqdef [u,u']$ in~$\II$ with~$r < s \le r' < s'$, $r < t \le s' < t'$, and~$u < \min(s,t)$ and~$s' < u'$.
 As~$\II$ is join semidistributive, there is~$V \eqdef [v,v'] \in \II$ such that~$v < s$ and~$s' < v' < t'$.
-As~$\II$ is closed under intersection, we can assume that~$u \le v$.
-Hence, if~$v \le p$, then~$A(V) = p$ since otherwise~$A(U) = p \in V \ssm \{A(V)\}$ and~$A(V) \in V \subseteq U$ would contradict the acyclicity of~$A$.
-\vincent{I have a problem here to prove that~$B(V) = p$.}
-As~$B(V) = p \in J_{ij}$ and~$B(J_{ij}) \ge A_{ij}(J_{ij}) = j \in V \ssm \{B(V)\}$, this contradicts the acyclicity of~$B$.
-Hence, we obtain that~$p < v < s \le A(S) \le s' < v < t'$, so that~$V$ contradicts our choice of~$T$.
-
-\vincent{Still need to explain the case~$\max(S) \ge q$.}
+As~$\II$ is closed under intersection, it contains~$T \cap V = [\max(v,t), v']$.
+But~$\max(v,t) \le s' < v' < t'$ which contradicts the minimality of~$t'$ in our choice of~$T$.
 \end{proof}
-
-
-
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
