@@ -877,8 +877,8 @@ The orientation obtained from an acyclic orientation~$A$ of an interval hypergra
 \end{proposition}
 
 \begin{proof}
-Let~$B$ be the orientation obtained by flipping~$i$ to~$j$.
-Assume that~$j \notin \cX_{A,i} \ssm \cY_{A,i}$. Then
+%Let~$B$ be the orientation obtained by flipping~$i$ to~$j$.
+Assume first that~$j \notin \cX_{A,i} \ssm \cY_{A,i}$. Then
 \begin{itemize}
 \item either~$j \notin \cX_{A,i}$, hence there is no~$I \in \II$ with~$i = A(I)$ and~$j \in I$, and the flip is not~possible. % (\ie~$A = B$).
 \item or~$j \in \cX_{A,i} \cap \cY_{A,i}$. Since~$j \in \cX_{A,i}$, there is~$I \in \II$ with~$A(I) = i$ and~$j \in I \ssm \{i\}$. Since~$j \in \cY_{A,i}$, there is~$J \in \II$ with~$k \eqdef A(J) \in \cX_{A,i}$ and~$j \in J \ssm \{k\}$. As~$k \in \cX_{A,i}$, there is also~$K \in \II$ such that~$A(K) = i$ and~$k \in K \ssm \{i\}$. We now consider the three distinct values~$i, j, k$ and distinguish three cases depending on which is in between the other two:
@@ -898,6 +898,27 @@ Hence, we obtain that~$j \in \cY_{A,i}$.
 \end{proof}
 
 \begin{proposition}
+\label{prop:isFlipI}
+Consider an acyclic orientation~$A$ of an interval hypergraph~$\II$, an increasing flip~$\flip{A}{i}{j}{B}$ (in the sense of \cref{def:flip}), and let~$k \eqdef \max\set{\max(I)}{I \in \II \text{ and } A(I) = i}$.
+Then~$B$ is acyclic if and only if there is no~$J \in \II$ with~$j \in J \ssm \{A(J)\}$ and~$A(J) \in {]i,k]}$.
+\end{proposition}
+
+\begin{proof}
+Assume first that there is~$J \in \II$ with~$j \in J \ssm \{A(J)\}$ and~$A(J) \in {]i,k]}$.
+Let~$I \in \II$ be such that~$A(I) = i$ and~$k = \max(I)$.
+Then~$B(J) = A(J) \in {]i,k]} = {]A(I), \max(I)]} \subseteq I$ and~$B(I) = j \in J$ and~$B(I) = j \ne A(J) = B(J)$ implies that $B$ is cyclic.
+
+Conversely, assume that $B$ is cyclic.
+By \cref{prop:acyclicI}, there are~$I,J \in \II$ with~${B(I) \in J \ssm \{B(J)\}}$ and~$B(J) \in I \ssm \{B(I)\}$.
+As~$A$ is acyclic, we have~$i = A(I) \ne B(I) = j$ or~$i = A(J) \ne B(J) = j$, but not both since~$B(I) \ne B(J)$.
+By symmetry, we can assume that~$i = A(I) \ne B(I) = j$ and~$A(J) = B(J)$.
+We obtain that~$j = B(I) \in J \ssm \{B(J)\} = J \ssm \{A(J)\}$.
+Moreover, we have~$i < A(J)$ as otherwise~$A(J) = B(J) \in I$ and~$A(I) = i \in [A(J), j] = [A(J), B(I)] \subseteq J$ and~$A(I) \ne A(J)$ would contradict the acyclicity of~$A$.
+As~$A(J) = B(J) \in I \ssm \{B(I)\}$, we obtain that~$i < A(J) < \max(I)$.
+We conclude that~$A(J) \in {]i,k]}$ since~$\max(I) \le k$ as~$A(I) = i$.
+\end{proof}
+
+\begin{proposition}
 \label{prop:isCoverI}
 %Let~$A$ and~$B$ be two acyclic orientations of an interval hypergraph~$\II$  related by an increasing flip of~$i$ to~$j$.
 An increasing flip \flip{A}{i}{j}{B} between two acyclic orientations of an interval hypergraph~$\II$ is a cover relation of~$P_\II$ if and only if
@@ -907,27 +928,46 @@ An increasing flip \flip{A}{i}{j}{B} between two acyclic orientations of an inte
 \end{proposition}
 
 \begin{proof}
-%Let~$I \in \II$ be such that~$A(I) = i$ and~$B(I) = j$.
-Assume first that there is~$k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
-Then~$k \in \cX_{A,i}$ since there is~$I \in \II$ with~$A(I) = i$ and~$B(I) = j$.
-Moreover, for any~$I,J \in \II$ with~$A(I) = i$, $A(J) \in I \ssm \{i\}$ and~$k \in J \ssm A(J)$, we have 
-\begin{itemize}
-\item $i < A(J)$, otherwise~$A(I) = i \in [A(J),k] \subseteq J$ and~${A(J) \in I \ssm \{A(I)\}}$, so that~$A$ is cyclic,
-\item $A(J) \le j$, otherwise~$B(I) = j \in [k,A(J)] \subseteq J$ and~${B(J) = A(J) \in I \ssm \{B(I)\}}$, so that~$B$ is cyclic,
-\end{itemize}
-so that~$A(J) \in {]i,j]}$, which implies by definition of~$k$ that~$k \notin J \ssm \{A(J)\}$.
-Hence~$k \notin \cY_{A,i}$.
-As~$k \in \cX_{A,i} \ssm \cY_{A,i}$, \cref{prop:isFlipI} ensures that the orientation~$C$ of~$\II$ obtained by flipping~$i$ to~$k$ is acyclic.
-This implies that~$\flip{A}{i}{j}{B}$ is not a cover relation as it is obtained transitively from~$\flip{A}{i}{k}{C}$ and~$\flip{C}{k}{j}{B}$.
+Let~$k \eqdef \max\set{\max(I)}{I \in \II \text{ and } A(I) = i}$ and~$I \in \II$ be such that~$A(I) = i$ and~${k = \max(I)}$.
+Note that~$i < j \le k$ since~$\flip{A}{i}{j}{B}$ is a flip.
 
-Assume now that~$A \le B$ is not a cover relation.
-Then there exists~$k \ne i$ and an acyclic orientation~$C$ of~$I$ such that~$\flip{A}{i}{k}{C}$ is a flip and~$A < C < B$.
-Since~$\flip{A}{i}{j}{B}$ is a flip, we have~$A(I) = C(I) = B(I)$ except if~$A(I) = i$ and~$B(I) = j$.
-Hence, there is~$I$ such that~$A(I) = i < C(I) = k < j = B(I)$.
-Since~$\flip{A}{i}{k}{C}$ is a flip, we obtain from \cref{prop:isFlipI} that~$k \notin \cY_{A,i}$.
-As~$]i,j] \subseteq I \ssm \{i\} \subseteq \cX_{A,i}$, there is no~$J \in \II$ with~$A(J) \in {]i,j]}$ and~$k \in J \ssm \{A(J)\}$.
-Hence, $k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
+Assume first that there is~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
+We claim that there is no~$J \in \II$ with~$\ell \in J \ssm A(J)$ and~$A(J) \in ]i,k]$.
+Indeed, by definition of~$\ell$, we would have~$A(J) > j$.
+Then~$B(I) = j \in [\ell, A(J)] \subseteq J$ and~$B(J) = A(J) \in {]i,k]} \subseteq I$ and~$B(I) = j < A(J) = B(J)$ contradicts the acyclicity of~$A$.
+We conclude from \cref{prop:isFlipI} that the orientation~$C$ of~$\II$ obtained by flipping~$i$ to~$\ell$ is acyclic.
+This implies that~$\flip{A}{i}{j}{B}$ is not a cover relation as it is obtained transitively from~$\flip{A}{i}{\ell}{C}$ and~$\flip{C}{\ell}{j}{B}$.
+
+Conversely, assume that~$A \le B$ is not a cover relation.
+Then there is a flip~$\flip{A}{i}{\ell}{C}$, where~$C$ is an acyclic orientation of~$\II$ such that~$A < C < B$.
+Since~$\flip{A}{i}{j}{B}$ is a flip, we have~${A(K) = C(K) = B(K)}$ for any~$K \in \II$, except if~$A(K) = i$ and~$B(K) = j$.
+Hence, there is~$K \in \II$ such that~$A(I) = i < C(I) = \ell < j = B(I)$.
+Since~$\flip{A}{i}{\ell}{C}$ is a flip, we obtain from \cref{prop:isFlipI} that there is no~$J \in \II$ with~$\ell \in J \ssm \{A(J)\}$ and~$A(J) \in {]i,k]} \subseteq {]i,j]}$.
+Hence,~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 \end{proof}
+
+%\begin{proof}
+%%Let~$I \in \II$ be such that~$A(I) = i$ and~$B(I) = j$.
+%Assume first that there is~$k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
+%Then~$k \in \cX_{A,i}$ since there is~$I \in \II$ with~$A(I) = i$ and~$B(I) = j$.
+%Moreover, for any~$I,J \in \II$ with~$A(I) = i$, $A(J) \in I \ssm \{i\}$ and~$k \in J \ssm A(J)$, we have 
+%\begin{itemize}
+%\item $i < A(J)$, otherwise~$A(I) = i \in [A(J),k] \subseteq J$ and~${A(J) \in I \ssm \{A(I)\}}$, so that~$A$ is cyclic,
+%\item $A(J) \le j$, otherwise~$B(I) = j \in [k,A(J)] \subseteq J$ and~${B(J) = A(J) \in I \ssm \{B(I)\}}$, so that~$B$ is cyclic,
+%\end{itemize}
+%so that~$A(J) \in {]i,j]}$, which implies by definition of~$k$ that~$k \notin J \ssm \{A(J)\}$.
+%Hence~$k \notin \cY_{A,i}$.
+%As~$k \in \cX_{A,i} \ssm \cY_{A,i}$, \cref{prop:isFlipI} ensures that the orientation~$C$ of~$\II$ obtained by flipping~$i$ to~$k$ is acyclic.
+%This implies that~$\flip{A}{i}{j}{B}$ is not a cover relation as it is obtained transitively from~$\flip{A}{i}{k}{C}$ and~$\flip{C}{k}{j}{B}$.
+%
+%Conversely, assume that~$A \le B$ is not a cover relation.
+%Then there exists~$k \ne i$ and an acyclic orientation~$C$ of~$I$ such that~$\flip{A}{i}{k}{C}$ is a flip and~$A < C < B$.
+%Since~$\flip{A}{i}{j}{B}$ is a flip, we have~$A(I) = C(I) = B(I)$ except if~$A(I) = i$ and~$B(I) = j$.
+%Hence, there is~$I$ such that~$A(I) = i < C(I) = k < j = B(I)$.
+%Since~$\flip{A}{i}{k}{C}$ is a flip, we obtain from \cref{prop:isFlipI} that~$k \notin \cY_{A,i}$.
+%As~$]i,j] \subseteq I \ssm \{i\} \subseteq \cX_{A,i}$, there is no~$J \in \II$ with~$A(J) \in {]i,j]}$ and~$k \in J \ssm \{A(J)\}$.
+%Hence, $k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
+%\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
