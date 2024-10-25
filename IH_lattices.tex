@@ -1996,13 +1996,13 @@ If~$\II$ is a distributive interval hypergraph, then the map $j \mapsto A_j$ is 
 \begin{proof}
 We have already seen in \cref{coro:irreduciblePosetMorphism} that~$j \mapsto A_j$ is an injective poset morphism.
 We thus just need to show that the distributivity of~$\II$ implies the surjectivity of this morphism.
-Consider an increasing flip~\flip{A}{i}{j}{A'}.
-%Let~$A < A'$ be two acyclic orientations of~$\II$ related by an increasing flip from~$i$ to~$j$.
-If there is~$J \in \II$ such that~$A'(J) \notin \{\min(J), j\}$, then \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$A(J')$ to some~$k < A(J') \ne j$.
-If there is~$J \in \II$ such that~$A'(J) = j$ and~$\min(J) < \mu_j$, then the distributivity of~$\II$ implies that~$\max(I) < \mu_j$ for any~$I \in \II$ such that~$\min(I) = \min(J)$ and~$\max(I) < j$ (otherwise, $I \not\subseteq J_j$ and~$I \not\supseteq J_j$ and~$\mu_j \in I \cap J_i \subseteq J$, and~$I \cap J_j$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$).
-Hence, \cref{lem:alwaysFlippable} ensures that $A'$ admits a decreasing flip flipping~$j$ to some~$k < \mu_j$.
-As $A'$ is acyclic, there is no~$J \in \II$ such that~$A'(J) = \min(J) = \mu_j$ and~$j \in J$.
-We conclude that if~$A'$ admits a single decreasing flip, then~$A'(J) = j$ if~$j \in J$ and~$\min(J) = \mu_j$, and~$A'(J) = \min(J)$ otherwise, so that~$A' = A_j$.
+Consider an increasing flip~\flip{A}{i}{j}{B}.
+%Let~$A < B$ be two acyclic orientations of~$\II$ related by an increasing flip from~$i$ to~$j$.
+If there is~$J \in \II$ such that~$B(J) \notin \{\min(J), j\}$, then \cref{lem:alwaysFlippable} ensures that $B$ admits a decreasing flip flipping~$A(J')$ to some~$k < A(J') \ne j$.
+If there is~$J \in \II$ such that~$B(J) = j$ and~$\min(J) < \mu_j$, then the distributivity of~$\II$ implies that~$\max(I) < \mu_j$ for any~$I \in \II$ such that~$\min(I) = \min(J)$ and~$\max(I) < j$ (otherwise, $I \not\subseteq J_j$ and~$I \not\supseteq J_j$ and~$\mu_j \in I \cap J_i \subseteq J$, and~$I \cap J_j$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$).
+Hence, \cref{lem:alwaysFlippable} ensures that $B$ admits a decreasing flip flipping~$j$ to some~$k < \mu_j$.
+As $B$ is acyclic, there is no~$J \in \II$ such that~$B(J) = \min(J) = \mu_j$ and~$j \in J$.
+We conclude that if~$B$ admits a single decreasing flip, then~$B(J) = j$ if~$j \in J$ and~$\min(J) = \mu_j$, and~$B(J) = \min(J)$ otherwise, so that~$B = A_j$.
 \end{proof}
 
 \begin{remark}
@@ -2062,11 +2062,11 @@ j & \text{if } j \in J \text{ and } \min(J) \ge i \\
 \end{cases}
 \]
 We claim that the flip of~$j$ to~$i$ is the only decreasing flip from~$A$.
-Let~$A'$ be an acyclic orientation of~$\II$ obtained by a decreasing flip from~$A$.
-Let~$H \in \II$ be such that~$A'(H) < A(H)$.
-Since~$A(H) \in \{\min(H), j\}$, we have~$A(H) = j$, so that~$i \le \min(H) \le A'(H) < A(H) = j$.
-If~$A'(H) \ne i$, then~$A'(K) = A'(H) \in I$ (since~$A'(H) \in K$ and~$A(K) = j$) and $A'(I) \le A(I) = \min(I) = i \in K$ (since~$j \notin I$), contradicting the acyclicity of~$A'$.
-We conclude that~$A'(H) = i$, so that~$A'$ is indeed obtained from~$A$ by flipping $j$ to~$i$.
+Let~$B$ be an acyclic orientation of~$\II$ obtained by a decreasing flip from~$A$.
+Let~$H \in \II$ be such that~$B(H) < A(H)$.
+Since~$A(H) \in \{\min(H), j\}$, we have~$A(H) = j$, so that~$i \le \min(H) \le B(H) < A(H) = j$.
+If~$B(H) \ne i$, then~$B(K) = B(H) \in I$ (since~$B(H) \in K$ and~$A(K) = j$) and $B(I) \le A(I) = \min(I) = i \in K$ (since~$j \notin I$), contradicting the acyclicity of~$B$.
+We conclude that~$B(H) = i$, so that~$B$ is indeed obtained from~$A$ by flipping $j$ to~$i$.
 
 Finally, as~$A(K) = j$ while~$A_j(K) = \min(K) < j$, we have~$A \not\le A_j$ for all~$j \in \cJ_\II$ by \cref{prop:sourceOrderI}.
 \end{proof}
@@ -2428,6 +2428,7 @@ By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j$.
 \end{notation}
 
 \begin{notation}
+\label{not:cIJ}
 Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and
 \[
 i = \max \Big( {[\mu_{ij}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\! J \ssm \{\min(J)\} \Big).
@@ -2556,7 +2557,7 @@ For $(i,j) \ne (k,\ell) \in \cIJ_\II$, we have $A_{ij} \ne A_{k\ell}$.
 Assume that~$A_{ij} = A_{k\ell}$.
 As~$j = A_{ij}(J_{ij}) = A_{k\ell}(J_{i,j}) \in \{\ell, \mu_{ij}\}$ and~$\mu_{ij} < j$, we obtain that~$j = \ell = A_{k\ell}(J_{ij})$ hence that~$\mu_{ij} \ge \mu_{k\ell}$.
 By symmetry, we have~$\mu_{ij} = \mu_{k\ell}$.
-As $j = \ell$ and $\mu_{ij} = \mu_{k\ell}$, we obtain that~$i = k$ by definition of~$\cIJ_\II$
+As $j = \ell$ and $\mu_{ij} = \mu_{k\ell}$, we obtain that~$i = k$ by definition of~$\cIJ_\II$.
 We conclude that~$(i,j) = (k,\ell)$.
 \end{proof}
 
@@ -2586,10 +2587,26 @@ For any~$(i,j) \in \cIJ_\II$, the acyclic orientation~$A_{ij}$ is join irreducib
 \end{proposition}
 
 \begin{proof}
-Consider an increasing flip~\flip{A}{k}{\ell}{A_{ij}}.
+As~$A_{ij} \ne \min(P_\II)$, we just need to prove that it covers a single acyclic orientation in~$P_\II$.
+We consider a cover relation~\flip{A}{k}{\ell}{A_{ij}} in~$P_\II$ and prove that~$i = k$ and~$j = \ell$.
+
 By definition, there is~$I \in \II$ such that~$\{k,\ell\} \subseteq I$ and~$A(I) = k$ while~$A_{ij}(I) = \ell$.
-As $A_{ij}(I) \in \{j, \min(I)\}$ and~$A_{ij}(I) = \ell > k \ge \min(I)$, we obtain that~$j = \ell$.
-\vincent{todo: prove that~$i = k$...}
+Since $A_{ij}(I) \in \{j, \min(I)\}$ and~$A_{ij}(I) = \ell > k \ge \min(I)$, we obtain that~$j = \ell$.
+
+Assume now that~$i < k$.
+Then there is~$J \in \II$ with~$J \subseteq [\mu_{ij}, j[$ and~$k \in J \ssm \{\min(J)\}$.
+We obtain that~$A(J) = A_{ij}(J) = \min(J) \in [\mu_{ij}, j[ \subseteq I$ and~$A(I) = k \in J$ and~$A(J) \ne A(I)$, contradicting the acyclicity of~$A$.
+
+Assume now that~$k < i$.
+Since~$\flip{A}{k}{\ell}{A_{ij}}$ is a cover relation, the decreasing analogue of \cref{prop:isCoverI} implies that
+\[
+{]k,\ell[} \subseteq \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,\ell[}} J \ssm \{A_{ij}(J)\}. % = \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,j[}} J \ssm \{\min(J)\}
+\]
+As~$i \in {]k,\ell[}$, there is~$J \in \II$ with~$A_{ij}(J) \in {[k,\ell[} = {[k,j[}$ and~$i \in J \ssm \{A_{ij}(J)\}$.
+As~${A_{ij}(J) \in \{j, \min(J)\}}$ by definition of~$A_{ij}$, we obtain that~$A_{ij}(J) = \min(J)$.
+If $j \le \max(J)$, then $A_{ij}(I) = \ell \in J$ and~$A_{ij}(J) \in {[k,\ell[} \subseteq I$ and~$A_{ij}(I) \ne A_{ij}(J)$ contradict the acyclicity of~$A_{ij}$.
+As~$\II$ is closed under intersection, we can thus assume that~$J \subseteq [\mu_{ij}, j[$, up to intersecting~$J$ with~$J_{ij}$.
+We conclude that~$J \subseteq [\mu_{ij}, j[$ and~$i \in J \ssm \{A_{ij}(J)\} = J \ssm \{\min(J)\}$, contradicting the definition of~$i$ in \cref{not:cIJ}.
 \end{proof}
 
 \begin{proposition}
@@ -2598,6 +2615,8 @@ If~$\II$ is an interval hypergraph closed under intersection, then the map~${(i,
 \end{proposition}
 
 \begin{proof}
+Consider a join irreducible acyclic orientation~$B$ of~$\II$ and let~$\flip{A}{i}{j}{B}$ be the only increasing flip to~$B$.
+
 \vincent{todo}
 \end{proof}
 
