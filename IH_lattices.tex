@@ -210,6 +210,8 @@ We characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a lattice, a
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
+
 \section{Introduction}
 \label{sec:introduction}
 
@@ -240,13 +242,15 @@ In view of these two examples, we would like to characterize the hypergraphs~$\H
 These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
 
 In this paper, we study the case of \defn{interval hypergraphs}~$\II$, \ie when all hyperedges of~$\II$ are intervals of~$[n]$.
-Note that this family does not contain the permutahedron, but contains
+Note that the family of interval hypergraphic polytopes does not contain the permutahedron, but contains
 \begin{itemize}
 \item the classical associahedron of~\cite{ShniderSternberg,Loday} when~$\II$ contains all intervals of~$[n]$,
 \item the Pitman--Stanley polytope~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
 \item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$ for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
 \item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
+In fact, it follows from~\cite{PadrolPaluPilaudPlamondon} that the interval hypergraphic polytopes are precisely the weak Minkowski summands of the classical associahedron (recall that a polytope~$P \subset \R^n$ is a \defn{weak Minkowski summand} of a polytope~$Q \subset \R^n$ if there exists a real~$\lambda \ge 0$ and a polytope~$R \subset \R^d$ such that~$\lambda Q = P + R$).
+
 We obtain the following characterizations, where we assume that~$\{i\} \in \II$ for all~$i \in [n]$ as mentioned earlier.
 See \cref{sec:LatticeI,sec:distributive,sec:semidistributive,sec:quotient} and \cref{fig:notLattices,fig:Tamari,fig:distributiveLattices,fig:semidistributiveLattices,fig:notSemidistributiveLattices} for illustrations.
 
@@ -297,13 +301,21 @@ Once \cref{thm:latticeI} is established, an important step for \cref{thm:distrib
 \cref{subsec:joinIrreducibles} provides a combinatorial description of the join irreducible elements of~$P_\II$ for an arbitrary interval hypergraph~$\II$ closed under intersections.
 To prepare this slightly technical description, we already describe some join irreducible elements of~$P_\II$ in \cref{subsec:someJoinIrreducibles}, which happen to be all join irreducible elements of~$P_\II$ under the condition of~\cref{thm:distributiveLatticeI}.
 
+The paper is organized as follows.
+In \cref{sec:HP}, we recall basic properties of hypergraphic polytopes, we define hypergraphic posets, and we recall the natural poset morphism from the weak order on permutations to the hypergraphic poset.
+In \cref{sec:IHP}, we develop specific properties of interval hypergraphic polytopes, in particular a simple characterization of their vertices and a simple description of the relations in their hypergraphic posets.
+In \cref{sec:LatticeI}, we characterize the interval hypergraphs~$\II$ for which the interval hypergraphic poset~$P_\II$ is a lattice, proving \cref{thm:latticeI}.
+In \cref{sec:distributive}, we describe a family of join irreducible elements of~$P_\II$ and we characterize the interval hypergraphs~$\II$ for which the interval hypergraphic poset~$P_\II$ is a distributive lattice, proving \cref{thm:distributiveLatticeI}.
+In \cref{sec:semidistributive}, we describe all join irreducible elements of~$P_\II$ and we characterize the interval hypergraphs~$\II$ for which the interval hypergraphic poset~$P_\II$ is a lattice, proving \cref{thm:semidistributiveLatticeI}.
+In \cref{sec:quotient}, we characterize the interval hypergraphs~$\II$ for which the interval hypergraphic poset~$P_\II$ is a lattice, proving \cref{thm:quotientLatticeI}.
+
+
 \setcounter{theoremA}{0}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\pagebreak
 \section{Hypergraphic posets}
 \label{sec:HP}
 
@@ -475,7 +487,7 @@ The vertex of~$\simplex_H$ minimizing a generic direction~$\b{v}$ is~$\b{e}_i$ f
 An acyclic orientation of~$\HH$ corresponds to the choice of one vertex in each~$\simplex_H$, and the orientation is acyclic if and only if this choice corresponds to a generic orientation~$\b{v}$, hence to a vertex of~$\simplex_\HH$.
 
 The edges of~$\simplex_H$ are oriented in the directions~$\b{e}_i-\b{e}_j$ for~$i,j \in H$.
-The edges of~$\simplex_\HH$ are thus also oriented by $\b{e}_i-\b{e}_j$, and thus correspond to pairs of acyclic orientations which differ by a flip.
+The edges of~$\simplex_\HH$ are thus also oriented by $\b{e}_i-\b{e}_j$, and thus correspond to pairs of acyclic orientations which differ by~a~flip.
 \end{proof}
 
 Finally, the main objects of this paper are the following posets.
@@ -556,6 +568,7 @@ In other words, the graph~$(V_\HH, E_\HH)$ of~$\simplex_\HH$ is isomorphic to th
 The map~$\Or$ defines a poset morphism from the weak order on permutations to the hypergraphic poset~$P_\HH$.
 \end{corollary}
 
+\enlargethispage{.2cm}
 Finally, we describe the fibers of the surjection~$\Or : \fS_n \to V_\HH$.
 Given an acyclic orientation~$A$ of~$\HH$, define $\less_A$ as the order on $[n]$ obtained by the transitive closure of the union of the \linebreak orders $\set{A(H) < h}{h \in H \ssm \{A(H)\}}$ for each $H \in \HH$.
 That is
@@ -682,7 +695,7 @@ and, as before, we omit to draw the singleton $\{i\}$ for $i \in [n]$.
 See also~\cref{fig:exmInterval}.
 Remark that the running example of the previous section, $\HH=\{ 1, 2, 3, 4, 123, 134 \}$, is not an interval hypergraph, as $134$ is not an interval.
 %
-\begin{figure}[b]
+\begin{figure}
 	\centerline{
 		\begin{tabular}[t]{c}
 			\input{figures/hypergraphicalPolytope} \\[.5cm]
@@ -939,7 +952,7 @@ We thus consider~$I \in \II$ and distinguish two cases:
 
 \begin{remark}
 Note that the forward direction holds for arbitrary hypergraphs.
-We are not sure whether the backward direction holds in greater generality.
+We are not sure whether the backward direction holds for arbitrary hypergraphs.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1085,11 +1098,10 @@ Hence,~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\pagebreak
 \section{Interval hypergraphic lattices}
 \label{sec:LatticeI}
 
-\begin{figure}[b]
+\begin{figure}
 	\centerline{
 		\begin{tabular}{c@{\qquad}c}
 			\begin{tikzpicture}[scale=1.5,baseline=-3.5cm]
@@ -1157,7 +1169,7 @@ Hence,~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 	\label{fig:notLattices}
 \end{figure}
 
-\begin{figure}[b]
+\begin{figure}
 	\centerline{
 		\begin{tabular}{c@{\qquad}c}
 			\begin{tikzpicture}[scale=1.5,baseline=-3.5cm]
@@ -1448,6 +1460,7 @@ For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 5, 1234, 2345, 23, 24, 3
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
 \subsection{Properties of $P_\II$ when~$\II$ is closed under intersection}  
 \label{subsec:IntClosedI}
 
@@ -2225,6 +2238,7 @@ This description is a specialization of the description of the join irreducible 
 \section{Semidistributive interval hypergraphic lattices}
 \label{sec:semidistributive}
 
+\afterpage{
 \begin{figure}
 	\centerline{
 		\begin{tabular}{c@{\qquad}c}
@@ -2382,6 +2396,7 @@ This description is a specialization of the description of the join irreducible 
 	\caption{Two interval hypergraphic lattices which are not semidistributive.}
 	\label{fig:notSemidistributiveLattices}
 \end{figure}
+}
 
 In this section, we prove \cref{thm:semidistributiveLatticeI} which we first introduce properly:
 %characterizing the interval hypergraphs $\II$ for which $P_\II$ are semidistributive lattices.
@@ -3115,8 +3130,14 @@ For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n
 \begin{proof}
 We only prove the meet semilattice morphism, the result for join semilattice morphism follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
-Assume first that~$\II$ is is not closed under initial subintervals, and let~$1 \le i < j < k \le n$ be such that~$[i,j] \notin \II$ while~$[i,k] \in \II$.
-\vincent{TODO}
+Assume first that~$\II$ is not closed under initial subintervals, and let~$1 \le i < j < k \le n$ be such that~$[i,j] \notin \II$ while~$[i,k] \in \II$.
+Note that we can assume that~$k = j+1$.
+Let~$\omega \eqdef i j k X$, $\sigma \eqdef j i k X$, $\tau \eqdef k i j X$, and $\rho \eqdef k j i X$, where~$X$ is an arbitrary permutation of~$[n] \ssm \{i,j,k\}$.
+Since~$\II$ is closed under intersection and contains~$[i,k]$ but not~$[i,j]$ and~$k = j+1$, any~$J \in \II$ containing~$\{i,j\}$ also contains~$k$.
+Hence, we have~$\Or_\tau = \Or_\rho$, so that~$\projUp(\tau) \le \rho$.
+Moreover, since~$[i,k] \in \II$, we have~${\Or_\omega < \Or_\sigma}$.
+By \cref{prop:latticeBackward}, we obtain that~${\Or_\sigma \meet \Or_\tau = \Or_{\projUp(\sigma) \meet \projUp(\tau)} \ge \Or_{\sigma \meet \rho} = \Or_\sigma > \Or_\omega = \Or_{\sigma \meet \tau}}$.
+Hence, $\Or$ is not a meet semilattice morphism.
 
 Conversely, assume that~$\II$ is closed under initial subintervals.
 We prove by induction on the length of~$\tau$ that~$\sigma \le \tau$ implies~$\projDown(\sigma) \le \projDown(\tau)$.
@@ -3138,9 +3159,9 @@ Let $\sigma' \eqdef X j i k Y$, $\sigma'' \eqdef X i j k Y$ and~$\tau'' \eqdef X
 If~$\Or_\sigma \ne \Or_{\sigma'}$, then there exist~$1 \le u \le i < k \le v \le n$ such that~$[u,v] \in \II$ and~$q = \min \big( \sigma^{-1}([u,v]) \big)$. 
 As~$\II$ is closed under final subintervals, we have~$[u,j] \in \II$ and~$q = \min \big( \tau^{-1}([u,j]) \big)$, which contradicts that~$\Or_\tau = \Or_{\tau'}$.
 If~$\Or_{\sigma'} \ne \Or_{\sigma''}$, then there exists~$1 \le u \le i < j \le v \le n$ such that~$[u,v] \in \II$ and~$p = \min \big( \sigma'^{-1}([u,v]) \big)$. 
-This would imply that~$q = \big( \tau^{-1}([u,v]) \big)$, contradicting that~$\Or_\tau = \Or_{\tau'}$.
+This would imply that~$q = \big( \tau^{-1}([u,v]) \big)$, contradicting that~${\Or_\tau = \Or_{\tau'}}$.
 Since~$\sigma'' < \tau' < \tau$, we obtain by induction that~$\projDown(\sigma'') \le \projDown(\tau')$.
-As~$\Or_\sigma = \Or_{\sigma'} = \Or_{\sigma''}$ and~$\Or_\tau = \Or_{\tau'}$, we conclude that~$\projDown(\sigma) \le \projDown(\tau)$.
+As~$\Or_\sigma = \Or_{\sigma'} = \Or_{\sigma''}$ and~${\Or_\tau = \Or_{\tau'}}$, we conclude that~$\projDown(\sigma) \le \projDown(\tau)$.
 
 \para{If~$p = q+1$.} Then~$\sigma = X k i j Y$, $\tau = X k j i Y$ and $\tau' = X j k i Y$ for some letters~${1 \le i < j < k \le n}$ and some words~$X,Y$ on~$[n]$.
 Let~$\sigma' \eqdef X i k j Y$, $\sigma'' \eqdef X i j k Y$ and~$\tau'' \eqdef X j i k Y$. 
@@ -3152,26 +3173,30 @@ Since~$\sigma'' < \tau' < \tau$, we obtain by induction that~$\projDown(\sigma''
 As~$\Or_\sigma = \Or_{\sigma'} = \Or_{\sigma''}$ and~$\Or_\tau = \Or_{\tau'}$, we conclude that~$\projDown(\sigma) \le \projDown(\tau)$.
 \end{proof}
 
+\begin{corollary}
+For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the map~$\Or$ from the weak order on~$\fS_n$ to $P_\II$ is a lattice morphism if and only if $\II$ is closed under subintervals.
+In this case, $P_\II$ is a Cartesian product of Tamari lattices.
+\end{corollary}
 
-\vincent{Conversely, it seems I had a characterization of the quotients we obtain in terms of arcs... I can't remember it at the moment.}
+%\vincent{Conversely, the quotients that appear as interval hypergraphic polytopes are those whose ideal of arcs is closed under~$(i,j,A,B) \mapsto (i,j,A \ssm \{k\}, B \cup \{k\})$ for~$i < j < k$ and~$A \sqcup B = {]i,j[}$.}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\section{Some open questions}
-\label{sec:openQuestions}
-
-Understand the operation of addition/deletion of an inclusion maximal interval.
-
-When semidistributive:
-\begin{itemize}
-\item is there a clean interval doubling construction?
-\item understand canonical join representations.
-\item understand forcing order on join irreducibles, and describe all lattice quotients.
-\end{itemize}
-
-There is a natural edge labeling of $P_\II$. Is it an interesting labeling? (EL-labeling for instance?)
+%\section{Some open questions}
+%\label{sec:openQuestions}
+%
+%Understand the operation of addition/deletion of an inclusion maximal interval.
+%
+%When semidistributive:
+%\begin{itemize}
+%\item is there a clean interval doubling construction?
+%\item understand canonical join representations.
+%\item understand forcing order on join irreducibles, and describe all lattice quotients.
+%\end{itemize}
+%
+%There is a natural edge labeling of $P_\II$. Is it an interesting labeling? (EL-labeling for instance?)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
