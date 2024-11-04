@@ -229,8 +229,8 @@ It is convenient for us to assume that~$\{i\} \in \HH$ for all~$i \in [n]$.
 The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the skeleton of~$\simplex_\HH$ oriented in the direction~$\b{\omega} \eqdef (n, n-1, \dots, 2, 1) - (1, 2, \dots, n-1, n) = (n-1, n-3, \dots, 3-n, 1-n)$.
 For instance, 
 \begin{itemize}
-\item if~$\HH = \binom{[n]}{2}$ is the complete graph (or any hypergraph containing it), then~$\simplex_\HH$ is the permutahedron and $P_\HH$ is the weak order on permutations,
-\item if~$\HH = \set{[i,j]}{1 \le i \le j \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} associahedron~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the Tamari lattice on binary trees~\cite{Tamari}.
+\item if~$\HH = \binom{[n]}{2}$ is the complete graph (or any hypergraph containing it), then~$\simplex_\HH$ is the \defn{permutahedron} and $P_\HH$ is the \defn{weak order on permutations},
+\item if~$\HH = \set{[i,j]}{1 \le i \le j \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} \defn{associahedron}~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the \defn{Tamari lattice on binary trees}~\cite{Tamari}.
 \end{itemize}
 %In view of these two examples, we consider the following general questions:
 %\begin{itemize}
@@ -283,7 +283,7 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if
 %\item for all~$[m,m'] \in \II$, we have $\min(j, k) \le m$ or~$m' < j'$ or $k' \le m'$.
 %\end{itemize}
 %
-For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if it is closed under intersection and
+For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if~$\II$ is closed under intersection and
 %for all~$[i,i'], [j,j'], [k,k'], [\ell,\ell'] \in \II$ such that $i < j \le i' < j'$, $i < k \le j' < k'$, $\ell < \min(j, k)$ and~$k' \le \ell'$, there is $[m,m'] \in \II$ such that~$m < \min(j, k)$ and~$j' \le m' < k'$.
 %for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~${a' < e' < c'}$.
 %for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${b' < e' < c'}$.
@@ -298,7 +298,7 @@ For an interval hypergraph $\II$, the poset morphism from the weak order to the 
 
 For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice which is a quotient of the weak order, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
 
-Once \cref{thm:latticeI} is established, an important step for \cref{thm:distributiveLatticeI,thm:semidistributiveLatticeI} is to understand join irreducibles.
+Once \cref{thm:latticeI} is established, an important step for \cref{thm:distributiveLatticeI,thm:semidistributiveLatticeI} is to understand join irreducible elements of~$P_\II$.
 \cref{subsec:joinIrreducibles} provides a combinatorial description of the join irreducible elements of the lattice~$P_\II$ for an arbitrary interval hypergraph~$\II$ closed under intersections.
 To prepare this slightly technical description, we already describe some join irreducible elements of~$P_\II$ in \cref{subsec:someJoinIrreducibles}, which happen to be all join irreducible elements of~$P_\II$ under the condition of~\cref{thm:distributiveLatticeI}.
 
@@ -681,8 +681,12 @@ An \defn{interval hypergraph}~$\II$ is an hypergraph on~$[n]$ where each~$I \in 
 \end{definition}
 
 \begin{example}
+Our running example~$\HH=\{ 1, 2, 3, 4, 123, 134 \}$  of \cref{ex:DH1,ex:DH2,ex:DH3,ex:DH4,ex:DH5}, is not an interval hypergraph, as $134$ is not an interval.
+\end{example}
+
+\begin{example}
 \label{exm:intervalHypergraph}
-For instance, 
+The hypergraph
 $\II = \{ 1, 2, 3, 4,123, 23, 234, 1234 \}$ 
 is an interval hypergraph and
 %$\Or_{4132} = \big\{ (4, \{1,2,3,4\}), (1, \{1,2,3\}), (3, \{2,3\}), (4, \{2,3,4\})\big\}$ 
@@ -695,7 +699,6 @@ We will represent interval hypergraphs and their orientations graphically as fol
 \]
 As before, we omit to draw the singletons $\{i\}$ for $i \in [n]$.
 See also~\cref{fig:exmInterval}.
-Remark that the running example of the previous section, $\HH=\{ 1, 2, 3, 4, 123, 134 \}$, is not an interval hypergraph, as $134$ is not an interval.
 %
 \begin{figure}
 	\centerline{
@@ -756,6 +759,7 @@ Recall that a polytope~$P \subset \R^n$ is a \defn{weak Minkowski summand} of a 
 Equivalently, $P$ is a weak Minkowski summand of~$Q$ if the normal fan of~$Q$ refines the normal fan of~$P$.
 The weak Minkowski summands of~$Q$ form a cone under Minkowski sum and dilation~\cite{McMullen-typeCone}, called the \defn{deformation cone} of~$Q$.
 For instance, the deformation cone of the permutahedron is the cone of generalized permutahedra~\cite{Postnikov, PostnikovReinerWilliams} (also known as submodular cone, or cone of \defn{polymatroids}~\cite{Edmonds}).
+Note that all hypergraphic polytopes are generalized permutahedra.
 It follows from~\cite{BazierMatteChapelierLaguetDouvilleMousavandThomasYildirim,PadrolPaluPilaudPlamondon} that the deformation cone of the associahedron of~\cite{ShniderSternberg,Loday} is a simplicial cone generated by the faces of the standard simplex corresponding to intervals of~$[n]$.
 In particular, the interval hypergraphic polytopes are precisely the weak Minkowski summands of the associahedron~\cite{ShniderSternberg,Loday}.
 \end{remark}
@@ -885,7 +889,7 @@ The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\si
 
 \begin{proposition}
 \label{prop:preimageI}
-The fiber~$\Or^{-1}(A)$ of any acyclic orientation~$A$ of an interval hypergraph~$\II$ is an interval of the weak order with minimum avoiding the pattern $231$ and maximum avoiding the pattern $213$.
+The fiber~$\Or^{-1}(A)$ of any acyclic orientation~$A$ of an interval hypergraph~$\II$ is an interval of the weak order with minimum avoiding the pattern $231$ and maximum avoiding the pattern $213$ (in other words, a Tamari interval).
 \end{proposition}
 
 \begin{proof}
@@ -1032,7 +1036,7 @@ We conclude that~$A(J) \in {]i,k]}$ since~$\max(I) \le k$ as~$A(I) = i$.
 
 \begin{proposition}
 \label{prop:alwaysFlippableI}
-Consider an acyclic orientation~$A$ of an interval hypergraph~$\II$ such that there is~$I \in \II$ and~$i \in [n]$ such that~$i = A(I) < \max(I)$.
+Consider an acyclic orientation~$A$ of an interval hypergraph~$\II$ and~$i \in [n]$ such that there is~$I \in \II$ with~$i = A(I) < \max(I)$.
 Then there exists~$j > i$ such that the orientation of~$\II$ obtained by flipping $i$ to~$j$ is acyclic.
 A symmetric statement holds with a decreasing flip if~$i = A(I) > \min(I)$.
 \end{proposition}
@@ -1045,7 +1049,7 @@ Let~$k \eqdef \max\set{\max(I)}{I \in \II \text{ and } A(I) = i}$ and consider
 X \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in {]i,k]}}} J \ssm \{A(J)\}.
 \]
 Assume that~$X = {]i,k]}$, and consider a minimal~$j \in {]i,k]}$ for the poset~$\less_A$.
-As~$j \in X$, there~$J \in \II$ such that~$A(J) \in {]i,k]}$ and~$j \in J \ssm \{A(J)\}$.
+As~$j \in X$, there is~$J \in \II$ such that~$A(J) \in {]i,k]}$ and~$j \in J \ssm \{A(J)\}$.
 Hence, we have~$A(J) \less_A j$ and~$A(J) \in {]i,k]}$, a contradiction.
 We conclude that there is~$j \in {]i,k]} \ssm X$.
 By \cref{prop:isFlipI}, the orientation obtained from~$A$ by flipping of~$i$ to~$j$ is acyclic.
@@ -1070,7 +1074,7 @@ Let~$k \eqdef \max\set{\max(I)}{I \in \II \text{ and } A(I) = i}$ and~$I \in \II
 Note that~$i < j \le k$ since~$\flip{A}{i}{j}{B}$ is a flip.
 
 Assume first that there is~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
-We claim that there is no~$J \in \II$ with~$\ell \in J \ssm A(J)$ and~$A(J) \in ]i,k]$.
+We claim that there is no~$J \in \II$ with~$\ell \in J \ssm A(J)$ and~$A(J) \in {]i,k]}$.
 Indeed, by definition of~$\ell$, we would have~$A(J) > j$.
 Then~$B(I) = j \in [\ell, A(J)] \subseteq J$ and~$B(J) = A(J) \in {]i,k]} \subseteq I$ and~$B(I) = j < A(J) = B(J)$ contradicts the acyclicity of~$A$.
 We conclude from \cref{prop:isFlipI} that the orientation~$C$ of~$\II$ obtained by flipping~$i$ to~$\ell$ is acyclic.
@@ -1299,7 +1303,7 @@ If~$\II$ is an interval  hypergraph such that the poset $P_\II$ is a lattice, th
 \begin{proof}
 See \cref{exm:proofLatticeForward} for the smallest example of the proof.
 By contradiction, assume we have $I,J\in \II$ such that $\varnothing  \not = I\cap J\not\in \II$.
-Let
+Define~$1 \le a < b < c < d \le n$ by
 \begin{alignat*}{6}
 & a \eqdef b-1, &
 \qquad
@@ -1309,7 +1313,7 @@ Let
 \qquad
 & d \eqdef c+1. &
 \intertext{
-Note that $b\ne c$ since~$\II$ contains all singletons, hence~$a < b < c < d$.
+Note that $b\ne c$ since~$\II$ contains all singletons, hence~$1 \le a < b < c < d \le n$.
 By symmetry, we assume that $a\in I\ssm J$ and $d\in J\ssm I$.
 Let $X$ be the word formed by the complement of $\{a,b,c,d\}$ in~$[n]$ written in increasing order.
 We now construct four permutations 
@@ -1461,6 +1465,7 @@ C = \acyclicOrientation{4}{1/3/2,2/4/4}
 \quad\text{and}\quad
 D = \acyclicOrientation{4}{1/3/3,2/4/3}.
 \]
+We have~$A, B \le C, D$ and there is no~$M$ with~$A,B \le M \le C,D$, so that~$A$ and~$B$ have no join, and~$C$ and~$D$ has no meet.
 \end{example}
 
 \begin{remark}
@@ -1629,7 +1634,7 @@ Let~$O$ be the orientation of~$\II$ defined by the formula of the statement.
 We first prove that~$O$ is acyclic.
 Otherwise, \cref{prop:acyclicI} ensures the existence of~$I,J \in \II$ such that~$O(I) \in J \ssm \{O(J)\}$ and~$O(J) \in I \ssm \{O(I)\}$.
 Assume by symmetry that~$O(I) < O(J)$.
-As~$O(I) \in J$ and~$O(J) > O(J)$, there exists~$p \in [q]$ and~$K \in \II$ such that~$A_p(K) \in J$ and~$\min(K) \le O(I) < A_p(K) \le O(J)$.
+As~$O(I) \in J$ and~$O(J) > O(I)$, there exists~$p \in [q]$ and~$K \in \II$ such that~$A_p(K) \in J$ and~$\min(K) \le O(I) < A_p(K) \le O(J)$.
 As~$I$ is an interval containing~$O(I)$ and~$O(J)$, and~$O(I) < A_p(K) \le O(J)$, it also contains~$A_p(K)$.
 We thus obtain that~$A_p(K) \in I$ and~$\min(K) \le O(I) < A_p(K)$ contradicting our definition of~$O$.
 
