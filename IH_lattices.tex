@@ -1785,7 +1785,7 @@ Equivalently, $L$ is distributive if and only if it is isomorphic to the inclusi
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is distributive.
+For an interval hypergraph $\II$ on~$[n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is distributive.
 \end{theoremA}
 
 \begin{example}
@@ -1800,7 +1800,7 @@ The interval hypergraphic posets of \cref{fig:distributiveLattices} are distribu
 
 \begin{example}
 The hypergraphic poset of~$\{ 1, 2, 3, 12, 123\}$ is a distributive lattice (it is square).
-In general, the hypergraphic poset of all initial intervals is the boolean lattice, which distributive.
+In general, the hypergraphic poset of all initial intervals is the boolean lattice, which is distributive.
 See \cref{fig:distributiveLattices} and \cref{subsec:SchroderHypergraphs} for more examples of distributive hypergraphs.
 \end{example}
 
@@ -1826,8 +1826,11 @@ Define
 \end{notation}
 
 \begin{notation}
-For~$j \in \cJ_\II$, let~$J_j$ be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection) and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
-By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
+For~$j \in \cJ_\II$, let~$\displaystyle J_j=\bigcap_{j \in I \ssm \{\min(I)\}}I$,
+%be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection) 
+and let~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
+%$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
+\break By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
 \end{notation}
 
 \begin{notation}
@@ -1943,15 +1946,15 @@ This contradicts the fact that~$\nu_i = \nu_j$.
 \label{lem:subirr}
 For any~$j \in \cJ_\II$ and any acyclic orientation~$A$ of~$\II$, we have
 \begin{itemize}
-\item $A < A_j \iff A = \min(P_\II)$ or~$A = A_i$ with~$i \preccurlyeq j$,
-\item $A_j < A \iff j \le A(J_j)$.
+\item $A \le A_j \iff A = \min(P_\II)$ or~$A = A_i$ with~$i \preccurlyeq j$,
+\item $A_j \le A \iff j \le A(J_j)$.
 \end{itemize}
 \end{lemma}
 
 \begin{proof}
-By \cref{prop:sourceOrderI}, $A < A_j$ implies that~$A(I) \le A_j(I)$ for all~$I \in \II$.
+By \cref{prop:sourceOrderI}, $A \le A_j$ implies that~$A(I) \le A_j(I)$ for all~$I \in \II$.
 For~$I, I' \in \II$ such that~$j \in I \cap I'$ and~$\min(I) = \min(I') = \mu_j$, we have~$A(I) = A(I')$ since~$A$ is acyclic.
-We conclude that there is~$i \in {[\mu_j, j[}$ such that~$A(I) = i$ if~$j \in I$ and~$\min(I) = \mu_j$, and~$A(I) = \min(I)$ otherwise.
+If $A<A_j$, we conclude that there is~$i \in {[\mu_j, j[}$ such that~$A(I) = i$ if~$j \in I$ and~$\min(I) = \mu_j$, and~$A(I) = \min(I)$ otherwise.
 Hence, $A = \min(P_\II)$ or~$A = A_i$.
 The first point thus follows from \cref{lem:irrorder}.
 
@@ -1983,6 +1986,7 @@ If~$\II$ is an interval hypergraph closed under intersections, then the map $j \
 Immediate from \cref{lem:distinctIrreducibles,prop:AjJoinIrreducible,lem:irrorder}.
 \end{proof}
 
+In the next two propositions, we assume $\II$ is closed under intersections.
 \begin{proposition}
 \label{prop:injectivityDistributive}
 For any two lower sets~$X$ and~$Y$ of~$(\cJ_\II, \preccurlyeq)$, if~$\bigJoin\limits_{x \in X} A_x = \bigJoin\limits_{y \in Y} A_y$ then~$X = Y$.
@@ -2186,7 +2190,7 @@ We say that the hypergraph~$\II_S$ formed by all singletons and the labels of th
 \end{definition}
 
 \begin{example}
-All but the top left interval hypergraphs of \cref{fig:distributiveLattices} are Schr\"oder hypergraphs:
+All but the top left interval hypergraphs of \cref{fig:distributiveLattices} are Schr\"oder hypergraphs. The tree for each Schr\"oder hypergraphs are given by:
 \[
 	\begin{array}{c|ccc}
 		\raisebox{1cm}{$S$}
