@@ -1826,14 +1826,17 @@ Define
 \end{notation}
 
 \begin{notation}
-For~$j \in \cJ_\II$, let~$\displaystyle J_j=\bigcap_{j \in I \ssm \{\min(I)\}}I$,
+\label{notation:muj}
+For~$j \in \cJ_\II$,  we let
+$$ J_j=\!\!\! \bigcap_{j \in I \ssm \{\min(I)\}} \!\! I,$$
+and set~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
 %be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection) 
-and let~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
 %$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
-\break By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
+By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
 \end{notation}
 
 \begin{notation}
+\label{not:Aj}
 For~$j \in \cJ_\II$, consider the acyclic orientation~$A_j \eqdef \Or_{(\mu_j, \mu_j+1, \ldots, j)}$, obtained as the image by the surjection map~$\Or$ of \cref{def:surjection} of the cycle permutation
 \[
 (\mu_j, \mu_j+1, \dots, j) = 12 \cdots (\mu_j-1)j\,\mu_j \cdots (j-1) (j+1) \cdots n
@@ -2503,16 +2506,18 @@ In this section, we assume that~$\II$ is an interval hypergraph closed under int
 %\end{notation}
 
 \begin{notation}
-For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, we denote by~$J_{ij}$ the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and set~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
-By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j$.
+For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, we  let
+$$\displaystyle J_{ij} =  \bigcap_{\{i,j\}\subseteq I}  I$$ and set~$\mu_{ij} \eqdef \min(J_{ij})$ and~$\nu_{ij} \eqdef \max(J_{ij})$.
+%denote by~$J_{ij}$ the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and set~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
+By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~$\{i,j\} \subseteq J_{ij}$.
 \end{notation}
 
 \begin{notation}
 \label{not:cIJ}
-Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and
-\[
-i = \max \Big( {[\mu_{ij}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\! J \ssm \{\min(J)\} \Big).
-\]
+Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and $(i,j)$ satisfies the relation
+$$
+i = \max \Big( {[\mu_{ij}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\!\big( J \ssm \{\min(J)\}\big) \Big).
+$$
 \end{notation}
 
 \begin{notation}
@@ -2532,12 +2537,22 @@ A_{ij}(J) =
 \]
 \end{notation}
 
+\begin{remark}
+In~\cref{notation:muj}, for $j\in \cJ_\II$ we constructed $J_j$ and $\mu_j$. The set 
+$$X_j={[\mu_{j}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{j}, j[}}} \!\!\!\!\big( J \ssm \{\min(J)\}\big)$$
+ is nonempty as it contains at least $\mu_j$. Let $\mu_i\le i_j=\max X_j$. We have that 
+ $$ \mu_{i_jj}=\mu_j\qquad\text{ and } J_{i_jj}=J_j.$$
+ Furthermore, the pair $(i_j,j)\in\cIJ_\II$ since it satisfies all the conditions of the definition. Comparing~\cref{not:Aj} and~\cref{not:joinIrreducibles} we see that $A_j=A_{i_jj}$.
+ Moreover, for all $(k,j)\in \cIJ_\II$, we must have $k\le i_j$. See~\cref{ex:AjAij} through~\cref{ex:lastAij} below.
+\end{remark}
+
 \begin{notation}
 For $(i,j), (k,\ell) \in \cIJ_\II$, we write $(i,j) \preccurlyeq (k,\ell)$ if and only $j \le \ell$ and~$\ell \in J_{ij}$ and~$\mu_{ij} \ge \mu_{k\ell}$.
 Note in particular that~$i \ge k$ and~$j = \ell$ implies $(i,j) \preccurlyeq (k,\ell)$.
 \end{notation}
 
 \begin{example}
+\label{ex:AjAij}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$ of \cref{exm:Tamari1,exm:oneMoreIrreducible,fig:Tamari}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$, and the join irreducible acyclic orientations~are %~$A_{12} = A_2$, $A_{23} = A_3$ and~$A_{13} = A$.
 \[
 A_{12} = A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
@@ -2613,6 +2628,7 @@ and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{14}$.
 \end{example}
 
 \begin{example}
+\label{ex:lastAij}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (1,4)\}$, and the join irreducible acyclic orientations~are
 \begin{gather*}
 A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/2,2/3/2,2/4/2,1/4/2}}
@@ -2635,7 +2651,7 @@ For $(i,j) \ne (k,\ell) \in \cIJ_\II$, we have $A_{ij} \ne A_{k\ell}$.
 
 \begin{proof}
 Assume that~$A_{ij} = A_{k\ell}$.
-As~$j = A_{ij}(J_{ij}) = A_{k\ell}(J_{i,j}) \in \{\ell, \mu_{ij}\}$ and~$\mu_{ij} < j$, we obtain that~$j = \ell = A_{k\ell}(J_{ij})$ hence that~$\mu_{ij} \ge \mu_{k\ell}$.
+As~$j = A_{ij}(J_{ij}) = A_{k\ell}(J_{ij}) \in \{\ell, \mu_{ij}\}$ and~$\mu_{ij} < j$, we obtain that~$j = \ell = A_{k\ell}(J_{ij})$ hence that~$\mu_{ij} \ge \mu_{k\ell}$.
 By symmetry, we have~$\mu_{ij} = \mu_{k\ell}$.
 As $j = \ell$ and $\mu_{ij} = \mu_{k\ell}$, we obtain that~$i = k$ by definition of~$\cIJ_\II$.
 We conclude that~$(i,j) = (k,\ell)$.
@@ -2648,7 +2664,7 @@ In particular~$j = \ell$ implies that $A_{ij}$ and~$A_{k\ell}$ are comparable in
 \end{lemma}
 
 \begin{proof}
-By \cref{prop:sourceOrderI} we have~$A_i \le A_j$ if and only if~$A_i(I) \le A_j(I)$ for all~$I \in \II$.
+By \cref{prop:sourceOrderI} we have~$A_{ij}\le A_{k\ell}$ if and only if~$A_{ij}(I) \le A_{k\ell}(I)$ for all~$I \in \II$.
 
 For the forward direction, assume that~$A_{ij} \le A_{k\ell}$.
 As~$j = A_{ij}(J_{ij}) \le A_{k\ell}(J_{ij}) \in \{\ell, \mu_{ij}\}$ and~$\mu_{ij} < j$, we obtain that~$j \le \ell$ and~$A_{k\ell}(J_{ij}) = \ell$, hence~$\ell \in J_{ij}$ and~$\mu_{ij} \ge \mu_{k\ell}$.
@@ -2702,7 +2718,7 @@ Observe that~$B(J) \in \{\min(J), j\}$ for any~$J \in \II$ by \cref{prop:alwaysF
 We first prove that~$(i,j) \in \cIJ_\II$.
 Let
 \[
-X \eqdef {[\mu_{ij},j[} \ssm \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\! J \ssm \{\min(J)\}.
+X \eqdef {[\mu_{ij},j[}\  \ssm \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\! \big(J \ssm \{\min(J)\big)\}.
 \]
 Since~$B(I) = j$ and~$\min(I) \le \mu_{i,j}$, \cref{prop:isFlipI} ensures that there is no~$J \in \II$ such that~${i \in J \ssm \{B(J)\}}$ and~$B(J) \in {[\mu_{i,j}, j[}$, which yields~$i \in X$ (using that~$B(J) \in \{\min(J),j\}$).
 Moreover, for any~$k \in {]i,j[}$, \cref{prop:isCoverI} ensures that there is~$J \in \II$ such that~$B(J) \in {[i,j[}$ and~$k \in J \ssm \{B(J)\}$.
@@ -2956,7 +2972,7 @@ First, we can assume that~$\II$ is closed under intersection, otherwise $P_\II$ 
 Assume now that there is~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that $r < s \le r' < s'$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, and there is no~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
 Let
 \[
-j \eqdef \max \Big( [u,t'[ \ssm \!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq [u,t'[}} \!\!\!\!\! J \ssm \{\min(J)\} \Big)
+j \eqdef \max \Big( [u,t'[ \ssm \!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq [u,t'[}} \!\!\!\!\! \big(J \ssm \{\min(J)\} \big)\Big)
 \quad\text{and}\quad
 i \eqdef \mu_{jt'} \eqdef \max\set{\min(I)}{\{j,t'\} \subseteq I \in \II}.
 \]
