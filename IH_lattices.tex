@@ -878,7 +878,7 @@ This statement was refined in~\cite{ChatelPilaudPons} to describe Tamari interva
 
 \begin{proposition}[{\cite[Coro.~2.24]{ChatelPilaudPons}}]
 \label{prop:TOIP}
-The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern~$213$ if and only if~${a \less c \implies a \less b}$, and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
+The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern~$213$ if and only if~${a \less c \implies a \less b}$ and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
 %for every~$1 \le a < b < c \le n$,
 %\[
 %a \less c \implies a \less b
@@ -1262,7 +1262,7 @@ A poset~$P$ is a \defn{lattice} if any subset of~$P$ admits a \defn{join} (least
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
+For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \II$ for all~$i \in [n]$), the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
 \end{theoremA}
 
 \begin{example}
@@ -1785,7 +1785,7 @@ Equivalently, $L$ is distributive if and only if it is isomorphic to the inclusi
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is distributive.
+For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \II$ for all~$i \in [n]$), the poset $P_\II$ is a distributive lattice if and only if $\II$ is distributive.
 \end{theoremA}
 
 \begin{example}
@@ -1826,11 +1826,10 @@ Define
 \end{notation}
 
 \begin{notation}
-For~$j \in \cJ_\II$, let~$\displaystyle J_j=\bigcap_{j \in I \ssm \{\min(I)\}}I$,
-%be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection) 
-and let~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
-%$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
-\break By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
+%For~$j \in \cJ_\II$, let~$J_j$be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection)  and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
+%By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
+For~$j \in \cJ_\II$, let~$\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}$, let~$J_j \eqdef \bigcap_{I \in \II_j} I$  (note that $J_j \in \II$ since $\II$ is closed under intersection), and let~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
+By definition~$\min(I) \le \mu_j < j \le \nu_j \le \max(I)$ for any~$I \in \II_j$.
 \end{notation}
 
 \begin{notation}
@@ -1954,7 +1953,7 @@ For any~$j \in \cJ_\II$ and any acyclic orientation~$A$ of~$\II$, we have
 \begin{proof}
 By \cref{prop:sourceOrderI}, $A \le A_j$ implies that~$A(I) \le A_j(I)$ for all~$I \in \II$.
 For~$I, I' \in \II$ such that~$j \in I \cap I'$ and~$\min(I) = \min(I') = \mu_j$, we have~$A(I) = A(I')$ since~$A$ is acyclic.
-If $A<A_j$, we conclude that there is~$i \in {[\mu_j, j[}$ such that~$A(I) = i$ if~$j \in I$ and~$\min(I) = \mu_j$, and~$A(I) = \min(I)$ otherwise.
+If~$A < A_j$, we conclude that there is~$i \in {[\mu_j, j[}$ such that~$A(I) = i$ if~$j \in I$ and~$\min(I) = \mu_j$, and~$A(I) = \min(I)$ otherwise.
 Hence, $A = \min(P_\II)$ or~$A = A_i$.
 The first point thus follows from \cref{lem:irrorder}.
 
@@ -1987,6 +1986,7 @@ Immediate from \cref{lem:distinctIrreducibles,prop:AjJoinIrreducible,lem:irrorde
 \end{proof}
 
 In the next two propositions, we assume $\II$ is closed under intersections.
+
 \begin{proposition}
 \label{prop:injectivityDistributive}
 For any two lower sets~$X$ and~$Y$ of~$(\cJ_\II, \preccurlyeq)$, if~$\bigJoin\limits_{x \in X} A_x = \bigJoin\limits_{y \in Y} A_y$ then~$X = Y$.
@@ -2190,7 +2190,8 @@ We say that the hypergraph~$\II_S$ formed by all singletons and the labels of th
 \end{definition}
 
 \begin{example}
-All but the top left interval hypergraphs of \cref{fig:distributiveLattices} are Schr\"oder hypergraphs. The tree for each Schr\"oder hypergraphs are given by:
+All but the top left interval hypergraphs of \cref{fig:distributiveLattices} are Schr\"oder hypergraphs. 
+The corresponding Schr\"oder trees are given by:
 \[
 	\begin{array}{c|ccc}
 		\raisebox{1cm}{$S$}
@@ -2465,7 +2466,7 @@ Moreover, the canonical join representation of~$b$ is given by~$b = \bigJoin_{a 
 \end{remark}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join semidistributive lattice if and only if $\II$ is join semidistributive.
+For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \II$ for all~$i \in [n]$), the poset $P_\II$ is a join semidistributive lattice if and only if $\II$ is join semidistributive.
 Under the symmetry of \cref{prop:antiIsomorphism}, a dual characterization holds for meet semidistributive.
 \end{theoremA}
 
@@ -2503,8 +2504,10 @@ In this section, we assume that~$\II$ is an interval hypergraph closed under int
 %\end{notation}
 
 \begin{notation}
-For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, we denote by~$J_{ij}$ the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and set~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
-By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j$.
+%For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, we denote by~$J_{ij}$ the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and set~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
+%By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j$.
+For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, let~$\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$, let~$J_{ij} \eqdef \bigcap_{I \in \II_{ij}} I$  (note that $J_{ij} \in \II$ since $\II$ is closed under intersection), and let~$\mu_{ij} \eqdef \min(J_{ij})$ and~$\nu_{ij} \eqdef \max(J_{ij})$.
+By definition~$\min(I) \le \mu_{ij} \le i < j \le \nu_{ij} \le \max(I)$ for any~$I \in \II_{ij}$.
 \end{notation}
 
 \begin{notation}
