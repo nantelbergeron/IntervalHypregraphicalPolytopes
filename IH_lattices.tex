@@ -29,13 +29,13 @@
 \urladdr{http://bergeron.mathstats.yorku.ca}
 
 \author{Vincent Pilaud}
-\address[V.~Pilaud]{Universitat de Barcelona}
+\address[V.~Pilaud]{Universitat de Barcelona \& Centre de Recerca Matemàtica, Barcelona}
 \email{vincent.pilaud@ub.edu}
 \urladdr{https://www.ub.edu/comb/vincentpilaud/}
 
 \thanks{
 NB was supported by NSERC and York Research Chair in Applied Algebra.
-VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).
+VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).
 }
 
 
@@ -878,7 +878,7 @@ This statement was refined in~\cite{ChatelPilaudPons} to describe Tamari interva
 
 \begin{proposition}[{\cite[Coro.~2.24]{ChatelPilaudPons}}]
 \label{prop:TOIP}
-The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern~$213$ if and only if~${a \less c \implies a \less b}$, and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
+The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern~$213$ if and only if~${a \less c \implies a \less b}$ and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
 %for every~$1 \le a < b < c \le n$,
 %\[
 %a \less c \implies a \less b
@@ -1262,7 +1262,7 @@ A poset~$P$ is a \defn{lattice} if any subset of~$P$ admits a \defn{join} (least
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
+For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \II$ for all~$i \in [n]$), the poset $P_\II$ is a lattice if and only if $\II$ is closed under intersection.
 \end{theoremA}
 
 \begin{example}
@@ -1785,7 +1785,7 @@ Equivalently, $L$ is distributive if and only if it is isomorphic to the inclusi
 \end{definition}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$, the poset $P_\II$ is a distributive lattice if and only if $\II$ is distributive.
+For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \II$ for all~$i \in [n]$), the poset $P_\II$ is a distributive lattice if and only if $\II$ is distributive.
 \end{theoremA}
 
 \begin{example}
@@ -1957,7 +1957,7 @@ For any~$j \in \cJ_\II$ and any acyclic orientation~$A$ of~$\II$, we have
 \begin{proof}
 By \cref{prop:sourceOrderI}, $A \le A_j$ implies that~$A(I) \le A_j(I)$ for all~$I \in \II$.
 For~$I, I' \in \II$ such that~$j \in I \cap I'$ and~$\min(I) = \min(I') = \mu_j$, we have~$A(I) = A(I')$ since~$A$ is acyclic.
-If $A<A_j$, we conclude that there is~$i \in {[\mu_j, j[}$ such that~$A(I) = i$ if~$j \in I$ and~$\min(I) = \mu_j$, and~$A(I) = \min(I)$ otherwise.
+If~$A < A_j$, we conclude that there is~$i \in {[\mu_j, j[}$ such that~$A(I) = i$ if~$j \in I$ and~$\min(I) = \mu_j$, and~$A(I) = \min(I)$ otherwise.
 Hence, $A = \min(P_\II)$ or~$A = A_i$.
 The first point thus follows from \cref{lem:irrorder}.
 
@@ -1990,6 +1990,7 @@ Immediate from \cref{lem:distinctIrreducibles,prop:AjJoinIrreducible,lem:irrorde
 \end{proof}
 
 In the next two propositions, we assume $\II$ is closed under intersections.
+
 \begin{proposition}
 \label{prop:injectivityDistributive}
 For any two lower sets~$X$ and~$Y$ of~$(\cJ_\II, \preccurlyeq)$, if~$\bigJoin\limits_{x \in X} A_x = \bigJoin\limits_{y \in Y} A_y$ then~$X = Y$.
@@ -2193,7 +2194,8 @@ We say that the hypergraph~$\II_S$ formed by all singletons and the labels of th
 \end{definition}
 
 \begin{example}
-All but the top left interval hypergraphs of \cref{fig:distributiveLattices} are Schr\"oder hypergraphs. The tree for each Schr\"oder hypergraphs are given by:
+All but the top left interval hypergraphs of \cref{fig:distributiveLattices} are Schr\"oder hypergraphs. 
+The corresponding Schr\"oder trees are given by:
 \[
 	\begin{array}{c|ccc}
 		\raisebox{1cm}{$S$}
@@ -2468,7 +2470,7 @@ Moreover, the canonical join representation of~$b$ is given by~$b = \bigJoin_{a 
 \end{remark}
 
 \begin{theoremA}
-For an interval hypergraph $\II$ on~$[n]$ with~$\{i\} \in \II$ for all~$i \in [n]$, the poset $P_\II$ is a join semidistributive lattice if and only if $\II$ is join semidistributive.
+For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \II$ for all~$i \in [n]$), the poset $P_\II$ is a join semidistributive lattice if and only if $\II$ is join semidistributive.
 Under the symmetry of \cref{prop:antiIsomorphism}, a dual characterization holds for meet semidistributive.
 \end{theoremA}
 
