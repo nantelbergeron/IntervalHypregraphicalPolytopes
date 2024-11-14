@@ -54,6 +54,7 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 \newtheorem{conjectureA}{Conjecture}
 \renewcommand{\theconjectureA}{\Alph{conjectureA}}
 \crefname{conjectureA}{Conjecture}{Conjectures}
+\crefname{conjectureA}{Conjecture}{Conjectures}
 
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
@@ -62,6 +63,7 @@ VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI
 \newtheorem{question}[theorem]{Question}
 \newtheorem{notation}[theorem]{Notation}
 \newtheorem{openproblem}[theorem]{Open problem}
+\crefname{notation}{Notation}{Notations}
 
 
 % newcommands
@@ -335,7 +337,7 @@ The \defn{hypergraphic polytope}~$\simplex_\HH$ is the Minkowski sum
 where $\simplex_H$ is the simplex given by the convex hull of the points $\b{e}_h \in \R^n$ for~$h \in H$.
 
 \begin{example}
-\label{ex:DH1}
+\label{exm:DH1}
 For the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$,
 we  have
 \[
@@ -399,8 +401,8 @@ If we list the non-singleton elements $(H_1,H_2,...,H_k)$ of $\HH$ in some fixed
 \end{remark}
 
 \begin{example}
-\label{ex:DH2}
-Using $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ as in~\cref{ex:DH1}, we order the two non-singleton $(123,134)$.
+\label{exm:DH2}
+Using $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ as in~\cref{exm:DH1}, we order the two non-singleton $(123,134)$.
 There are $9$ orientations of~$\HH$, $7$ of which are acyclic as displayed in~\cref{fig:Orientation1}. 
 For instance, the orientation $(O(123), O(134)) = (1,3)$ is cyclic since $O(123) = 1 \in 134$ and $O(134) = 3 \in 123$ is a cycle with $k = 2$.
 %
@@ -468,8 +470,8 @@ We denote such a flip by~\flip{O}{i}{j}{O'}.
 \end{definition}
 
 \begin{example}
-\label{ex:DH3}
-\cref{fig:Orientation1} shows all the increasing flips between the acyclic orientations of the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2}.
+\label{exm:DH3}
+\cref{fig:Orientation1} shows all the increasing flips between the acyclic orientations of the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{exm:DH1,exm:DH2}.
 For instance, \flip{(2,3)}{2}{3}{(3,3)} indicates that there is an increasing flip from  $O=(2,3)$ to $O'=(3,3)$ with $i=2<3=j$.
 \end{example}
 
@@ -498,8 +500,8 @@ The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the increasin
 \end{definition}
 
 \begin{example}
-\label{ex:DH4}
-For the hypergraph~$\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2,ex:DH3}, the poset  $P_\HH$ is represented in~\cref{fig:Orientation1}\,(right).
+\label{exm:DH4}
+For the hypergraph~$\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{exm:DH1,exm:DH2,exm:DH3}, the poset  $P_\HH$ is represented in~\cref{fig:Orientation1}\,(right).
 \end{example}
 
 \begin{remark}
@@ -596,8 +598,8 @@ For any acyclic orientation $A$ of~$\HH$, the preimage $\Or^{-1}(A) \eqdef \set{
 \end{lemma}
 
 \begin{example}
-\label{ex:DH5}
-Continuing with the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2,ex:DH3,ex:DH4}, let $A$ be the acyclic orientation $(2,4)$.
+\label{exm:DH5}
+Continuing with the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{exm:DH1,exm:DH2,exm:DH3,exm:DH4}, let $A$ be the acyclic orientation $(2,4)$.
 The order~$\less_A$ is the following
 \[
 	{\less_A} = \text{Transitive closure }\Bigg(
@@ -681,7 +683,7 @@ An \defn{interval hypergraph}~$\II$ is an hypergraph on~$[n]$ where each~$I \in 
 \end{definition}
 
 \begin{example}
-Our running example~$\HH=\{ 1, 2, 3, 4, 123, 134 \}$  of \cref{ex:DH1,ex:DH2,ex:DH3,ex:DH4,ex:DH5}, is not an interval hypergraph, as $134$ is not an interval.
+Our running example~$\HH=\{ 1, 2, 3, 4, 123, 134 \}$  of \cref{exm:DH1,exm:DH2,exm:DH3,exm:DH4,exm:DH5}, is not an interval hypergraph, as $134$ is not an interval.
 \end{example}
 
 \begin{example}
@@ -1057,7 +1059,7 @@ By \cref{prop:isFlipI}, the orientation obtained from~$A$ by flipping of~$i$ to~
 
 \begin{remark}
 \cref{prop:alwaysFlippableI} fails when~$\HH$ is not an interval hypergraph.
-For instance, for the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{ex:DH1,ex:DH2,ex:DH3,ex:DH4,ex:DH5}, and the acyclic orientation~$A$ defined by~$A(123) = 2$ and~$A(134) = 1$, we have~$2 = A(123) < \max(123)$, but no increasing flip from~$A$ to an acyclic orientation of~$\HH$ flips~$2$.
+For instance, for the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{exm:DH1,exm:DH2,exm:DH3,exm:DH4,exm:DH5}, and the acyclic orientation~$A$ defined by~$A(123) = 2$ and~$A(134) = 1$, we have~$2 = A(123) < \max(123)$, but no increasing flip from~$A$ to an acyclic orientation of~$\HH$ flips~$2$.
 \end{remark}
 
 \begin{proposition}
@@ -1817,6 +1819,7 @@ See \cref{fig:Tamari}.
 
 In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward}.
 Our first task will be to identify some join irreducible acyclic orientations of~$\II$ (a complete but more technical description of all join irreducible acyclic orientations of~$\II$ will appear later in~\cref{subsec:joinIrreducibles}).
+The following notations are illustrated in \cref{exm:Aj1,exm:Tamari1,exm:Tamari2,exm:Aj4,exm:Aj5} below.
 
 \begin{notation}
 Define
@@ -1825,14 +1828,21 @@ Define
 \)
 \end{notation}
 
+%\begin{notation}
+%%For~$j \in \cJ_\II$, let~$J_j$be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection)  and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
+%%By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
+%For~$j \in \cJ_\II$, let~$\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}$, let~$J_j \eqdef \bigcap_{I \in \II_j} I$  (note that $J_j \in \II$ since $\II$ is closed under intersection), and let~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
+%By definition~$\min(I) \le \mu_j < j \le \nu_j \le \max(I)$ for any~$I \in \II_j$.
+%\end{notation}
+
 \begin{notation}
-\label{notation:muj}
-For~$j \in \cJ_\II$,  we let
-$$ J_j=\!\!\! \bigcap_{j \in I \ssm \{\min(I)\}} \!\! I,$$
-and set~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
-%be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection) 
-%$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
-By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
+\label{not:muj}
+For~$j \in \cJ_\II$, we let
+\[
+J_j= \bigcap_{\substack{I \in \II \\ j \in I \ssm \{\min(I)\}}} I,
+\]
+(note that $J_j \in \II$ since $\II$ is closed under intersection), and we set~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
+By definition~$\min(I) \le \mu_j < j \le \nu_j \le \max(I)$ for any~$I \in \II$ such that~$j \in I \ssm \{\min(I)\}$.
 \end{notation}
 
 \begin{notation}
@@ -1857,6 +1867,7 @@ For $i,j \in \cJ_\II$, we write $i \preccurlyeq j$ if and only if $J_i = J_j$ an
 \end{notation}
 
 \begin{example}
+\label{exm:Aj1}
 For the hypergraph~$\II = \{1, 2, 3, 12, 123\}$, we have~$\cJ_\II = \{2,3\}$ and the corresponding acyclic orientations are
 \[
 A_2 = \acyclicOrientation{3}{1/2/2,1/3/2}
@@ -1891,6 +1902,7 @@ and are incomparable.
 \end{example}
 
 \begin{example}
+\label{exm:Aj4}
 For the hypergraph~$\II \eqdef \{1,2,3,4,123,23,234\}$ illustrated in \cref{fig:distributiveLattices}\,(top left), we have~$\cJ_\II = \{2,3,4\}$, and the corresponding acyclic orientations~are
 \[
 A_2 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/2,2/3/2,2/4/2}}
@@ -1903,6 +1915,7 @@ and are incomparable.
 \end{example}
 
 \begin{example}
+\label{exm:Aj5}
 For the hypergraph~$\II \eqdef \{1,2,3,4,123,1234\}$ illustrated in \cref{fig:distributiveLattices}\,(top right), we have~$\cJ_\II = \{2,3,4\}$, and the corresponding acyclic orientations~are
 \[
 A_2 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/2,1/4/2}}
@@ -2494,6 +2507,7 @@ See \cref{fig:Tamari}.
 \label{subsec:joinIrreducibles}
 
 In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward}, and we describe all the join irreducible elements of~$P_\II$. % that is, the acyclic orientations~$A$ of~$\II$ which cover a single acyclic orientation~$A_\star$.
+The following notations are illustrated in \cref{exm:Aij1,exm:Aij2,exm:Aij3,exm:Aij4,exm:Aij5,exm:Aij6} below.
 
 %\begin{notation}
 %Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and
@@ -2501,25 +2515,32 @@ In this section, we assume that~$\II$ is an interval hypergraph closed under int
 %i = \max \Big( {[\min(I), j[} \; \ssm \!\!\!\!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\min(I), j[}}} \!\!\!\!\!\!\!\! J \ssm \{\min(J)\} \Big).
 %\]
 %\end{notation}
-%
+
 %\begin{notation}
 %For~$(i,j) \in \cIJ_\II$, let~$J_{ij}$ be the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and let~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
 %By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j$.
 %\end{notation}
 
+%\begin{notation}
+%For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, let~$\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$, let~$J_{ij} \eqdef \bigcap_{I \in \II_{ij}} I$  (note that $J_{ij} \in \II$ since $\II$ is closed under intersection), and let~$\mu_{ij} \eqdef \min(J_{ij})$ and~$\nu_{ij} \eqdef \max(J_{ij})$.
+%By definition~$\min(I) \le \mu_{ij} \le i < j \le \nu_{ij} \le \max(I)$ for any~$I \in \II_{ij}$.
+%\end{notation}
+
 \begin{notation}
 For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, we  let
-$$\displaystyle J_{ij} =  \bigcap_{\{i,j\}\subseteq I}  I$$ and set~$\mu_{ij} \eqdef \min(J_{ij})$ and~$\nu_{ij} \eqdef \max(J_{ij})$.
-%denote by~$J_{ij}$ the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and set~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
-By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~$\{i,j\} \subseteq J_{ij}$.
+\[
+J_{ij} =  \bigcap_{\substack{I \in \II \\ \{i,j\}\subseteq I}}  I
+\]
+(note that $J_{ij} \in \II$ since $\II$ is closed under intersection), and we set~$\mu_{ij} \eqdef \min(J_{ij})$ and~$\nu_{ij} \eqdef \max(J_{ij})$.
+By definition~$\min(I) \le \mu_{ij} \le i < j \le \nu_{ij} \le \max(I)$ for any~$I \in \II$ such that~$\{i,j\} \subseteq I$.
 \end{notation}
 
 \begin{notation}
 \label{not:cIJ}
 Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and $(i,j)$ satisfies the relation
-$$
+\[
 i = \max \Big( {[\mu_{ij}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\!\big( J \ssm \{\min(J)\}\big) \Big).
-$$
+\]
 \end{notation}
 
 \begin{notation}
@@ -2540,12 +2561,20 @@ A_{ij}(J) =
 \end{notation}
 
 \begin{remark}
-In~\cref{notation:muj}, for $j\in \cJ_\II$ we constructed $J_j$ and $\mu_j$. The set 
-$$X_j={[\mu_{j}, j[} \; \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{j}, j[}}} \!\!\!\!\big( J \ssm \{\min(J)\}\big)$$
- is nonempty as it contains at least $\mu_j$. Let $\mu_i\le i_j=\max X_j$. We have that 
- $$ \mu_{i_jj}=\mu_j\qquad\text{ and } J_{i_jj}=J_j.$$
- Furthermore, the pair $(i_j,j)\in\cIJ_\II$ since it satisfies all the conditions of the definition. Comparing~\cref{not:Aj} and~\cref{not:joinIrreducibles} we see that $A_j=A_{i_jj}$.
- Moreover, for all $(k,j)\in \cIJ_\II$, we must have $k\le i_j$. See~\cref{ex:AjAij} through~\cref{ex:lastAij} below.
+In~\cref{not:muj,not:Aj}, we defined the interval~$J_j$, the index~$\mu_j$, and the join irreducible~$A_j$ for $j\in \cJ_\II$. The set 
+\[
+X_j={[\mu_{j}, j[} \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{j}, j[}}} \!\!\!\!\big( J \ssm \{\min(J)\}\big)
+\]
+is nonempty as it contains at least $\mu_j$. Let $\mu_i \le i_j \eqdef \max X_j$. Then we have
+\[
+\mu_{i_jj}=\mu_j
+\qquad\text{ and }\qquad
+J_{i_jj}=J_j.
+\]
+Furthermore, the pair $(i_j,j)\in\cIJ_\II$ since it satisfies all the conditions of \cref{not:cIJ}.
+Comparing~\cref{not:Aj} and~\cref{not:joinIrreducibles} we see that $A_j=A_{i_jj}$.
+Moreover, for all $(k,j)\in \cIJ_\II$, we must have $k\le i_j$.
+See~\cref{exm:Aij1,exm:Aij2,exm:Aij3,exm:Aij4,exm:Aij5,exm:Aij6} below.
 \end{remark}
 
 \begin{notation}
@@ -2554,7 +2583,7 @@ Note in particular that~$i \ge k$ and~$j = \ell$ implies $(i,j) \preccurlyeq (k,
 \end{notation}
 
 \begin{example}
-\label{ex:AjAij}
+\label{exm:Aij1}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$ of \cref{exm:Tamari1,exm:oneMoreIrreducible,fig:Tamari}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$, and the join irreducible acyclic orientations~are %~$A_{12} = A_2$, $A_{23} = A_3$ and~$A_{13} = A$.
 \[
 A_{12} = A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
@@ -2568,6 +2597,7 @@ Note that~$A_{12} = A_2$, $A_{23} = A_3$ from \cref{subsec:someJoinIrreducibles}
 \end{example}
 
 \begin{example}
+\label{exm:Aij2}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 34, 123, 234, 1234\}$ of \cref{exm:Tamari2,fig:Tamari}\,(right), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (2,4), (1,4)\}$, and the join irreducible acyclic orientations~are
 \begin{gather*}
 A_{12} = \raisebox{-.4cm}{\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/3/2,2/4/2,1/4/2}}
@@ -2586,6 +2616,7 @@ and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{24} < A_{14}$.
 \end{example}
 
 \begin{example}
+\label{exm:Aij3}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 123, 23, 234, 1234\}$ illustrated in \cref{fig:semidistributiveLattices}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (2,4), (1,4)\}$, and the join irreducible acyclic orientations~are
 \begin{gather*}
 A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/3/2,2/3/2,2/4/2,1/4/2}}
@@ -2600,6 +2631,7 @@ and we have~$A_{24} < A_{14}$.
 \end{example}
 
 \begin{example}
+\label{exm:Aij4}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 23, 34, 1234\}$ illustrated in \cref{fig:semidistributiveLattices}\,(right), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (2,4)\}$, and the join irreducible acyclic orientations~are
 \begin{gather*}
 A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{2/3/2,3/4/3,1/4/2}}
@@ -2614,6 +2646,7 @@ and we have~$A_{12} < A_{24}$ and~$A_{34} < A_{24}$.
 \end{example}
 
 \begin{example}
+\label{exm:Aij5}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 34, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (1,4)\}$, and the join irreducible acyclic orientations~are
 \begin{gather*}
 A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/2,2/3/2,3/4/3,1/4/2}}
@@ -2630,7 +2663,7 @@ and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{14}$.
 \end{example}
 
 \begin{example}
-\label{ex:lastAij}
+\label{exm:Aij6}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (1,4)\}$, and the join irreducible acyclic orientations~are
 \begin{gather*}
 A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/2,2/3/2,2/4/2,1/4/2}}
@@ -2698,7 +2731,7 @@ We obtain that~$A(J) = A_{ij}(J) = \min(J) \in [\mu_{ij}, j[ \subseteq I$ and~$A
 Assume now that~$k < i$.
 Since~$\flip{A}{k}{\ell}{A_{ij}}$ is a cover relation, the decreasing analogue of \cref{prop:isCoverI} implies that
 \[
-{]k,\ell[} \subseteq \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,\ell[}} J \ssm \{A_{ij}(J)\}. % = \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,j[}} J \ssm \{\min(J)\}
+{]k,\ell[} \subseteq \!\!\!\! \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,\ell[}} \!\!\!\! \big( J \ssm \{A_{ij}(J)\} \big). % = \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,j[}} J \ssm \{\min(J)\}
 \]
 As~$i \in {]k,\ell[}$, there is~$J \in \II$ with~$A_{ij}(J) \in {[k,\ell[} = {[k,j[}$ and~$i \in J \ssm \{A_{ij}(J)\}$.
 As~${A_{ij}(J) \in \{j, \min(J)\}}$ by definition of~$A_{ij}$, we obtain that~$A_{ij}(J) = \min(J)$.
@@ -2720,7 +2753,7 @@ Observe that~$B(J) \in \{\min(J), j\}$ for any~$J \in \II$ by \cref{prop:alwaysF
 We first prove that~$(i,j) \in \cIJ_\II$.
 Let
 \[
-X \eqdef {[\mu_{ij},j[}\  \ssm \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\! \big(J \ssm \{\min(J)\big)\}.
+X \eqdef {[\mu_{ij},j[} \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\mu_{ij}, j[}}} \!\!\!\! \big( J \ssm \{\min(J)\} \big).
 \]
 Since~$B(I) = j$ and~$\min(I) \le \mu_{i,j}$, \cref{prop:isFlipI} ensures that there is no~$J \in \II$ such that~${i \in J \ssm \{B(J)\}}$ and~$B(J) \in {[\mu_{i,j}, j[}$, which yields~$i \in X$ (using that~$B(J) \in \{\min(J),j\}$).
 Moreover, for any~$k \in {]i,j[}$, \cref{prop:isCoverI} ensures that there is~$J \in \II$ such that~$B(J) \in {[i,j[}$ and~$k \in J \ssm \{B(J)\}$.
@@ -2974,7 +3007,7 @@ First, we can assume that~$\II$ is closed under intersection, otherwise $P_\II$ 
 Assume now that there is~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that $r < s \le r' < s'$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, and there is no~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
 Let
 \[
-j \eqdef \max \Big( [u,t'[ \ssm \!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq [u,t'[}} \!\!\!\!\! \big(J \ssm \{\min(J)\} \big)\Big)
+j \eqdef \max \Big( [u,t'[ \ssm \!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq [u,t'[}} \!\!\!\! \big(J \ssm \{\min(J)\} \big)\Big)
 \quad\text{and}\quad
 i \eqdef \mu_{jt'} \eqdef \max\set{\min(I)}{\{j,t'\} \subseteq I \in \II}.
 \]
