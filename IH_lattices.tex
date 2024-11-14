@@ -35,7 +35,7 @@
 
 \thanks{
 NB was supported by NSERC and York Research Chair in Applied Algebra.
-VP was partially supported by the Spanish grant PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French grant CHARMS (ANR-19-CE40-0017), and by the French--Austrian projects PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).
+VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French project CHARMS (ANR-19-CE40-0017), and by the French--Austrian project PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).
 }
 
 
@@ -202,7 +202,6 @@ For a hypergraph~$\HH$ on~$[n]$, the hypergraphic poset~$P_\HH$ is the transitiv
 Hypergraphic posets include the weak order for the permutahedron (when~$\HH$ is the complete graph on~$[n]$) and the Tamari lattice for the associahedron (when~$\HH$ is the set of all intervals of~$[n]$), which motivates the study of lattice properties of hypergraphic posets.
 In this paper, we focus on interval hypergraphs, where all hyperedges are intervals of~$[n]$.
 We characterize the interval hypergraphs~$\II$ for which~$P_\II$ is a lattice, a distributive lattice, a semidistributive lattice, and a lattice quotient of the weak order.
-%When~$P_\II$ is lattice, we describe the join irreducibles of~$P_\II$.
 \end{abstract}
 
 \maketitle
@@ -234,12 +233,6 @@ For instance,
 \item if~$\HH = \binom{[n]}{2}$ is the complete graph (or any hypergraph containing it), then~$\simplex_\HH$ is the \defn{permutahedron} and $P_\HH$ is the \defn{weak order on permutations},
 \item if~$\HH = \set{[i,j]}{1 \le i \le j \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} \defn{associahedron}~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the \defn{Tamari lattice on binary trees}~\cite{Tamari}.
 \end{itemize}
-%In view of these two examples, we consider the following general questions:
-%\begin{itemize}
-%\item characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a (semi-)lattice quotient of the weak order on permutations,
-%\item when~$P_\HH$ is a semidistributive lattice, describe the lattice quotients of~$P_\HH$ and realize them geometrically.
-%\end{itemize}
-%These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
 
 In view of these two examples, we would like to characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a \mbox{(semi-)lattice} quotient of the weak order on permutations, etc.
 These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
@@ -269,27 +262,7 @@ For an interval hypergraph $\II$, the poset $P_\II$ is a distributive lattice if
 
 \begin{theoremA}
 \label{thm:semidistributiveLatticeI}
-%For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if there is no~$I, J, K, L \in \II$ such that
-%\begin{itemize}
-%\item $\min(I) < \min(J) \le \max(I) < \max(J)$,
-%\item $\min(I) < \min(K) \le \max(J) < \max(K)$,
-%\item $\min(L) < \min(\min(J), \min(K))$ and~$\max(K) \le \max(L)$,
-%%\item there is no~$M \!\in\! \II$ with~$\min(M) < \min(\min(J), \min(K))$ and~$\max(J) \le \max(M) < \max(K)$.
-%\item $\min(\min(J), \min(K)) \le \min(M)$ or~$\max(M) < \max(J)$ or $\max(K) \le \max(M)$~for~all~${M \!\in\! \II}$.
-%\end{itemize}
-%
-%For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if there is no~$[i,i'], [j,j'], [k,k'], [\ell,\ell'] \in \II$ such that
-%\begin{itemize}
-%\item $i < j \le i' < j'$ and $i < k \le j' < k'$ and $\ell < \min(j, k)$ and~$k' \le \ell'$,
-%%\item there is no~$[m,m'] \in \II$ with~$m < \min(j, k) \le $ and~$j' \le m' < k'$.
-%\item for all~$[m,m'] \in \II$, we have $\min(j, k) \le m$ or~$m' < j'$ or $k' \le m'$.
-%\end{itemize}
-%
-For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if~$\II$ is closed under intersection and
-%for all~$[i,i'], [j,j'], [k,k'], [\ell,\ell'] \in \II$ such that $i < j \le i' < j'$, $i < k \le j' < k'$, $\ell < \min(j, k)$ and~$k' \le \ell'$, there is $[m,m'] \in \II$ such that~$m < \min(j, k)$ and~$j' \le m' < k'$.
-%for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$c' \le d'$, there is~$[e,e'] \in \II$ such that~$e < \min(b, c)$ and~${a' < e' < c'}$.
-%for all~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that ${a < b \le a' < b'}$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, there is~$[e,e'] \in \II$ such that~$e < b$ and~${b' < e' < c'}$.
-for all~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that ${r < s \le r' < s'}$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, there is~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
+For an interval hypergraph $\II$, the poset $P_\II$ is a join semidistributive lattice if and only if~$\II$ is closed under intersection and for all~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that ${r < s \le r' < s'}$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, there is~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
 A symmetric characterization holds for meet semidistributivity.
 \end{theoremA}
 
@@ -329,7 +302,6 @@ In \cref{sec:quotient}, we characterize the interval hypergraphs~$\II$ for which
 
 A \defn{hypergraph} $\HH$ on $[n] \eqdef \{1, \dots, n\}$ is a collection of  subsets of~$[n]$.
 By convention, we always assume that~$\HH$ contains all singletons~$\{i\}$ for~$i\in [n]$.
-%Following~\cite[Def 2.11]{BenedettiBergeronMachacek}, given an hypergraph $\HH$, we define 
 The \defn{hypergraphic polytope}~$\simplex_\HH$ is the Minkowski sum
 \[
 \simplex_\HH \eqdef \sum_{H\in \HH} \simplex_H\,,
@@ -355,7 +327,6 @@ we  have
 	\draw [fill=green!20] (1.2,0) -- (2.2,.5 )--(.6,.75)--(1.2,0); %  e3--e4--e1--e3
 \end{tikzpicture} \quad &
 \begin{tikzpicture}[scale=1,baseline=.5cm]
-	%\draw [fill=gray!10] (0,0) -- (.6,.75)-- (1.6,1.25) -- (2.2,.5) -- (1.2,0) --(0,0) ; 
 	\draw [color=gray!10,fill=blue!2] (1.6,1.25)--(1,.5)--(2.2,.5)-- (1.6,1.25); 
 	\draw [color=gray!10,fill=green!5]  (0,0)--(1,.5)--(-.6,.75)--(0,0);
 	\draw [dotted,color=green] (0,0)--(1,.5)--(-.6,.75);
@@ -663,12 +634,6 @@ All other fibers are represented in \cref{fig:surjectionMap}.
 \end{figure}
 \end{example}
 
-%In general, given a hypergraph~$\HH$ we would be interested to understand what are the cover of~$P_\HH$? 
-%When is $P_\HH$ a lattice? distributive lattice? a semi-lattice? (semi-)lattice quotient of the $fS_n$-weak lattice?
-%Can we have a better description of $\Or^{-1}$? and more.
-
-%In the present work we focus our attention to a subfamily of hypergraphs, namely we assume that all $H\in \HH$ are intervals of~$[n]$.
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -822,10 +787,6 @@ Graphically
 	\node at (1.1,0.8) {$\scriptstyle \cdot$};
 	\node at (1.2,0.7) {$\scriptstyle \cdot$}; 
 	%
-%	\node at (-.5,0.6) {$\scriptscriptstyle I_4$};
-%	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2,.6)--(3,.6);
-%	\node at (2.5,.6) {$\bullet$};
-	%
 	\node at (-.5,0.4) {$\scriptscriptstyle I_3$};
 	\draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (2.5,.4)--(4.5,.4);
 	\node at (3.5,.4) {$\bullet$};
@@ -867,12 +828,6 @@ To describe this we first need to recall the following classical result of A.~Bj
 \begin{proposition}[{\cite[Thm.~6.8]{BjornerWachs}}]
 \label{prop:WOIP}
 The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order if and only if ${a \less c \implies a \less b \text{ or } b \less c}$, and~${a \more c \implies a \more b \text{ or } b \more c}$, for every~$1 \le a < b < c \le n$.
-%for every~$1 \le a < b < c \le n$,
-%\[
-%a \less c \implies a \less b \text{ or } b \less c
-%\qquad\text{and}\qquad
-%a \more c \implies a \more b \text{ or } b \more c.
-%\]
 Moreover, the inversions of~$\sigma$ are the pairs~$(b,a)$ with~$a < b$ and~$a \more b$, and the non-inversions of~$\tau$ are the pairs~$(a,b)$ with~$a < b$ and~$a \less b$.
 \end{proposition}
 
@@ -881,12 +836,6 @@ This statement was refined in~\cite{ChatelPilaudPons} to describe Tamari interva
 \begin{proposition}[{\cite[Coro.~2.24]{ChatelPilaudPons}}]
 \label{prop:TOIP}
 The set of linear extensions of a poset~$\less$ on~$[n]$ forms an interval~$[\sigma, \tau]$ of the weak order such that~$\sigma$ avoids the pattern $231$ and $\tau$ avoids the pattern~$213$ if and only if~${a \less c \implies a \less b}$ and~$a \more c \implies b \more c$ for every~$1 \le a < b < c \le n$.
-%for every~$1 \le a < b < c \le n$,
-%\[
-%a \less c \implies a \less b
-%\qquad\text{and}\qquad
-%a \more c \implies b \more c.
-%\]
 \end{proposition}
 
 \begin{proposition}
@@ -932,8 +881,6 @@ The forward direction is immediate as it holds for increasing flip by \cref{def:
 For the backward direction, assume that~$A(I) \le B(I)$ for all~$I \in \II$.
 The proof works by induction on~$|\set{I \in \II}{A(I) < B(I)}|$.
 
-%Consider the set of pairs~$1 \le i < j \le$ such that there is~$I \in \II$ with~$A(I) = i$ and~$B(I) = j$.
-%Choose~$i < j$ in this set such that~$j$ is maximal, and if draw, $i$ is maximal.
 Choose~$J \in \II$ such that~$A(J) < B(J)$ and for any~$I \in \II$ with~$A(I) < B(I)$, we have~$B(I) < B(J)$, or~$B(I) = B(J)$ and~$A(I) \le A(J)$.
 
 Let~$O$ be the orientation of~$\II$ obtained from~$A$ by flipping~$A(J)$ to~$B(J)$ as described in \cref{def:flip}.
@@ -966,8 +913,6 @@ We thus consider~$I \in \II$ and distinguish two cases:
 \qedhere
 \end{itemize}
 \end{proof}
-%\vincent{Does \cref{prop:sourceOrderI} holds for general hypergraphs? I guess not, but I want an example... I believe that this question is really important.}
-%\Nantel{if Felix proof holds, we will have to add a remark stating the general statement and citing a forthcoming paper}
 
 \begin{remark}
 Note that the forward direction holds for arbitrary hypergraphs.
@@ -980,37 +925,6 @@ We are not sure whether the backward direction holds for arbitrary hypergraphs.
 \label{subsec:cover}
 
 In this section, we exploit \cref{prop:acyclicI} to provide a simple description of the flips and cover relations of~$P_\II$ for an interval hypergraph~$\II$.
-
-%\begin{proposition}
-%\label{prop:isFlipI}
-%The orientation obtained from an acyclic orientation~$A$ of an interval hypergraph~$\II$ by flipping~$i$ to~$j$ (in the sense of \cref{def:flip}) is acyclic if and only if~$j \in \cX_{A,i} \ssm \cY_{A,i}$~where
-%\[
-%\cX_{A,i} \eqdef \bigcup_{\substack{I \in \II \\ A(I) = i}} I \ssm \{i\}
-%\qquad\text{and}\qquad
-%\cY_{A,i} \eqdef \bigcup_{\substack{J \in \II \\ A(J) \in \cX_{A,i}}} \!\!\!\! J \ssm \{A(J)\}.
-%\]
-%\end{proposition}
-%
-%\begin{proof}
-%%Let~$B$ be the orientation obtained by flipping~$i$ to~$j$.
-%Assume first that~$j \notin \cX_{A,i} \ssm \cY_{A,i}$. Then
-%\begin{itemize}
-%\item either~$j \notin \cX_{A,i}$, hence there is no~$I \in \II$ with~$i = A(I)$ and~$j \in I$, and the flip is not~possible. % (\ie~$A = B$).
-%\item or~$j \in \cX_{A,i} \cap \cY_{A,i}$. Since~$j \in \cX_{A,i}$, there is~$I \in \II$ with~$A(I) = i$ and~$j \in I \ssm \{i\}$. Since~$j \in \cY_{A,i}$, there is~$J \in \II$ with~$k \eqdef A(J) \in \cX_{A,i}$ and~$j \in J \ssm \{k\}$. As~$k \in \cX_{A,i}$, there is also~$K \in \II$ such that~$A(K) = i$ and~$k \in K \ssm \{i\}$. We now consider the three distinct values~$i, j, k$ and distinguish three cases depending on which is in between the other two:
-%	\begin{itemize}
-%	\item if~$i$ is in between~$j$ and~$k$, then~$i \in J$ since~$j,k \in J$ and~$J$ is an interval. Hence, $A(K) = i \in J$ and~$A(J) = k \in K$ and~$i \ne k$ contradicts the acyclicity of~$A$.
-%	\item if~$j$ is in between~$i$ and~$k$, then~$i \in K$ since~$i,k \in K$ and~$K$ is an interval. Hence, $B(K) = j \in J$ and~$B(J) = k \in K$ and~$j \ne k$, so that~$B$ is cyclic.
-%	\item if~$k$ is in between~$i$ and~$j$, then~$k \in I$ since~$i,j \in I$ and~$I$ is an interval. Hence, $B(I) = j \in J$ and~$B(J) = k \in I$ and~$j \ne k$, so that~$B$ is cyclic.
-%	\end{itemize}
-%\end{itemize}
-%Conversely, assume that~$B$ is cyclic.
-%By \cref{prop:acyclicI}, there are~$I,J \in \II$ with~$B(I) \in J \ssm \{B(J)\}$ and~$B(J) \in I \ssm \{B(I)\}$.
-%As~$A$ is acyclic, we have~$i = A(I) \ne B(I) = j$ or~$i = A(J) \ne B(J) = j$, but not both since~$B(I) \ne B(J)$.
-%By symmetry, we can assume that~$i = A(I) \ne B(I) = j$ and~$i \ne A(J) = B(J)$.
-%As~$A(I) = i$ and~$i \ne A(J) = B(J) \in I$, we obtain that~$A(J) \in \cX_{A,i}$.
-%Moreover~$j = B(I) \in J \ssm \{B(J)\} = J \ssm \{A(J)\}$.
-%Hence, we obtain that~$j \in \cY_{A,i}$.
-%\end{proof}
 
 \begin{proposition}
 \label{prop:isFlipI}
@@ -1064,7 +978,6 @@ For instance, for the hypergraph $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ of \cref{exm:D
 
 \begin{proposition}
 \label{prop:isCoverI}
-%Let~$A$ and~$B$ be two acyclic orientations of an interval hypergraph~$\II$  related by an increasing flip of~$i$ to~$j$.
 An increasing flip \flip{A}{i}{j}{B} between two acyclic orientations of an interval hypergraph~$\II$ is a cover relation of~$P_\II$ if and only if
 \[
 {]i,j[} \;\; \subseteq \bigcup_{\substack{J \in \II \\ A(J) \in {]i,j]}}} J \ssm \{A(J)\}.
@@ -1089,29 +1002,6 @@ Hence, there is~$K \in \II$ such that~$A(I) = i < C(I) = \ell < j = B(I)$.
 Since~$\flip{A}{i}{\ell}{C}$ is a flip, we obtain from \cref{prop:isFlipI} that there is no~$J \in \II$ with~$\ell \in J \ssm \{A(J)\}$ and~$A(J) \in {]i,k]} \subseteq {]i,j]}$.
 Hence,~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 \end{proof}
-
-%\begin{proof}
-%%Let~$I \in \II$ be such that~$A(I) = i$ and~$B(I) = j$.
-%Assume first that there is~$k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
-%Then~$k \in \cX_{A,i}$ since there is~$I \in \II$ with~$A(I) = i$ and~$B(I) = j$.
-%Moreover, for any~$I,J \in \II$ with~$A(I) = i$, $A(J) \in I \ssm \{i\}$ and~$k \in J \ssm A(J)$, we have 
-%\begin{itemize}
-%\item $i < A(J)$, otherwise~$A(I) = i \in [A(J),k] \subseteq J$ and~${A(J) \in I \ssm \{A(I)\}}$, so that~$A$ is cyclic,
-%\item $A(J) \le j$, otherwise~$B(I) = j \in [k,A(J)] \subseteq J$ and~${B(J) = A(J) \in I \ssm \{B(I)\}}$, so that~$B$ is cyclic,
-%\end{itemize}
-%so that~$A(J) \in {]i,j]}$, which implies by definition of~$k$ that~$k \notin J \ssm \{A(J)\}$.
-%Hence~$k \notin \cY_{A,i}$.
-%As~$k \in \cX_{A,i} \ssm \cY_{A,i}$, \cref{prop:isFlipI} ensures that the orientation~$C$ of~$\II$ obtained by flipping~$i$ to~$k$ is acyclic.
-%This implies that~$\flip{A}{i}{j}{B}$ is not a cover relation as it is obtained transitively from~$\flip{A}{i}{k}{C}$ and~$\flip{C}{k}{j}{B}$.
-%
-%Conversely, assume that~$A \le B$ is not a cover relation.
-%Then there exists~$k \ne i$ and an acyclic orientation~$C$ of~$I$ such that~$\flip{A}{i}{k}{C}$ is a flip and~$A < C < B$.
-%Since~$\flip{A}{i}{j}{B}$ is a flip, we have~$A(I) = C(I) = B(I)$ except if~$A(I) = i$ and~$B(I) = j$.
-%Hence, there is~$I$ such that~$A(I) = i < C(I) = k < j = B(I)$.
-%Since~$\flip{A}{i}{k}{C}$ is a flip, we obtain from \cref{prop:isFlipI} that~$k \notin \cY_{A,i}$.
-%As~$]i,j] \subseteq I \ssm \{i\} \subseteq \cX_{A,i}$, there is no~$J \in \II$ with~$A(J) \in {]i,j]}$ and~$k \in J \ssm \{A(J)\}$.
-%Hence, $k \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
-%\end{proof}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1178,10 +1068,6 @@ Hence,~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 			$\{1,2,3,4,123,234\}$
 			&
 			$\{1,2,3,4,12,123,1234,234,34\}$
-%			\\
-%			not lattice
-%			&
-%			not lattice
 		\end{tabular}
 	}
 	\caption{Two interval hypergraphic posets which are not lattices.}
@@ -1247,12 +1133,11 @@ Hence,~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 			$\{1,2,3,4,12,23,34,123,234,1234\}$
 		\end{tabular}
 	}
-%	\centerline{semidistributive lattice, but not distributive}
 	\caption{The Tamari lattice (semidistributive lattice, but not distributive).}
 	\label{fig:Tamari}
 \end{figure}
 
-In this section, we prove \cref{thm:latticeI} which we first introduce properly: % characterizing the interval hypergraphs $\II$ for which $P_\II$ are lattices.
+In this section, we prove \cref{thm:latticeI} which we first introduce properly:
 
 \begin{definition}
 \label{def:intersectionClosed}
@@ -1269,12 +1154,6 @@ For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \
 
 \begin{example}
 The interval hypergraphic posets of \cref{fig:notLattices} are not lattices, while those of \cref{fig:Tamari,fig:distributiveLattices,fig:semidistributiveLattices,fig:notSemidistributiveLattices} are lattices.
-%Note that
-%\begin{itemize}
-%\item the hypergraphic poset of the hypergraph containing all intervals is the Tamari lattice, % see \cref{fig:Tamari},
-%\item the hypergraphic poset of the hypergraph containing all singletons and all initial intervals is the boolean lattice, % see \cref{fig:distributiveLattices}\,(bottom right),
-%\item the hypergraphic poset of the hypergraph containing all singletons and all initial and final intervals is not a lattice (this motivated \cite{PilaudPolyakova} to define the Hochschild polytopes). % see \cref{fig:notLattices}\,(right). 
-%\end{itemize}
 \end{example}
 
 \begin{example}
@@ -1390,49 +1269,6 @@ We display below the four orientations highlighting only the intervals $I$ and $
 	\end{tikzpicture} 
 &
 \end{alignat*}
-%\[
-%\begin{array}{lcr}
-%	C =  
-%	\begin{tikzpicture}[scale=1,baseline=.0cm]
-%	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
-%	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.5,0) {$\bullet$};
-%	\node at  (0,-.3) {$\scriptstyle a$};
-%	\node at  (.3,-.3) {$\scriptstyle b$};
-%	\node at  (1.2,-.3) {$\scriptstyle c$};
-%	\node at  (1.5,-.3) {$\scriptstyle d$};
-%	\end{tikzpicture} 
-%	&\qquad\quad&
-%	\begin{tikzpicture}[scale=1,baseline=.0cm]
-%	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (1.2,.3) {$\bullet$};
-%	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
-%	\node at  (0,-.3) {$\scriptstyle a$};
-%	\node at  (.3,-.3) {$\scriptstyle b$};
-%	\node at  (1.2,-.3) {$\scriptstyle c$};
-%	\node at  (1.5,-.3) {$\scriptstyle d$};
-%	\end{tikzpicture} 
-%	= D 
-%	\\ \\
-%	A =  
-%	\begin{tikzpicture}[scale=1,baseline=.0cm]
-%	\node at (-.3,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (.3,.3) {$\bullet$};
-%	\node at (-.3,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (.3,0) {$\bullet$};
-%	\node at  (0,-.3) {$\scriptstyle a$};
-%	\node at  (.3,-.3) {$\scriptstyle b$};
-%	\node at  (1.2,-.3) {$\scriptstyle c$};
-%	\node at  (1.5,-.3) {$\scriptstyle d$};
-%	\end{tikzpicture} 
-%	&\qquad\quad&
-%	\begin{tikzpicture}[scale=1,baseline=.0cm]
-%	\node at (2,.3) {$\scriptstyle I$}; \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (0,.3)--(1.2,.3);   \node at (0,.3) {$\bullet$};
-%	\node at (2,0) {$\scriptstyle J$};  \draw [thick,{Bar[width=3pt]}-{Bar[width=3pt]}] (.3,0)--(1.5,0);   \node at (1.2,0) {$\bullet$};
-%	\node at  (0,-.3) {$\scriptstyle a$};
-%	\node at  (.3,-.3) {$\scriptstyle b$};
-%	\node at  (1.2,-.3) {$\scriptstyle c$};
-%	\node at  (1.5,-.3) {$\scriptstyle d$};
-%	\end{tikzpicture} 
-%	= B
-%\end{array}
-%\]
 We have that $\pi_A < \pi_C$, $\pi_A < \pi_D$ and $\pi_B < \pi_D$ in the weak order.
 \cref{coro:weakToP} implies that $A < C$, $A < D$ and $B < D$ in~$P_\II$.
 We moreover claim that $B < C$  but this does not follow directly from the weak order since $\pi_B\not<\pi_C$.
@@ -1442,10 +1278,6 @@ This shows that $E=\Or_{\pi_E}=\Or_{\pi_F}=F$.
 Now we have $\pi_B<\pi_E$ and $\pi_F<\pi_C$ which gives $B<E=F<C$.
  
  If the poset $P_\II$ is a lattice and~$A \le C$ $A \le D$, $B \le C$ and~$B \le D$, there is~$M$ such that~$A \le M$, $B \le M$, $M \le C$ and~$M \le D$ (anything between~$A \join B$ and~$C \meet D$ works).
-%If the poset $P_\II$ is a lattice, then we can find a unique join $M= A \join B$.
-%\vincent{I don't like that the join is called~$M$. We cannot call it~$J$ as it was used before. Maybe we could take the meet~$C \meet D$ instead, it does not change anything...}
-%By definition $A\le M$ and $B\le M$.
-%By property of join we also have $M\le C$ and $M\le D$ since both $C$ and $D$ are  greater than $A$ and $B$.
 Let $\pi_M$ be any permutation such that $M=\Or_{\pi_M}$ and let  
 \[
 m=\pi \big( \min\set{i}{\pi_M(i)\in I\cup J} \big).
@@ -1475,7 +1307,6 @@ We have~$A, B \le C, D$ and there is no~$M$ with~$A,B \le M \le C,D$, so that~$A
 For instance, the hypergraph~$\HH \eqdef \{ 1, 2, 3, 4, 5, 1234, 2345, 23, 24, 34 \}$ is not closed under intersection, while its hypergraphic poset~$P_\HH$ is a lattice.
 % sage: HypergraphicalPolytopes([[1,2,3,4], [2,3,4,5], [2,3], [2,4], [3,4]]).hypergraphical_poset().is_lattice()
 % True
-%\vincent{Maybe we could draw this lattice. It has 24 elements.}
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1501,9 +1332,7 @@ If $\II$ is an interval  hypergraph closed under intersection, then the followin
 \begin{proof}
 The equivalence \mbox{(a)$\iff$(b)} was established in \cref{prop:sourceOrderI}.
 
-For the equivalence \mbox{(c)$\iff$(d)}, \cref{prop:WOIP,prop:preimageI} show that the inversion set of $\projDown_A$ is $\set{(j,i)}{i<j, \, i \more_A j}$ 
-%and the set of non-inversions of $\projUp_B$ is  $\set{(i,j)}{i<j, \, i \less_B j}$.
-while the inversion set of $\projUp_B$ is~$\set{(j,i)}{i<j, \, i \not\less_B j}$.
+For the equivalence \mbox{(c)$\iff$(d)}, \cref{prop:WOIP,prop:preimageI} show that the inversion set of $\projDown_A$ is $\set{(j,i)}{i<j, \, i \more_A j}$ while the inversion set of $\projUp_B$ is~$\set{(j,i)}{i<j, \, i \not\less_B j}$.
 The equivalence of \mbox{(c)$\iff$(d)} thus follows from the characterization of the weak order in terms of inclusion of inversion sets.
 
 The implication \mbox{(c)$\implies$(a)} follows from  \cref{coro:weakToP}.
@@ -1626,7 +1455,6 @@ Note that the lattice maps of the weak order where described by N.~Reading in~\c
 \label{prop:joinLattice}
 For an interval hypergraph~$\II$ closed under intersection, any acyclic orientations~$A_1, \dots A_q$ of~$\II$, and any~${I \in \II}$, we have
 \[
-%S(I, A \join B) = \min \Big( I \ssm \bigcup_{\substack{(j,J) \in A \cup B \\ \min(I) \le j \le \max(I)}} {[\min(J), j[} \Big).
 \Big( \bigJoin_{p \in [q]} A_p \Big)(I) = \min \bigg( I \ssm \Big( \bigcup_{p \in [q]} \bigcup_{\substack{J \in \II \\ A_p(J) \in I}} {[\min(J), A_p(J)[} \Big) \bigg).
 \]
 \end{proposition}
@@ -1768,7 +1596,6 @@ Hence, $O \le O'$ by \cref{prop:sourceOrderI}.
 \end{figure}
 
 In this section, we prove \cref{thm:distributiveLatticeI} which we first introduce properly:
-%characterizing the interval hypergraphs $\II$ for which $P_\II$ are distributive lattices.
 
 \begin{definition}
 \label{def:distributive}
@@ -1792,12 +1619,6 @@ For an interval hypergraph $\II$ on~$[n]$ (with our convention that~$\{i\} \in \
 
 \begin{example}
 The interval hypergraphic posets of \cref{fig:distributiveLattices} are distributive lattices, while those of \cref{fig:notLattices,fig:Tamari,fig:semidistributiveLattices,fig:notSemidistributiveLattices} are not.
-%Note that,
-%\begin{itemize}
-%\item The hypergraphic poset of~$\{ 1, 2, 3, 12, 123 \}$ is distributive (it is a square). More generally, the hypergraphic poset of the hypergraph containing all singletons and all initial intervals is the boolean lattice, which is distributive.
-%See \cref{subsec:SchroderHypergraphs} for more examples of distributive hypergraphs.
-%\item  The hypergraphic poset of~$\{ 1, 2, 3, 12, 23, 123 \}$ is a lattice but is not distributive (it is a pentagon). In general, the hypergraphic poset of all intervals is the Tamari lattice, which is not distributive.
-%\end{itemize}
 \end{example}
 
 \begin{example}
@@ -1827,13 +1648,6 @@ Define
 \cJ_\II \eqdef \bigcup_{I\in \II} I\ssm \{\min(I)\}.
 \)
 \end{notation}
-
-%\begin{notation}
-%%For~$j \in \cJ_\II$, let~$J_j$be the inclusion minimal set in~$\smash{\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}}$ ($J_j$ exists since $\II$ is closed under intersection)  and let~$\mu_j \eqdef \min(J_j) = \max\bigset{\min(I)}{I \in \II_j}$ and~$\nu_j \eqdef \max(J_j) = \min\bigset{\max(I)}{I \in \II_j}$.
-%%By definition~$\mu_j < j \le \nu_j$ since~$j \in J_j \ssm \{\mu_j\}$.
-%For~$j \in \cJ_\II$, let~$\II_j \eqdef \bigset{I \in \II}{j \in I \ssm \{\min(I)\}}$, let~$J_j \eqdef \bigcap_{I \in \II_j} I$  (note that $J_j \in \II$ since $\II$ is closed under intersection), and let~$\mu_j \eqdef \min(J_j)$ and~$\nu_j \eqdef \max(J_j)$.
-%By definition~$\min(I) \le \mu_j < j \le \nu_j \le \max(I)$ for any~$I \in \II_j$.
-%\end{notation}
 
 \begin{notation}
 \label{not:muj}
@@ -2054,14 +1868,11 @@ and the orientation obtained from~$A$ by flipping~$j$ to~$i$ is acyclic.
 \end{proposition}
 
 \begin{proof}
-%Assume without loss of generality that $\min(J) \le \min(J')$ for all~$J' \in \II$ with~$A(J') = j$.
 Let~$I \in \II$ be maximal such that~$\min(I) = \min(J)$ and~$\max(I) < j$, and let~$i \eqdef A(I)$.
 Let~$O$ be the orientation obtained from~$A$ by flipping~$j$ to~$i$ as in \cref{def:flip}.
 If~$O$ is cyclic, there exists~$K,K' \in \II$ such that~$O(K) \in K'$, $O(K') \in K$, and~$O(K) \ne O(K')$.
 As~$A$ is acyclic, we have either~$A(K) \ne O(K)$ or~$A(K') \ne O(K')$, but not both since~$O(K) \ne O(K')$.
 We can thus assume that~$A(K) = O(K)$ while $A(K') = j$ and~$O(K') = i$.
-%As~$A(K') = j$, we have~$\min(I) = \min(J) \le \min(K')$ by the first assumption of the proof.
-%Moreover, we have~$i \in K$ and~$\{i,j\} \subseteq K'$.
 If~$j \in K$, then we have~$A(K) \ne j = A(K')$ (otherwise, $O(K) = i = O(K')$), and $A(K) = O(K) \in K'$ and~$A(K') = j \in K$, contradicting the acyclicity of~$A$.
 As~$i \in K$ and~$j \notin K$, we obtain that~$\max(K) < j$.
 As~$A(I) = i \in K$ and~$A(K) = O(K) \ne O(K') = i = A(I)$, we have~$K \not\subseteq I$ by acyclicity of~$A$.
@@ -2091,7 +1902,6 @@ If~$\II$ is a distributive interval hypergraph, then the map $j \mapsto A_j$ is 
 We have already seen in \cref{coro:irreduciblePosetMorphism} that~$j \mapsto A_j$ is an injective poset morphism.
 We thus just need to show that the distributivity of~$\II$ implies the surjectivity of this morphism.
 Consider an increasing flip~\flip{A}{i}{j}{B}.
-%Let~$A < B$ be two acyclic orientations of~$\II$ related by an increasing flip from~$i$ to~$j$.
 If there is~$J \in \II$ such that~$B(J) \notin \{\min(J), j\}$, then~$A(J) = B(J)$ and \cref{prop:alwaysFlippableI} ensures that $B$ admits a decreasing flip flipping~$B(J)$ to some~$k < B(J) = A(J)$.
 If there is~$J \in \II$ such that~$B(J) = j$ and~$\min(J) < \mu_j$, then the distributivity of~$\II$ implies that~$\max(I) < \mu_j$ for any~$I \in \II$ such that~$\min(I) = \min(J)$ and~$\max(I) < j$ (otherwise, $I \not\subseteq J_j$ and~$I \not\supseteq J_j$ and~$\mu_j \in I \cap J_i \subseteq J$, and~$I \cap J_j$ is neither initial nor final in~$J$, contradicting the distributivity of~$\II$).
 Hence, \cref{prop:alwaysFlippableDistributive} ensures that $B$ admits a decreasing flip flipping~$j$ to some~$k < \mu_j$.
@@ -2438,14 +2248,11 @@ This description is a specialization of the description of the join irreducible 
 }
 
 In this section, we prove \cref{thm:semidistributiveLatticeI} which we first introduce properly:
-%characterizing the interval hypergraphs $\II$ for which $P_\II$ are semidistributive lattices.
 
 \begin{definition}
 \label{def:semidistributive}
 We say that an interval hypergraph~$\II$ is \defn{join semidistributive} if it is closed under intersection and
 for all~$[r,r'], [s,s'], [t,t'], [u,u'] \in \II$ such that ${r < s \le r' < s'}$, $r < t \le s' < t'$, $u < \min(s, t)$ and~$s' < u'$, there is~$[v,v'] \in \II$ such that~$v < s$ and~${s' < v' < t'}$.
-%        if p0[0] < p1[0] <= p0[1] < p1[1] and p0[0] < p2[0] <= p1[1] < p2[1] and all(inter[0] >= p1[0] or inter[1] <= p0[1] or inter[1] >= p2[1] for inter in intervals) and any(inter[0] < min(p1[0], p2[0]) and p1[1] < inter[1] for inter in intervals):
-%            return False
 \end{definition}
 
 \begin{definition}
@@ -2477,7 +2284,6 @@ A \defn{join representation} of~${b \in L}$ is a subset~$J \subseteq L$ such tha
 Such a representation is \defn{irredundant} if~$b \ne \bigJoin J'$ for any strict subset~$J' \subsetneq J$.
 The irredundant join representations of~$b \in L$ are ordered by~$J \le J'$ if and only if for any~$j \in J$ there is~${j' \in J'}$~with~$j \le j'$.
 The \defn{canonical join representation} of~$b$ is the minimal irredundant join representation of~$b$ for this order when it exists.
-%Note that the canonical joinands form an antichain of join irreducible elements of~$L$.
 The lattice~$L$ is semidistributive if and only if any element of~$L$ admits a canonical join representation.
 Moreover, the canonical join representation of~$b$ is given by~$b = \bigJoin_{a \lessdot b} k_{a \lessdot b}$, where $a$ ranges over all elements of~$L$ covered by~$b$.
 \end{remark}
@@ -2506,25 +2312,8 @@ See \cref{fig:Tamari}.
 \subsection{All join irreducible acyclic orientations}
 \label{subsec:joinIrreducibles}
 
-In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward}, and we describe all the join irreducible elements of~$P_\II$. % that is, the acyclic orientations~$A$ of~$\II$ which cover a single acyclic orientation~$A_\star$.
+In this section, we assume that~$\II$ is an interval hypergraph closed under intersection so that the hypergraph poset~$P_\II$ is a lattice  by \cref{prop:latticeBackward}, and we describe all the join irreducible elements of~$P_\II$.
 The following notations are illustrated in \cref{exm:Aij1,exm:Aij2,exm:Aij3,exm:Aij4,exm:Aij5,exm:Aij6} below.
-
-%\begin{notation}
-%Define~$\cIJ_\II$ to be the set of pairs~$(i,j)$ where~$1 \le i < j \le n$ are such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$ and
-%\[
-%i = \max \Big( {[\min(I), j[} \; \ssm \!\!\!\!\!\!\!\! \bigcup_{\substack{J \in \II \\ J \subseteq {[\min(I), j[}}} \!\!\!\!\!\!\!\! J \ssm \{\min(J)\} \Big).
-%\]
-%\end{notation}
-
-%\begin{notation}
-%For~$(i,j) \in \cIJ_\II$, let~$J_{ij}$ be the inclusion minimal set in~$\smash{\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$ ($J_{ij}$ exists since $\II$ is closed under intersection) and let~$\mu_{ij} \eqdef \min(J_{ij}) = \max\bigset{\min(I)}{I \in \II_{ij}}$ and~$\nu_{ij} \eqdef \max(J_{ij}) = \min\bigset{\max(I)}{I \in \II_{ij}}$.
-%By definition~$\mu_{ij} \le i < j \le \nu_{ij}$ since~${i,j} \subseteq J_j$.
-%\end{notation}
-
-%\begin{notation}
-%For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, let~$\II_{ij} \eqdef \bigset{I \in \II}{\{i,j\} \subseteq I}}$, let~$J_{ij} \eqdef \bigcap_{I \in \II_{ij}} I$  (note that $J_{ij} \in \II$ since $\II$ is closed under intersection), and let~$\mu_{ij} \eqdef \min(J_{ij})$ and~$\nu_{ij} \eqdef \max(J_{ij})$.
-%By definition~$\min(I) \le \mu_{ij} \le i < j \le \nu_{ij} \le \max(I)$ for any~$I \in \II_{ij}$.
-%\end{notation}
 
 \begin{notation}
 For~$1 \le i < j \le n$ such that there exists~$I \in \II$ with~$\{i,j\} \subseteq I$, we  let
@@ -2584,7 +2373,7 @@ Note in particular that~$i \ge k$ and~$j = \ell$ implies $(i,j) \preccurlyeq (k,
 
 \begin{example}
 \label{exm:Aij1}
-For the hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$ of \cref{exm:Tamari1,exm:oneMoreIrreducible,fig:Tamari}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$, and the join irreducible acyclic orientations~are %~$A_{12} = A_2$, $A_{23} = A_3$ and~$A_{13} = A$.
+For the hypergraph~$\II \eqdef \{1, 2, 3, 12, 23, 123\}$ of \cref{exm:Tamari1,exm:oneMoreIrreducible,fig:Tamari}\,(left), we have~$\cIJ_\II = \{(1,2), (2,3), (1,3)\}$, and the join irreducible acyclic orientations~are
 \[
 A_{12} = A_2 = \acyclicOrientation{3}{1/2/2,2/3/2,1/3/2}
 \qquad\quad
@@ -2731,7 +2520,7 @@ We obtain that~$A(J) = A_{ij}(J) = \min(J) \in [\mu_{ij}, j[ \subseteq I$ and~$A
 Assume now that~$k < i$.
 Since~$\flip{A}{k}{\ell}{A_{ij}}$ is a cover relation, the decreasing analogue of \cref{prop:isCoverI} implies that
 \[
-{]k,\ell[} \subseteq \!\!\!\! \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,\ell[}} \!\!\!\! \big( J \ssm \{A_{ij}(J)\} \big). % = \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,j[}} J \ssm \{\min(J)\}
+{]k,\ell[} \subseteq \!\!\!\! \bigcup_{\substack{J \in \II \\ A_{ij}(J) \in [k,\ell[}} \!\!\!\! \big( J \ssm \{A_{ij}(J)\} \big).
 \]
 As~$i \in {]k,\ell[}$, there is~$J \in \II$ with~$A_{ij}(J) \in {[k,\ell[} = {[k,j[}$ and~$i \in J \ssm \{A_{ij}(J)\}$.
 As~${A_{ij}(J) \in \{j, \min(J)\}}$ by definition of~$A_{ij}$, we obtain that~$A_{ij}(J) = \min(J)$.
@@ -2849,157 +2638,6 @@ We now prove the forward direction of \cref{thm:semidistributiveLatticeI}.
 If~$\II$ is an interval hypergraph such that $P_\II$ is a join (resp.~meet) semidistributive lattice, then~$\II$ is join (resp.~meet) semidistributive.
 \end{proposition}
 
-%\begin{proof}
-%\vincent{This is an old idea of proof, but there is a bug in the middle.}
-%We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
-%
-%First, we can assume that~$\II$ is closed under intersection, otherwise $P_\II$ is not even a lattice by \cref{prop:latticeForward}.
-%Assume that there is~$[a,a'], [b,b'], [c,c'], [d,d'] \in \II$ such that $a < b \le a' < b'$, $a < c \le b' < c'$, $d < \min(b, c)$ and~$b' < d'$, and there is no~$[e,e'] \in \II$ such that~$e < b$ and~$a' < e' < c'$.
-%Let~$j \eqdef a'+1$ and~$k \eqdef b'+1$.
-%As~$\II$ is closed under intersection, we have~$[b,a'] \in \II$ so that~$(b,j) \in \cIJ_\II$.
-%Similarly, we have~$(c,k) \in \cIJ_\II$ (because $[c,b'] \in \II$ if~$b \le c$, and~$[c,a'], [b,b'] \in \II$ if~$c < b$).
-%Let
-%\[
-%i \eqdef \max \Big( [d,j[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,j[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big) = \max \Big( [d,k[ \ssm \!\!\!\!\! \bigcup_{\substack{M \in \II \\ M \subseteq [d,k[}} \!\!\!\!\! M \ssm \{\min(M)\} \Big),
-%\]
-%so that~$(i,j) \in \cIJ_\II$ and~$(i,k) \in \cIJ_\II$.
-%(The equality holds since $j \in [b,b'] \subseteq [d,k[$ and $\II$ is closed under intersection.
-%
-%Note that~$j \ne k$ (since~$a' < b'$), and~$i \le \min(a,d) < \min(b,c)$ (since~$\II$ is closed under intersection).
-%Hence, $(b,j), (i,j), (c,k), (i,k)$ are four distinct elements of~$\cIJ_\II$.
-%Consider now the four corresponding join irreducible acyclic orientations~$A_{bj}, A_{ij}, A_{ck}$ and~$A_{ik}$ as defined in \cref{not:joinIrreducibles}.
-%%Moreover, let~$A$ be defined as ...
-%%\vincent{todo: define properly~$A$.}
-%
-%By \cref{lem:irrorder2}, we obtain that
-%\[
-%A_{bj} < A_{ij}
-%\quad\text{and}\quad
-%A_{ck} < A_{ik}.
-%\]
-%Moreover, since
-%\begin{align*}
-%& A_{bj}([b,b']) = A_{i,j}([b,b']) = j > b = A_{ck}([b,b']) = A_{ik}([b,b']) \\
-%\text{and}\quad &
-%\max \big( A_{bj}([c,c']), A_{ij}([c,c']) \big) \le j < k = A_{ck}([c,c']) = A_{ik}([c,c']),
-%\end{align*}
-%there is no other comparisons among~$A_{bj}, A_{ij}, A_{ck}$ and~$A_{ik}$.
-%
-%Moreover, we claim that~$A \eqdef A_{bj} \join A_{ik} \ge A_{ij}$.
-%By \cref{prop:sourceOrderI}, we just need to prove that~$A([e,e']) \ge A_{ij}([e,e'])$ for all~$[e,e'] \in \II$.
-%By definition, we have~$A_{ij}([e,e']) \in \{e,j\}$, and we have nothing to prove if~$A_{ij}([e,e']) = e$.
-%Assume thus that~$A_{ij}([e,e']) = j$, and let us prove that~$A([e,e']) \ge j$.
-%As~$A_{ij}([e,e']) = j$, we have~$j \in [e,e']$ and~$e \ge \mu_{ij} \ge \mu_{ik}$.
-%If~$e' \ge k$, then~$A([e,e']) \ge A_{ik}([e,e']) = k > j$.
-%If~$b \le e$, then~$A([e,e']) \ge A_{bj}([e,e']) = j$.
-%Hence, we obtain that~$e < b$ and~$a' < j \le e' < k \le c'$, contradicting our assumption.
-%
-%Since~$A_{bj} < A_{ij}$, we obtain from our claim that~$A_{bj} \join A_{ik} = A_{ij} \join A_{ik}$.
-%Similarly, we prove that~$A_{ij} \join A_{ck} = A_{ij} \join A_{ik}$.
-%\Vincent{I have a problem here with $\{12, 234, 45, 12345\}$... See \cref{exm:problemProof}.}
-%%sage: intervals = ((1,2),(2,4),(4,5),(1,5))                                                                                                                                                                                                   
-%%sage: HP = HypergraphicalPolytopes(interval_hypergraph([1,n], intervals))                                                                                                                                                                     
-%%sage: pos = HP.hypergraphical_poset()                                                                                                                                                                                                         
-%%sage: lat = LatticePoset(pos)                                                                                                                                                                                                                 
-%%sage: lat.is_semidistributive()                                                                                                                                                                                                               
-%%False
-%%sage: is_quasi_schroder_hypergraph(tuple(tuple(i) for i in intervals))                                                                                                                                                                        
-%%False
-%%sage: ll = lat.relabel(lambda v: tuple(vector(v)-vector([2,2,2,2,2])))                                                                                                                                                                        
-%%sage: ll.join((1,0,2,1,0), (2,1,0,0,1))                                                                                                                                                                                                       
-%%(1, 0, 2, 0, 1)
-%%sage: ll.join((1,1,0,0,2), (2,0,1,1,0))                                                                                                                                                                                                       
-%%(1, 0, 1, 0, 2)
-%We conclude that
-%\[
-%A_{bj} \join A_{ik} = A_{ij} \join A_{ck}
-%\]
-%admits two incomparable join representations, so that~$P_\II$ is not join semidistributive.
-%\end{proof}
-%
-%\begin{example}
-%For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 34, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
-%\[
-%\begin{array}{c|c|c|c|c|c|c|c|c|c|c}
-%a & a' & b & b' & c & c' & d & d' & i & j & k \\
-%\hline
-%1 & 2 & 2 & 3 & 3 & 4 & 1 & 4 & 1 & 3 & 4
-%\end{array}
-%\]
-%and
-%\[
-%\begin{array}{c@{}c@{}c@{}c@{}c@{}c@{}c}
-%A_{23} && A_{14} & & A_{13} && A_{34} \\
-%\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/1}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/4}}
-%& = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/4,1/4/4}} = &
-%\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,3/4/3,1/4/3}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,3/4/4,1/4/1}}
-%\\
-%~
-%\end{array}
-%\]
-%and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{14}$ but no other comparisons among~$A_{23}, A_{13}, A_{34}, A_{14}$, so that~$A$ admits two incomparable join representations.
-%\end{example}
-%
-%\begin{example}
-%For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
-%\[
-%\begin{array}{c|c|c|c|c|c|c|c|c|c|c}
-%a & a' & b & b' & c & c' & d & d' & i & j & k \\
-%\hline
-%1 & 2 & 2 & 3 & 2 & 4 & 1 & 4 & 1 & 3 & 4
-%\end{array}
-%\]
-%and
-%\[
-%\begin{array}{c@{}c@{}c@{}c@{}c@{}c@{}c}
-%A_{23} && A_{14} & & A_{13} && A_{24} \\
-%\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/1}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
-%& = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/4,1/4/4}} = &
-%\raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/3,2/4/3,1/4/3}} & \join & \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/1}}
-%\\
-%~
-%\end{array}
-%\]
-%and we have~$A_{23} < A_{13}$ and~$A_{24} < A_{14}$ but no other comparisons among~$A_{23}, A_{13}, A_{24}, A_{14}$, so that~$A$ admits two incomparable join representations.
-%\end{example}
-%
-%\begin{example}
-%\label{exm:problemProof}
-%For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 234, 45, 12345\}$, we have
-%\[
-%\begin{array}{c|c|c|c|c|c|c|c|c|c|c}
-%a & a' & b & b' & c & c' & d & d' & i & j & k \\
-%\hline
-%1 & 2 & 2 & 4 & 4 & 5 & 1 & 5 & 1 & 3 & 5
-%\end{array}
-%\]
-%and
-%\[
-%\begin{array}{c@{}c@{}c@{}c@{}c@{}c@{}c}
-%A_{23} && A_{15} & & A_{13} && A_{45} \\
-%\raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/3,4/5/4,1/5/1}} & \join & \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/2,4/5/5,1/5/5}}
-%& = \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/3,4/5/5,1/5/5}} \ne \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/3,4/5/5,1/5/3}} = &
-%\raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/3,4/5/4,1/5/3}} & \join & \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/2,4/5/5,1/5/1}}
-%\\
-%~
-%\end{array}
-%\]
-%so the proof idea above seems incorrect.
-%However, for
-%\[
-%X = \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/4,4/5/5,1/5/1}}
-%\qquad
-%Y = A_{13} = \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/3,4/5/4,1/5/3}}
-%\quad\text{and}\quad
-%Z = A_{15} = \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/2,4/5/5,1/5/5}} 
-%\]
-%we have 
-%\[
-%X \join Y = X \join Z = \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/4,4/5/5,1/5/5}} \ne X = X \join \raisebox{-.2cm}{\acyclicOrientation{5}{1/2/1,2/4/2,4/5/4,1/5/1}} = X \join (Y \meet Z)
-%\]
-%so maybe we should use this approach of proof.
-%\end{example}
-
 \begin{proof}
 We prove the result for join semidistributivity, the result for meet semidistributivity follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
@@ -3040,17 +2678,11 @@ Similarly, $\pi_B = \projDown_B$ and $\pi_C = \projDown_C$.
 
 We therefore obtain from \cref{prop:latticeBackward} that
 $A \join B = \Or_{\pi_A \join \pi_B}$ and $A \join C = \Or_{\pi_A \join \pi_C}$.
-%\[
-%A \join B = \Or_{\pi_A \join \pi_B}
-%\qquad\text{and}\qquad
-%A \join C = \Or_{\pi_A \join \pi_C}.
-%\]
 As
 \begin{align*}
 \pi_A \join \pi_B & = 1 \cdots (i-1) \, t' \, s' \, j \, i \cdots (j-1) \, (j+1) \cdots (s'-1) \, (s'+1) \cdots (t'-1) \, (t'+1) \cdots n \\
 \pi_A \join \pi_C & = 1 \cdots (i-1) \, t' \, j \, i \cdots (j-1) \, (j+1) \cdots (s-1) \, s' \, s \cdots (s'-1) \, (s'+1) \cdots (t'-1) \, (t'+1) \cdots n
 \end{align*}
-%(still in one line notation), 
 and there is no~$[v,v'] \in \II$ such that~$v < s$ and~$s' < v' < s'$ by assumption, we have~$A \join B = A \join C$.
 
 \para{Claim 2:} $A \ge B \meet C$.
@@ -3131,7 +2763,6 @@ A \join B = A \join C = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/
 \label{sec:quotient}
 
 In this section, we prove \cref{thm:quotientLatticeI} which we first introduce properly:
-%characterizing the interval hypergraphs $\II$ for which $P_\II$ are semidistributive lattices.
 
 \begin{definition}
 \label{def:subinterval}
@@ -3143,16 +2774,6 @@ Note that if an interval hypergraph~$\II$ containing all singletons~$\{i\}$ for~
 Indeed, for any~$1 \le i<j < k < \ell \le n$ with~$[i,k] \in \II$ and~$[j,\ell] \in \II$, we have~$[j,k] \in \II$ since it is an initial (resp.~final) interval of~$[j,\ell]$ (resp.~of~$[i,k]$).
 Hence, we do not need to add the closed by intersection condition.
 \end{remark}
-
-%\begin{definition}
-%A map~$\phi$ between two join semilattices~$(L, \le, \join)$ and~$(L', \le', \join')$ is a \defn{join semilattice morphism} if~$\phi(x \join y) = \phi(x) \join' \phi(y)$ for all~$x,y \in L$.
-%Equivalently, if
-%\begin{itemize}
-%\item each fiber~$F$ of~$\phi$ is order convex (meaning that~$x < y < z$ and~$x,y \in F$ implies~$y \in F$) and admits a unique maximal element,
-%\item the map~$\projUp : L \to L$ sending an element~$x$ to the maximal element~$y$ with~$\phi(x) = \phi(y)$ is order preserving.
-%\end{itemize}
-%The meet semilattice morphisms are defined and characterized dually.
-%\end{definition}
 
 \begin{definition}
 A map~$\phi$ between two meet semilattices~$(L, \le, \meet)$ and~$(L', \le', \meet')$ is a \defn{meet semilattice morphism} if~$\phi(a \meet b) = \phi(a) \meet' \phi(b)$ for all~$a,b \in L$.
@@ -3168,43 +2789,6 @@ The join semilattice morphisms are defined and characterized dually.
 For an interval hypergraph $\II$ on~$[n]$, the poset morphism~$\Or$ from the weak order on~$\fS_n$ to the interval hypergraphic poset $P_\II$ is a meet (resp.~join) semilattice morphism if and only if $\II$ is closed under initial (resp.~final) subintervals.
 \end{theoremA}
 
-%\begin{proof}
-%We only prove the join semilattice morphism, the result for meet semilattice morphism follows by the symmetry of~\cref{prop:antiIsomorphism}.
-%
-%Assume first that~$\II$ is is not closed under final subintervals, and let~$1 \le i < j < k \le n$ be such that~$[j,k] \notin \II$ while~$[i,k] \in \II$.
-%
-%
-%Conversely, assume that~$\II$ is closed under final subintervals.
-%We prove by induction on the number of non-inversions of~$\sigma$ that~$\sigma \le \tau$ implies~$\projUp(\sigma) \le \projUp(\tau)$.
-%%Let~$\sigma \lessdot \tau$ be two adjacent permutations on~$[n]$.
-%%We prove by induction on the number of non-inversions of~$\sigma$ that~$\projUp(\sigma) \le \projUp(\tau)$.
-%We have nothing to prove if~$\sigma = \projUp(\sigma)$. % or~$\projUp(\sigma) = \projUp(\tau)$.
-%If there is a permutation~$\rho$ such that~$\sigma < \rho < \tau$, then we have~$\projUp(\rho) \le \projUp(\tau)$ by induction, so that we just need to show that~$\projUp(\sigma) \le \projUp(\rho)$.
-%We can thus assume that~$\sigma \lessdot \tau$ is a cover relation, with~$\sigma \ne \projUp(\sigma)$.
-%Let~$\sigma \lessdot \sigma'$ be such that~$\Or_\sigma = \Or_{\sigma'}$.
-%Let~$p,q \in [n-1]$ be such that~$\tau$ (resp.~$\sigma'$) is obtained from~$\sigma$ by exchanging its entries at positions~$p$ and~$p+1$ (resp.~$q$ and~$q+1$).
-%We distinguish three cases:
-%
-%\para{If~$|p-q| > 1$.} Consider~$\tau' = \sigma' \join \tau$. As~$\Or_\sigma = \Or_{\sigma'}$, we have~$\min(\sigma^{-1}(I)) \ne q$ or~$\sigma(q+1) \notin I$ for any~$I \in \II$. Since~$|p-q| > 1$, it implies that~$\min(\tau^{-1}(I)) \ne q$ or~$\tau(q+1) \notin I$. Hence we obtain that~$\Or_\tau = \Or_{\tau'}$.
-%
-%\para{If~$p = q-1$.} Then~$\sigma = X i j k Y$, $\sigma' = X j i k Y$ and $\tau = X i k j Y$ for some letters~$1 \le i < j < k \le n$ and some words~$X,Y$ on~$[n]$. Let $\sigma'' \eqdef X j k i Y$, $\tau' \eqdef X k i j Y$ and~$\tau'' \eqdef X k j i Y$.
-%If~$\Or_\tau \ne \Or_{\tau'}$, then there exist~$1 \le u \le i < k \le v \le n$ such that~$[u,v] \in \II$ and~$p = \min \big( \tau^{-1}([u,v]) \big)$. 
-%This would imply that~$p = \min \big( \sigma^{-1}([u,v]) \big)$, which contradicts that~$\Or_\sigma = \Or_{\sigma'}$.
-%If~$\Or_{\tau'} \ne \Or_{\tau''}$, then there exists~$1 \le u \le i < j \le v < k$ such that~$[u,v] \in \II$ and~$q = \min \big( \tau'^{-1}([u,v]) \big)$. 
-%This would imply that~$q = \big( \sigma^{-1}([u,v]) \big)$, contradicting that~$\Or_\sigma = \Or_{\sigma'}$.
-%Since~$\sigma' < \tau''$ and~$\sigma < \sigma'$, we obtain by induction that~$\projUp(\sigma') \le \projUp(\tau'')$.
-%As~$\Or_\sigma = \Or_{\sigma'}$ and~$\Or_\sigma = \Or_{\tau'} = \Or_{\tau''}$, we conclude that~$\projUp(\sigma) \le \projUp(\tau)$.
-%
-%\para{If~$p = q+1$.} Then~$\sigma = X i j k Y$, $\sigma' = X i k j Y$ and $\tau = X j i k Y$ for some letters~${1 \le i < j < k \le n}$ and some words~$X,Y$ on~$[n]$.
-%Let~$\sigma'' \eqdef X k i j Y$, $\tau' \eqdef X j k i Y$ and~$\tau'' \eqdef X k j i Y$. 
-%If~$\Or_\tau \ne \Or_{\tau'}$, then there exist~$1 \le u \le i < k \le v \le n$ such that~$[u,v] \in \II$ and~$p = \min \big( \tau^{-1}([u,v]) \big)$.
-%As~$\II$ is closed under final subintervals, we have~$[j,v] \in \II$ and~$p = \min \big( \sigma^{-1}([j,v]) \big)$, which contradicts that~$\Or_\sigma = \Or_{\sigma'}$.
-%If~$\Or_{\tau'} \ne \Or_{\tau''}$, then there exists~$1 \le u \le j < k \le v \le n$ such that~$[u,v] \in \II$ and~$q = \min \big( \tau'^{-1}([u,v]) \big)$. 
-%This would imply that~$p = \big( \sigma^{-1}([u,v]) \big)$, contradicting that~$\Or_\sigma = \Or_{\sigma'}$.
-%Since~$\sigma' < \tau''$ and~$\sigma < \sigma'$, we obtain by induction that~$\projUp(\sigma') \le \projUp(\tau'')$.
-%As~$\Or_\sigma = \Or_{\sigma'}$ and ${\Or_\tau = \Or_{\tau'} = \Or_{\tau''}}$, we conclude that~$\projUp(\sigma) \le \projUp(\tau)$.
-%\end{proof}
-
 \begin{proof}
 We only prove the meet semilattice morphism, the result for the join semilattice morphism follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
@@ -3219,7 +2803,7 @@ Hence, $\Or$ is not a meet semilattice morphism.
 
 Conversely, assume that~$\II$ is closed under initial subintervals.
 We prove by induction on the length of~$\tau$ that~$\sigma \le \tau$ implies~$\projDown(\sigma) \le \projDown(\tau)$.
-If~$\tau = \projDown(\tau)$, we have~$\projDown(\sigma) \le \sigma < \tau = \projDown(\tau)$. % or~$\projDown(\sigma) = \projDown(\tau)$.
+If~$\tau = \projDown(\tau)$, we have~$\projDown(\sigma) \le \sigma < \tau = \projDown(\tau)$.
 If there is a permutation~$\rho$ such that~$\sigma < \rho < \tau$, then we have~$\projDown(\sigma) \le \projDown(\rho)$ by induction, so that we just need to show that~$\projDown(\rho) \le \projDown(\tau)$.
 We can thus assume that~$\sigma \lessdot \tau$ is a cover relation, with~$\tau \ne \projDown(\tau)$.
 Let~$\tau' \lessdot \tau$ be such that~$\Or_\tau = \Or_{\tau'}$.
@@ -3255,26 +2839,6 @@ As~$\Or_\sigma = \Or_{\sigma'} = \Or_{\sigma''}$ and~$\Or_\tau = \Or_{\tau'}$, w
 For an interval hypergraph $\II$ on~$[n]$, the poset morphism~$\Or$ from the weak order on~$\fS_n$ to the interval hypergraphic poset $P_\II$ is a lattice morphism if and only if $\II$ is closed under subintervals.
 In this case, $P_\II$ is a Cartesian product of Tamari lattices.
 \end{corollary}
-
-%\vincent{Conversely, the quotients that appear as interval hypergraphic polytopes are those whose ideal of arcs is closed under~$(i,j,A,B) \mapsto (i,j,A \ssm \{k\}, B \cup \{k\})$ for~$i < j < k$ and~$A \sqcup B = {]i,j[}$.}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%\section{Some open questions}
-%\label{sec:openQuestions}
-%
-%Understand the operation of addition/deletion of an inclusion maximal interval.
-%
-%When semidistributive:
-%\begin{itemize}
-%\item is there a clean interval doubling construction?
-%\item understand canonical join representations.
-%\item understand forcing order on join irreducibles, and describe all lattice quotients.
-%\end{itemize}
-%
-%There is a natural edge labeling of $P_\II$. Is it an interesting labeling? (EL-labeling for instance?)
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
