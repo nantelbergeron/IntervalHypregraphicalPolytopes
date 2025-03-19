@@ -243,7 +243,7 @@ Note that the family of interval hypergraphic polytopes does not contain the per
 \item the classical associahedron of~\cite{ShniderSternberg,Loday} when~$\II$ contains all intervals of~$[n]$,
 \item the Pitman--Stanley polytope~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
 \item the freehedron of~\cite{Saneblidze-freehedron} when~$\II$ is the set of all singletons~$\{i\}$, all initial intervals~$[i]$ for~${i \in [n]}$, and all final intervals~$[n] \ssm [i]$~for~${i \in [n-1]}$,
-\item the fertilotopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
+\item the fertilitopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
 In fact, it follows from~\cite{BazierMatteChapelierLaguetDouvilleMousavandThomasYildirim,PadrolPaluPilaudPlamondon} that the interval hypergraphic polytopes are precisely the weak Minkowski summands of the classical associahedron (recall that a polytope~$P \subset \R^n$ is a \defn{weak Minkowski summand} of a polytope~$Q \subset \R^n$ if there exists a real~$\lambda \ge 0$ and a polytope~$R \subset \R^d$ such that~$\lambda Q = P + R$).
 
@@ -271,7 +271,7 @@ A symmetric characterization holds for meet semidistributivity.
 For an interval hypergraph $\II$, the poset morphism from the weak order to the poset~$P_\II$ is a meet (resp.~join) semilattice morphism if and only if~$\II$ is closed under initial (resp.~final) subintervals (\ie~$[i,k] \in \II$ implies~$[i,j] \in \II$ (resp.~$[j,k] \in \II$) for any~$1 \le i < j < k \le n$).
 \end{theoremA}
 
-For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilotopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice which is a quotient of the weak order, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
+For instance, among the four above-mentioned families of interval hypergraphic polytopes, we recover that  the Pitman-Stanley polytope and all fertilitopes yield distributive lattices, the associahedron yields a semidistributive (but not distributive) lattice which is a quotient of the weak order, while the freehedron is not even a lattice (this was actually the motivation for~\cite{PilaudPoliakova} to construct alternative realizations of the skeleton of the freehedron).
 
 Once \cref{thm:latticeI} is established, an important step for \cref{thm:distributiveLatticeI,thm:semidistributiveLatticeI} is to understand join irreducible elements of~$P_\II$.
 \cref{subsec:joinIrreducibles} provides a combinatorial description of the join irreducible elements of the lattice~$P_\II$ for an arbitrary interval hypergraph~$\II$ closed under intersections.
@@ -717,7 +717,7 @@ These figures illustrate in particular the following relevant families of interv
 \item if~$\II = \set{[i,j]}{1 \le i \le j \le n}$ is the set of all intervals of~$[n]$, then~$P_\II$ is the Tamari lattice corresponding to the classical associahedron of~\cite{ShniderSternberg,Loday}; see \cref{fig:Tamari};
 \item if~$\II = \set{[1,i]}{i \in [n]}$ is the set of initial intervals of~$[n]$, then~$P_\II$ is the boolean lattice corresponding to the Pitman--Stanley polytope~\cite{PitmanStanley}; see \cref{fig:distributiveLattices}\,(bottom~right);
 \item if~$\II = \set{[1,i]}{i \in [n]} \cup \set{[i,n]}{i \in [n]}$ is the set of all initial or final intervals of~$[n]$, then~$P_\II$ is a poset given by the freehedron of~\cite{Saneblidze-freehedron}, which is not even a lattice; see \cref{fig:notLattices}\,(right);
-\item if any two intervals of~$\II$ are either nested or disjoint, then~$P_\II$ is a distributive lattice given by the fertilotope of~\cite{Defant-fertilitopes}; see \cref{fig:distributiveLattices}\,(top right and bottom) and \cref{subsec:SchroderHypergraphs}.
+\item if any two intervals of~$\II$ are either nested or disjoint, then~$P_\II$ is a distributive lattice given by the fertilitope of~\cite{Defant-fertilitopes}; see \cref{fig:distributiveLattices}\,(top right and bottom) and \cref{subsec:SchroderHypergraphs}.
 \end{itemize}
 \end{example}
 
@@ -1340,8 +1340,8 @@ Thus we only need to prove \mbox{(b)$\implies$(d)}.
 
 For a contradiction, assume that $A(I) \le B(I)$ for all~$I \in \II$ and that we have some $i<j$ such that $i \more_A j$ and~$i \less_B j$.
 Choose one such pair with~$j-i$ minimal.
-Since $i \more_A j$ there are~$I_1, \dots, I_a \in \II$ such that~$j = A(I_1)$, $A(I_{p+1}) \in I_p$ for all~$p \in [a-1]$, and~$i \in I_k$.
-Since $i \less_B j$ there are~$J_1, \dots, J_b \in \II$ such that~$i = B(J_1)$, $B(J_{q+1}) \in J_q$ for all~$q \in [\ell-1]$, and~$j \in J_\ell$.
+Since $i \more_A j$ there are~$I_1, \dots, I_a \in \II$ such that~$j = A(I_1)$, $A(I_{p+1}) \in I_p$ for all~$p \in [a-1]$, and~$i \in I_a$.
+Since $i \less_B j$ there are~$J_1, \dots, J_b \in \II$ such that~$i = B(J_1)$, $B(J_{q+1}) \in J_q$ for all~$q \in [b-1]$, and~$j \in J_b$.
 Note that~$i \more_A A(I_p)$ for all~$p \in [a]$ and that~$B(J_q) \less_B j$ for all~$q \in [b]$.
 Moreover, as~$\bigcup_{p \in [a]} I_p$ and~$\bigcup_{q \in [b]} J_q$ are both intervals containing~$i$ and~$j$, we have~$i \less_B k \more_A j$ for all~$i \le k \le j$.
 By minimality of~$j-i$, we thus obtain that~$A(I_p) \notin {]i,j[}$ for~$p \in [a]$ and~$B(J_q) \notin {]i,j[}$ for~$q \in [b]$.
@@ -1939,6 +1939,9 @@ If~$\II$ is a distributive hypergraph, then~$P_\II$ is a Cartesian product of ch
 The poset~$(\cJ_\II, \preccurlyeq)$ is a disjoint union of chains, hence its lattice of lower sets is a Cartesian product of chains.
 \end{proof}
 
+\vincent{corollary: counting}
+\vincent{It is always a product of simplices...}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{If~$P_\II$ is distributive then~$\II$ is distributive}
@@ -2060,7 +2063,7 @@ Conversely, consider an interval hypergraph~$\II$ where any two hyperedges are n
 
 \begin{remark}
 \cref{prop:characterizationSchroder} implies that Schr\"oder hypergraphs are building sets, so that Schr\"oder hypergraphic polytopes are nestohedra~\cite{FeichtnerSturmfels,Postnikov}.
-In fact, the latter were already considered in the literature under the name \defn{fertilotopes}~\cite{Defant-fertilitopes}.
+In fact, the latter were already considered in the literature under the name \defn{fertilitopes}~\cite{Defant-fertilitopes}.
 \end{remark}
 
 \begin{corollary}
