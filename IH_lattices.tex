@@ -1,6 +1,6 @@
 \documentclass{amsart}
 
-\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, a4wide, pdflscape, multido, xargs, colortbl, multicol, multirow, calc, shuffle, hvfloat}
+\usepackage{enumerate, amsmath, amsfonts, amssymb, amsthm, thmtools, wasysym, graphics, graphicx, xcolor, url, hyperref, hypcap, a4wide, pdflscape, multido, xargs, colortbl, multicol, multirow, calc, shuffle, hvfloat}
 \hypersetup{colorlinks=true, citecolor=PineGreen, linkcolor=PineGreen}
 %\usepackage[all]{xy}
 \usepackage{tikz}
@@ -35,9 +35,7 @@
 
 \thanks{
 NB was supported by NSERC and York Research Chair in Applied Algebra.
-VP was partially supported by the Spanish project PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), by the French project CHARMS (ANR-19-CE40-0017), and by the French--Austrian project PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).
-}
-
+VP was supported by the Spanish project PID2022-137283NB-C21 of MCIN/AEI/10.13039/501100011033 / FEDER, UE, by the Spanish--German project COMPOTE (AEI PCI2024-155081-2 \& DFG 541393733), by the Severo Ochoa and María de Maeztu Program for Centers and Units of Excellence in R\&D (CEX2020-001084-M), by the Departament de Recerca i Universitats de la Generalitat de Catalunya (2021 SGR 00697), and by the French--Austrian project PAGCAP (ANR-21-CE48-0020 \& FWF I 5788).}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -223,8 +221,9 @@ The \defn{hypergraphic polytope} of a hypergraph~$\HH$ on~$[n]$ is the Minkowski
 \simplex_\HH \eqdef \sum_{H\in \HH} \simplex_H\,,
 \)
 where $\simplex_H$ is the simplex given by the convex hull of the points $\b{e}_h$ for~$h \in H$.
-The face lattice of~$\simplex_\HH$ was described combinatorially in terms of acyclic orientations of~$\HH$ in~\cite{BenedettiBergeronMachacek}.
-Note that the singletons of~$\HH$ are irrelevant for the combinatorics of~$\triangle_\HH$ as they just contribute to translations.
+These polytopes (or some special cases) were studied in~\cite{FeichtnerSturmfels, Postnikov, PostnikovReinerWilliams, AgnarssonMorris, Agnarsson, AguiarArdila, BenedettiBergeronMachacek, PadrolPilaudPoullot-deformationConesHypergraphicPolytopes, Rehberg, CardinalSteiner, CardinalHoangMerinoMickaMutze} among others.
+In particular, the face lattice of~$\simplex_\HH$ was described combinatorially in terms of acyclic orientations of~$\HH$ in~\cite{BenedettiBergeronMachacek}.
+Note that the singletons of~$\HH$ are irrelevant for the combinatorics of~$\simplex_\HH$ as they just contribute to translations.
 It is convenient for us to assume that~$\{i\} \in \HH$ for all~$i \in [n]$.
 
 The \defn{hypergraphic poset}~$P_\HH$ is the transitive closure of the skeleton of~$\simplex_\HH$ oriented in the direction~$\b{\omega} \eqdef (n, n-1, \dots, 2, 1) - (1, 2, \dots, n-1, n) = (n-1, n-3, \dots, 3-n, 1-n)$.
@@ -234,11 +233,17 @@ For instance,
 \item if~$\HH = \set{[i,j]}{1 \le i \le j \le n}$ is the complete interval hypergraph, then~$\simplex_\HH$ is \mbox{J.-L.~Loday's} \defn{associahedron}~\cite{ShniderSternberg,Loday} and~$P_\HH$ is the \defn{Tamari lattice on binary trees}~\cite{Tamari}.
 \end{itemize}
 
-In view of these two examples, we would like to characterize the hypergraphs~$\HH$ for which $P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a \mbox{(semi-)lattice} quotient of the weak order on permutations, etc.
-These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes (\ie when~$\HH \subseteq \binom{[n]}{2}$), and also partially studied in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss} (\ie when~$\HH$ is the set of all subsets of vertices that induce a connected subgraph of a fixed graph on~$[n]$).
+Further important examples of hypergraphic polytopes include graphical zonotopes, graph associahedra~\cite{CarrDevadoss}, nestohedra~\cite{FeichtnerSturmfels,Postnikov}, multiplihedra~\cite{Stasheff-HSpaces, SaneblidzeUmble-diagonals, Forcey-multiplihedra, ArdilaDoker, ChapotonPilaud}, and constrainahedra~\cite{BottmanPoliakova, ChapotonPilaud}, and other examples given below.
+Hypergraphic polytopes belong to the more general class of \defn{deformed permutahedra} (\aka \defn{generalized permutahedra}~\cite{Postnikov}, or \defn{polymatroids}~\cite{Edmonds}).
+The later are all deformations of the permutahedron, \ie all polytopes whose normal fan coarsen the braid arrangement, and are all obtained as Minkowski sums and differences of faces of the standard simplex.
+Among those, the hypergraphic polytopes are those which can be constructed using only Minkowski sums of faces of the standard simplex.
+
+In view of the two above examples, we would like to characterize the hypergraphs~$\HH$ for which~$P_\HH$ is a lattice, a distributive lattice, a semidistributive lattice, a congruence-uniform lattice, a \mbox{(semi-)lattice} quotient of the weak order on permutations, etc.
+These questions were settled in~\cite{Pilaud-acyclicReorientationLattices} for graphical zonotopes and in~\cite{ChapotonPilaud} for multiplihedra and constrainahedra.
+In contrast, they were only partially answered in~\cite{BarnardMcConville} for graph associahedra~\cite{CarrDevadoss}, and still remain largely open for nestohedra~\cite{FeichtnerSturmfels, Postnikov}.
 
 In this paper, we study the case of \defn{interval hypergraphs}~$\II$, \ie when all hyperedges of~$\II$ are intervals of~$[n]$.
-Note that the family of interval hypergraphic polytopes does not contain the permutahedron, but contains
+Note that the family of interval hypergraphic polytopes includes
 \begin{itemize}
 \item the classical associahedron of~\cite{ShniderSternberg,Loday} when~$\II$ contains all intervals of~$[n]$,
 \item the Pitman--Stanley polytope~\cite{PitmanStanley} when~$\II$ is the set of all singletons~$\{i\}$ and all initial intervals~$[i]$~for~${i \in [n]}$,
@@ -246,6 +251,8 @@ Note that the family of interval hypergraphic polytopes does not contain the per
 \item the fertilitopes of~\cite{Defant-fertilitopes} when any two intervals of~$\II$ are either nested or disjoint.
 \end{itemize}
 In fact, it follows from~\cite{BazierMatteChapelierLaguetDouvilleMousavandThomasYildirim,PadrolPaluPilaudPlamondon} that the interval hypergraphic polytopes are precisely the weak Minkowski summands of the classical associahedron (recall that a polytope~$P \subset \R^n$ is a \defn{weak Minkowski summand} of a polytope~$Q \subset \R^n$ if there exists a real~$\lambda \ge 0$ and a polytope~$R \subset \R^d$ such that~$\lambda Q = P + R$).
+In other words, interval hypergraphic polytopes are all deformations of the classical associahedron, \ie all polytopes whose normal fan coarsens the sylvester fan.
+In contrast, the permutahedron, graphical zonotopes, graph associahedra, nestohedra, multiplihedra and constrainahedra are not interval hypergraphic polytopes.
 
 We obtain the following characterizations, where we assume that~$\{i\} \in \II$ for all~$i \in [n]$ as mentioned earlier.
 See \cref{sec:LatticeI,sec:distributive,sec:semidistributive,sec:quotient} and \cref{fig:notLattices,fig:Tamari,fig:distributiveLattices,fig:semidistributiveLattices,fig:notSemidistributiveLattices} for illustrations.
@@ -343,7 +350,8 @@ Note that as~$n \le 9$ in all our examples, we simplify notations and write~$123
 
 \begin{remark}
 \label{rem:single}
-Note that the singletons hyperedges are irrelevant for our purposes.
+\enlargethispage{.2cm}
+Note that the singleton hyperedges are irrelevant for our purposes.
 Namely, adding to~$\HH$ the hyperedge~$\{i\}$ for some~$i \in [n]$ just translates the polytope~$\simplex_\HH$ in the direction~$\b{e}_i$, which does not affect the face structure of the polytope.
 For our conditions on hypergraphs of \cref{thm:latticeI,thm:distributiveLatticeI}, it is convenient for us to assume that $\{i\} \in \HH$ for all $i \in [n]$.
 When quoting results from~\cite{BenedettiBergeronMachacek}, the reader will have to be mindful that they took the opposite convention.
@@ -375,7 +383,7 @@ If we list the non-singleton elements $(H_1,H_2,...,H_k)$ of $\HH$ in some fixed
 \label{exm:DH2}
 Using $\HH=\{ 1, 2, 3, 4, 123, 134 \}$ as in~\cref{exm:DH1}, we order the two non-singleton $(123,134)$.
 There are $9$ orientations of~$\HH$, $7$ of which are acyclic as displayed in~\cref{fig:Orientation1}. 
-For instance, the orientation $(O(123), O(134)) = (1,3)$ is cyclic since $O(123) = 1 \in 134$ and $O(134) = 3 \in 123$ is a cycle with $k = 2$.
+For instance, the orientation $(O(123), O(134)) = (1,3)$ is cyclic since $O(123) = 1 \in 134$ and ${O(134) = 3 \in 123}$ is a cycle with $k = 2$.
 %
 \begin{figure}
 	\centerline{
@@ -501,7 +509,7 @@ We conclude with an elementary yet relevant symmetry.
 
 \begin{proposition}
 \label{prop:antiIsomorphism}
-For~$x \in n$, define~$x^\leftrightarrow \eqdef n-x+1$.
+For~$x \in [n]$, define~$x^\leftrightarrow \eqdef n-x+1$.
 For~$H \subseteq [n]$, define~$H^\leftrightarrow \eqdef \set{h^\leftrightarrow}{h \in H}$.
 For an hypergraph~$\HH$, define~$\HH^\leftrightarrow \eqdef \set{H^\leftrightarrow}{H \in \HH}$.
 For an orientation~$O$ of~$\HH$, define the orientation~$O^\leftrightarrow$ of~$\HH^\leftrightarrow$ by~$O^\leftrightarrow(H^\leftrightarrow) \eqdef O(H)^\leftrightarrow$.
@@ -519,7 +527,7 @@ Straightforward.
 
 The hypergraphic polytope~$\simplex_\HH$ is a deformed permutahedron (\aka generalized permutahedron~\cite{Postnikov, PostnikovReinerWilliams}, \aka polymatroid~\cite{Edmonds}).
 This means that the normal fan of~$\simplex$ coarsens the normal fan of the permutahedron.
-Hence, there is a natural surjection from the faces of the permutahedron to the faces of~$\simplex_\HH$, which was described in details in~\cite[Lem.~2.9]{BenedettiBergeronMachacek}.
+Hence, there is a natural surjection from the faces of the permutahedron to the faces of~$\simplex_\HH$, which was described in detail in~\cite[Lem.~2.9]{BenedettiBergeronMachacek}.
 Here, we focus on the surjection~$\Or$ from the permutations of $[n]$ to the acyclic orientations of~$\HH$.
 
 \begin{definition}
@@ -544,6 +552,7 @@ In other words, the graph~$(V_\HH, E_\HH)$ of~$\simplex_\HH$ is isomorphic to th
 The map~$\Or$ defines a poset morphism from the weak order on permutations to the hypergraphic poset~$P_\HH$.
 \end{corollary}
 
+\pagebreak
 Finally, we describe the fibers of the surjection~$\Or : \fS_n \to V_\HH$.
 Given an acyclic orientation~$A$ of~$\HH$, define $\less_A$ as the order on $[n]$ obtained by the transitive closure of the union of the \linebreak orders $\set{A(H) < h}{h \in H \ssm \{A(H)\}}$ for each $H \in \HH$.
 That is,
@@ -857,6 +866,11 @@ For the hypergraph~$\II = \{ 1, 2, 3, 4,123, 23, 234, 1234 \}$ of \cref{exm:inte
 \end{example}
 
 \begin{remark}
+\label{prop:surjectionFactorizeI}
+It follows from \cref{prop:preimageI} that the surjective poset morphism~$\Or$ factorizes through the Tamari lattice.
+\end{remark}
+
+\begin{remark}
 \cref{prop:preimageI} fails when~$\HH$ is not an interval hypergraph.
 For~$\HH \eqdef \{1, 2, 3, 13\}$, there are two fibers~$\{123, 213, 132\}$ and~$\{231, 312, 321\}$ which are not intervals of the weak order.
 \end{remark}
@@ -915,8 +929,11 @@ We thus consider~$I \in \II$ and distinguish two cases:
 \end{proof}
 
 \begin{remark}
-Note that the forward direction holds for arbitrary hypergraphs.
-We are not sure whether the backward direction holds for arbitrary hypergraphs.
+After the completion of this paper, \cref{prop:sourceOrderI} was extended to arbitrary hypergraphs by F.~Gélinas in~\cite{Gelinas}.
+\end{remark}
+
+\begin{remark}
+Note that \cref{prop:sourceOrderI} implies that the hypergraphic poset~$P_\II$ has Dushnik-Miller dimension at most~$|\II|$.
 \end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -936,6 +953,7 @@ A symmetric statement holds for decreasing flips.
 \begin{proof}
 We prove the result for increasing flips, the result for decreasing flips follows by the symmetry of~\cref{prop:antiIsomorphism}.
 
+\pagebreak
 Assume first that there is~$J \in \II$ with~$j \in J \ssm \{A(J)\}$ and~$A(J) \in {]i,k]}$.
 Let~$I \in \II$ be such that~$A(I) = i$ and~$k = \max(I)$.
 Then~$B(J) = A(J) \in {]i,k]} = {]A(I), \max(I)]} \subseteq I$ and~$B(I) = j \in J$ and~$B(I) = j \ne A(J) = B(J)$ implies that $B$ is cyclic.
@@ -1007,10 +1025,11 @@ Hence,~$\ell \in {]i,j[} \ssm \bigcup_{A(J) \in {]i,j]}} J \ssm \{A(J)\}$.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\pagebreak
 \section{Interval hypergraphic lattices}
 \label{sec:LatticeI}
 
-\begin{figure}
+\begin{figure}[b]
 	\centerline{
 		\begin{tabular}{c@{\qquad}c}
 			\begin{tikzpicture}[scale=1.5,baseline=-3.5cm]
@@ -1273,7 +1292,7 @@ We have that $\pi_A < \pi_C$, $\pi_A < \pi_D$ and $\pi_B < \pi_D$ in the weak or
 \cref{coro:weakToP} implies that $A < C$, $A < D$ and $B < D$ in~$P_\II$.
 We moreover claim that $B < C$  but this does not follow directly from the weak order since $\pi_B\not<\pi_C$.
 To show our claim, consider $\pi_E=adcbX$ and $\pi_F=adbcX$.
-For any $K\in \II$ such that $a,d\not\in K$, we cannot have both $c,d\in K$, since this would imply that $K=[c,d]=I\cap J\not\in \II$, a contradiction.
+For any $K\in \II$ such that $a,d\not\in K$, we cannot have both $b,c\in K$, since this would imply that $K=[b,c]=I\cap J\not\in \II$, a contradiction.
 This shows that $E=\Or_{\pi_E}=\Or_{\pi_F}=F$.
 Now we have $\pi_B<\pi_E$ and $\pi_F<\pi_C$ which gives $B<E=F<C$.
  
@@ -1329,6 +1348,7 @@ If $\II$ is an interval  hypergraph closed under intersection, then the followin
 \end{enumerate}
 \end{theorem}
 
+\pagebreak
 \begin{proof}
 The equivalence \mbox{(a)$\iff$(b)} was established in \cref{prop:sourceOrderI}.
 
@@ -1424,6 +1444,7 @@ This shows the result for the join~$\join$.
 The proof for the meet~$\meet$ is similar.
 \end{proof}
 
+\pagebreak
 \begin{example}
 For the hypergraph~$\{ 1, 2, 3, 4,123, 23, 234, 1234 \}$ of \cref{exm:intervalHypergraph,fig:exmInterval}, we have
 \[
@@ -1622,7 +1643,7 @@ The interval hypergraphic posets of \cref{fig:distributiveLattices} are distribu
 \end{example}
 
 \begin{example}
-The hypergraphic poset of~$\{ 1, 2, 3, 12, 123\}$ is a distributive lattice (it is square).
+The hypergraphic poset of~$\{ 1, 2, 3, 12, 123\}$ is a distributive lattice (it is a diamond).
 In general, the hypergraphic poset of all initial intervals is the boolean lattice, which is distributive.
 See \cref{fig:distributiveLattices} and \cref{subsec:SchroderHypergraphs} for more examples of distributive hypergraphs.
 \end{example}
@@ -1719,11 +1740,11 @@ and are incomparable.
 \label{exm:Aj4}
 For the hypergraph~$\II \eqdef \{1,2,3,4,123,23,234\}$ illustrated in \cref{fig:distributiveLattices}\,(top left), we have~$\cJ_\II = \{2,3,4\}$, and the corresponding acyclic orientations~are
 \[
-A_2 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/2,2/3/2,2/4/2}}
+A_2 = \acyclicOrientation{4}{1/3/2,2/3/2,2/4/2}
 \qquad
-A_3 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/1,2/3/3,2/4/3}}
+A_3 = \acyclicOrientation{4}{1/3/1,2/3/3,2/4/3}
 \quad\text{and}\quad
-A_4 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/1,2/3/2,2/4/4}}
+A_4 = \acyclicOrientation{4}{1/3/1,2/3/2,2/4/4}
 \]
 and are incomparable.
 \end{example}
@@ -1732,11 +1753,11 @@ and are incomparable.
 \label{exm:Aj5}
 For the hypergraph~$\II \eqdef \{1,2,3,4,123,1234\}$ illustrated in \cref{fig:distributiveLattices}\,(top right), we have~$\cJ_\II = \{2,3,4\}$, and the corresponding acyclic orientations~are
 \[
-A_2 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/2,1/4/2}}
+A_2 = \acyclicOrientation{4}{1/3/2,1/4/2}
 \qquad
-A_3 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/3,1/4/3}}
+A_3 = \acyclicOrientation{4}{1/3/3,1/4/3}
 \quad\text{and}\quad
-A_4 = \raisebox{-.4cm}{\acyclicOrientation{4}{1/3/1,1/4/4}}
+A_4 = \acyclicOrientation{4}{1/3/1,1/4/4}
 \]
 and we have~$A_2 < A_3$.
 \end{example}
@@ -1932,6 +1953,7 @@ The statement follows since $\Psi$ is injective by \cref{prop:injectivityDistrib
 \end{proof}
 
 \begin{corollary}
+\label{coro:productChains}
 If~$\II$ is a distributive hypergraph, then~$P_\II$ is a Cartesian product of chains.
 \end{corollary}
 
@@ -1939,8 +1961,16 @@ If~$\II$ is a distributive hypergraph, then~$P_\II$ is a Cartesian product of ch
 The poset~$(\cJ_\II, \preccurlyeq)$ is a disjoint union of chains, hence its lattice of lower sets is a Cartesian product of chains.
 \end{proof}
 
-\vincent{corollary: counting}
-\vincent{It is always a product of simplices...}
+\begin{remark}
+\label{rem:fhpolynomials}
+It immediately follows from \cref{coro:productChains} that the $f$-polynomial and the $h$-polynomial of~$P_\II$ are given by
+\[
+f_{P_\II}(x) = \prod_{i \in [k]} \frac{(x+1)^{\ell_i+1}-1}{x}
+\qquad\text{and}\qquad
+g_{P_\II}(x) = \prod_{i \in [k]} \frac{x^{\ell_i+1}-1}{x-1}
+\]
+where~$\ell_1, \dots, \ell_k$ denote the length (number of elements) of the chains of~$(\cJ_\II, \preccurlyeq)$.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -2011,7 +2041,11 @@ For an internal hypergraph~$\II$, the poset~$P_\II$ is a distributive lattice if
 \subsection{Schr\"oder hypergraphs}
 \label{subsec:SchroderHypergraphs}
 
-As an illustration of this section, we now consider a special family of distributive hypergraphs which were already considered in~\cite{Defant-fertilitopes}.
+As an illustration of this section, we now consider a special family of distributive hypergraphs which were already considered in~\cite[Sect.~7.2]{PostnikovReinerWilliams} and~\cite{Defant-fertilitopes}.
+
+\begin{definition}
+A hypergraph~$\HH$ is \defn{laminar} if any two hyperedges~$G, H \in \HH$ are either disjoint ($G \cap H = \varnothing$) or nested ($G \subseteq H$ or~$G \supseteq H$).
+\end{definition}
 
 \begin{definition}
 Let~$S$ be a \defn{Schr\"oder tree} (\ie a rooted plane tree where each internal node has at least two children) with~$n$ leaves labeled by~$[n]$ from left to right.
@@ -2046,24 +2080,25 @@ The corresponding Schr\"oder trees are given by:
 \end{example}
 
 \begin{example}
-For instance, for the left comb~$C$, the Schr\"oder hypergraph~$\II_C$ consists of all singletons and all initial intervals. The hypergraphic polytope~$\triangle_{\II_C}$ is the Pitman--Stanley polytope~\cite{PitmanStanley}.
+For instance, for the left comb~$C$, the Schr\"oder hypergraph~$\II_C$ consists of all singletons and all initial intervals. The hypergraphic polytope~$\simplex_{\II_C}$ is the Pitman--Stanley polytope~\cite{PitmanStanley}.
 \end{example}
 
 \begin{proposition}
 \label{prop:characterizationSchroder}
-An interval hypergraph~$\II$ is a Schr\"oder hypergraph if and only if~$I \subseteq J$ or~$I \supseteq J$ or~$I \cap J = \varnothing$ for all~$I,J \in \II$.
+The Schr\"oder hypergraphs are precisely the laminar interval hypergraphs.
 \end{proposition}
 
 \begin{proof}
 Consider first two nodes~$i$ and~$j$ of a Schr\"oder tree~$S$, and let~$I$ and~$J$ be the corresponding labels.
 Then~$I \subseteq J$ if~$i$ is a descendant of~$j$, $I \supseteq J$ if~$i$ is a ancestor of~$j$, and~$I \cap J = \varnothing$ otherwise.
+Hence, any Schr\"oder hypergraph is a laminar interval hypergraph.
 
-Conversely, consider an interval hypergraph~$\II$ where any two hyperedges are nested or disjoint. Then the inclusion poset on~$\II$ is a Schr\"oder tree~$S$ with~$\II_S = \II$.
+Conversely, consider a laminal interval hypergraph~$\II$. Then the inclusion poset on~$\II$ is a Schr\"oder tree~$S$ with~$\II_S = \II$.
 \end{proof}
 
 \begin{remark}
-\cref{prop:characterizationSchroder} implies that Schr\"oder hypergraphs are building sets, so that Schr\"oder hypergraphic polytopes are nestohedra~\cite{FeichtnerSturmfels,Postnikov}.
-In fact, the latter were already considered in the literature under the name \defn{fertilitopes}~\cite{Defant-fertilitopes}.
+\cref{prop:characterizationSchroder} implies that Schr\"oder hypergraphs are building sets, so that Schr\"oder hypergraphic polytopes are specific nestohedra~\cite{FeichtnerSturmfels,Postnikov}.
+In fact, they were already considered in~\cite[Sect.~7.2]{PostnikovReinerWilliams} and~\cite{Defant-fertilitopes}.
 \end{remark}
 
 \begin{corollary}
@@ -2075,13 +2110,24 @@ The distributivity condition of \cref{def:distributive} is clearly fulfilled as 
 \end{proof}
 
 \begin{proposition}
+\label{prop:schroder}
 Given a Schr\"oder tree~$S$, the poset of join irreducible acyclic orientations on~$\II_S$ is isomorphic to a disjoint union of chains.
-More precisely, it has one chain for each node~$n$ of~$S$, whose elements are the leaves of~$n$ and the leftmost leaves of the children of~$n$, except the leftmost leaf below~$n$.
+More precisely, it has one chain for each node~$I$ of~$S$, whose elements are the leaves of~$I$ and the leftmost leaves of the children of~$I$, except the leftmost leaf below~$I$.
 \end{proposition}
 
 \begin{proof}
 This description is a specialization of the description of the join irreducible poset of distributive interval hypergraphic posets from \cref{subsec:someJoinIrreducibles}.
 \end{proof}
+
+\begin{remark}
+Similarly to \cref{rem:fhpolynomials}, \cref{prop:schroder} implies that the $f$-polynomial and the $h$-polynomial of~$P_{\II_S}$ are given by
+\[
+f_{P_{\II_S}}(x) = \prod_{I \in S} \frac{(x+1)^{\deg(I)}-1}{x}
+\qquad\text{and}\qquad
+g_{P_{\II_S}}(x) = \prod_{I \in S} \frac{x^{\deg(I)}-1}{x-1}
+\]
+where~$I$ runs over the nodes of~$S$ and~$\deg(I)$ denotes its degree in~$S$.
+\end{remark}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2456,6 +2502,7 @@ and we have~$A_{23} < A_{13}$ and~$A_{34} < A_{14}$.
 
 \begin{example}
 \label{exm:Aij6}
+\enlargethispage{.4cm}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 234, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have~$\cIJ_\II = \{(1,2), (2,3), (3,4), (1,3), (1,4)\}$, and the join irreducible acyclic orientations~are
 \begin{gather*}
 A_{12} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/2,2/3/2,2/4/2,1/4/2}}
@@ -2471,6 +2518,7 @@ A_{14} = \raisebox{-.2cm}{\acyclicOrientation{4}{1/2/1,2/3/2,2/4/4,1/4/4}}
 and we have~$A_{23} < A_{13}$ and~$A_{24} < A_{14}$.
 \end{example}
 
+\pagebreak
 \begin{lemma}
 \label{lem:distinctIrreducibles2}
 For $(i,j) \ne (k,\ell) \in \cIJ_\II$, we have $A_{ij} \ne A_{k\ell}$.
@@ -2538,6 +2586,7 @@ If~$\II$ is an interval hypergraph closed under intersection, then the map~${(i,
 \end{proposition}
 
 \begin{proof}
+\enlargethispage{.4cm}
 Consider a join irreducible acyclic orientation~$B$ of~$\II$ and let~$\flip{A}{i}{j}{B}$ be the only increasing flip which ends at~$B$.
 Let~$I \in \II$ be such that~$A(I) = i$ and~$B(I) = j$.
 Observe that~$B(J) \in \{\min(J), j\}$ for any~$J \in \II$ by \cref{prop:alwaysFlippableI}.
@@ -2712,6 +2761,7 @@ The inequality holds since~$A(J_{jt'}) = j$ while~$(B \meet C)(J_{jt'}) \ge C(J_
 We conclude that~$P_\II$ is not semidistributive.
 \end{proof}
 
+\pagebreak
 \begin{example}
 For the hypergraph~$\II \eqdef \{1, 2, 3, 4, 12, 23, 34, 1234\}$ illustrated in \cref{fig:notSemidistributiveLattices}\,(right), we have
 \[
@@ -2770,6 +2820,7 @@ In this section, we prove \cref{thm:quotientLatticeI} which we first introduce p
 \begin{definition}
 \label{def:subinterval}
 We say that an interval hypergraph~$\II$ is \defn{closed under initial} (resp.~\defn{final}) \defn{subintervals} if~$[i,k] \in \II$ implies~$[i,j] \in \II$ (resp.~$[j,k] \in \II$) for any~$1 \le i < j < k \le n$.
+We say that~$\II$ is \defn{closed under subintervals} if it is closed under both initial and final subintervals, or equivalently if~$[i,\ell] \in \II$ implies~$[j,k] \in \II$ for any~$1 \le i \le j \le k \le \ell \le n$.
 \end{definition}
 
 \begin{remark}
@@ -2839,15 +2890,23 @@ As~$\Or_\sigma = \Or_{\sigma'} = \Or_{\sigma''}$ and~$\Or_\tau = \Or_{\tau'}$, w
 \end{proof}
 
 \begin{corollary}
+\label{coro:quotientLatticeI}
 For an interval hypergraph $\II$ on~$[n]$, the poset morphism~$\Or$ from the weak order on~$\fS_n$ to the interval hypergraphic poset $P_\II$ is a lattice morphism if and only if $\II$ is closed under subintervals.
 In this case, $P_\II$ is a Cartesian product of Tamari lattices.
 \end{corollary}
 
+\begin{remark}
+It follows from \cref{prop:surjectionFactorizeI} that the conditions of \cref{thm:quotientLatticeI,coro:quotientLatticeI} also characterize the interval hypergraphs which are (semi)lattice quotients of the Tamari lattice.
+\end{remark}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\section*{Acknowledgments}
+\section*{Acknowledgments}
+
+We are grateful to two anonymous referees for helpful suggestions.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
